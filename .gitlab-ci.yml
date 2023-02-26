@@ -32,3 +32,6 @@ deploy-job:      # This job runs in the deploy stage.
     - echo "Deploying the container..."
     - docker run -d -p 172.31.116.124:80:8000  django_test:latest
     - echo "Container successfully deployed."
+    - echo "the project directory is - $CI_PROJECT_DIR"
+    - cat $CI_PROJECT_DIR/README.md ; echo
+    - echo "and where am I? - $PWD"
