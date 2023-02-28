@@ -29,6 +29,7 @@ build-job:       # This job runs in the build stage, which runs first.
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   script:
+    - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
     - docker run -d -p 172.31.116.124:1234:8000  django_test:latest
     - echo "Container successfully deployed."
