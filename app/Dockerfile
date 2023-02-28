@@ -2,7 +2,7 @@
 FROM python:3.9.6-alpine
 
 # set work directory
-WORKDIR /team40-22
+WORKDIR /team40-22/app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -19,11 +19,11 @@ RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' ./entrypoint.sh
-RUN chmod +x ./entrypoint.sh
+RUN sed -i 's/\r$//g' /team40-22/app/entrypoint.sh
+RUN chmod +x /team40-22/app/entrypoint.sh
 
 # copy project
 COPY . .
 
 # run entrypoint.sh
-ENTRYPOINT ["/team40-22/entrypoint.sh"]
+ENTRYPOINT ["/team40-22/app/entrypoint.sh"]
