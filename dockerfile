@@ -2,7 +2,7 @@
 FROM python:3.9.6-alpine
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /team40-22
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -14,7 +14,7 @@ RUN apk update \
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy project
