@@ -47,8 +47,8 @@ WORKDIR $APP_HOME
 
 # install dependencies
 RUN apk update && apk add libpq
-COPY --from=builder ./wheels .
-COPY --from=builder ./requirements.txt .
+COPY --from=builder /team40-22/wheels /wheels
+COPY --from=builder /team40-22/requirements.txt .
 RUN pip install --no-cache /wheels/*
 
 # copy entrypoint.prod.sh
