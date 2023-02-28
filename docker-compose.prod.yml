@@ -2,8 +2,9 @@ version: '3.9'
 
 services:
   web:
-    build: .
-    dockerfile: Dockerfile.prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
     command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
     ports:
       - 8000:8000
