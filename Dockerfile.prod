@@ -23,7 +23,7 @@ COPY . .
 
 # install dependencies
 COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir ./wheels -r requirements.txt
 
 
 #########
@@ -40,8 +40,8 @@ RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
 
 # create the appropriate directories
-ENV HOME=/home/app
-ENV APP_HOME=/home/app/web
+ENV HOME=/team40-22
+ENV APP_HOME=/team40-22/web
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
