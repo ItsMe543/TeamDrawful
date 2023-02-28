@@ -23,7 +23,7 @@ COPY . .
 
 # install dependencies
 COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir ./wheels -r requirements.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /home/app/wheels -r requirements.txt
 
 
 #########
