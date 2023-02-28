@@ -17,5 +17,13 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+# copy entrypoint.sh
+COPY ./entrypoint.sh .
+RUN sed -i 's/\r$//g' /team40-22/entrypoint.sh
+RUN chmod +x /team40-22/entrypoint.sh
+
 # copy project
 COPY . .
+
+# run entrypoint.sh
+ENTRYPOINT ["/team40-22/entrypoint.sh"]
