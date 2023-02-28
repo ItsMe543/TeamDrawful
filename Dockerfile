@@ -19,8 +19,8 @@ RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /team40-22/app/entrypoint.sh
-RUN chmod +x /team40-22/app/entrypoint.sh
+RUN sed -i 's/\r$//g' ./app/entrypoint.sh
+RUN chmod +x ./app/entrypoint.sh
 
 # copy project
 COPY . .
