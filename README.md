@@ -32,8 +32,3 @@ limited by our web-app. They have been transparent about wanting to be able to i
 other users' posts and to be able to do so quickly, which has further justified the use of the ‘Star’
 ranking system so that people can have quick and comparable data based on what they have
 created and shared.
-
-
-
-
-yo
