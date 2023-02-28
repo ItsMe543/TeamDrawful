@@ -38,3 +38,14 @@ To use our web-app you need to visit the link:
 
 
 ### Development Mockups:
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/AccessibilitySettings-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/Badges-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/DarkModeAccountSettings-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/DrawingPage-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/FriendRequests-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/FriendsDrawing-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/FriendsProfile-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/MainMenu-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/MemoriesPage-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/MutualFriends-MU.png)
+![alt text](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/ProfileDrawing-MU.png)
