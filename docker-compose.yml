@@ -2,8 +2,8 @@ version: '3.9'
 
 services:
   web:
-    build: .
-    command: python /team40-22/app/manage.py runserver 0.0.0.0:8000
+    build: ./app
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./app/:/usr/src/app/
     ports:
