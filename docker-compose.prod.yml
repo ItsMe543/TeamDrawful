@@ -4,12 +4,12 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.prod
+      dockerfile: ./app/Dockerfile.prod
     command: gunicorn django_rest_cicd_pipeline.wsgi:application --bind 0.0.0.0:8000
     expose:
       - 8000
     env_file:
-      - team40-22/.env.prod
+      - ./.env.prod
     depends_on:
       - db
   db:
@@ -17,9 +17,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - team40-22/.env.prod.db
+      - ./.env.prod.db
   nginx:
-    build: team40-22/nginx
+    build: ./nginx
     ports:
       - 1337:80
     depends_on:
