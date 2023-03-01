@@ -50,6 +50,7 @@ RUN apk update && apk add libpq
 COPY --from=builder /team40-22/app/wheels /wheels
 COPY --from=builder /team40-22/app/requirements.txt .
 RUN pip3 install --no-cache /wheels/*
+RUN pip3 install djangorestframework
 
 # copy entrypoint.prod.sh
 COPY ./app/entrypoint.prod.sh .
