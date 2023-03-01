@@ -1,7 +1,7 @@
-import importlib
+import sys
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-base = importlib.import_module("team40-22/base")
+sys.path.append("team40-22")
 from base.models import Item
 from base.serializers import ItemSerializer
 
