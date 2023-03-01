@@ -48,7 +48,7 @@ WORKDIR $APP_HOME
 # install dependencies
 RUN apk update && apk add libpq
 COPY --from=builder /team40-22/app/wheels /wheels
-COPY --from=builder /team40-22/app/requirements.txt .
+COPY --from=builder ./requirements.txt .
 RUN pip3 install --no-cache /wheels/*
 RUN pip3 install djangorestframework
 
