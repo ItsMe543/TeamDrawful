@@ -17,13 +17,13 @@ RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
 # lint
-RUN pip install --upgrade pip
-RUN pip install flake8==3.9.2
+RUN pip3 install --upgrade pip
+RUN pip3 install flake8==3.9.2
 COPY . .
 
 # install dependencies
 COPY ./app/requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /team40-22/app/wheels -r requirements.txt
+RUN pip3 wheel --no-cache-dir --no-deps --wheel-dir /team40-22/app/wheels -r requirements.txt
 
 
 #########
@@ -49,7 +49,7 @@ WORKDIR $APP_HOME
 RUN apk update && apk add libpq
 COPY --from=builder /team40-22/app/wheels /wheels
 COPY --from=builder /team40-22/app/requirements.txt .
-RUN pip install --no-cache /wheels/*
+RUN pip3 install --no-cache /wheels/*
 
 # copy entrypoint.prod.sh
 COPY ./app/entrypoint.prod.sh .
