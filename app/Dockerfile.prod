@@ -6,7 +6,7 @@
 FROM python:3.9.6-alpine as builder
 
 # set work directory
-WORKDIR /team40-22
+WORKDIR /team40-22/app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -48,7 +48,7 @@ WORKDIR $APP_HOME
 # install dependencies
 RUN apk update && apk add libpq
 COPY --from=builder /team40-22/app/wheels /wheels
-COPY --from=builder ${APP_HOME}/requirements.txt .
+COPY --from=builder /team40-22/app/requirements.txt .
 RUN pip3 install --no-cache /wheels/*
 RUN pip3 install djangorestframework
 
