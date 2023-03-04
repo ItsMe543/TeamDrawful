@@ -24,7 +24,7 @@ To use our web-app you need to visit the link:
 
 ### Creators:
 - Joseph Adams: Viewing drawings
-- Thomas Leigh(GOD): Drawing page
+- Thomas Leigh: Drawing page
 - Ty Bodin: Friends list and viewing other users profiles
 - Harry Parsons: Memories
 - Alexander Sadler: Home, and Badges
