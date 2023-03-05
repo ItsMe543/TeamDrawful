@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    command: python manage.py runserver
+    command: python manage.py runserver 127.0.0.1:8000
     volumes:
       - ./drawful
     ports:
