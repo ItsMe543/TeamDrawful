@@ -39,7 +39,7 @@ deploy-job:      # This job runs in the deploy stage.
     #- echo "Container successfully deployed."
   before_script: 
     - chmod og= $RSA
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f team40-22/docker-compose.yml down || true"
+    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/docker-compose.yml down || true"
   script:
-    - scp -o StrictHostKeyChecking=no -i $RSA -r /team40-22 $VM_USER@$VM:/team40-22
-    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f team40-22/docker-compose.yml up -d"
+    - scp -o StrictHostKeyChecking=no -i $RSA -r /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22 $VM_USER@$VM:/home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
+    - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/docker-compose.yml up -d"
