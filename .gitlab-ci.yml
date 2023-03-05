@@ -41,5 +41,5 @@ deploy-job:      # This job runs in the deploy stage.
     - chmod og= $RSA
     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f team40-22/docker-compose.yml down || true"
   script:
-    - scp -o StrictHostKeyChecking=no -i $RSA -r . $VM_USER@$VM:~/team-project-deployment 
+    - scp -o StrictHostKeyChecking=no -i $RSA -r . $VM_USER@$VM:team40-22/docker-compose.yml
     - ssh -o StrictHostKeyChecking=no -i $RSA $VM_USER@$VM "docker compose -f team40-22/docker-compose.yml up -d"
