@@ -35,5 +35,5 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
-    - docker run -d -p 172.31.116.124:1234:8000  django_test:latest
+    - docker run -d -p 18.132.48.131:8000  django_test:latest
     - echo "Container successfully deployed."
