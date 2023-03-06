@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    command: python ./drawful/manage.py runserver 127.0.0.1:8000
+    command: python /drawful/manage.py runserver 127.0.0.1:8000
     volumes:
       - /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful/
     ports:
