@@ -11,7 +11,7 @@ services:
     build: .
     command: python manage.py runserver 127.0.0.1:8000
     volumes:
-      - ./drawful
+      - team40-22/drawful
     ports:
       - "8000:8000"
     environment:
