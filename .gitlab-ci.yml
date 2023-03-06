@@ -23,7 +23,7 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "building the image..."
     - pwd
-    - cd /home/ec2-user/team40-22
+    - sudo cd /home/ec2-user/team40-22
     - pwd
     - docker build -t django_test:latest . 
     - echo "building image complete."
