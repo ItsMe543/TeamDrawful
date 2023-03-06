@@ -31,11 +31,12 @@ build-job:       # This job runs in the build stage, which runs first.
 test-job:
   stage: test
   script:
-    - echo "testing the job"
+    - echo "TomIsPog"
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   script:
+    - sudo cd /home/ec2-user/team40-22
     - docker compose down
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
