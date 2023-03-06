@@ -1,3 +1,16 @@
+# Drawful Frontend 
+
+# Project Stucture
+
+src/components -> contains all components of the app (in our case navbar and main)
+
+src/pages -> contains all the pages of our app
+
+main -> acts as a placeholder for the different pages and will display the correct page for the corresponding url
+
+/src/styles -> contains the seperate css files for each page and component
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
