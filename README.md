@@ -32,7 +32,7 @@ To use our web-app you need to visit the link:
 
 
 
-### License: (This is what other users can and cannot do with our project)
+### License: (This is what other users can and cannot do with our project!)
 
 
 
