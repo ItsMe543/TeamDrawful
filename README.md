@@ -27,7 +27,7 @@ To use our web-app you need to visit the link:
 - Thomas Leigh: Drawing page
 - Ty Bodin: Friends list and viewing other users profiles
 - Harry Parsons: Memories
-- Alexander Sadler: Home, and Badges
+- Alexander Sadler: Home and badges
 - Abhay Uthappa: Setting and accesibility
 
 
