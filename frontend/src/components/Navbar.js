@@ -4,7 +4,7 @@ import { BsVectorPen } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import logo from "../drawful_light.png";
+import logo from "../drawful_light_copy.png";
 import "../styles/Navbar.css";
 function Navbar() {
   // Navbar component

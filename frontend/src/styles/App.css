@@ -3,9 +3,10 @@
 }
 
 .Nav {
-  height: 80px;
+  height: 100px;
   background-color: #dfdfdf;
 }
 
-Main {
+.Main {
+  padding: 10px;
 }
