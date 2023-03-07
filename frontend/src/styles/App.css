@@ -1,1 +1,11 @@
+.App {
+  height: 100vh;
+}
 
+.Nav {
+  height: 80px;
+  background-color: #dfdfdf;
+}
+
+Main {
+}

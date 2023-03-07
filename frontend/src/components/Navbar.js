@@ -10,7 +10,7 @@ function Navbar() {
   // Navbar component
 
   return (
-    <div className="navbar">
+    <div className="nav-container">
       <div className="logo">
         <img src={logo} alt="drawful logo" />
       </div>
@@ -46,10 +46,9 @@ function Navbar() {
             <div>Memories</div>
           </Link>
         </div>
-      </div>
-
-      <div className="notifications">
-        <Link to="/notifications">Notifications</Link>
+        <div className="notifications">
+          <Link to="/notifications">Notifications</Link>
+        </div>
       </div>
     </div>
   );
