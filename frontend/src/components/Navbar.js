@@ -22,26 +22,6 @@ function Navbar() {
           </Link>
         </div>
 
-<<<<<<< HEAD
-      <div className="home">
-        <Link to="/">Home</Link>
-      </div>
-
-      <div className="drawing">
-        <Link to="/drawing">Drawing</Link>
-      </div>
-
-      <div className="setttings">
-        <Link to="/settings">Settings</Link>
-      </div>
-
-      <div className="friends">
-        <Link to="/friends">Friends</Link>
-      </div>
-
-      <div className="memories">
-        <Link to="/memories">Memories</Link>
-=======
         <div className="drawing">
           <Link to="/drawing">
             <BsVectorPen size={25} />
@@ -66,7 +46,6 @@ function Navbar() {
             <div>Memories</div>
           </Link>
         </div>
->>>>>>> e35d19634dee13f24def0b7f3c9a9fd4985ae8d8
       </div>
 
       <div className="notifications">
