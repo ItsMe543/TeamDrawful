@@ -1,29 +1,42 @@
+/*Alter bar characteristics*/
 .links {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10%;
+  gap: 5%;
   height: 100%;
   background-color: #dfdfdf;
 }
 
+/*Colour of logos*/
 a {
   color: black;
 }
 
+/*Centers icons*/
 .navbar {
   text-align: center;
   padding: 0;
 }
+
+/*Adjust position of the logo*/
 .logo {
   position: absolute;
+  top: -1rem;
+  left: 0rem;
 }
 
+/*Alter logo*/
 .logo img {
-  width: 60px;
+  width: 90px;
   height: fit-content;
   max-height: max-content;
   float: left;
   outline: 1px black;
+}
+
+/*Manually change height of bar*/
+.home{
+  min-height: calc(100vh - 650px);
 }
