@@ -5,6 +5,7 @@ import Friends from "../pages/Friends";
 import Home from "../pages/Home";
 import Memories from "../pages/Memories";
 import Settings from "../pages/Settings";
+import Notifications from "../pages/Notifications"
 function Main() {
   // Main component
   // When a url is visited, the corroponding page will be shown as defined below:
@@ -15,6 +16,7 @@ function Main() {
       <Route path="/settings" element={<Settings />}></Route>
       <Route path="/friends" element={<Friends />}></Route>
       <Route path="/memories" element={<Memories />}></Route>
+      <Route path="/notifications" element={<Notifications />}></Route>
     </Routes>
   );
 }

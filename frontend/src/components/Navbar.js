@@ -15,14 +15,21 @@ function Navbar() {
       <div className="drawing">
         <Link to="/drawing">Drawing</Link>
       </div>
+
       <div className="setttings">
         <Link to="/settings">Settings</Link>
       </div>
+
       <div className="friends">
         <Link to="/friends">Friends</Link>
       </div>
+
       <div className="memories">
         <Link to="/memories">Memories</Link>
+      </div>
+
+      <div className="notifications">
+        <Link to="/notifications">Notifications</Link>
       </div>
     </div>
   );
