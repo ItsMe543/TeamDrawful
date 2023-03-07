@@ -7,7 +7,7 @@ from django.views.decorators.csrf import requires_csrf_token
 
 # Create your views here.
 
-#class TodoView(viewsets.ModelViewSet):#
+# class TodoView(viewsets.ModelViewSet):#
 #    serializer_class = TodoSerializer
 #    queryset = Todo.objects.all()
 

@@ -5,8 +5,12 @@ function App() {
   // Displays the main component and the navbar
   return (
     <div className="App">
-      <Navbar />
-      <Main />
+      <div className="Nav">
+        <Navbar />
+      </div>
+      <div className="Main">
+        <Main />
+      </div>
     </div>
   );
 }
