@@ -2,7 +2,7 @@
 FROM python:3.9.6-alpine
 
 # set work directory
-WORKDIR /team40-22
+WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
