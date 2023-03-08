@@ -1,7 +1,6 @@
 import React from "react";
 import Snackbar from '@mui/material/Snackbar';
 import Button from '@mui/material/Button';
-import LinearProgress from '@mui/material/LinearProgress';
 import { TextField } from "@mui/material";
 
 export default function Test() {
@@ -15,12 +14,17 @@ export default function Test() {
 
   const handleClick = (newState, message) => () => {
     setState({ ...state, open: true, ...newState, message });
+    if (newState.vertical === 'bottom' && newState.horizontal === 'left') {
+      usernameRef.current.value = ''; // clear the value of the text field
+    }
   };
+
 
   const handleClose = () => {
     setState({ ...state, open: false });
   };
 
+  const usernameRef = React.useRef(null);
 
   const buttons = (
     <React.Fragment>
@@ -56,40 +60,19 @@ export default function Test() {
     </React.Fragment>
   );
 
-  const [progress, setProgress] = React.useState(0);
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-    return () => {
-      clearInterval(timer);
-    }
-  })
-
   return (
     <div style={{ textAlign: "center" }}>
-      <style>
-        {`body{background-color: rgba(0,0,5, 0.85)}`}
-      </style>
       <div style={{
         textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
-        textAlign: "left", color: "white"
+        textAlign: "left", color: "white",
+        fontSize: "25px", marginLeft: "5px", marginTop: "10px"
       }}>Settings</div>
-      <br></br>
-      <LinearProgress variant="determinate" value={progress} />
-      <br></br>
       <TextField id="outlined-basic" InputProps={{ style: { color: 'white' } }} InputLabelProps={{ style: { color: "white" } }}
         style={{
           borderRadius: "8px", backgroundColor:
             "rgba(255, 255, 255, 0.08)", border: "1px solid black", textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
         }}
-        label="Enter your username" variant="outlined" />
+        label="Enter your username" variant="outlined" inputRef={usernameRef} />
       <br></br>
       {buttons}
       <Snackbar
@@ -103,7 +86,7 @@ export default function Test() {
       <TextField id="outlined-basic" color="secondary"
         label="Testing screen reader" InputProps={{ style: { color: 'white' } }}
         style={{
-          borderRadius: "8px", marginTop: "100px", backgroundColor: "rgba(255, 255, 255, 0.08)",
+          borderRadius: "8px", marginTop: "60px", backgroundColor: "rgba(255, 255, 255, 0.08)",
           border: "1px solid black", textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
         }}
         InputLabelProps={{ style: { color: "white" } }} variant="outlined"
