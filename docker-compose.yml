@@ -2,7 +2,7 @@ services:
   db:
     image: postgres
     volumes:
-      - /var/lib/postgresql/data/db
+      - postgres_data: /var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -11,7 +11,7 @@ services:
     build: /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/
     command: python manage.py runserver 127.0.0.1:80
     volumes:
-      - /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
+      - ./drawful
     ports:
       - "8080:8080"
     environment:
