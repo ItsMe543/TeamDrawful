@@ -1,9 +1,12 @@
 import React from "react";
-import ".."
+import { Link } from "react-router-dom";
+import "../Fonts/Sometimes.otf"
 
 function ViewDrawings() {
   return (
-    <div>Here you can view drawings</div>
+    <div>
+      
+    </div>
   );
 }
 

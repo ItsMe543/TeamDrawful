@@ -22,6 +22,7 @@ function Main() {
       <Route path="/memories" element={<Memories />}></Route>
       <Route path="/notifications" element={<Notifications />}></Route>
       <Route path="/badges" element={<Badges />}></Route>
+      <Route path="/drawing" element={<Drawing />}></Route>
     </Routes>
   );
 }

@@ -30,7 +30,7 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="setttings">
+        <div className="settings">
           <Link to="/settings">
             <FiSettings size={40} />
             <div>Settings</div>
@@ -64,8 +64,6 @@ function Navbar() {
         </div>
 
       </div>
-
-      
 
     </div>
   );
