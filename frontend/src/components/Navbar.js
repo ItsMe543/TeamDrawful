@@ -23,8 +23,8 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="drawing">
-          <Link to="/drawing">
+        <div className="ViewDraws">
+          <Link to="/viewingDrawings">
             <BsVectorPen size={40} />
             <div>Drawing</div>
           </Link>

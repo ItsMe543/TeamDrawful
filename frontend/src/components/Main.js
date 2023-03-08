@@ -7,6 +7,8 @@ import Memories from "../pages/Memories";
 import Settings from "../pages/Settings";
 import Notifications from "../pages/Notifications"
 import Badges from "../pages/Badges"
+import ViewDrawings from "../pages/ViewDraws";
+//Import func from "path";
 
 function Main() {
   // Main component
@@ -14,7 +16,7 @@ function Main() {
   return (
     <Routes>
       <Route path="*" element={<Home />}></Route>
-      <Route path="/drawing" element={<Drawing />}></Route>
+      <Route path="/viewingDrawings" element={<ViewDrawings />}></Route>
       <Route path="/settings" element={<Settings />}></Route>
       <Route path="/friends" element={<Friends />}></Route>
       <Route path="/memories" element={<Memories />}></Route>

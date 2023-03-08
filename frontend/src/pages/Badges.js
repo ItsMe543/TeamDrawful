@@ -1,7 +1,7 @@
 import React from "react";
 
-function Drawing() {
+function Badges() {
   return <div>Badges</div>;
 }
 
-export default Drawing;
+export default Badges;

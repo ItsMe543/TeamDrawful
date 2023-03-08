@@ -1,7 +1,11 @@
 import React from "react";
 
-function Drawing() {
-  return <div>Drawing Page!</div>;
+function Draw() {
+  return (
+    <div>
+
+    </div>
+  );
 }
 
-export default Drawing;
+export default Draw;
