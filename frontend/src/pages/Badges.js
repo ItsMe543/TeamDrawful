@@ -1,7 +1,7 @@
 import React from "react";
 
 function Badges() {
-  return <div>Badges</div>;
+  return <div style={{ fontSize: '25px', color: "white" }} >Badges</div>;
 }
 
 export default Badges;

@@ -39,6 +39,6 @@ a {
 
 
 /*Manually change height of bar*/
-.home{
+.home {
   min-height: calc(100vh - 900px);
 }

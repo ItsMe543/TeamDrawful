@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div>Home!
+    <div style={{ fontSize: '25px', color: "white" }}>Home!
       <div className="Drawings">
-          <Link to="/drawing">
-            <div>Drawing</div>
-          </Link>
+        <Link to="/drawing">
+          <div style={{ fontSize: '25px', color: "white" }}>Drawing</div>
+        </Link>
       </div>
     </div>
   );
