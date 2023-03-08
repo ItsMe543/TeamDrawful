@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'drawful.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.environ.get("SQL_DATABASE"),
-        "USER": os.environ.get("SQL_USER", "user"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "drawful",
+        "USER": "drawful",
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
