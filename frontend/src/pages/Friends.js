@@ -2,12 +2,12 @@ import React from "react";
 
 function Friends() {
 
-  
+
 
   return( 
     <>
-    <div>Friends Page!</div>
-    <p>Hello</p>
+      <div style={{ fontSize: '25px', color: "white" }}>Friends Page!</div>
+      <p style={{ fontSize: '25px', color: "white" }}>Hello</p>
     </>
   )
 }
