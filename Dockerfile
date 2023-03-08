@@ -17,6 +17,14 @@ RUN pip3 install --upgrade pip
 COPY ./requirements.txt .
 RUN pip3 install -r requirements.txt
 
+# install python packages
+RUN pip3 install django-cors-headers
+RUN pip3 install djangorestframework
+
+# make migrations for django
+RUN python3 ./drawful/manage.py makemigrations
+RUN python3 ./drawful/manage.py migrate
+
 # copy entrypoint.sh
 #COPY ./app/entrypoint.sh .
 #RUN sed -i 's/\r$//g' ./entrypoint.sh
