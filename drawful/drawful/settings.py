@@ -83,7 +83,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "drawful",
         "USER": "drawful",
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "PASSWORD": "drawful",
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
