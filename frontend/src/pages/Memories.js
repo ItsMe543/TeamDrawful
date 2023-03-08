@@ -9,7 +9,7 @@ function Memories() {
   };
   return (
     <div className="memories">
-      <div className="m-titel">Memories Page!</div>
+      <div className="m-titel" style={{ fontSize: '25px', color: "white" }}>Memories Page!</div>
       <BsFillCalendarDateFill size={30} />
       <div className="calender">
         <Calendar onChange={onDateChange} value={date} />
