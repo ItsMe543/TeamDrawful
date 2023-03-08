@@ -71,6 +71,9 @@ export default function Test() {
         message="Changes saved"
         key={vertical + horizontal}
       />
+      <br></br>
+      <TextField id="outlined-basic" color="secondary"
+        label="Testing screen reader" variant="outlined" inputProps={{ "aria-label": "The ting goes skrrrahh, pap pap kah-kah-kah Skidiki-pap-pap, and a puu-puu-puurrr-boom Skiya, du-du-ku-ku-doom doom Poom poom, you dun now." }} />
     </div>
   )
 }
