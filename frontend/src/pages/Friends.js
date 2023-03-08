@@ -6,8 +6,8 @@ function Friends() {
 
   return( 
     <>
-    <div>Friends Page!</div>
-    <p>Hello</p>
+      <div>Friends Page!</div>
+      <p>Hello</p>
     </>
   )
 }

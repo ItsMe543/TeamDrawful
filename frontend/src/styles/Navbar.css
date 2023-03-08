@@ -37,6 +37,7 @@ a {
   outline: 1px black;
 }
 
+
 /*Manually change height of bar*/
 .home{
   min-height: calc(100vh - 900px);
