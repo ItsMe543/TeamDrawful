@@ -22,8 +22,8 @@ RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 
 # make migrations for django
-RUN python3 ./drawful/manage.py makemigrations
-RUN python3 ./drawful/manage.py migrate
+RUN python3 drawful/manage.py makemigrations
+RUN python3 drawful/manage.py migrate
 
 # copy entrypoint.sh
 #COPY ./app/entrypoint.sh .
