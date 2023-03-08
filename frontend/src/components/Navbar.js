@@ -52,15 +52,15 @@ function Navbar() {
         </div>
 
         <div className="notifications">
-        <Link to="/notifications">
-          <AiOutlineBell size={25} />
-        </Link>
+          <Link to="/notifications">
+            <AiOutlineBell size={25} />
+          </Link>
         </div>
 
         <div className="badges">
-        <Link to="/badges">
-          <BsAward size={25} />
-        </Link>
+          <Link to="/badges">
+            <BsAward size={25} />
+          </Link>
         </div>
 
       </div>

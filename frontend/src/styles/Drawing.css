@@ -1,0 +1,84 @@
+/*Added the font*/
+@font-face {
+    font-family: "Today's pictures";
+    src: url(../Fonts/Sometimes.otf);
+}
+
+div {
+    font-family: 'Sometimes';
+}
+
+/*This represents the drawing toolbar*/
+.drawing_toolbar {
+    position: absolute;
+    top: 13.5%;
+    left: 1.3%;
+    bottom: 2.5%;
+    width: 14.9%;
+    background-color: rgb(157, 174, 219);
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/*This represents the bar containing the prompt*/
+.prompt_bar {
+    position: absolute;
+    top: 13.5%;
+    left: 17.5%;
+    bottom: 79%;
+    width: 81.1%;
+    background-color: rgb(181, 228, 212);
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/*This represents the prompt*/
+.prompt {
+    background: rgb(255, 255, 255);
+    width: 35%;
+    height: 69%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.5% 0 0 -17.5%;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 27px;
+
+
+}
+
+/*This represents the drawing canvas*/
+.canvas {
+    position: absolute;
+    top: 22%;
+    left: 17.5%;
+    bottom: 2.5%;
+    width: 81.1%;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/*This represents a temporary drawing tool*/
+.tool1 {
+    position: absolute;
+    top: 2%;
+    left: 5%;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+/*This represents the remaining time*/
+.time {
+    position: absolute;
+    top: 90%;
+    left: 81%;
+    width: 16%;
+    text-align: center;
+    font-size: 25px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+}
