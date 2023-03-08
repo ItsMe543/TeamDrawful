@@ -1,7 +1,7 @@
 import React from "react";
 
-function Drawing() {
-  return <div>Badges</div>;
+function Badges() {
+  return <div style={{ fontSize: '25px', color: "white" }} >Badges</div>;
 }
 
-export default Drawing;
+export default Badges;

@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 5%;
+  gap: 9%;
+  padding: 1%;
   height: 100%;
   background-color: #dfdfdf;
 }
@@ -24,19 +25,20 @@ a {
 .logo {
   position: absolute;
   top: -1rem;
-  left: 0rem;
+  left: 0.1rem;
 }
 
 /*Alter logo*/
 .logo img {
-  width: 90px;
+  width: 113px;
   height: fit-content;
   max-height: max-content;
   float: left;
   outline: 1px black;
 }
 
+
 /*Manually change height of bar*/
-.home{
-  min-height: calc(100vh - 650px);
+.home {
+  min-height: calc(100vh - 900px);
 }
