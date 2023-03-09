@@ -84,8 +84,6 @@ DATABASES = {
         "NAME": "drawful",
         "USER": "drawful",
         "PASSWORD": "drawful",
-        "HOST": "localhost",
-        "PORT": "5432",
     }
 }
 
