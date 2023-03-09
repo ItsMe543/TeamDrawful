@@ -21,8 +21,3 @@
   src: url(../Fonts/Sometimes.otf);
 }
 
-h1{
-  font-family: "sometimes";
-  font-size:100px;
-  border-bottom: 2px solid black;
-}

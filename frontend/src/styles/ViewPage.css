@@ -1,0 +1,49 @@
+
+@font-face {
+    font-family: "sometimes";
+    src: url(../Fonts/Sometimes.otf);
+}
+
+h1{
+    font-family: "sometimes";
+    font-size:100px;
+    color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin-left: 33%;
+    margin-right: 38%;
+    margin-bottom: 1%;
+}
+
+/*I've coloured the region grey so you can see the space.*/
+.UserProfile{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: grey;
+}
+
+/*Each User profile is composed of user elements*/
+.UserElement{
+    color: white;
+    font-size: 50px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 6cm;
+    display:inline-flex;
+    font-size: 30px;
+}
+
+.StarBar{
+    margin-top: 20px;
+}
+
+.Star{
+
+}
+
+h1{
+    font-family: "sometimes";
+    font-size:100px;
+    color: rgb(255, 255, 255);
+    border-bottom: 2px solid white;
+}
+

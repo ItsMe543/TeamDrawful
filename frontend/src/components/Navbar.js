@@ -26,7 +26,7 @@ function Navbar() {
         <div className="ViewDraws">
           <Link to="/viewingDrawings">
             <BsVectorPen size={40} />
-            <div style={{ fontSize: '25px' }}>Drawing</div>
+            <div style={{ fontSize: '25px' }}>Drawings</div>
           </Link>
         </div>
 
