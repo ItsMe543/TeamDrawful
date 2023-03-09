@@ -19,6 +19,6 @@ services:
       - POSTGRES_NAME=drawful
       - POSTGRES_USER=drawful
       - POSTGRES_PASSWORD=drawful
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=db
     depends_on:
       - db
