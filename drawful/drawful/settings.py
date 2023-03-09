@@ -84,8 +84,8 @@ DATABASES = {
         "NAME": "drawful",
         "USER": "drawful",
         "PASSWORD": "drawful",
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
