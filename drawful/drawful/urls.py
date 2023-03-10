@@ -19,5 +19,6 @@ from drawfulApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', views.main, name="main"),
+    path('', views.main, name="main"),
+    path('drawing', views.main),
 ]
