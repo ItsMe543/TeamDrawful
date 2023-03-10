@@ -29,9 +29,5 @@ RUN pip3 install djangorestframework
 # copy project
 COPY . .
 
-# make migrations for django
-RUN python3 drawful/manage.py makemigrations
-RUN python3 drawful/manage.py migrate
-
 # run entrypoint.sh
 #ENTRYPOINT ["/team40-22/entrypoint.sh"]
