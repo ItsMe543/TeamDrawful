@@ -2,7 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import "../Fonts/Sometimes.otf"
+import drawings from "../drawingData";
+import "../Fonts/Sometimes.otf";
 import "../styles/ViewPage.css";
 
 
@@ -19,29 +20,33 @@ const top = {
       <h1 className="Title">
         Today's Pictures
       </h1>
+      {drawings.map((post,id) =>{
+        return(
+    <>
+
 
       <h2 className="PromptName">
-        Prompt: INSERT PROMPT
+        Prompt: {post.prompt}
       </h2>
 
       <div className="UserProfile">
-          
+
         <div className="UserElement">
-          DRAWING GOES HERE
+          <img src={post.drawing} alt={"drawing image"}/>
         </div>
 
         <div className="UserElement">
           <div className="UserName">
-            ExampleUser001
+            {post.username}
           </div>
           <div className="Stats">
-            TIME COMPLETED GOES HERE
+            Completed: {post.completedTime} - {post.completedDate}
           </div>
           <div className="Stats">
-            DIFFICULTY GOES HERE
+            Difficulty: {post.difficulty} / 5
           </div>
           <div className="Stats">
-            TIME TAKEN GOES HERE
+            Time taken: {post.timeTaken} seconds
           </div>
 
           <div className="StarBar">
@@ -63,7 +68,7 @@ const top = {
           </div>
         </div>
 
-        
+
         <div className="UserElement">
           Rate the drawing?
           <div className="StarBar">
@@ -84,14 +89,15 @@ const top = {
             </Button>
           </div>
         </div>
-        
+
         <div className="UserElement">
           <Button className="CommentButton">
             CommentSecion
           </Button>
         </div>
       </div>
-      
+      </>
+    )})}
     </div>
   );
 }

@@ -45,6 +45,9 @@
     flex: 0 0 25%;
     padding: 10px;
 }
+.UserElement img{
+    max-width: 200px;
+}
 
 *{
     margin: 0;
@@ -81,7 +84,7 @@
     border-radius: 0%;
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
-    
+
 }
 
 .Star{
