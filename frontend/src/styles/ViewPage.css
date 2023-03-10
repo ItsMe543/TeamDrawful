@@ -23,8 +23,9 @@
     font-family: "sometimes";
     font-size:10;
     color: rgb(255, 255, 255);
-    margin-left: 40%;
-    margin-bottom: 0%;
+    /* margin-left: 40%;
+    margin-bottom: 0%; */
+    text-align: center;
 }
 
 /*I've coloured the region grey so you can see the space.*/
