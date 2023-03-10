@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'drawful.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        "ENGINE": "django.db.backends.postgresql",
-#        "NAME": "drawful",
-#        "USER": "drawful",
-#        "PASSWORD": "drawful",
-#        "HOST": "localhost",
-#        "PORT": "5432",
-#    }
-#}
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "drawful",
+        "USER": "drawful",
+        "PASSWORD": "drawful",
+        "HOST": "db",
+        "PORT": "5432",
+    }
+}
 
 
 # Password validation
