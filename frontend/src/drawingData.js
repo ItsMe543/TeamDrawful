@@ -21,7 +21,7 @@ const drawingData = [
             "drawing": "/drawings/house.jpg"
         },
         {
-            "id": 1,
+            "id": 2,
             "username": "Xx_drawingMastr69_xX",
             "difficulty": 4,
             "completedDate": "11/03/2023",
