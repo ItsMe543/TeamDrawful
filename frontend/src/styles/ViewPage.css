@@ -8,10 +8,15 @@
     font-family: "sometimes";
     font-size:100px;
     color: rgb(255, 255, 255);
-    border-bottom: 2px solid rgb(255, 255, 255);
-    margin-left: 33%;
-    margin-right: 38%;
+    /* border-bottom: 2px solid rgb(255, 255, 255); */
+    /* margin-left: 33%;
+    margin-right: 38%; */
     margin-bottom: 1%;
+
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+
 }
 
 .PromptName{
@@ -44,9 +49,11 @@
     /*display:inline-flex;*/
     flex: 0 0 25%;
     padding: 10px;
+
 }
 .UserElement img{
     max-width: 200px;
+
 }
 
 *{
@@ -58,9 +65,11 @@
     font-family: "sometimes";
     font-size:33px;
     color: rgb(255, 255, 255);
-    border-bottom: 2px solid rgb(255, 255, 255);
+    /* border-bottom: 2px solid rgb(255, 255, 255); */
     margin-right: 58%;
     margin-bottom: 0%;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
 
 .Stats{
@@ -89,9 +98,10 @@
 
 .Star{
     color: rgb(253,205,18);
-    background-color: rgb(45,45,45);
+     background-color: rgb(45,45,45);
     border-style: hidden;
     border-radius: 0%;
+
 }
 
 .Star5{
@@ -107,4 +117,17 @@
     font-size: 60px;
     margin-top: 15%;
     color: rgb(255, 255, 255);
+}
+
+
+.StarBar{
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+}
+
+.StarRating{
+   color: rgb(253,205,18);
+   border-style: hidden;
+   border-radius: 0%;
 }

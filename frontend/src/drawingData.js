@@ -8,6 +8,7 @@ const drawingData = [
         "completedTime": "17:58",
         "timeTaken": 58,
         "prompt": "car",
+        "avgRating": 3.8,
         "drawing": "/drawings/car.jpg"
         },
         {
@@ -18,6 +19,7 @@ const drawingData = [
             "completedTime": "19:28",
             "timeTaken": 34,
             "prompt": "house",
+            "avgRating": 2.2,
             "drawing": "/drawings/house.jpg"
         },
         {
@@ -28,6 +30,7 @@ const drawingData = [
             "completedTime": "20:21",
             "timeTaken": 420,
             "prompt": "gru",
+            "avgRating": 4.9,
             "drawing": "/drawings/minion.png"
         }
     ]

@@ -48,7 +48,18 @@ const top = {
           <div className="Stats">
             Time taken: {post.timeTaken} seconds
           </div>
+          <div className="StarBar">
+            Rating <p/>
+          {[...Array(Math.round(post.avgRating))].map((x,i)=>
 
+                <div className="StarRating">
+                   <AiOutlineStar size={35}/>
+                </div>
+
+          )}
+          </div>
+
+{/*
           <div className="StarBar">
             <Button className="Star1">
               <AiOutlineStar size={20}/>
@@ -65,7 +76,7 @@ const top = {
             <Button className="Star5">
               <AiOutlineStar size={20}/>
             </Button>
-          </div>
+          </div> */}
         </div>
 
 
