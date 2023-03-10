@@ -10,7 +10,7 @@ services:
       - POSTGRES_HOST=localhost
   web:
     build: /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/
-    command: python3 ./drawful/manage.py runserver 127.0.0.1:8000
+    command: python3 ./drawful/manage.py runserver 127.0.0.1:80
     volumes:
       - /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
     ports:
