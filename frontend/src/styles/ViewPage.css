@@ -87,6 +87,23 @@
     display:flow-root;
 }
 
+
+.Stars{
+    color: rgb(253,205,18);
+    background-color: rgb(45,45,45);
+    border-style: hidden;
+    border-radius: 0%;
+}
+
+
+
+.Stars:focus{
+    outline: none;
+    box-shadow: none;
+    background-color: rgb(45,45,45);
+    color: rgb(253,205,18);
+}
+
 .Star1{
     color: rgb(253,205,18);
     background-color: rgb(45,45,45);
@@ -94,14 +111,6 @@
     border-radius: 0%;
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
-
-}
-
-.Star{
-    color: rgb(253,205,18);
-     background-color: rgb(45,45,45);
-    border-style: hidden;
-    border-radius: 0%;
 
 }
 
@@ -114,9 +123,18 @@
     border-bottom-right-radius: 100%;
 }
 
+
+
+.Stars:hover{
+    background-color: rgb(253,205,18);
+    color: white;
+}
+
+
+
 .CommentButton{
-    font-size: 60px;
-    margin-top: 15%;
+    font-size: 48px;
+    margin-top: 10%;
     color: rgb(255, 255, 255);
 }
 
@@ -127,8 +145,11 @@
     font-size: 30px;
 }
 
+
 .StarRating{
    color: rgb(253,205,18);
    border-style: hidden;
    border-radius: 0%;
+   margin-top: 10px;
+   margin-left: 10px;
 }
