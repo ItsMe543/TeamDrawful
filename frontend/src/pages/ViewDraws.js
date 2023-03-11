@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import drawings from "../drawingData";
 import "../Fonts/Sometimes.otf";
 import "../styles/ViewPage.css";
-import Rating from '@mui/material/Rating';
 
 
 // Ctrl + k to comment out region
@@ -15,24 +14,6 @@ const top = {
     display: 'flex',
     flexDirection: 'row',
 };
-
-// stars fill states
-const [filled, setFilled] = useState(drawings.map(() => [false, false, false, false, false]));
-
-// fills in star when clicked and all previous stars
-const handleClick = (index, id) => {
-  const newFilled = [...filled]
-  newFilled[id] = newFilled[id].map((value, i) => {
-    if (i <= index) {
-      return true;
-    } else {
-      return false;
-  }
-});
-setFilled(newFilled);
-};
-
-
 
   return (
     <div>
@@ -68,31 +49,61 @@ setFilled(newFilled);
             Time taken: {post.timeTaken} seconds
           </div>
           <div className="StarBar">
-            Rating
-            <Rating className="StarRating" value={post.avgRating} readOnly precision={0.1} />
+            Rating <p/>
+          {[...Array(Math.round(post.avgRating))].map((x,i)=>
+
+                <div className="StarRating">
+                   <AiOutlineStar size={35}/>
+                </div>
+
+          )}
           </div>
+
+{/*
+          <div className="StarBar">
+            <Button className="Star1">
+              <AiOutlineStar size={20}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={20}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={20}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={20}/>
+            </Button>
+            <Button className="Star5">
+              <AiOutlineStar size={20}/>
+            </Button>
+          </div> */}
         </div>
 
 
         <div className="UserElement">
           Rate the drawing?
           <div className="StarBar">
-          {[0, 1, 2, 3, 4].map((index) => (
-          <Button
-            key={index}
-            // sets class name to each uniquely
-            className={`Star${index+1} Stars`}
-            onClick={() => handleClick(index, id)}
-          >
-          {filled[id][index] ? <AiFillStar size={35}/> : <AiOutlineStar size={35}/>}
-        </Button>
-      ))}
+            <Button className="Star1">
+              <AiOutlineStar size={35}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={35}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={35}/>
+            </Button>
+            <Button className="Star">
+              <AiOutlineStar size={35}/>
+            </Button>
+            <Button className="Star5">
+              <AiOutlineStar size={35}/>
+            </Button>
           </div>
         </div>
 
         <div className="UserElement">
           <Button className="CommentButton">
-            Comment Section
+            CommentSecion
           </Button>
         </div>
       </div>
