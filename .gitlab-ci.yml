@@ -26,6 +26,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "building image complete."
     - echo "building front end..."
     - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
+    - echo "this will take a while and it eats memory"
     - npm install
     - npm run build
     - cd ..
