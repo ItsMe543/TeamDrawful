@@ -33,6 +33,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - eval "[ -f .nvmrc ] && nvm install || nvm install 17" #install node
     - nvm -v
     - npm -v
+    - node -v
     #- echo "this will take a while and it eats memory"
     #- sudo npm --version
     #- sudo npm install --force || true
