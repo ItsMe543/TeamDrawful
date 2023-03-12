@@ -23,14 +23,10 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - echo "building the image..."
+    - echo "Building the image..."
     - docker build -t team40-22-web:latest .
-    - echo "building image complete."
-
-build-job-2:
-  stage: build
-  script:
-    - echo "building front end..."
+    - echo "Building image complete."
+    - echo "Building front end..."
     - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
     - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash   
     - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use #load nvm
@@ -42,13 +38,11 @@ build-job-2:
     - echo "this will take a while and it eats memory"
     - npm install
     - CI=false npm run build
-    - npm start
     - cd ..
     - echo "Building frontend complete."
 
 test-job:
   stage: test
-  needs: ["build-job"]
   script:
     - echo "TomIsPog"
 

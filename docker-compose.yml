@@ -22,13 +22,13 @@ services:
       #- POSTGRES_HOST=db:5432
     #depends_on:
       #- db
-  app:
-    container_name: docker_react_app
-    image: docker-react-image
-    volumes:
-      - ".:/app"
-      - "/app/node_modules"
-    ports:
-      - "3000:3000"
-    depends_on:
-      - web
+  #app:
+    #container_name: docker_react_app
+    #image: docker-react-image
+    #volumes:
+      #- ".:/app"
+      #- "/app/node_modules"
+    #ports:
+      #- "3000:3000"
+    #depends_on:
+      #- web
