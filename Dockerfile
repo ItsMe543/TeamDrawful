@@ -31,5 +31,5 @@ RUN npm run build
 ########## Stage 2 - Nginx ##########
 FROM nginx:latest
 COPY --from=build /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
-RUN nginx -s reload
+#RUN nginx -s reload
 #CMD ["nginx", "-g", "daemon off;"]

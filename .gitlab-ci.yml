@@ -49,6 +49,9 @@ test-job:
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   script:
+    - echo "Reloading nginx..."
+    - nginx -s reload
+    - echo "Nginx reloaded!"
     - docker compose down --remove-orphans
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
