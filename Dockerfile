@@ -21,7 +21,7 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 
-RUN chown -R node /app/node_modules
+RUN chown -R gitlab-runner /frontend/node_modules
 
 # copy entrypoint.sh
 #COPY ./app/entrypoint.sh .
