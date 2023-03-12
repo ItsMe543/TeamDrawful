@@ -41,6 +41,11 @@ build-job:       # This job runs in the build stage, which runs first.
     - cd ..
     - echo "Building frontend complete."
 
+  build-job-2:
+    stage: build
+    script:
+      - npm start
+
 test-job:
   stage: test
   script:
