@@ -21,8 +21,6 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 
-RUN chown -R gitlab-runner /frontend/node_modules
-
 # copy entrypoint.sh
 #COPY ./app/entrypoint.sh .
 #RUN sed -i 's/\r$//g' ./entrypoint.sh
@@ -32,7 +30,7 @@ RUN chown -R gitlab-runner /frontend/node_modules
 COPY . .
 
 # start gunicorn server
-#CMD gunicorn -b 127.0.0.1:8000 --worker-class=gevent --worker-connections=1000 --workers=5 team40-22.wsgi
+#CMD gunicorn -b 0.0.0.0:8000 --worker-class=gevent --worker-connections=1000 --workers=5 team40-22.wsgi
 
 # run entrypoint.sh
 #ENTRYPOINT ["/team40-22/entrypoint.sh"]

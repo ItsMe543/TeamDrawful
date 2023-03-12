@@ -25,7 +25,7 @@ services:
   app:
     container_name: docker_react_app
     image: docker-react-image
-    command: npm start --prefix ./frontend
+    command: yum install npm && npm start --prefix ./frontend
     volumes:
       - ".:/app"
       - "/app/node_modules"
