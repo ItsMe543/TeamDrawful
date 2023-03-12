@@ -13,7 +13,7 @@
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
 variables:
-  NODE_OPTIONS: --max_old_space_size=3584
+  NODE_OPTIONS: --max_old_space_size=8192
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -26,17 +26,29 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "building the image..."
     - docker build -t team40-22-web:latest .
     - echo "building image complete."
+
+build-job-2:
+  stage: build
+  script:
     - echo "building front end..."
     - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
+    - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash   
+    - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use #load nvm
+    - eval "[ -f .nvmrc ] && nvm install || nvm install 17" #install node
+    - nvm -v
+    - npm -v
+    - node -v
+    - export NODE_OPTIONS=--max-old-space-size=4096
     - echo "this will take a while and it eats memory"
-    - sudo npm --version
-    - sudo npm install --ignore-scripts || true
-    - sudo npm run build
+    - npm install
+    - CI=false npm run build
+    - npm start
     - cd ..
     - echo "Building frontend complete."
 
 test-job:
   stage: test
+  needs: ["build-job"]
   script:
     - echo "TomIsPog"
 

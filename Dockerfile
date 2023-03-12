@@ -29,5 +29,8 @@ RUN pip3 install djangorestframework
 # copy project
 COPY . .
 
+# start gunicorn server
+#CMD gunicorn -b 0.0.0.0:8000 --worker-class=gevent --worker-connections=1000 --workers=5 team40-22.wsgi
+
 # run entrypoint.sh
-#ENTRYPOINT ["/team40-22/entrypoint.sh"]
+ENTRYPOINT ["npm", "start"]

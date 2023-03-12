@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_tv#kizd1h-mzlb&jdpg4)naftp=x%+=2ay4(bt@x7kj#wr*k#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["team40-22.bham.team"]
 
 
 # Application definition
