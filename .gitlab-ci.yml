@@ -49,6 +49,7 @@ build-job-2:
 
 test-job:
   stage: test
+  needs: ["build-job"]
   script:
     - echo "TomIsPog"
 
