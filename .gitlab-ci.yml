@@ -44,6 +44,7 @@ build-job:       # This job runs in the build stage, which runs first.
 build-job-2:
   stage: build
   script:
+    - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
     - npm start
 
 test-job:
