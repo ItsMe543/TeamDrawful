@@ -29,6 +29,8 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "building front end..."
     - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
     - curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash   
+    - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use #load nvm
+    - eval "[ -f .nvmrc ] && nvm install || nvm install 17" #install node
     - nvm
     #- echo "this will take a while and it eats memory"
     #- sudo npm --version
