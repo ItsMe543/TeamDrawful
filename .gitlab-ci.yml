@@ -24,7 +24,7 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo "Building the image..."
-    - docker build -t --no-cache team40-22-web:latest .
+    - docker build -t team40-22-web:latest --no-cache .
     - echo "Building image complete."
     - echo "Building front end..."
     - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
