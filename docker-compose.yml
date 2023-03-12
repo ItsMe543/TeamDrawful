@@ -22,12 +22,13 @@ services:
       #- POSTGRES_HOST=db:5432
     #depends_on:
       #- db
-  #app:
-    #container_name: docker_react_app
-    #image: docker-react-image
-    #build: /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/
-    #volumes:
-      #- ".:/app"
-      #- "/app/node_modules"
-    #ports:
-      #- "3000:80"
+  app:
+    container_name: docker_react_app
+    image: docker-react-image
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    ports:
+      - "80:80"
+    depends_on:
+      - web
