@@ -22,9 +22,10 @@ function Drawing() {
 
   const SetPos = (e) => {
     // The e variable is the event
+    const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
     setMouseData({
-      x: e.clientX - 336, // Mouse X position
-      y: e.clientY - 205, // Mouse Y position
+      x: e.clientX - canvasRect.left, // Mouse X position
+      y: e.clientY - canvasRect.top, // Mouse Y position
     });
   };
   const Draw = (e) => {
@@ -32,11 +33,12 @@ function Drawing() {
     const ctx = canvasCTX; // Our saved context
     ctx.beginPath(); // Start the line
     ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
+    const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
     setMouseData({
-      x: e.clientX - 336, // Update the mouse location
-      y: e.clientY - 205, // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      x: e.clientX - canvasRect.left, // Update the mouse location
+      y: e.clientY - canvasRect.top, // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     });
-    ctx.lineTo(e.clientX - 336, e.clientY - 205); // Again draw a line to the mouse postion
+    ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top); // Again draw a line to the mouse postion
     ctx.strokeStyle = color; // Set the color as the saved state
     ctx.lineWidth = size; // Set the size to the saved state
     // Set the line cap to round
