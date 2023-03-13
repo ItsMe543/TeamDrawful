@@ -30,8 +30,8 @@
 
 /*I've coloured the region grey so you can see the space.*/
 .UserProfile{
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
     /*background-color: grey;*/
     display: flex;
     flex-wrap: wrap;
@@ -62,6 +62,9 @@
     box-sizing: border-box;
 }
 
+
+
+
 .UserName{
     font-family: "sometimes";
     font-size:33px;
@@ -80,6 +83,11 @@
     margin-bottom: -2%;
 }
 
+
+
+
+
+/*Star bar segment START ------*/
 .StarBar{
     color: white;
     font-size: 30px;
@@ -123,8 +131,6 @@
     border-bottom-right-radius: 100%;
 }
 
-
-
 .Stars:hover{
     background-color: rgb(253,205,18);
     color: white;
@@ -132,19 +138,33 @@
 
 
 
-.CommentButton{
-    font-size: 48px;
-    margin-top: 10%;
-    color: rgb(255, 255, 255);
+.RateText{
+    /*background-color: rgb(45,45,45);*/
+    display: flex;
+    flex-direction: row;
+    border-color: white;
+    text-decoration: underline;
+    /*border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+    border-top-left-radius: 100%;
+    border-bottom-left-radius: 100%;
+    border-style: hidden;*/
 }
 
 
 .StarBar{
     display: flex;
     flex-direction: row;
+    margin-left: -40px;
+    margin-top: 40px;
     font-size: 30px;
 }
 
+.StarBarAvg{
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+}
 
 .StarRating{
    color: rgb(253,205,18);
@@ -153,3 +173,48 @@
    margin-top: 10px;
    margin-left: 10px;
 }
+
+.SubmitButton{
+    background-color: rgb(45,45,45);
+    color: rgb(253,205,18);
+    border: hidden;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.SubmitButton:hover{
+    background-color: rgb(253,205,18);
+    color: white;
+}
+
+.SubmitButton:focus{
+    background-color: rgb(253,205,18);
+    box-shadow: none;
+}
+
+
+/*Star bar segment END ------*/
+
+
+
+/*Comments box START ------*/
+
+.CommentsBox{
+    color:white;
+    background-color: rgb(45,45,45);
+    font-size: 30px;
+    padding-left: 5px;
+    margin-left: -100px;
+    height: 200px;
+}
+
+.CommentHeading{
+    text-decoration: underline;
+}
+
+.Comment{
+    color: blueviolet;
+    font-size: 24px;
+}
+
+/*Comments box END ------*/
