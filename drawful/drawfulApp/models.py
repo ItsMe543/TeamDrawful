@@ -13,13 +13,13 @@ class Todo(models.Model):
 
 #Table for todays drawings
 #Primary key = username
-class Todays_drawings(models.Model):
-        username = models.CharField(max_length=30, primary_key=True) #Primary key
-        drawing = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-        timeCompleted = models.TimeField(auto_now=True) #auto_now updates this field to the last time this object saves data
-        difficulty = models.CharField(max_length=10)
-        avgRating = models.FloatField(default=0.0)
-        TimeTaken = models.TimeField()
+#class Todays_drawings(models.Model):
+#        username = models.CharField(max_length=30, primary_key=True) #Primary key
+#        drawing = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+#        timeCompleted = models.TimeField(auto_now=True) #auto_now updates this field to the last time this object saves data
+#        difficulty = models.CharField(max_length=10)
+#        avgRating = models.FloatField(default=0.0)
+#        TimeTaken = models.TimeField()
 
 
 
@@ -31,6 +31,7 @@ class User_memories(models.Model):
         timeCompleted = models.TimeField()
         difficulty = models.CharField(max_length=10)
         avgRating = models.FloatField(default=0.0)
+        TimeTaken = models.TimeField()
 
         #auto_now updates this field to the last time this object saves data
         prompt = models.CharField(max_length=50)
