@@ -22,10 +22,10 @@ COPY . .
 ########## Stage 2 - React ##########
 FROM node:current-alpine3.16 AS builder
 WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
-COPY ./frontend/package.json ./frontend
-COPY ./frontend/package-lock.json ./frontend
+#COPY ./frontend/package.json ./frontend
+#COPY ./frontend/package-lock.json ./frontend
 RUN npm install
-COPY ./frontend/ ./frontend
+#COPY ./frontend/ ./frontend
 RUN npm run build --prefix ./frontend
 
 ########## Stage 2 - Nginx ##########
