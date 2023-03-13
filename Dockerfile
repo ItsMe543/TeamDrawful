@@ -32,8 +32,7 @@ RUN npm run build
 FROM nginx
 RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build
-#COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
-RUN cp /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
+COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
 RUN ls /usr/share/nginx/html
 COPY conf /etc/nginx
 VOLUME /etc/nginx
