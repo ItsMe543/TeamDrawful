@@ -1,96 +1,72 @@
-import React from "react";
-import Snackbar from '@mui/material/Snackbar';
-import Button from '@mui/material/Button';
-import { TextField } from "@mui/material";
+import React, { useState } from "react";
+import { Button } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import GeneralSettings from "../pages/Settings/GeneralSettings";
+import Account from "../pages/Settings/Account";
+import Security from "../pages/Settings/Security";
+import Accessibility from "../pages/Settings/Accessibility";
+import "../styles/Settings.css";
 
-export default function Test() {
-  const [state, setState] = React.useState({
-    open: true,
-    vertical: 'top',
-    horizontal: 'center',
-  });
+export default function Settings() {
+  const [active, setActive] = useState("account");
 
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState, message) => () => {
-    setState({ ...state, open: true, ...newState, message });
-    if (newState.vertical === 'bottom' && newState.horizontal === 'left') {
-      usernameRef.current.value = ''; // clear the value of the text field
-    }
+  const handleSectionClick = (section) => {
+    setActive(section);
   };
 
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
+  const buttonStyle = {
+    fontFamily: "Sometimes",
+    fontSize: "22px",
+    textTransform: "none",
+    margin: "10px 0",
   };
 
-  const usernameRef = React.useRef(null);
-
-  const buttons = (
-    <React.Fragment>
-      <Button
-        onClick={handleClick({
-          vertical: 'bottom',
-          horizontal: 'left',
-        }, "Changes saved")}
-        style={{
-          borderRadius: "5px", color: "white", backgroundColor: "rgba(0,120,255,255)",
-          border: "1px solid black", marginTop: "8px", textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
-        }}
-      >
-        Save
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: 'bottom',
-          horizontal: 'left',
-        }, "Changes cancelled")}
-        style={{
-          borderRadius: '5px',
-          color: 'white',
-          backgroundColor: 'rgba(246,71,71,1)',
-          border: '1px solid black',
-          marginTop: '8px',
-          marginLeft: '8px',
-          textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-        }}
-      >
-        Cancel
-      </Button>
-    </React.Fragment>
-  );
+  const sections = [
+    { id: "general", component: <GeneralSettings /> },
+    { id: "security", component: <Security /> },
+    { id: "account", component: <Account /> },
+    { id: "accessibility", component: <Accessibility /> }
+  ];
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <div style={{
-        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
-        textAlign: "left", color: "white",
-        fontSize: "25px", marginLeft: "5px", marginTop: "10px"
-      }}>Settings</div>
-      <TextField id="outlined-basic" InputProps={{ style: { color: 'white' } }} InputLabelProps={{ style: { color: "white" } }}
-        style={{
-          borderRadius: "8px", backgroundColor:
-            "rgba(255, 255, 255, 0.08)", border: "1px solid black", textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
-        }}
-        label="Enter your username" variant="outlined" inputRef={usernameRef} />
-      <br></br>
-      {buttons}
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        onClose={handleClose}
-        message={state.message}
-        key={vertical + horizontal}
-      />
-      <br></br>
-      <TextField id="outlined-basic" color="secondary"
-        label="Testing screen reader" InputProps={{ style: { color: 'white' } }}
-        style={{
-          borderRadius: "8px", marginTop: "60px", backgroundColor: "rgba(255, 255, 255, 0.08)",
-          border: "1px solid black", textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
-        }}
-        InputLabelProps={{ style: { color: "white" } }} variant="outlined"
-        inputProps={{ "aria-label": "The ting goes skrrrahh, pap pap kah-kah-kah Skidiki-pap-pap, and a puu-puu-puurrr-boom Skiya, du-du-ku-ku-doom doom Poom poom, you dun now." }} />
+    <div className="settings-container">
+      <div className="menu">
+        <div className="menu-header">
+          Settings
+        </div>
+        <div className="search-bar">
+          <input type="text" placeholder="   Search" />
+        </div>
+        <div>
+          <Button style={buttonStyle} onClick={() => handleSectionClick("account")}>
+            Account
+          </Button>
+          <br />
+          <Button style={buttonStyle} onClick={() => handleSectionClick("accessibility")}>
+            Accessibility
+          </Button>
+          <br />
+          <Button style={buttonStyle} onClick={() => handleSectionClick("security")}>
+            Privacy & Security
+          </Button>
+          <br />
+          <Button style={buttonStyle} onClick={() => handleSectionClick("general")}>
+            General
+          </Button>
+          <br />
+          <Button className="more-button" style={buttonStyle}>
+            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
+            More
+          </Button>
+        </div>
+      </div>
+      <div className="settings-sections">
+        {sections.map((section) => (
+          <div className={`section ${active === section.id.replace("-section", "") ? "active" : ""}`}>
+            {section.component}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

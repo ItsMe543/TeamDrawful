@@ -1,0 +1,77 @@
+.settings-container {
+    margin-top: 2.5%;
+    margin-left: 1.5%;
+}
+
+.menu {
+    position: absolute;
+    top: 108px;
+    left: 0px;
+    width: 220px;
+    background-color: #000000;
+    color: white;
+    height: calc(100vh - 108px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: center;
+    width: 74%;
+    border-bottom: 1px solid white;
+    font-size: 32px;
+    padding: 10px 0 20px;
+}
+
+.menu button {
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.menu button:not([aria-current="true"]):hover {
+    background-color: var(--white);
+    color: #000000;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.menu button:not([aria-current="true"]):focus {
+    background-color: rgb(203, 203, 203);
+    color: #000000;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.section {
+    display: none;
+    color: white;
+}
+
+.section.active {
+    display: block;
+}
+
+.search-bar {
+    margin: 40px 0px 20px;
+}
+
+.search-bar input {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 22px;
+    width: 160px;
+}
+
+.search-bar input:focus::-webkit-input-placeholder {
+    transform: translate(-40px, -30px);
+    transition: all 0.4s ease-in-out;
+}
+
+.more-button {
+    top: 180px;
+    right: 20px;
+}

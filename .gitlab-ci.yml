@@ -12,6 +12,8 @@
 # Stages run in sequential order, but jobs within stages run in parallel.
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+variables:
+  NODE_OPTIONS: --max_old_space_size=8192
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -21,14 +23,23 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - echo "building the image..."
-    - docker build -t team40-22-web:latest .
-    - echo "building image complete."
-    - echo "building front end..."
-    - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
-    - npm build
-    - cd ..
-    - echo "Building frontend complete."
+    - echo "Building the image..."
+    - docker build -t team40-22-web:latest --no-cache .
+    - echo "Building image complete."
+    #- echo "Building front end..."
+    #- cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
+    #- curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash   
+    #- export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use #load nvm
+    #- eval "[ -f .nvmrc ] && nvm install || nvm install 17" #install node
+    #- nvm -v
+    #- npm -v
+    #- node -v
+    #- export NODE_OPTIONS=--max-old-space-size=4096
+    #- echo "this will take a while and it eats memory"
+    #- npm install
+    #- CI=false npm run build
+    #- cd ..
+    #- echo "Building frontend complete."
 
 test-job:
   stage: test
@@ -38,8 +49,16 @@ test-job:
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   script:
-    - docker compose down
+    - echo "Reloading nginx..."
+    - sudo nginx -s reload
+    - echo "Nginx reloaded!"
+    - docker compose down --remove-orphans
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
     - docker compose up
     - echo "Container successfully deployed."
+    #- echo "Making migrations"
+    #- cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
+    #- python3 manage.py makemigrations
+    #- python3 manage.py migrate
+    #- echo "Migrations made..."

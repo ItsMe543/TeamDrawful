@@ -1,7 +1,7 @@
 /*This represents the space witha  lack of items*/
 .App {
   height: 100vh;
-  background-color: rgb(41, 41, 49);
+  background-color: rgb(32,34,37);
 }
 
 /*This represents all of the nav bar*/
@@ -13,7 +13,7 @@
 /*This represents the area in which items hav been added*/
 .Main {
   padding: 10px;
-  background-color: rgb(41, 41, 49);
+  background-color: rgb(32,34,37);
 }
 
 @font-face {
@@ -21,8 +21,3 @@
   src: url(../Fonts/Sometimes.otf);
 }
 
-h1{
-  font-family: "sometimes";
-  font-size:100px;
-  border-bottom: 2px solid black;
-}
