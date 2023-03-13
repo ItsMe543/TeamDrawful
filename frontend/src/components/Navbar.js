@@ -14,52 +14,51 @@ function Navbar() {
       <div className="logo">
         <img src={logo} alt="drawful logo" />
       </div>
-
       <div className="links">
         <div className="home">
           <Link to="/">
-            <AiOutlineHome size={40} />
-            <div style={{ fontSize: '25px' }}>Home</div>
+            <AiOutlineHome style={{ height: '3.5vh', width: '3.5vh' }} />
+            <div style={{ fontSize: '2.8vh' }}>Home</div>
           </Link>
         </div>
 
         <div className="ViewDraws">
           <Link to="/viewingDrawings">
-            <BsVectorPen size={40} />
-            <div style={{ fontSize: '25px' }}>Drawings</div>
+            <BsVectorPen style={{ height: '3.5vh', width: '3.5vh' }} />
+            <div style={{ fontSize: '2.8vh' }}>Drawings</div>
           </Link>
         </div>
 
         <div className="settings">
           <Link to="/settings">
-            <FiSettings size={40} />
-            <div style={{ fontSize: '25px' }}>Settings</div>
+            <FiSettings style={{ height: '3.5vh', width: '3.5vh' }} />
+            <div style={{ fontSize: '2.8vh' }}>Settings</div>
           </Link>
         </div>
 
         <div className="friends">
           <Link to="/friends">
-            <BsPeople size={40} />
-            <div style={{ fontSize: '25px' }}>Friends</div>
+            <BsPeople style={{ height: '3.5vh', width: '3.5vh' }} />
+            <div style={{ fontSize: '2.8vh' }}>Friends</div>
           </Link>
         </div>
 
-        <div className="memories">
+        <div /*className="memories"*/ style={{}}>
           <Link to="/memories">
-            <AiOutlineCalendar size={40} />
-            <div style={{ fontSize: '25px' }}>Memories</div>
+            <AiOutlineCalendar style={{ height: '3.5vh', width: '3.5vh' }} />
+            <div style={{ fontSize: '2.8vh' }}>Memories</div>
           </Link>
         </div>
 
         <div className="notifications">
           <Link to="/notifications">
-            <AiOutlineBell size={25} />
+            <AiOutlineBell style={{ height: '2.7vh', width: '2.7vh', position: 'relative', top: '30%' }} />
           </Link>
         </div>
 
         <div className="badges">
           <Link to="/badges">
-            <BsAward size={25} />
+            <BsAward style={{ height: '2.7vh', width: '2.7vh', position: 'relative', top: '30%' }} />
           </Link>
         </div>
 
