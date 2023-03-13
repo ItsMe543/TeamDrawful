@@ -34,7 +34,7 @@ RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 USER docker
 CMD /bin/bash
-RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
+# RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
 COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
 RUN ls /usr/share/nginx/html
 COPY conf /etc/nginx
