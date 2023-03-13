@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
 }
 
 .menu-header {
@@ -45,16 +46,22 @@
 }
 
 .section {
-    display: none;
+    display: block;
+    height: 0;
     color: white;
+    opacity: 0;
 }
 
 .section.active {
     display: block;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .search-bar {
-    margin: 40px 0px 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 
 .search-bar input {
@@ -72,6 +79,6 @@
 }
 
 .more-button {
-    top: 180px;
+    top: 165px;
     right: 20px;
 }
