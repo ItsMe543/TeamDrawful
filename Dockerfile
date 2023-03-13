@@ -30,11 +30,6 @@ RUN npm run build
 
 ########## Stage 3 - Nginx ##########
 FROM nginx
-
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
-USER docker
-CMD /bin/bash
-
 RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build
 COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
