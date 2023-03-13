@@ -1,3 +1,9 @@
+########## Stage 0 - Become su ##########
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+USER docker
+CMD /bin/bash
+
 ########## Stage 1 - Django ##########
 # pull official base image
 FROM python:3.9.6-alpine
