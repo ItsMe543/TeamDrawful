@@ -54,6 +54,7 @@ setFilled(newFilled);
           <img src={post.drawing} alt={"drawing image"}/>
         </div>
 
+
         <div className="UserElement">
           <div className="UserName">
             {post.username}
@@ -67,7 +68,7 @@ setFilled(newFilled);
           <div className="Stats">
             Time taken: {post.timeTaken} seconds
           </div>
-          <div className="StarBar">
+          <div className="StarBarAvg">
             Rating
             <Rating className="StarRating" value={post.avgRating} readOnly precision={0.1} />
           </div>
@@ -75,25 +76,38 @@ setFilled(newFilled);
 
 
         <div className="UserElement">
-          Rate the drawing?
-          <div className="StarBar">
-          {[0, 1, 2, 3, 4].map((index) => (
-          <Button
-            key={index}
-            // sets class name to each uniquely
-            className={`Star${index+1} Stars`}
-            onClick={() => handleClick(index, id)}
-          >
-          {filled[id][index] ? <AiFillStar size={35}/> : <AiOutlineStar size={35}/>}
-        </Button>
-      ))}
+          <div className="RateText">
+            Rate the drawing?
           </div>
+          <div className="StarBar">
+            {[0, 1, 2, 3, 4].map((index) => (
+              <Button
+                key={index}
+                // sets class name to each uniquely
+                className={`Star${index+1} Stars`}
+                onClick={() => handleClick(index, id)}
+              >
+              {filled[id][index] ? <AiFillStar size={25}/> : <AiOutlineStar size={25}/>}
+              </Button>
+            ))}
+          </div>
+          <Button className="SubmitButton">
+            Submit Rating
+          </Button>
         </div>
 
+
         <div className="UserElement">
-          <Button className="CommentButton">
-            Comment Section
-          </Button>
+          <Link to="/comments">
+            <div className="CommentsBox">
+              <div className="CommentHeading">
+                Comments
+              </div>
+              <div className="Comment">
+                I like how you've based this off Cars!
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
       </>
