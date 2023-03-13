@@ -13,4 +13,4 @@ from django.views.decorators.csrf import requires_csrf_token
 
 def main(request):
     context = { }
-    return render(request, "/home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build/index.html", context)
+    return render(request, "index.html", context)
