@@ -22,15 +22,15 @@ COPY . .
 ########## Stage 2 - React ##########
 FROM node:current-alpine3.16 AS builder
 WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
-#COPY ./frontend/package.json ./frontend
-#COPY ./frontend/package-lock.json ./frontend
+COPY ./frontend/package.json ./
+COPY ./frontend/package-lock.json ./
 RUN npm install
-#COPY ./frontend/ ./frontend
-RUN npm run build --prefix ./frontend
+COPY ./frontend/ ./
+RUN npm run build
 
 ########## Stage 2 - Nginx ##########
 FROM nginx:latest
-COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build/ /usr/share/nginx/html/
+COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/build/ /usr/share/nginx/html/
 #COPY --from=builder /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN nginx -s reload
 #CMD ["nginx", "-g", "daemon off;"]
