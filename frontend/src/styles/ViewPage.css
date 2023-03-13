@@ -213,8 +213,12 @@
 }
 
 .Comment{
-    color: blueviolet;
+    /*color: blueviolet;*/
     font-size: 24px;
 }
 
+
+.CommentText{
+    color: blueviolet;
+}
 /*Comments box END ------*/

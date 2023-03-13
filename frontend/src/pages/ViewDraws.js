@@ -99,14 +99,19 @@ setFilled(newFilled);
 
         <div className="UserElement">
           <Link to="/comments">
+
             <div className="CommentsBox">
               <div className="CommentHeading">
                 Comments
               </div>
               <div className="Comment">
-                I like how you've based this off Cars!
+                
+                <div className="CommentText">
+                  I like how you've based this off Cars!
+                </div>
               </div>
             </div>
+
           </Link>
         </div>
       </div>
