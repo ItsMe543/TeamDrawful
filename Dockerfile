@@ -25,7 +25,9 @@ WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/fr
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
 RUN npm install
+ENV PATH /frontend/node_modules/.bin$PATH
 COPY ./frontend/ ./
+WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/drawful
 RUN npm run build
 
 ########## Stage 3 - Nginx ##########
