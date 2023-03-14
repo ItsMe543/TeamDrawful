@@ -1,232 +1,211 @@
-
 @font-face {
-    font-family: "sometimes";
-    src: url(../Fonts/Sometimes.otf);
-    font-family: "Handmade";
-    src: url(../Fonts/SimpleHandmade.otf);
+  font-family: "sometimes";
+  src: url(../Fonts/Sometimes.otf);
+  font-family: "Handmade";
+  src: url(../Fonts/SimpleHandmade.otf);
 }
 
-
-.Title{
-    font-family: "sometimes";
-    font-size:100px;
-    color: rgb(255, 255, 255);
-    margin-bottom: 1%;
-    text-align: center;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+.Title {
+  font-family: "sometimes";
+  font-size: 100px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 1%;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
-.PromptName{
-    font-family: "sometimes";
-    font-size:10;
-    color: rgb(255, 255, 255);
-    /* margin-left: 40%;
+.PromptName {
+  font-family: "sometimes";
+  font-size: 10;
+  color: rgb(255, 255, 255);
+  /* margin-left: 40%;
     margin-bottom: 0%; */
-    text-align: center;
+  text-align: center;
 }
 
 /*I've coloured the region grey so you can see the space.*/
-.UserProfile{
-    margin-left: 3%;
-    margin-right: 3%;
-    /*background-color: grey;*/
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 2px solid rgb(57,59,61);
-    border-bottom: 2px solid rgb(57,59,61);
+.UserProfile {
+  margin-left: 3%;
+  margin-right: 3%;
+  /*background-color: grey;*/
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 2px solid rgb(57, 59, 61);
+  border-bottom: 2px solid rgb(57, 59, 61);
 }
 
 /*Each User profile is composed of user elements*/
-.UserElement{
-    color: white;
-    font-size: 30px;
-    /*margin-left:5%;
+.UserElement {
+  color: white;
+  font-size: 30px;
+  /*margin-left:5%;
     margin-right:5%;*/
-    margin-bottom: -0%;
-    height: 6cm;
-    /*display:inline-flex;*/
-    flex: 0 0 25%;
-    padding: 10px;
+  margin-bottom: -0%;
+  height: 6cm;
+  /*display:inline-flex;*/
+  flex: 0 0 25%;
+  padding: 10px;
 }
-.UserElement img{
-    max-width: 200px;
-}
-
-*{
-    margin: 0;
-    box-sizing: border-box;
+.UserElement img {
+  max-width: 200px;
 }
 
-
-
-
-.UserName{
-    font-family: "sometimes";
-    font-size:33px;
-    color: rgb(255, 255, 255);
-    /* border-bottom: 2px solid rgb(255, 255, 255); */
-    margin-right: 58%;
-    margin-bottom: 0%;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.Stats{
-    font-family: "sometimes";
-    font-size:25px;
-    color: rgb(255, 255, 255);
-    margin-bottom: -2%;
+.UserName {
+  font-family: "sometimes";
+  font-size: 33px;
+  color: rgb(255, 255, 255);
+  /* border-bottom: 2px solid rgb(255, 255, 255); */
+  margin-right: 58%;
+  margin-bottom: 0%;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
-
-
-
+.Stats {
+  font-family: "sometimes";
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  margin-bottom: -2%;
+}
 
 /*Star bar segment START ------*/
-.StarBar{
-    color: white;
-    font-size: 30px;
-    margin-top: 20px;
-    display:flow-root;
+.StarBar {
+  color: white;
+  font-size: 30px;
+  margin-top: 20px;
+  display: flow-root;
 }
 
-
-.Stars{
-    color: rgb(253,205,18);
-    background-color: rgb(45,45,45);
-    border-style: hidden;
-    border-radius: 0%;
+.Stars {
+  color: rgb(253, 205, 18);
+  background-color: rgb(45, 45, 45);
+  border-style: hidden;
+  border-radius: 0%;
 }
 
-
-
-.Stars:focus{
-    outline: none;
-    box-shadow: none;
-    background-color: rgb(45,45,45);
-    color: rgb(253,205,18);
+.Stars:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: rgb(45, 45, 45);
+  color: rgb(253, 205, 18);
 }
 
-.Star1{
-    color: rgb(253,205,18);
-    background-color: rgb(45,45,45);
-    border-style: hidden;
-    border-radius: 0%;
-    border-top-left-radius: 100%;
-    border-bottom-left-radius: 100%;
-
+.Star1 {
+  color: rgb(253, 205, 18);
+  background-color: rgb(45, 45, 45);
+  border-style: hidden;
+  border-radius: 0%;
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
 }
 
-.Star5{
-    color: rgb(253,205,18);
-    background-color: rgb(45,45,45);
-    border-style: hidden;
-    border-radius: 0%;
-    border-top-right-radius: 100%;
-    border-bottom-right-radius: 100%;
+.Star5 {
+  color: rgb(253, 205, 18);
+  background-color: rgb(45, 45, 45);
+  border-style: hidden;
+  border-radius: 0%;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
 }
 
-.Stars:hover{
-    background-color: rgb(253,205,18);
-    color: white;
+.Stars:hover {
+  background-color: rgb(253, 205, 18);
+  color: white;
 }
 
-
-
-.RateText{
-    /*background-color: rgb(45,45,45);*/
-    display: flex;
-    flex-direction: row;
-    border-color: white;
-    text-decoration: underline;
-    /*border-top-right-radius: 100%;
+.RateText {
+  /*background-color: rgb(45,45,45);*/
+  display: flex;
+  flex-direction: row;
+  border-color: white;
+  text-decoration: underline;
+  /*border-top-right-radius: 100%;
     border-bottom-right-radius: 100%;
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
     border-style: hidden;*/
 }
 
-
-.StarBar{
-    display: flex;
-    flex-direction: row;
-    margin-left: -40px;
-    margin-top: 40px;
-    font-size: 30px;
+.StarBar {
+  display: flex;
+  flex-direction: row;
+  margin-left: -40px;
+  margin-top: 40px;
+  font-size: 30px;
 }
 
-.StarBarAvg{
-    display: flex;
-    flex-direction: row;
-    font-size: 30px;
+.StarBarAvg {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
 }
 
-.StarRating{
-   color: rgb(253,205,18);
-   border-style: hidden;
-   border-radius: 0%;
-   margin-top: 10px;
-   margin-left: 10px;
+.StarRating {
+  color: rgb(253, 205, 18);
+  border-style: hidden;
+  border-radius: 0%;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
-.SubmitButton{
-    background-color: rgb(45,45,45);
-    color: rgb(253,205,18);
-    border: hidden;
-    margin-top: 20px;
-    margin-left: 40px;
+.SubmitButton {
+  background-color: rgb(45, 45, 45);
+  color: rgb(253, 205, 18);
+  border: hidden;
+  margin-top: 20px;
+  margin-left: 40px;
 }
 
-.SubmitButton:hover{
-    background-color: rgb(253,205,18);
-    color: white;
+.SubmitButton:hover {
+  background-color: rgb(253, 205, 18);
+  color: white;
 }
 
-.SubmitButton:focus{
-    background-color: rgb(253,205,18);
-    box-shadow: none;
+.SubmitButton:focus {
+  background-color: rgb(253, 205, 18);
+  box-shadow: none;
 }
-
 
 /*Star bar segment END ------*/
 
-
-
 /*Comments box START ------*/
 
-.CommentsBox{
-    color:white;
-    background-color: rgb(45,45,45);
-    font-size: 30px;
-    padding-left: 5px;
-    margin-left: -100px;
-    height: 200px;
+.CommentsBox {
+  color: white;
+  background-color: rgb(45, 45, 45);
+  font-size: 30px;
+  padding-left: 5px;
+  margin-left: -100px;
+  height: 200px;
 }
 
-.CommentHeading{
-    text-decoration: underline;
+.CommentHeading {
+  text-decoration: underline;
 }
 
-.Comment{
-    /*color: blueviolet;*/
-    font-size: 24px;
-    display: flex;
-    flex-wrap: wrap;
+.Comment {
+  /*color: blueviolet;*/
+  font-size: 24px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-
-.CommentText{
-    color: rgb(255, 255, 255);
-    font-family: "Handmade";
-    font-size: 20px;
+.CommentText {
+  color: rgb(255, 255, 255);
+  font-family: "Handmade";
+  font-size: 20px;
 }
 
-.CommentUsername{
-    color: rgb(253,205,18);
-    font-family: "Handmade";
-    font-size: 20px;
+.CommentUsername {
+  color: rgb(253, 205, 18);
+  font-family: "Handmade";
+  font-size: 20px;
 }
-
 
 /*Comments box END ------*/

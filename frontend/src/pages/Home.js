@@ -5,11 +5,8 @@ function Home() {
   return (
     <div style={{ fontSize: "25px", color: "white" }}>
       Home!
-      <div className="username">
-        <input type="text" name="username" placeholder="Enter your username" />
-      </div>
       <div className="Drawings">
-        <Link to="/drawing">
+        <Link to="/difficulty">
           <div style={{ fontSize: "25px", color: "white" }}>Drawing</div>
         </Link>
       </div>
