@@ -2,21 +2,19 @@
 @font-face {
     font-family: "sometimes";
     src: url(../Fonts/Sometimes.otf);
+    font-family: "Handmade";
+    src: url(../Fonts/SimpleHandmade.otf);
 }
+
 
 .Title{
     font-family: "sometimes";
     font-size:100px;
     color: rgb(255, 255, 255);
-    /* border-bottom: 2px solid rgb(255, 255, 255); */
-    /* margin-left: 33%;
-    margin-right: 38%; */
     margin-bottom: 1%;
-
     text-align: center;
     text-decoration: underline;
     text-decoration-thickness: 2px;
-
 }
 
 .PromptName{
@@ -50,11 +48,9 @@
     /*display:inline-flex;*/
     flex: 0 0 25%;
     padding: 10px;
-
 }
 .UserElement img{
     max-width: 200px;
-
 }
 
 *{
@@ -215,10 +211,22 @@
 .Comment{
     /*color: blueviolet;*/
     font-size: 24px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
 .CommentText{
-    color: blueviolet;
+    color: rgb(255, 255, 255);
+    font-family: "Handmade";
+    font-size: 20px;
 }
+
+.CommentUsername{
+    color: rgb(253,205,18);
+    font-family: "Handmade";
+    font-size: 20px;
+}
+
+
 /*Comments box END ------*/

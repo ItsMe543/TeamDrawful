@@ -106,8 +106,12 @@ setFilled(newFilled);
               </div>
               <div className="Comment">
                 
+                <div className="CommentUsername">
+                  {post.userCommenting}
+                  
+                </div>
                 <div className="CommentText">
-                  I like how you've based this off Cars!
+                  {post.comment}
                 </div>
               </div>
             </div>

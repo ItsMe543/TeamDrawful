@@ -1,22 +1,20 @@
 import { Box } from "@mui/system";
 import React from "react";
-
+import "../styles/Comments.css"
+import drawings from "../drawingData.js";
 
 function Comments() {
   return (
     //<div style={{ fontSize: '25px', color: "white" }} >Badges</div>
     <div>
-        <h1 className="commentHeading">
-            Comments
+        <h1 className="Heading">
+            Comments:
         </h1>
-        <h2 className="username">
-            EXAMPLEuser007
-        </h2>
-        <div>
-            <Box>
-                testing
-            </Box>
+
+        <div className="CommentSection">
+            Mesg example
         </div>
+
     </div>
   );
 }

@@ -9,7 +9,9 @@ const drawingData = [
         "timeTaken": 58,
         "prompt": "car",
         "avgRating": 3.8,
-        "drawing": "/drawings/car.jpg"
+        "drawing": "/drawings/car.jpg",
+        "userCommenting": "JohnDoe:",
+        "comment": "I liked how you based this on Cars!"
         },
         {
             "id": 1,
@@ -20,7 +22,9 @@ const drawingData = [
             "timeTaken": 34,
             "prompt": "house",
             "avgRating": 2.2,
-            "drawing": "/drawings/house.jpg"
+            "drawing": "/drawings/house.jpg",
+            "userCommenting": "HarryParsons:",
+            "comment": "This is a cool house but could use some colour"
         },
         {
             "id": 2,
@@ -31,7 +35,11 @@ const drawingData = [
             "timeTaken": 420,
             "prompt": "gru",
             "avgRating": 4.9,
-            "drawing": "/drawings/minion.png"
+            "drawing": "/drawings/minion.png",
+            "userCommenting": "JohnDoe:",
+            "userCommenting2": "HarryParsons:",
+            "comment": "Woah I cant belive you drew such a good minion",
+            "comment2": "This is cool, but you should try drawing Gru"
         }
     ]
 
