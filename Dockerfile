@@ -27,8 +27,8 @@ COPY ./frontend/package-lock.json ./
 RUN npm install
 ENV PATH /frontend/node_modules/.bin$PATH
 COPY ./frontend/ ./
-WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/drawful
 RUN npm run build
+WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/drawful
 
 ########## Stage 3 - Nginx ##########
 FROM nginx
