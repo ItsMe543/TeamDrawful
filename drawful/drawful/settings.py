@@ -59,7 +59,7 @@ ROOT_URLCONF = 'drawful.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(REAL_BASE_DIR,'frontend','public')],
+        'DIRS': [os.path.abspath('/usr/share/nginx/html')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
