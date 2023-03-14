@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Badges from "../pages/Badges";
+import Comments from "../pages/Comments";
 import Drawing from "../pages/Drawing";
 import Friends from "../pages/Friends";
 import Home from "../pages/Home";
 import Memories from "../pages/Memories";
+import Notifications from "../pages/Notifications";
 import Settings from "../pages/Settings";
-import Notifications from "../pages/Notifications"
-import Badges from "../pages/Badges"
 import ViewDrawings from "../pages/ViewDraws";
-import Comments from "../pages/Comments";
 //Import func from "path";
 
 function Main() {

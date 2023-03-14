@@ -1,10 +1,8 @@
 import { Box } from "@mui/system";
 import React from "react";
-import "../styles/Comments.css"
-import drawings from "../drawingData";
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { Link } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
+import drawings from "../drawingData.js";
+import "../styles/Comments.css";
 
 function Comments() {
   const {ID} = useParams();
