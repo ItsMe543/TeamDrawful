@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import drawings from "../drawingData";
 import "../Fonts/Sometimes.otf";
 import "../styles/ViewPage.css";
 import Rating from '@mui/material/Rating';
-
 
 // Ctrl + k to comment out region
 function ViewDrawings() {
@@ -98,7 +97,7 @@ setFilled(newFilled);
 
 
         <div className="UserElement">
-          <Link to="/comments">
+          <Link to={"/comments/" + post.id}>
 
             <div className="CommentsBox">
               <div className="CommentHeading">
@@ -106,14 +105,19 @@ setFilled(newFilled);
               </div>
               <div className="Comment">
                 
-                <div className="CommentUsername">
-                  {post.userCommenting}
-                  
-                </div>
-                <div className="CommentText">
-                  {post.comment}
-                </div>
-              </div>
+              {post.Comments.map((Comments,id) =>{
+                return(
+                  <>
+                    <div className="CommentUsername">
+                      {Comments.UserCommenting}:
+                    </div>
+                    
+                    <div className="CommentText">
+                      {Comments.Comment}
+                    </div>
+                  </>
+                )})}
+             </div>
             </div>
 
           </Link>

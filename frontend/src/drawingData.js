@@ -1,4 +1,3 @@
-
 const drawingData = [
         {
         "id": 0,
@@ -10,9 +9,20 @@ const drawingData = [
         "prompt": "car",
         "avgRating": 3.8,
         "drawing": "/drawings/car.jpg",
-        "userCommenting": "JohnDoe:",
-        "comment": "I liked how you based this on Cars!"
+        "Comments": [
+            {
+                "id":0,
+                "UserCommenting":"JohnDoe",
+                "Comment" : "I like how you based this off the film cars!",
+            },
+            {
+                "id":1,
+                "UserCommenting":"Xx69420mlgxX",
+                "Comment" : "So much detail wow!!",
+            }
+        ]
         },
+
         {
             "id": 1,
             "username": "JohnDoe",
@@ -23,8 +33,18 @@ const drawingData = [
             "prompt": "house",
             "avgRating": 2.2,
             "drawing": "/drawings/house.jpg",
-            "userCommenting": "HarryParsons:",
-            "comment": "This is a cool house but could use some colour"
+            "Comments": [
+                {
+                    "id":0,
+                    "UserCommenting":"HarryParsons",
+                    "Comment" : "Cool house but its too detailed",
+                },
+                {
+                    "id":1,
+                    "UserCommenting":"Xx_drawingMastr69_xX",
+                    "Comment" : "Would be better if you kept it simple",
+                }
+            ]
         },
         {
             "id": 2,
@@ -36,10 +56,23 @@ const drawingData = [
             "prompt": "gru",
             "avgRating": 4.9,
             "drawing": "/drawings/minion.png",
-            "userCommenting": "JohnDoe:",
-            "userCommenting2": "HarryParsons:",
-            "comment": "Woah I cant belive you drew such a good minion",
-            "comment2": "This is cool, but you should try drawing Gru"
+            "Comments": [
+                {
+                    "id":0,
+                    "UserCommenting":"HarryParsons",
+                    "Comment" : "I love those films, great link!!",
+                },
+                {
+                    "id":1,
+                    "UserCommenting":"JohnDoe",
+                    "Comment" : "Such a cute minion",
+                },
+                {
+                    "id":2,
+                    "UserCommenting":"itIsTy2323234",
+                    "Comment" : "Could use some shading",
+                }
+            ]
         }
     ]
 
