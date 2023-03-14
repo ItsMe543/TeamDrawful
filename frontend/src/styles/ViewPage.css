@@ -33,6 +33,7 @@
     /*background-color: grey;*/
     display: flex;
     flex-wrap: wrap;
+    /*grid-template-columns: 20% 20% 20% 20%;*/
     border-top: 2px solid rgb(57,59,61);
     border-bottom: 2px solid rgb(57,59,61);
 }
@@ -211,8 +212,8 @@
 .Comment{
     /*color: blueviolet;*/
     font-size: 24px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 

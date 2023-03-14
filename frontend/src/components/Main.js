@@ -25,7 +25,7 @@ function Main() {
       <Route path="/notifications" element={<Notifications />}></Route>
       <Route path="/badges" element={<Badges />}></Route>
       <Route path="/drawing" element={<Drawing />}></Route>
-      <Route path="/comments" element={<Comments />}> </Route>
+      <Route path="/comments/:ID" element={<Comments />}> </Route>
     </Routes>
   );
 }
