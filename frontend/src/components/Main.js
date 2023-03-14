@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
+import DifficultyPage from "../pages/DifficultyPage";
 import Drawing from "../pages/Drawing";
 import Friends from "../pages/Friends";
 import Home from "../pages/Home";
@@ -25,7 +26,8 @@ function Main() {
       <Route path="/notifications" element={<Notifications />}></Route>
       <Route path="/badges" element={<Badges />}></Route>
       <Route path="/drawing" element={<Drawing />}></Route>
-      <Route path="/comments:id" element={<Comments />}>
+      <Route path="/difficulty" element={<DifficultyPage />}></Route>
+      <Route path="/comments/:ID" element={<Comments />}>
         {" "}
       </Route>
     </Routes>
