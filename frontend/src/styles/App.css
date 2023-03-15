@@ -1,6 +1,6 @@
 /*This represents the space witha  lack of items*/
 .App {
-  height: 100cqb;
+  height: 100vh;
   width: 100vw;
   background-color: rgb(32, 34, 37);
 }
