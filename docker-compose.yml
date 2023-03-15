@@ -3,6 +3,8 @@ services:
     image: postgres
     volumes:
       - /var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_DB=drawful
       - POSTGRES_USER=drawful
@@ -15,12 +17,12 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - POSTGRES_NAME=drawful
+      - POSTGRES_DB=drawful
       - POSTGRES_USER=drawful
       - POSTGRES_PASSWORD=drawful
       - POSTGRES_HOST=db:5432
-    depends_on:
-      - db
+    #depends_on:
+      #- db
   #app:
     #container_name: docker_react_app
     #image: docker-react-image
