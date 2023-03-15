@@ -10,7 +10,7 @@ function Home() {
           <div style={{ fontSize: "25px", color: "white" }}>Drawing</div>
         </Link>
       </div>
-      <div style={{ textAlign: 'center', border: '1px solid white', marginLeft: '14%', marginRight: '14%', padding: '3%', }}>
+      <div style={{ textAlign: 'center', border: '1px solid white', marginLeft: '14%', marginRight: '14%', padding: '3%', backgroundColor: 'rgb(47,0,50)' }}>
         <div style={{ fontSize: '50px' }}>Drawful Privacy Policy</div><br></br>
         This privacy policy will explain how Drawful uses the personal data we collect from you when you use our website.<br></br><br></br>
         Topics:<br></br>
