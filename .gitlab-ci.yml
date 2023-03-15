@@ -64,4 +64,4 @@ deploy-job:      # This job runs in the deploy stage.
     #- python3 manage.py migrate
     #- echo "Migrations made..."
     - echo "Starting backend server"
-    - python3 manage.py runserver
+    - python3 ./drawful/manage.py runserver
