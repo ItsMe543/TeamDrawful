@@ -19,8 +19,8 @@ services:
       - POSTGRES_USER=drawful
       - POSTGRES_PASSWORD=drawful
       - POSTGRES_HOST=db:5432
-    #depends_on:
-      #- db
+    depends_on:
+      - db
   #app:
     #container_name: docker_react_app
     #image: docker-react-image
