@@ -1,6 +1,6 @@
 ########## Stage 1 - Django ##########
 # pull official base image
-FROM python:3.9.6-alpine
+FROM python:3.9.16-alpine
 # set work directory
 WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 # set environment variables
