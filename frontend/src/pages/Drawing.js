@@ -47,11 +47,44 @@ function Drawing() {
   };
   return (
     <div>
-      <div>
-      </div>
       <div className="drawing_toolbar" >
-        {/* Add drawing tool bar components here */}
-        <button className="tool1">*Drawing tool</button>
+        <div
+          className="controlpanel"
+          style={{
+            position: "absolute",
+            top: "0",
+            left: "0",
+            width: "100%",
+          }}
+        >
+          <input style={{ marginRight: '12%' }}
+            type="range"
+            value={size}
+            max={40}
+            onChange={(e) => {
+              setSize(e.target.value);
+            }}
+          />
+          <input
+            style={{ width: '20%', height: '30px' }}
+            type="color"
+            value={color}
+            onChange={(e) => {
+              setColor(e.target.value);
+            }}
+          />
+          <br></br>
+          <br></br>
+          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+            onClick={() => {
+              const ctx = canvasCTX;
+              ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+            }}
+          >
+            Clear
+          </button>
+
+        </div>
       </div>
       <div className="prompt_bar">
         <div className="prompt">
@@ -62,51 +95,19 @@ function Drawing() {
         <canvas
           ref={canvasRef}
           onMouseEnter={(e) => SetPos(e)}
-          onMouseMove={(e) => SetPos(e)}
+
           onMouseDown={(e) => SetPos(e)}
           onMouseMove={(e) => Draw(e)}
 
         ></canvas>
-        <div
-          className="controlpanel"
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            width: "100%",
-          }}
-        >
-          <input
-            type="range"
-            value={size}
-            max={40}
-            onChange={(e) => {
-              setSize(e.target.value);
-            }}
-          />
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => {
-              setColor(e.target.value);
-            }}
-          />
-          <button
-            onClick={() => {
-              const ctx = canvasCTX;
-              ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-            }}
-          >
-            Clear
-          </button>
-          <div className="time">
-            *Time here
-          </div>
+
+        <div className="time">
+          *Time here
         </div>
 
 
       </div>
-    </div>
+    </div >
   );
 }
 
