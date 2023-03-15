@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/Home.css";
+import { BsFillPencilFill } from "react-icons/bs";
 
 function Home() {
+  //<div style={{ fontSize: "50px", color: "white" }}>
   return (
     <div style={{ fontSize: "25px", color: "white" }}>
-      Home!
-      <div className="Drawings">
-        <Link to="/difficulty">
-          <div style={{ fontSize: "25px", color: "white" }}>Drawing</div>
+      
+      <div className="DrawingsBox">
+        <Link to="/difficulty" className="Drawings">
+          <BsFillPencilFill className="Pen1"></BsFillPencilFill>
+          Draw here
+          <BsFillPencilFill className="Pen2"></BsFillPencilFill>
         </Link>
       </div>
       <div style={{ textAlign: 'center', border: '1px solid white', marginLeft: '14%', marginRight: '14%', padding: '3%', backgroundColor: 'rgb(47,0,50)' }}>

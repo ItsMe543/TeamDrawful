@@ -10,10 +10,11 @@ function DifficultyPage() {
           <br />
           <input type="number" placeholder="Difficulty / 5" required />
           <br />
-          <input type="submit" value="Submit" />
+          
         </form>
       </div>
     </div>
   );
 }
 export default DifficultyPage;
+//<input type="submit" value="Submit" />

@@ -13,7 +13,8 @@ import ViewDrawings from "../pages/ViewDraws";
 //Import func from "path";
 
 function Main() {
-  // Main component
+  // Main component 
+  //{" "}
   // When a url is visited, the corroponding page will be shown as defined below:
   // <Route path="/NametodisplayOnBar" element={<functionName/>}</Route>
   return (
@@ -27,9 +28,7 @@ function Main() {
       <Route path="/badges" element={<Badges />}></Route>
       <Route path="/drawing" element={<Drawing />}></Route>
       <Route path="/difficulty" element={<DifficultyPage />}></Route>
-      <Route path="/comments/:ID" element={<Comments />}>
-        {" "}
-      </Route>
+      <Route path="/comments/:ID" element={<Comments />}></Route>
     </Routes>
   );
 }

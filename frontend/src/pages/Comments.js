@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import drawings from "../drawingData.js";
 import "../styles/Comments.css";
@@ -28,6 +29,12 @@ function Comments() {
           </div>
           <div className="CommentTextBox">
             <input type="text" placeholder="   Comment" />
+          </div>
+          
+          <div className="SubCom">
+            <Button>
+              Send Comment
+            </Button>
           </div>
      </div>
   )
