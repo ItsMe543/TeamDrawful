@@ -6,6 +6,7 @@ WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONPATH "{PYTHONPATH}:/home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22"
 # install psycopg2 dependencies
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
@@ -18,7 +19,7 @@ RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 # copy project
 COPY . .
-CMD ["python3", "./drawful/manage.py", "runserver"]
+CMD python3 ./drawful/manage.py runserver
 
 ########## Stage 2 - React ##########
 FROM node:current-alpine3.16 AS builder
