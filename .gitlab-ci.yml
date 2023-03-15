@@ -55,7 +55,7 @@ deploy-job:      # This job runs in the deploy stage.
     - docker compose down --remove-orphans
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
-    - docker compose up
+    - docker compose --verbose up
     - python3 ./drawful/manage.py runserver 127.0.0.1:8000
     - echo "Container successfully deployed."
     - echo "Making migrations"
