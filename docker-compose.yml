@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: team40-22-db-1
     image: postgres
     volumes:
       - /var/lib/postgresql/data/
