@@ -3,6 +3,9 @@
 import React from "react";
 import "../styles/Drawing.css";
 import { useEffect, useRef, useState } from "react";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 function Drawing() {
@@ -71,6 +74,7 @@ function Drawing() {
             value={color}
             onChange={(e) => {
               setColor(e.target.value);
+              
             }}
           />
           <br></br>
@@ -83,6 +87,31 @@ function Drawing() {
           >
             Clear
           </button>
+          
+          
+          <div className="Eraser">
+          <IconButton style={{left: '35%'}}>
+            <DeleteIcon style={{ fontSize: '200%', position: 'relative', marginTop: '10%'}}
+            onClick={() => {
+              setColor('#ffffff')
+            }}
+            >
+              Erase
+            </DeleteIcon>
+          </IconButton>
+          </div>
+
+          <div className="Pen">
+          <IconButton style={{left: '35%'}}>
+            <EditIcon style={{ fontSize: '200%', position: 'relative', marginTop: '10%'}}
+            onClick={() => {
+              setColor('#000000')
+            }}
+            >
+              Erase
+            </EditIcon>
+          </IconButton>
+          </div>
 
         </div>
       </div>
