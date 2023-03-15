@@ -15,12 +15,12 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - POSTGRES_DB=drawful
+      - POSTGRES_NAME=drawful
       - POSTGRES_USER=drawful
       - POSTGRES_PASSWORD=drawful
       - POSTGRES_HOST=db:5432
     links:
-      - "db:database"
+      - "db:db"
     depends_on:
       - db
   #app:
