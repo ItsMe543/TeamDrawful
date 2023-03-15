@@ -18,6 +18,7 @@ RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 # copy project
 COPY . .
+CMD ["python3", "./drawful/manage.py", "runserver"]
 
 ########## Stage 2 - React ##########
 FROM node:current-alpine3.16 AS builder
