@@ -10,7 +10,9 @@ function DifficultyPage() {
           <br />
           <input type="number" placeholder="Difficulty / 5" required />
           <br />
-          
+          <Link to="/drawing">
+            Start
+          </Link>
         </form>
       </div>
     </div>
