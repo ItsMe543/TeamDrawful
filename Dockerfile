@@ -10,17 +10,17 @@ RUN npm run build
 #WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/drawful
 
 ########## Stage 3 - Nginx ##########
-FROM nginx
-WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
-RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#FROM nginx
+#WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
+#RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
-COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
+#COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
 #RUN ls /usr/share/nginx/html
-COPY ./conf /etc/nginx/nginx.conf
-VOLUME /etc/nginx
-VOLUME /usr/share/nginx/html
-COPY --from=builder /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-RUN nginx -s reload
+#COPY ./conf /etc/nginx/nginx.conf
+#VOLUME /etc/nginx
+#VOLUME /usr/share/nginx/html
+#COPY --from=builder /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#RUN nginx -s reload
 #CMD ["nginx", "-g", "daemon off;"]
 
 ########## Stage 1 - Django ##########
