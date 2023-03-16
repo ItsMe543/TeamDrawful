@@ -1,30 +1,80 @@
-import React from "react";
-import drawings from "../../drawingData";
+import React, { useState } from "react";
+import drawingData from "../../drawingData";
 import "../../styles/Settings/Account.css";
+
 export default function Account() {
+    const [name, setName] = useState(drawingData[0].name);
+    const [username, setUsername] = useState(drawingData[0].username);
+    const [email, setEmail] = useState(drawingData[0].email);
+    const [bio, setBio] = useState(drawingData[0].bio);
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+        drawingData[0].name = event.target.value;
+    };
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+        drawingData[0].username = event.target.value;
+    };
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        drawingData[0].email = event.target.value;
+    };
+
+    const handleBioChange = (event) => {
+        setBio(event.target.value);
+        drawingData[0].bio = event.target.value;
+    };
+
     return (
-        <div className="account-container" style={{ paddingLeft: "250px", paddingTop: '25px' }}>
-            <div><img src="/drawings/car.jpg" style={{ width: '150px', marginLeft: '40px' }} />
-                <div style={{ fontSize: '50px', position: 'absolute', left: '470px', top: '170px', marginLeft: '50px', paddingTop: '20px' }}>Account Settings<br></br>
-                    <div style={{ fontSize: '28px', color: 'rgb(150,150,150)', position: 'relative', bottom: '20px', left: '7px' }}>Edit your personal Settings</div>
-                </div></div>
-
-
-
-            <div className="input">Name
-                <input style={{ backgroundColor: "rgb(57,59,61)", marginLeft: '120px', width: '320px', color: 'white', marginTop: '20px' }} type="text" placeholder="   Enter your name" />
+        <div className="account-container">
+            <div>
+                <img src="/drawings/car.jpg" />
+                <h1>
+                    Account Settings
+                    <div>Edit your personal Settings</div>
+                </h1>
             </div>
-            <div className="input">Username
-                <input style={{ backgroundColor: "rgb(57,59,61)", marginLeft: '96px', width: '320px', color: 'white' }} type="text" placeholder="   Enter your username" />
+
+            <div className="input">
+                Name
+                <input style={{ marginLeft: '122px' }}
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={handleNameChange}
+                />
             </div>
-            <div className="input">Email Address
-                <input style={{ backgroundColor: "rgb(57,59,61)", marginLeft: '67px', width: '320px', color: 'white' }} type="text" placeholder="   Enter your email id" />
+            <div className="input">
+                Username
+                <input style={{ marginLeft: '98px' }}
+                    type="text"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={handleUsernameChange}
+                />
             </div>
-            <div className="input">Bio
-                <input style={{ backgroundColor: "rgb(57,59,61)", marginLeft: '142px', width: '320px', color: 'white', height: '200px' }} type="text" placeholder="   Max No. of Characters: 256s" />
+            <div className="input">
+                Email Address
+                <input style={{ marginLeft: '71px', color: 'rgb(190,190,190)' }}
+                    type="text"
+                    placeholder="Enter your email id"
+                    value={email}
+                    onChange={handleEmailChange}
+                    readOnly="true"
+                />
+            </div>
+            <div className="input">
+                <label>Bio</label>
+                <textarea
+                    type="text"
+                    placeholder="Max No. of Characters: 256s"
+                    value={bio}
+                    onChange={handleBioChange}
+                />
             </div>
         </div>
-
-    )
-
+    );
 }

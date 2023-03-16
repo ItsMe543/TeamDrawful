@@ -1,5 +1,56 @@
 .input {
-    text-align: start;
     font-size: 24px;
-    margin: 30px 0;
+    margin: 35px 0;
+}
+
+.account-container {
+    padding-left: 250px;
+    padding-top: 25px;
+}
+
+.account-container img {
+    width: 150px;
+    margin-left: 40px;
+}
+
+.account-container h1 {
+    font-size: 50px;
+    position: absolute;
+    left: 470px;
+    top: 155px;
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+.account-container h1>div {
+    font-size: 28px;
+    color: rgb(150, 150, 150);
+    position: relative;
+    bottom: 10px;
+    left: 7px;
+}
+
+
+.input input,
+.input textarea {
+    background-color: rgb(57, 59, 61);
+    width: 340px;
+    color: white;
+    border: 1px solid #838383;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 24px;
+}
+
+
+.input textarea {
+    margin-left: 162px;
+    height: 200px;
+    width: 342px;
+}
+
+.input label {
+    position: absolute;
+    top: 592px
+        /* add a negative margin-top to move the label up */
 }
