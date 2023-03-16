@@ -45,4 +45,4 @@ RUN pip3 install djangorestframework
 RUN pip3 install pillow
 # copy project
 COPY . .
-#CMD python3 manage.py runserver
+CMD python3 manage.py runserver
