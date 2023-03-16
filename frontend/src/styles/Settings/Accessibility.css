@@ -1,27 +1,8 @@
-.App {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(32, 34, 37);
-}
-
-.Main {
-    background-color: rgb(32, 34, 37);
-}
-
-.Nav {
-    background-color: #020202;
-}
-
 body.light-mode .App {
     background-color: rgb(201, 230, 255)
 }
 
 body.light-mode .Main {
-    background-color: rgb(201, 230, 255)
-}
-
-body.light-mode div {
-    color: rgb(0, 0, 0);
     background-color: rgb(201, 230, 255)
 }
 
@@ -37,10 +18,75 @@ body.light-mode .menu button {
     color: black
 }
 
-body.light-mode .navbar div {
+
+
+body.light-mode .navbar {
+
+    border: 1px solid black;
     background-color: #dfdfdf;
 }
 
 body.light-mode .m-titel div {
     color: black;
+}
+
+body.light-mode .Main div {
+    color: black;
+}
+
+body.light-mode .CommentsBox {
+    background-color: rgb(193, 204, 255);
+    border: 1px solid black;
+    color: black;
+}
+
+body.light-mode .UserProfile {
+    background-color: rgb(143, 182, 255);
+    border: 1px solid black;
+}
+
+body.light-mode .UserElement img {
+    border: 1px solid black;
+}
+
+body.light-mode .menu {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid black;
+}
+
+body.light-mode .menu-header {
+
+    border-bottom: 1px solid black;
+}
+
+body.light-mode .input input {
+    background-color: white;
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+
+}
+
+body.light-mode .input textarea {
+    background-color: white;
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+}
+
+body.light-mode .search-bar input {
+
+    border: 2px solid black;
+}
+
+body.light-mode .menu button:not([aria-current="true"]):hover {
+    background-color: rgb(172, 172, 172);
+    color: #000000;
+}
+
+body.light-mode .menu button:not([aria-current="true"]):focus {
+    background-color: rgb(221, 221, 221);
+    color: #000000;
+}
+
+body.light-mode .account-container img {
+    border: 1px solid black;
 }

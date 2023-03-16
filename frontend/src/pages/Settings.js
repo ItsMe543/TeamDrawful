@@ -30,34 +30,36 @@ export default function Settings() {
 
   return (
     <div className="settings-container">
-      <div className="menu">
-        <div className="menu-header">
-          Settings
-        </div>
-        <div className="search-bar">
-          <input type="text" placeholder="   Search" />
-        </div>
-        <div>
-          <Button style={buttonStyle} onClick={() => handleSectionClick("account")}>
-            Account
-          </Button>
-          <br />
-          <Button style={buttonStyle} onClick={() => handleSectionClick("accessibility")}>
-            Accessibility
-          </Button>
-          <br />
-          <Button style={buttonStyle} onClick={() => handleSectionClick("security")}>
-            Privacy & Security
-          </Button>
-          <br />
-          <Button style={buttonStyle} onClick={() => handleSectionClick("general")}>
-            General
-          </Button>
-          <br />
-          <Button className="more-button" style={buttonStyle}>
-            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
-            More
-          </Button>
+      <div className="bar">
+        <div className="menu">
+          <div className="menu-header">
+            Settings
+          </div>
+          <div className="search-bar">
+            <input type="text" placeholder="   Search" />
+          </div>
+          <div>
+            <Button style={buttonStyle} onClick={() => handleSectionClick("account")}>
+              Account
+            </Button>
+            <br />
+            <Button style={buttonStyle} onClick={() => handleSectionClick("accessibility")}>
+              Accessibility
+            </Button>
+            <br />
+            <Button style={buttonStyle} onClick={() => handleSectionClick("security")}>
+              Privacy & Security
+            </Button>
+            <br />
+            <Button style={buttonStyle} onClick={() => handleSectionClick("general")}>
+              General
+            </Button>
+            <br />
+            <Button className="more-button" style={buttonStyle}>
+              <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
+              More
+            </Button>
+          </div>
         </div>
       </div>
       <div className="settings-sections">

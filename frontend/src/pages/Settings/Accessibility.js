@@ -19,12 +19,11 @@ export default function Accessibility() {
                 <button
                     onClick={toggleMode}
                     style={{
-                        fontSize: '30px',
-                        width: "70px",
-                        height: "50px",
-                        border: "2px solid #ccc",
+                        fontSize: '25px',
+                        width: "60px",
+                        height: "40px",
+                        border: "1px solid black",
                         backgroundColor: isLightMode ? "#3f51b5" : "white",
-                        cursor: "pointer",
                         position: "relative",
                     }}
                 >Light</button>

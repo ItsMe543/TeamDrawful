@@ -58,7 +58,7 @@ export default function Account() {
             </div>
             <div className="input">
                 Email Address
-                <input style={{ marginLeft: '71px', color: 'rgb(190,190,190)' }}
+                <input style={{ marginLeft: '71px', color: 'rgb(146,146,146)' }}
                     type="text"
                     placeholder="Enter your email id"
                     value={email}
