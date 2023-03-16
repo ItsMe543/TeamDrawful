@@ -17,6 +17,7 @@ RUN pip3 install -r requirements.txt
 # install python packages
 RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
+RUN pip3 install pillow
 # copy project
 COPY . .
 #CMD python3 manage.py runserver
