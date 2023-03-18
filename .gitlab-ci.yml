@@ -60,11 +60,11 @@ deploy-job:      # This job runs in the deploy stage.
     - echo "Deploying the container..."
     - docker compose up -d
     - echo "Container successfully deployed."
-    #- echo "Making migrations"
-    #- cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
-    #- python3 manage.py makemigrations
-    #- python3 manage.py migrate
-    #- echo "Migrations made..."
-    #- echo "Starting backend server"
-    #- python3 ./drawful/manage.py runserver
+    - echo "Making migrations"
+    - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
+    - python3 manage.py makemigrations
+    - python3 manage.py migrate
+    - echo "Migrations made..."
+    - echo "Starting backend server"
+    - python3 ./drawful/manage.py runserver
     - echo -e "████████╗ ██████╗ ███╗   ███╗██╗███████╗██████╗  ██████╗  ██████╗ \n╚══██╔══╝██╔═══██╗████╗ ████║██║██╔════╝██╔══██╗██╔═══██╗██╔════╝ \n   ██║   ██║   ██║██╔████╔██║██║███████╗██████╔╝██║   ██║██║  ███╗\n   ██║   ██║   ██║██║╚██╔╝██║██║╚════██║██╔═══╝ ██║   ██║██║   ██║\n   ██║   ╚██████╔╝██║ ╚═╝ ██║██║███████║██║     ╚██████╔╝╚██████╔╝\n   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚═╝╚══════╝╚═╝      ╚═════╝  ╚═════╝ "
