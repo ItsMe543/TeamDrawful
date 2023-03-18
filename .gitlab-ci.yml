@@ -26,6 +26,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - neofetch
     - echo "pruning all the useless stuff P.S TOMISPOG"
     - docker system prune -a
+    - y
     - echo "Building the image..."
     - docker build -t team40-22-web:latest --no-cache .
     - echo "Building image complete."
