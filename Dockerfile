@@ -10,7 +10,7 @@ RUN npm run build
 #WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/drawful
 
 ########## Stage 3 - Nginx ##########
-#FROM nginx AS builder
+FROM nginx
 WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 #RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
