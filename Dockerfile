@@ -20,7 +20,7 @@ COPY ./conf /etc/nginx/nginx.conf
 VOLUME /etc/nginx
 VOLUME /usr/share/nginx/html
 RUN ls /etc/nginx/
-RUN cat /etc/nginx/nginx.conf
+#RUN cat /etc/nginx/nginx.conf
 COPY --from=builder /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 RUN nginx -s reload
 CMD ["nginx", "-g", "daemon off;"]
