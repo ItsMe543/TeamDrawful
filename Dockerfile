@@ -14,14 +14,14 @@ RUN npm run build
 WORKDIR /home/gitlab_runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 #RUN rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN ls /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
-COPY --from=builder /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
+COPY  /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend/build /usr/share/nginx/html
 #RUN ls /usr/share/nginx/html
 #COPY ./conf /etc/nginx/nginx.conf
 #VOLUME /etc/nginx
 #VOLUME /usr/share/nginx/html
 #RUN ls /etc/nginx/
 #RUN cat /etc/nginx/nginx.conf
-#COPY --from=builder /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#COPY  /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 #RUN nginx -s reload
 #CMD ["nginx", "-g", "daemon off;"]
 
