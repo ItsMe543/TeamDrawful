@@ -58,7 +58,7 @@ deploy-job:      # This job runs in the deploy stage.
     - docker compose down --remove-orphans
     - docker rm -f $(docker ps -a -q) || true
     - echo "Deploying the container..."
-    - docker compose up -g#-d db
+    - docker compose up -d#-d db
     - echo "Container successfully deployed."
     #- echo "Making migrations"
     #- cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/drawful
