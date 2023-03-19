@@ -6,3 +6,8 @@ from drawfulApp import models
 #    class Meta:
 #        model = models.Todo
 #        fields = ('id', 'title', 'description', 'completed')
+
+class BadgesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Badges
+        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked')

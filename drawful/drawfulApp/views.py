@@ -15,5 +15,6 @@ def main(request):
     context = { }
     return render(request, "index.html", context)
 
-class DifficultyView(viewsets.ModelViewSet):
-    pass
+class BadgesView(viewsets.ModelViewSet):
+    serializer_class = serializers.BadgesSerializer
+    queryset = models.Badges.objects.all()

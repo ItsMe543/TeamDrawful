@@ -69,7 +69,7 @@ class Badges(models.Model):
         badgeUnlocked = models.BooleanField(default=False)
 
 
-#This table is the tablke fo prompts which can be generated
+#This table is the table for prompts which can be generated
 #Primary key = prompt
 class Prompt_List(models.Model):
         prompt = models.CharField(max_length=50, primary_key=True)
