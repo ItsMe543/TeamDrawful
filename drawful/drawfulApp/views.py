@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
-import serializers
-import models
+from drawfulApp import serializers
+from drawfulApp import models
 
 # Create your views here.
 

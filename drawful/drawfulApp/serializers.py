@@ -1,5 +1,5 @@
 from rest_framework import serializers
-import models
+from drawfulApp import models
 
 ########## Example Serialiser ##########
 #class TodoSerializer(serializers.ModelSerializer):
