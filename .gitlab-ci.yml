@@ -29,8 +29,8 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Building the image..."
     - docker build -t team40-22-web:latest --no-cache .
     - echo "Building image complete."
-    #- echo "Building front end..."
-    #- cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
+    - echo "Building front end..."
+    - cd /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22/frontend
     #- curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash   
     #- export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use #load nvm
     #- eval "[ -f .nvmrc ] && nvm install || nvm install 17" #install node
@@ -39,10 +39,15 @@ build-job:       # This job runs in the build stage, which runs first.
     #- node -v
     #- export NODE_OPTIONS=--max-old-space-size=4096
     #- echo "this will take a while and it eats memory"
-    #- npm install
-    #- CI=false npm run build
-    #- cd ..
-    #- echo "Building frontend complete."
+    - npm install
+    - CI=false npm run build
+    - echo "Building frontend complete."
+    - echo "Moving frontend..."
+    - rm -rf /usr/share/nginx/html/.
+    - rm -rf ./node_modules
+    - cp -rf ./build/. /usr/share/nginx/html/.
+    - rm -rf ./build
+    - echo "Moved frontend successfully!"
 
 test-job:
   stage: test
