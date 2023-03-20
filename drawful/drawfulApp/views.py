@@ -15,6 +15,6 @@ def main(request):
     context = { }
     return render(request, "index.html", context)
 
-class BadgesView(viewsets.ModelViewSet):
-    serializer_class = serializers.BadgesSerializer
-    queryset = models.Badges.objects.all()
+class PromptView(viewsets.ModelViewSet):
+    serializer_class = serializers.PromptSerializer
+    queryset = models.Prompt_List.objects.all()

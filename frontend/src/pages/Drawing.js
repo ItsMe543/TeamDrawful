@@ -2,6 +2,7 @@
 
 import React from "react";
 import "../styles/Drawing.css";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,6 +15,23 @@ function Drawing() {
   const [canvasCTX, setCanvasCTX] = useState(null);
   const [color, setColor] = useState("#000000"); // Default color is black
   const [size, setSize] = useState(10); // Default size is 10
+
+  //Accessing prompt contents:
+  //var promptObj = {
+  //  id: 0,
+  //  prompt: "",
+  //  promptGenre: "",
+  //  alreadyUsed: false,
+  //  previousWinner: "",
+  //};
+  const [post, setPost] = useState({
+    id: 0,
+    prompt: "",
+    promptGenre: "",
+    alreadyUsed: false,
+    previousWinner: ""
+  });
+
   // Set the canvas ctx as the state
   useEffect(() => {
     const canvas = canvasRef.current; // Select the canvas element
@@ -48,6 +66,33 @@ function Drawing() {
     ctx.lineCap = "round";
     ctx.stroke(); // Draw it!
   };
+
+  //Code for prompt getting
+  /*const getPrompt = () => {
+    axios
+      .get("/api/prompts/1/")
+      .then((res) => console.log(res.data))
+      //.then((res) => promptObj = res.data)
+      .catch((err) => console.log(err))
+    console.log(promptObj);
+    return (  
+      <span>{promptObj.prompt}</span>
+    )
+  }
+
+  const showPrompt = () => {
+    getPrompt();
+    //console.log("Prompt = " + promptObj);
+    //return ()
+  };*/
+
+  useEffect(() => {
+    axios.get("/api/prompts/1/").then((data) => {
+      console.log(data);
+      setPost(data?.data);
+    });
+  }, []);
+
   return (
     <div>
       <div className="drawing_toolbar" >
@@ -117,7 +162,7 @@ function Drawing() {
       </div>
       <div className="prompt_bar">
         <div className="prompt">
-          *This is where the prompt goes
+          {post.prompt}
         </div>
       </div>
       <div className="canvas">

@@ -1,11 +1,15 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Todo
+from drawfulApp import models
 
-class TodoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'completed')
+########## Example Class ##########
+#class TodoAdmin(admin.ModelAdmin):
+#    list_display = ('title', 'description', 'completed')
+
+class PromptAdmin(admin.ModelAdmin):
+    list_display = ('id', 'prompt', 'promptGenre', 'alreadyUsed', 'previousWinner')
 
 # Register your models here.
-
-admin.site.register(Todo, TodoAdmin)
+#admin.site.register(Todo, TodoAdmin)
+admin.site.register(models.Prompt_List, PromptAdmin)

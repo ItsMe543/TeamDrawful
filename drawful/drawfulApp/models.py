@@ -1,13 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Todo(models.Model):
-    title = models.CharField(max_length=120)
-    description = models.TextField()
-    completed = models.BooleanField(default=False)
-
-    def _str_(self):
-        return self.title
+#class Todo(models.Model):
+#        title = models.CharField(max_length=120)
+#        description = models.TextField()
+#        completed = models.BooleanField(default=False)
+#
+#        def _str_(self):
+#                return self.title
 
 
 
@@ -72,7 +72,8 @@ class Badges(models.Model):
 #This table is the table for prompts which can be generated
 #Primary key = prompt
 class Prompt_List(models.Model):
-        prompt = models.CharField(max_length=50, primary_key=True)
+        id = models.IntegerField(primary_key=True)
+        prompt = models.CharField(max_length=50)
         promptGenre = models.CharField(max_length=30)
         alreadyUsed = models.BooleanField(default=False)
         previousWinner = models.CharField(max_length=30)

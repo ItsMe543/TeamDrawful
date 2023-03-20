@@ -7,7 +7,7 @@ from drawfulApp import models
 #        model = models.Todo
 #        fields = ('id', 'title', 'description', 'completed')
 
-class BadgesSerializer(serializers.ModelSerializer):
+class PromptSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Badges
-        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked')
+        model = models.Prompt_List
+        fields = ('id', 'prompt', 'promptGenre', 'alreadyUsed', 'previousWinner')

@@ -19,7 +19,7 @@ from rest_framework import routers
 from drawfulApp import views
 
 router = routers.DefaultRouter()
-router.register(r'badges', views.BadgesView, 'badges')
+router.register(r'prompts', views.PromptView, 'prompt')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
