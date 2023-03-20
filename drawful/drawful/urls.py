@@ -25,5 +25,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
-    path('drawing/', views.main),
 ]

@@ -1,5 +1,9 @@
 import React from "react";
-import { AiOutlineBell, AiOutlineCalendar, AiOutlineHome } from "react-icons/ai";
+import {
+  AiOutlineBell,
+  AiOutlineCalendar,
+  AiOutlineHome,
+} from "react-icons/ai";
 import { BsAward, BsPeople, BsVectorPen } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
@@ -10,60 +14,78 @@ function Navbar() {
   // Navbar component
 
   return (
-    <div className="navbar">
+    <div className="Navbar">
       <div className="logo">
         <img src={logo} alt="drawful logo" />
       </div>
       <div className="links">
         <div className="home">
           <Link to="/">
-            <AiOutlineHome style={{ height: '3.5vh', width: '3.5vh' }} />
-            <div style={{ fontSize: '2.8vh' }}>Home</div>
+            <AiOutlineHome size={30} />
+            <div>Home</div>
           </Link>
         </div>
 
         <div className="ViewDraws">
           <Link to="/viewingDrawings">
-            <BsVectorPen style={{ height: '3.5vh', width: '3.5vh' }} />
-            <div style={{ fontSize: '2.8vh' }}>Drawings</div>
+            <BsVectorPen size={30} />
+            <div>Drawings</div>
           </Link>
         </div>
 
         <div className="settings">
           <Link to="/settings">
-            <FiSettings style={{ height: '3.5vh', width: '3.5vh' }} />
-            <div style={{ fontSize: '2.8vh' }}>Settings</div>
+            <FiSettings size={30} />
+            <div>Settings</div>
           </Link>
         </div>
 
         <div className="friends">
           <Link to="/friends">
-            <BsPeople style={{ height: '3.5vh', width: '3.5vh' }} />
-            <div style={{ fontSize: '2.8vh' }}>Friends</div>
+            <BsPeople size={30} />
+            <div>Friends</div>
           </Link>
         </div>
 
-        <div /*className="memories"*/ style={{}}>
+        <div className="memories" style={{}}>
           <Link to="/memories">
-            <AiOutlineCalendar style={{ height: '3.5vh', width: '3.5vh' }} />
-            <div style={{ fontSize: '2.8vh' }}>Memories</div>
+            <AiOutlineCalendar size={30} />
+            <div>Memories</div>
           </Link>
         </div>
 
-        <div className="notifications">
+        {/* <div className="notifications">
           <Link to="/notifications">
-            <AiOutlineBell style={{ height: '2.7vh', width: '2.7vh', position: 'relative', top: '30%' }} />
+            <AiOutlineBell
+              style={
+                {
+                  // height: "2.7vh",
+                  // width: "2.7vh",
+                  // position: "relative",
+                  // top: "30%",
+                }
+              }
+              size={30}
+            />
+            <div>Notifications</div>
           </Link>
-        </div>
+        </div> */}
 
-        <div className="badges">
+        {/* <div className="badges">
           <Link to="/badges">
-            <BsAward style={{ height: '2.7vh', width: '2.7vh', position: 'relative', top: '30%' }} />
+            <BsAward
+              // style={{
+              //   height: "2.7vh",
+              //   width: "2.7vh",
+              //   position: "relative",
+              //   top: "30%",
+              // }}
+              size={30}
+            />
+            <div>Badges</div>
           </Link>
-        </div>
-
+        </div> */}
       </div>
-
     </div>
   );
 }
