@@ -4,10 +4,13 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 17.5vh;
-  padding: 1.1vw;
-  height: 12vh;
+  gap: 10%;
+  padding-left: 100px;
+  align-items: center;
+
+  height: 100%;
   background-color: #dfdfdf;
+  font-size: 1.8em;
 }
 
 /*Colour of logos*/
@@ -19,17 +22,19 @@ a {
 .navbar {
   text-align: center;
   padding: 0;
+  height: 100%;
 }
 
 /*Adjust position of the logo*/
 .logo {
   position: absolute;
-  bottom: 0.7vh;
-  left: 0.5vh
+  /* bottom: 0.7vh;
+  left: 0.5vh; */
+  bottom: 5px;
 }
 
 /*Alter logo*/
 .logo img {
-  width: 13vh;
-  height: 13vh;
+  width: 100px;
+  height: 100px;
 }

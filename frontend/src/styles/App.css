@@ -8,6 +8,7 @@
 /*This represents all of the nav bar*/
 .Nav {
   background-color: #020202;
+  height: 90px;
 }
 
 /*This represents the area in which items hav been added*/
