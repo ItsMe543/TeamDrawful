@@ -1,7 +1,7 @@
 /*This represents the space witha  lack of items*/
 .App {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: rgb(32, 34, 37);
 }
 

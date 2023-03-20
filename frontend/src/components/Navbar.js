@@ -14,7 +14,7 @@ function Navbar() {
   // Navbar component
 
   return (
-    <div className="navbar">
+    <div className="Navbar">
       <div className="logo">
         <img src={logo} alt="drawful logo" />
       </div>
@@ -54,7 +54,7 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="notifications">
+        {/* <div className="notifications">
           <Link to="/notifications">
             <AiOutlineBell
               style={
@@ -69,9 +69,9 @@ function Navbar() {
             />
             <div>Notifications</div>
           </Link>
-        </div>
+        </div> */}
 
-        <div className="badges">
+        {/* <div className="badges">
           <Link to="/badges">
             <BsAward
               // style={{
@@ -84,7 +84,7 @@ function Navbar() {
             />
             <div>Badges</div>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
