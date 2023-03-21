@@ -26,16 +26,18 @@ from django.db import models
 #Table for each users memories
 #Primary key = date
 class User_memories(models.Model):
-        id = models.AutoField(primary_key=True)
-        date = models.CharField(max_length=10)
+        #memoryId = models.IntegerField(primary_key=True)
+        date = models.TimeField(primary_key=True)
         timeCompleted = models.TimeField()
         difficulty = models.CharField(max_length=10)
         avgRating = models.FloatField(default=0.0)
         TimeTaken = models.TimeField()
+
         #auto_now updates this field to the last time this object saves data
         prompt = models.CharField(max_length=50)
+
         #***None must be filled*** pip install pillow
-        drawing = models.ImageField(upload_to='uploads/drawings', height_field=None, width_field=None, max_length=100)
+        drawing = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
 
 
 

@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from drawfulApp import views
-from django.views.generic import DeleteView
 
 router = routers.DefaultRouter()
 router.register(r'prompts', views.PromptView, 'prompt')
-router.register(r'usermemories', views.userMemoriesView, 'usermemories')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
