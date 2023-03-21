@@ -1,11 +1,12 @@
 .input {
     font-size: 24px;
-    margin: 35px 0;
+    margin: 42px 0;
 }
 
 .account-container {
     padding-left: 250px;
     padding-top: 25px;
+    z-index: 2;
 }
 
 .account-container img {
@@ -40,17 +41,18 @@
     border-radius: 4px;
     padding: 10px;
     font-size: 24px;
+    position: absolute;
+    left: 500px;
 }
 
 
 .input textarea {
-    margin-left: 162px;
     height: 200px;
-    width: 342px;
+
 }
 
 .input label {
-    position: absolute;
-    top: 592px
+    position: relative;
+    top: 10px
         /* add a negative margin-top to move the label up */
 }

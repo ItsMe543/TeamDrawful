@@ -34,31 +34,32 @@ export default function Account() {
                 <img src="/drawings/car.jpg" />
                 <h1>
                     Account Settings
-                    <div>Edit your personal Settings</div>
+                    <div className="sub">Edit your personal Settings</div>
                 </h1>
             </div>
 
             <div className="input">
-                Name
-                <input style={{ marginLeft: '122px' }}
+                <label>Name</label>
+                <input
                     type="text"
                     placeholder="Enter your name"
                     value={name}
                     onChange={handleNameChange}
                 />
             </div>
+
             <div className="input">
-                Username
-                <input style={{ marginLeft: '98px' }}
+                <label>Username</label>
+                <input
                     type="text"
                     placeholder="Enter your username"
                     value={username}
                     onChange={handleUsernameChange}
                 />
             </div>
-            <div className="input">
-                Email Address
-                <input style={{ marginLeft: '71px', color: 'rgb(146,146,146)' }}
+            <div className="input" >
+                <label>Email Address</label>
+                <input style={{ color: 'rgb(146,146,146)' }}
                     type="text"
                     placeholder="Enter your email id"
                     value={email}

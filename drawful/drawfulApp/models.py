@@ -1,13 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Todo(models.Model):
-    title = models.CharField(max_length=120)
-    description = models.TextField()
-    completed = models.BooleanField(default=False)
-
-    def _str_(self):
-        return self.title
+#class Todo(models.Model):
+#        title = models.CharField(max_length=120)
+#        description = models.TextField()
+#        completed = models.BooleanField(default=False)
+#
+#        def _str_(self):
+#                return self.title
 
 
 
@@ -26,18 +26,16 @@ class Todo(models.Model):
 #Table for each users memories
 #Primary key = date
 class User_memories(models.Model):
-        #memoryId = models.IntegerField(primary_key=True)
-        date = models.TimeField(primary_key=True)
+        id = models.AutoField(primary_key=True)
+        date = models.CharField(max_length=10)
         timeCompleted = models.TimeField()
         difficulty = models.CharField(max_length=10)
         avgRating = models.FloatField(default=0.0)
         TimeTaken = models.TimeField()
-
         #auto_now updates this field to the last time this object saves data
         prompt = models.CharField(max_length=50)
-
         #***None must be filled*** pip install pillow
-        drawing = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+        drawing = models.ImageField(upload_to='uploads/drawings', height_field=None, width_field=None, max_length=100)
 
 
 
@@ -69,10 +67,11 @@ class Badges(models.Model):
         badgeUnlocked = models.BooleanField(default=False)
 
 
-#This table is the tablke fo prompts which can be generated
+#This table is the table for prompts which can be generated
 #Primary key = prompt
 class Prompt_List(models.Model):
-        prompt = models.CharField(max_length=50, primary_key=True)
+        id = models.IntegerField(primary_key=True)
+        prompt = models.CharField(max_length=50)
         promptGenre = models.CharField(max_length=30)
         alreadyUsed = models.BooleanField(default=False)
         previousWinner = models.CharField(max_length=30)

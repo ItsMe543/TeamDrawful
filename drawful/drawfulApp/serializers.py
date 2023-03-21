@@ -1,8 +1,18 @@
 from rest_framework import serializers
-from .models import Todo
+from drawfulApp import models
 
-class TodoSerializer(serializers.ModelSerializer):
+########## Example Serialiser ##########
+#class TodoSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = models.Todo
+#        fields = ('id', 'title', 'description', 'completed')
+
+class PromptSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Todo
-        fields = ('id', 'title', 'description', 'completed')
+        model = models.Prompt_List
+        fields = ('id', 'prompt', 'promptGenre', 'alreadyUsed', 'previousWinner')
 
+class userMemoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User_memories
+        fields = ('id', 'date', 'timeCompleted', 'difficulty', 'avgRating', 'TimeTaken', 'prompt', 'drawing')

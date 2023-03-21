@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_tv#kizd1h-mzlb&jdpg4)naftp=x%+=2ay4(bt@x7kj#wr*k#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["team40-22.bham.team", "127.0.0.1"]
+ALLOWED_HOSTS = ["team40-22.bham.team", "127.0.0.1","localhost"]
 
 
 # Application definition
@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'drawful.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        "ENGINE": "django.db.backends.postgresql",
-#        "NAME": "drawful",
-#        "USER": "drawful",
-#        "PASSWORD": "drawful",
-#        "HOST": "db",
-#        "PORT": "5432",
-#    }
-#}
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "drawful",
+        "USER": "drawful",
+        "PASSWORD": "drawful",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
 
 
 # Password validation

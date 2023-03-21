@@ -1,16 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
-from .serializers import TodoSerializer
-from .models import Todo
-from django.views.decorators.csrf import requires_csrf_token
+from drawfulApp import serializers
+from drawfulApp import models
 
 # Create your views here.
 
-# class TodoView(viewsets.ModelViewSet):#
-#    serializer_class = TodoSerializer
-#    queryset = Todo.objects.all()
+########## Example view ##########
+#class TodoView(viewsets.ModelViewSet):#
+#    serializer_class = serializers.TodoSerializer
+#    queryset = models.Todo.objects.all()
 
 def main(request):
     context = { }
     return render(request, "index.html", context)
+
+class PromptView(viewsets.ModelViewSet):
+    serializer_class = serializers.PromptSerializer
+    queryset = models.Prompt_List.objects.all()
+
+class userMemoriesView(viewsets.ModelViewSet):
+    serializer_class = serializers.userMemoriesSerializer
+    queryset = models.User_memories.objects.all()

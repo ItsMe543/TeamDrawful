@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import GeneralSettings from "../pages/Settings/GeneralSettings";
 import Account from "../pages/Settings/Account";
@@ -14,13 +13,6 @@ export default function Settings() {
     setActive(section);
   };
 
-  const buttonStyle = {
-    fontFamily: "Sometimes",
-    fontSize: "22px",
-    textTransform: "none",
-    margin: "10px 0",
-  };
-
   const sections = [
     { id: "general", component: <GeneralSettings /> },
     { id: "security", component: <Security /> },
@@ -30,36 +22,34 @@ export default function Settings() {
 
   return (
     <div className="settings-container">
-      <div className="bar">
-        <div className="menu">
-          <div className="menu-header">
-            Settings
-          </div>
-          <div className="search-bar">
-            <input type="text" placeholder="   Search" />
-          </div>
-          <div>
-            <Button style={buttonStyle} onClick={() => handleSectionClick("account")}>
-              Account
-            </Button>
-            <br />
-            <Button style={buttonStyle} onClick={() => handleSectionClick("accessibility")}>
-              Accessibility
-            </Button>
-            <br />
-            <Button style={buttonStyle} onClick={() => handleSectionClick("security")}>
-              Privacy & Security
-            </Button>
-            <br />
-            <Button style={buttonStyle} onClick={() => handleSectionClick("general")}>
-              General
-            </Button>
-            <br />
-            <Button className="more-button" style={buttonStyle}>
-              <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
-              More
-            </Button>
-          </div>
+      <div className="menu">
+        <div className="menu-header">
+          Settings
+        </div>
+        <div className="search-bar">
+          <input type="text" placeholder="   Search" />
+        </div>
+        <div>
+          <button className="buttonstyle" onClick={() => handleSectionClick("account")}>
+            Account
+          </button>
+          <br />
+          <button className="buttonstyle" onClick={() => handleSectionClick("accessibility")}>
+            Accessibility
+          </button>
+          <br />
+          <button className="buttonstyle" onClick={() => handleSectionClick("security")}>
+            Privacy & Security
+          </button>
+          <br />
+          <button className="buttonstyle" onClick={() => handleSectionClick("general")}>
+            General
+          </button>
+          <br />
+          <button className="buttonstyle" style={{ position: 'absolute', bottom: '5%', left: '10%' }}>
+            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
+            More
+          </button>
         </div>
       </div>
       <div className="settings-sections">
