@@ -19,6 +19,12 @@ class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
     queryset = models.Prompt_List.objects.all()
 
+<<<<<<< HEAD
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
+=======
+class userMemoriesView(viewsets.ModelViewSet):
+    serializer_class = serializers.userMemoriesSerializer
+    queryset = models.User_memories.objects.all()
+>>>>>>> 36ab662e8d5598abec928242471abe1656cb2444

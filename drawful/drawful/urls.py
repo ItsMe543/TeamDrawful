@@ -20,8 +20,12 @@ from drawfulApp import views
 
 router = routers.DefaultRouter()
 router.register(r'prompts', views.PromptView, 'prompt')
+<<<<<<< HEAD
 router.register(r'user_memories', views.User_MemoriesView, 'user_memories')
 
+=======
+router.register(r'usermemories', views.userMemoriesView, 'usermemories')
+>>>>>>> 36ab662e8d5598abec928242471abe1656cb2444
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
