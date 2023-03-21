@@ -31,6 +31,8 @@
   /*background-color: grey;*/
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 3%;
   border-top: 2px solid rgb(57, 59, 61);
   border-bottom: 2px solid rgb(57, 59, 61);
 }
@@ -47,7 +49,12 @@
   flex: 0 0 25%;
   padding: 10px;
 }
-.UserElement img {
+.userDrawing {
+  display: flex;
+  justify-content: center;
+  object-fit: contain;
+}
+.userDrawing img {
   max-width: 200px;
 }
 
@@ -118,31 +125,34 @@
   background-color: rgb(253, 205, 18);
   color: white;
 }
-
+.Ratings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .RateText {
   /*background-color: rgb(45,45,45);*/
-  display: flex;
+  /*
   flex-direction: row;
   border-color: white;
+
   text-decoration: underline;
+  font-size: 30px; */
   /*border-top-right-radius: 100%;
     border-bottom-right-radius: 100%;
     border-top-left-radius: 100%;
     border-bottom-left-radius: 100%;
     border-style: hidden;*/
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  text-align: center;
 }
 
 .StarBar {
-  display: flex;
-  flex-direction: row;
-  margin-left: -40px;
-  margin-top: 40px;
   font-size: 30px;
 }
 
 .StarBarAvg {
-  display: flex;
-  flex-direction: row;
   font-size: 30px;
 }
 
@@ -158,8 +168,13 @@
   background-color: rgb(45, 45, 45);
   color: rgb(253, 205, 18);
   border: hidden;
-  margin-top: 20px;
-  margin-left: 40px;
+  margin: 0;
+  position: relative;
+  top: 15%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100px;
 }
 
 .SubmitButton:hover {
@@ -180,13 +195,12 @@
   color: white;
   background-color: rgb(45, 45, 45);
   font-size: 30px;
-  padding-left: 5px;
-  margin-left: -100px;
   height: 200px;
 }
 
 .CommentHeading {
   text-decoration: underline;
+  padding-left: 20px;
 }
 
 .Comment {
@@ -194,6 +208,7 @@
   font-size: 24px;
   display: grid;
   grid-template-columns: auto auto;
+  padding-left: 10px;
 }
 
 .CommentText {
@@ -209,3 +224,28 @@
 }
 
 /*Comments box END ------*/
+
+@media (max-width: 800px) {
+  .UserProfile {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .RateText {
+    justify-content: center;
+  }
+  .StarBar {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 3%;
+  }
+  .SubmitButton {
+    top: 20px;
+  }
+  .Title {
+    font-size: 3em;
+  }
+  .Comment {
+    grid-template-columns: auto;
+  }
+}

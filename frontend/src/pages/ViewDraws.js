@@ -1,26 +1,28 @@
+import Rating from "@mui/material/Rating";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import drawings from "../drawingData";
 import "../Fonts/Sometimes.otf";
 import "../styles/ViewPage.css";
-import Rating from '@mui/material/Rating';
 
 // Ctrl + k to comment out region
 function ViewDrawings() {
   const top = {
     // Other styles
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
   };
 
   // stars fill states
-  const [filled, setFilled] = useState(drawings.map(() => [false, false, false, false, false]));
+  const [filled, setFilled] = useState(
+    drawings.map(() => [false, false, false, false, false])
+  );
 
   // fills in star when clicked and all previous stars
   const handleClick = (index, id) => {
-    const newFilled = [...filled]
+    const newFilled = [...filled];
     newFilled[id] = newFilled[id].map((value, i) => {
       if (i <= index) {
         return true;
@@ -31,53 +33,41 @@ function ViewDrawings() {
     setFilled(newFilled);
   };
 
-
-
   return (
     <div>
-      <h1 className="Title">
-        Today's Pictures
-      </h1>
+      <h1 className="Title">Today's Pictures</h1>
       {drawings.map((post, id) => {
         return (
           <>
-
-
-            <h2 className="PromptName">
-              Prompt: {post.prompt}
-            </h2>
+            <h2 className="PromptName">Prompt: {post.prompt}</h2>
 
             <div className="UserProfile">
-
-              <div className="UserElement">
+              <div className="userDrawing">
                 <img src={post.drawing} alt={"drawing image"} />
               </div>
 
-
               <div className="UserElement">
-                <div className="UserName">
-                  {post.username}
-                </div>
+                <div className="UserName">{post.username}</div>
                 <div className="Stats">
                   Completed: {post.completedTime} - {post.completedDate}
                 </div>
-                <div className="Stats">
-                  Difficulty: {post.difficulty} / 5
-                </div>
+                <div className="Stats">Difficulty: {post.difficulty} / 5</div>
                 <div className="Stats">
                   Time taken: {post.timeTaken} seconds
                 </div>
                 <div className="StarBarAvg">
                   Rating
-                  <Rating className="StarRating" value={post.avgRating} readOnly precision={0.1} />
+                  <Rating
+                    className="StarRating"
+                    value={post.avgRating}
+                    readOnly
+                    precision={0.1}
+                  />
                 </div>
               </div>
 
-
-              <div className="UserElement">
-                <div className="RateText">
-                  Rate the drawing?
-                </div>
+              <div className="Ratings">
+                <div className="RateText">Rate the drawing?</div>
                 <div className="StarBar">
                   {[0, 1, 2, 3, 4].map((index) => (
                     <Button
@@ -86,25 +76,22 @@ function ViewDrawings() {
                       className={`Star${index + 1} Stars`}
                       onClick={() => handleClick(index, id)}
                     >
-                      {filled[id][index] ? <AiFillStar size={25} /> : <AiOutlineStar size={25} />}
+                      {filled[id][index] ? (
+                        <AiFillStar size={25} />
+                      ) : (
+                        <AiOutlineStar size={25} />
+                      )}
                     </Button>
                   ))}
                 </div>
-                <Button className="SubmitButton">
-                  Submit Rating
-                </Button>
+                <Button className="SubmitButton">Submit Rating</Button>
               </div>
-
 
               <div className="UserElement">
                 <Link to={"/comments/" + post.id}>
-
                   <div className="CommentsBox">
-                    <div className="CommentHeading">
-                      Comments
-                    </div>
+                    <div className="CommentHeading">Comments</div>
                     <div className="Comment">
-
                       {post.Comments.map((Comments, id) => {
                         return (
                           <>
@@ -116,16 +103,15 @@ function ViewDrawings() {
                               {Comments.Comment}
                             </div>
                           </>
-                        )
+                        );
                       })}
                     </div>
                   </div>
-
                 </Link>
               </div>
             </div>
           </>
-        )
+        );
       })}
     </div>
   );
