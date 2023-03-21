@@ -3,14 +3,12 @@ import "../styles/Difficulty.css";
 function DifficultyPage() {
   return (
     <div className="d-title">
-      Enter username
+      Choose a difficulty
       <div className="diff">
         <form action="/drawing" className="form">
-          <input type="text" placeholder="Username" required />
-          <br />
           <input type="number" placeholder="Difficulty / 5" required />
           <br />
-          <Link to="/drawing">
+          <Link to="/drawing" className="DrawingLink">
             Start
           </Link>
         </form>
