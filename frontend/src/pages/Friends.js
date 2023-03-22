@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "../styles/Friends.css"
 
 function Friends() {
-  const [active, setActive] = useState("account");
+  const [active, setActive] = useState("friends");
 
   const handleSectionClick = (section) => {
     setActive(section);
@@ -28,31 +28,29 @@ function Friends() {
   };
 
   return( 
-    <div className="profiles-container">
-      <div className="bar">
-        <div className="friendSidebar">
-          <div className="friendSidebar-header">
-            Friends
-          </div>
-          
-          <Button style={buttonStyle} onClick={() => handleSectionClick("friends")}>
-            Friends
-          </Button>
-          <br />
-          <Button style={buttonStyle} onClick={() => handleSectionClick("mutual")}>
-            Mutual Friends
-          </Button>
-          <br />
-          <Button style={buttonStyle} onClick={() => handleSectionClick("requests")}>
-            Friend requests
-          </Button>
-          <br />
-          <Button style={buttonStyle} >
-            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
-            More
-          </Button>
-          
+    <div className="friends-container">
+      <div className="friendSidebar">   
+
+        <div className="friendSidebar-header">
+          Friends
         </div>
+        <Button style={buttonStyle} onClick={() => handleSectionClick("friends")}>
+          Friends
+        </Button>
+        <br />
+        <Button style={buttonStyle} onClick={() => handleSectionClick("mutual")}>
+          Mutual Friends
+        </Button>
+        <br />
+        <Button style={buttonStyle} onClick={() => handleSectionClick("requests")}>
+          Friend requests
+        </Button>
+        <br />
+        <Button style={buttonStyle} >
+          <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
+          More
+        </Button>
+
       </div>
 
       <div className="profiles-sections">

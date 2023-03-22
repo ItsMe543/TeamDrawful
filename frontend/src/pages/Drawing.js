@@ -377,16 +377,16 @@ function Drawing() {
     //console.log("Prompt = " + promptObj);
     //return ()
   };*/
-
+  // Change the value after /api/prompts/ to the ID of the prompt you want
   useEffect(() => {
-    axios.get("/api/prompts/1/").then((data) => {
+    axios.get("/api/prompts/69420/").then((data) => {
       console.log(data);
       setPost(data?.data);
     });
   }, []);
 
   return (
-    <div>
+    <div className="Background">
       <div className="drawing_toolbar" >
         <div
           className="controlpanel"

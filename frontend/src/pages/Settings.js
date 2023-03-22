@@ -52,6 +52,7 @@ export default function Settings() {
           </button>
         </div>
       </div>
+      
       <div className="settings-sections">
         {sections.map((section) => (
           <div className={`section ${active === section.id.replace("-section", "") ? "active" : ""}`}>

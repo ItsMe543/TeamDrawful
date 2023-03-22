@@ -1,6 +1,7 @@
-.profiles-container {
+.friends-container {
     margin-top: 4.5vh;
     margin-left: 4.5vh;
+    height: calc(95.55vh - 90px);
 }
 
 .friendSidebar {
@@ -84,4 +85,15 @@
 .more-button {
     top: 165px;
     right: 20px;
+}
+
+.buttonstyle {
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #000000;
+    border: none;
+    font-size: 22px;
+    margin-bottom: 30px;
+
 }

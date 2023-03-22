@@ -3,19 +3,16 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import drawings from "../../drawingData.js";
-import "../../styles/Comments.css";
+import "../../styles/Friends/FriendRequests.css";
 
 function FriendRequests() {
   
   return (
-    <>
-        <div className="Greet">
-            HELLO HAHAHAH this is da fren reqs
-        </div>
+    <div className="Profiles-container">
         <div className="search-bar">
             <input type="text" placeholder="   Search" />
-          </div>
-    </>
+        </div>
+    </div>
   );
 }
         

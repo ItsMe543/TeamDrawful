@@ -39,11 +39,8 @@
 .UserElement {
   color: white;
   font-size: 30px;
-  /*margin-left:5%;
-    margin-right:5%;*/
   margin-bottom: -0%;
   height: 6cm;
-  /*display:inline-flex;*/
   flex: 0 0 25%;
   padding: 10px;
 }

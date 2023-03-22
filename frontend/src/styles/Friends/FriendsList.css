@@ -1,0 +1,50 @@
+
+.Profiles-container{
+    padding-left: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.F-search-bar{
+    width: 200px;
+    height: 30px;
+    font-size: 21px;
+    margin-left: 150px;
+}
+
+.Friend-side{
+    padding: 10px;
+}
+
+.Profiles-side{
+    padding: 10px;
+}
+
+
+.Friends-list{
+    background-color: grey;
+    margin-top: 10px;
+    margin-right: 70px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 550px;
+}
+
+.Profile-details{
+    background-color: rgb(128, 128, 128); /*128,128,128*/
+    height: 600px;
+    width: 550px;
+    border-radius: 50px;
+    padding: 20px;
+}
+
+
+/*Here add the stuff which changes when the screen is made smaller*/
+@media(max-width: 800px){
+    .Profiles-container{
+        flex-direction: column;
+    }
+}

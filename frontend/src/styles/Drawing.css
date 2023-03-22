@@ -90,3 +90,8 @@ div {
     margin-top: 7%;
     margin-left: 7%;
 }
+
+.Background{
+    padding-bottom: 100%;
+    background-color: black;
+}
