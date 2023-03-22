@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Settings/Accessibility.css";
+import { alpha, styled } from '@mui/material/styles';
+import { pink } from '@mui/material/colors';
+import Switch from "@mui/material/Switch";
 
 export default function Accessibility() {
+    const PinkSwitch = styled(Switch)(({ theme }) => ({
+        '& .MuiSwitch-switchBase.Mui-checked': {
+            color: pink[600],
+            '&:hover': {
+                backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+            },
+        },
+        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+            backgroundColor: pink[600],
+        },
+    }));
+
     const [isLightMode, setIsLightMode] = useState(false);
+    const [isContrast, setContrast] = useState(false);
+    const [isFont, setFont] = useState(false);
 
     const toggleMode = () => {
         setIsLightMode(!isLightMode);
+        setContrast(false);
     };
-
-    const [isContrast, setConstrast] = useState(false);
 
     const toggle = () => {
-        setConstrast(!isContrast);
+        setContrast(!isContrast);
+        setIsLightMode(false);
     };
-
-
-
-    const [isFont, setFont] = useState(false);
 
     const toggleFont = () => {
         setFont(!isFont);
@@ -37,42 +50,26 @@ export default function Accessibility() {
     return (
         <div className="accessibility-container" style={{ paddingLeft: "250px" }}>
             <div style={{ fontSize: "40px" }}>Accessibility Settings</div>
-            <div>
-                <button
-                    onClick={toggleMode}
-                    style={{
-                        fontSize: '25px',
-                        width: "70px",
-                        height: "40px",
-                        border: "1px solid black",
-                        backgroundColor: isLightMode ? "#3f51b5" : "white",
-                        position: "relative",
-                    }}
-                >Light</button>
-                <button
-                    onClick={toggleFont}
-                    style={{
-                        fontSize: '25px',
-                        width: "70px",
-                        height: "40px",
-                        border: "1px solid black",
-                        backgroundColor: isFont ? "#3f51b5" : "white",
-                        marginLeft: "20px",
-                        position: "relative",
-                    }}
-                >Font</button>
-                <button
-                    onClick={toggle}
-                    style={{
-                        fontSize: '25px',
-                        width: "70px",
-                        height: "40px",
-                        border: "1px solid black",
-                        backgroundColor: isContrast ? "#3f51b5" : "white",
-                        marginLeft: "20px",
-                        position: "relative",
-                    }}
-                >Contrast</button>
+            <div style={{ fontSize: "22px" }}>
+                Light Mode
+                <PinkSwitch
+                    checked={isLightMode}
+                    onChange={toggleMode}
+                />
+                <br></br>
+                Font Switch
+                <Switch
+                    checked={isFont}
+                    onChange={toggleFont}
+                    color="primary"
+                />
+                <br></br>
+                High Contrast Mode
+                <Switch
+                    checked={isContrast}
+                    onChange={toggle}
+                    color="warning"
+                />
             </div>
         </div>
     );
