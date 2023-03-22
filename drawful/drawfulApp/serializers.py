@@ -12,7 +12,7 @@ class PromptSerializer(serializers.ModelSerializer):
         model = models.Prompt_List
         fields = ('id', 'prompt', 'promptGenre', 'alreadyUsed', 'previousWinner')
 
-class userMemoriesSerializer(serializers.ModelSerializer):
+class User_MemoriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.User_memories
-        fields = ('id', 'date', 'timeCompleted', 'difficulty', 'avgRating', 'TimeTaken', 'prompt', 'drawing')
+        model =models.User_Memories
+        fields = ('id', 'date', 'timeCompleted', 'difficulty', 'avgRating', 'timeTaken', 'prompt', 'drawing')
