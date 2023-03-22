@@ -86,22 +86,21 @@
 
 .Profile-details{
     background-color: rgb(45, 45, 45); /*128,128,128*/
-    height: 580px;
+    height: 615px;
     width: 550px;
-    border-radius: 50px;
+    border-radius: 30px;
     padding: 22px;
     margin-top: -20px;
 }
 
 .Profile-picture{
-    margin-left: 20px;
     height: 200px;
     width: 200px;
+    border: 2px solid rgb(253,205,18);
 }
 
 .Profile-username{
     font-size: 35px;
-    margin-left: -10px;
 }
 
 .Profile-bio-container{
@@ -122,40 +121,78 @@
 
 .Profile-stat-bar{
     background-color: rgb(253,205,18);
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Handmade";
     outline: solid;
     color: black;
     outline-color: rgb(0, 0, 0);
     margin-bottom: 10px;
-    margin-left: -20px;
-    margin-right: 279px;
+    width: 200px;
     padding: 2px;
 }
 
 .Profile-fav-draw{
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
+    border: 2px solid rgb(253,205,18);
 }
 
-.Profile-view-memories-button{
-
-}
 
 .Profile-unfriend-button{
+    font-size: 20px;
+    width: 75px;
+    text-align: center;
+    margin-left: 60px;
+    border-color: rgb(48,174,193);
+}
 
+.Profile-unfriend-button:hover{
+    background-color: rgb(48,174,193);
+    border-color: white;
+    color: white;
+}
+
+.Profile-view-memories{
+    font-size: 20px;
+    width: 75px;
+    text-align: center;
+    margin-left: 40px;
+    border-color: rgb(48,174,193);
+}
+
+.Profile-view-memories:hover{
+    background-color: rgb(48,174,193);
+    border-color: white;
+    color: white;
 }
 
 .Profile-badges-container{
+    color: black;
+    background-color: white;
+    height: 110px;
+    overflow-y: scroll;
+    padding: 4px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
 
+.Profile-section-header1{
+    font-size: 30px;
+    text-decoration: underline;
+    margin-right: 110px;
+}
+
+.Profile-section-header2{
+    font-size: 30px;
+    text-decoration: underline;
+    margin-right: 110px;
+    margin-top: -10px;
+    margin-bottom: -7px;
 }
 
 .Profile-badge-icon{
-
-}
-
-.Profile-section-header{
-
+    width: 50px;
+    height: 50px;
 }
 
 /*----Profile detailed view end----*/
