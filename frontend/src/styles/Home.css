@@ -40,16 +40,33 @@
   background-color: rgb(47, 0, 50);
 }
 
+.disclaimer1 {
+  position: relative;
+  text-align: center;
+  left: 12.7%;
+  width: 75%;
+  margin-top: 35px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
 @media (max-width: 700px) {
   .Drawings {
     font-size: 50px;
   }
+
   .pen1 {
     font-size: 50px;
   }
+
   .pen2 {
     font-size: 50px;
   }
+
   .privacy {
     margin-left: 5%;
     margin-right: 5%;
