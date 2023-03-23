@@ -14,30 +14,15 @@ body.light-mode h2 {
     color: rgb(0, 0, 0);
 }
 
-body.light-mode .menu button {
-    color: black
-}
 
 
-
-body.light-mode .navbar {
-
-    border: 1px solid black;
-    background-color: #dfdfdf;
-}
-
-body.light-mode .m-titel div {
-    color: black;
-}
-
-body.light-mode .Main div {
+body.light-mode div {
     color: black;
 }
 
 body.light-mode .CommentsBox {
     background-color: rgb(193, 204, 255);
     border: 1px solid black;
-    color: black;
 }
 
 body.light-mode .UserProfile {
@@ -51,13 +36,19 @@ body.light-mode .UserElement img {
 
 body.light-mode .menu {
     background-color: rgb(245, 245, 245);
-    border: 1px solid black;
+
+}
+
+body.light-mode .menu button {
+    background-color: rgb(245, 245, 245);
+    color: black;
 }
 
 body.light-mode .menu-header {
-
-    border-bottom: 1px solid black;
+    border-color: #000000;
+    color: black
 }
+
 
 body.light-mode .input input {
     background-color: white;
@@ -74,7 +65,7 @@ body.light-mode .input textarea {
 
 body.light-mode .search-bar input {
 
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 body.light-mode .menu button:not([aria-current="true"]):hover {
@@ -89,4 +80,164 @@ body.light-mode .menu button:not([aria-current="true"]):focus {
 
 body.light-mode .account-container img {
     border: 1px solid black;
+}
+
+body.font div {
+    font-family: 'arial';
+    font-size: 104%
+}
+
+body.font h1 {
+    font-family: 'arial';
+    font-size: 160%
+}
+
+body.font h2 {
+    font-family: 'arial';
+    font-size: 160%
+}
+
+body.font .input input {
+    font-size: 100%;
+    position: absolute;
+    left: 30%;
+}
+
+body.font .input {
+    font-size: 80%;
+}
+
+body.font .input textarea {
+    font-size: 120%;
+    position: absolute;
+    left: 30%;
+}
+
+body.font button {
+    font-size: 80%;
+}
+
+body.font .sub {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+body.contrast .App {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Main {
+    background-color: rgb(0, 0, 0)
+}
+
+body.contrast .input {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .input input {
+    color: rgb(0, 255, 255);
+}
+
+body.contrast .input textarea {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast h1 {
+    color: rgb(255, 255, 0)
+}
+
+body.contrast h2 {
+    color: rgb(255, 255, 0)
+}
+
+
+body.contrast .UserElement div {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 0)
+}
+
+body.contrast .UserElement button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 0, 242)
+}
+
+body.contrast .CommentsBox div {
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 255, 242)
+}
+
+
+body.contrast .Stars {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Star1 {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Star5 {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .SubmitButton {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+
+}
+
+body.contrast .links {
+    background-color: rgba(255, 0, 0, 0.459);
+}
+
+body.contrast a {
+    color: rgb(0, 255, 0);
+}
+
+body.contrast a {
+    color: rgb(0, 255, 0);
+}
+
+body.contrast .Drawings {
+    background-color: rgb(0, 0, 0);
+}
+
+
+body.contrast .sub {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .menu button {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .menu {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .drawing_toolbar {
+    background-color: rgb(247, 0, 255);
+}
+
+
+
+body.contrast .prompt_bar {
+    background-color: rgb(0, 255, 0);
+}
+
+body.contrast .prompt {
+    background-color: rgb(0, 0, 0);
+    color: aqua;
+}
+
+body.contrast .time {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 238, 0);
+}
+
+body.contrast .menu {
+    color: rgb(255, 0, 255);
 }

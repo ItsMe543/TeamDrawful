@@ -1,4 +1,29 @@
 .m-memories {
   color: white;
   font-size: 2em;
+  height: 100%;
+  width: 100%;
+}
+.m-title {
+  text-align: center;
+}
+
+.calanderDrawing {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 7%;
+  height: 100%;
+}
+.m-drawing {
+  color: black;
+  width: 60%;
+  background-color: white;
+}
+.calender {
+  padding: 3%;
+}
+
+.downloadButton {
+  all: unset;
 }

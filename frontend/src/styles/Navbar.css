@@ -42,5 +42,9 @@ a {
   .links {
     gap: 5%;
     font-size: 1em;
+    padding: 0;
+  }
+  .logo img {
+    display: none;
   }
 }

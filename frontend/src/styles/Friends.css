@@ -1,30 +1,90 @@
-.settings-container {
+.friends-container {
     margin-top: 4.5vh;
     margin-left: 4.5vh;
-    height: calc(95vh - 90px);
+    height: calc(95.55vh - 90px);
 }
 
-.menu {
+.friendSidebar {
     position: absolute;
-    top: 90px;
+    top: 12.11vh;
     left: 0px;
     width: 220px;
     background-color: #000000;
     color: white;
-    height: calc(100vh - 90px);
-    padding: 20px;
+    height: 87.89vh;
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 1;
 }
 
-.menu-header {
-    text-align: center;
+.friendSidebar-header {
+    display: flex;
+    justify-content: center;
     width: 74%;
     border-bottom: 1px solid white;
     font-size: 32px;
-    padding: 15px
+    padding: 10px 0 20px;
+}
+
+.friendSidebar button {
+    color: white;
+    padding: 10px;
+    background-color: #000000;
+    border-color: #000000;
+    border-radius: 15px;
+}
+
+.friendSidebar button:not([aria-current="true"]):hover {
+    background-color: var(--white);
+    color: #000000;
+    
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.friendSidebar button:not([aria-current="true"]):focus {
+    background-color: rgb(203, 203, 203);
+    color: #000000;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.section {
+    display: block;
+    height: 0;
+    color: white;
+    opacity: 0;
+}
+
+.section.active {
+    display: block;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.search-bar {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.search-bar input {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 22px;
+    width: 160px;
+}
+
+.search-bar input:focus::-webkit-input-placeholder {
+    transform: translate(-40px, -30px);
+    transition: all 0.4s ease-in-out;
+}
+
+.more-button {
+    top: 165px;
+    right: 20px;
 }
 
 .buttonstyle {
@@ -36,44 +96,4 @@
     font-size: 22px;
     margin-bottom: 30px;
 
-}
-
-.menu button:not([aria-current="true"]):hover {
-    background-color: var(--white);
-    color: #000000;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.menu button:not([aria-current="true"]):focus {
-    background-color: rgb(141, 141, 141);
-    color: #000000;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-.section {
-    visibility: hidden;
-    height: 0;
-    color: white;
-    opacity: 0;
-}
-
-.section.active {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-}
-
-.search-bar {}
-
-.search-bar input {
-    border: none;
-    border-radius: 20px;
-    padding: 5px;
-    font-size: 22px;
-    width: 160px;
-}
-
-.search-bar input:focus::-webkit-input-placeholder {
-    transform: translate(-40px, -30px);
-    transition: all 0.4s ease-in-out;
 }

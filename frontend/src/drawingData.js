@@ -76,6 +76,42 @@ const drawingData = [
                 "Comment": "Could use some shading",
             }
         ]
+    },
+    {
+        "id": 3,
+        "username": "TyBee123",
+        "name": "Ty Bodin",
+        "difficulty": 4,
+        "email": "example@eggmail.co.uk",
+        "bio": "I am so example with eggmail",
+        "completedDate": "22/03/2023",
+        "completedTime": "19:00",
+        "timeTaken": 2,
+        "prompt": "car",
+        "avgRating": 3.8,
+        "drawing": "/drawings/car.jpg",
+        "Comments": [
+            {
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "username": "Jadams",
+        "name": "Joe adams",
+        "difficulty": 1,
+        "email": "Jadaj@eggmail.com",
+        "bio": "I have a longer bio to demsonstrate the lenght of the bio box better! Pfft",
+        "completedDate": "01/01/2023",
+        "completedTime": "18:12",
+        "timeTaken": 43,
+        "prompt": "car",
+        "avgRating": 3.8,
+        "drawing": "/drawings/minion.png",
+        "Comments": [
+            {
+            }
+        ]
     }
 ]
 
