@@ -77,3 +77,10 @@
     transform: translate(-40px, -30px);
     transition: all 0.4s ease-in-out;
 }
+
+.disclaimer2{
+    width: 1400px;
+    color: white;
+    margin-top: 600px;
+    background-color: rgb(0, 0, 0);
+}
