@@ -81,7 +81,7 @@ function FriendsList() {
               </Col>
               <Col>
                 <div className="Profile-section-header1">
-                  Favourtie Draw
+                  Favourite Draw
                 </div>
               </Col>
             </Row>
@@ -89,21 +89,21 @@ function FriendsList() {
             <Row>
               <Col>
                 <div className="Profile-stat-bar">
-                  Highest Streak:
+                  Highest Streak: {post.highestStreak}
                 </div>
                 <div className="Profile-stat-bar">
-                  Average Rating:
+                  Average Rating: {post.averageRating}
                 </div>
                 <div className="Profile-stat-bar">
-                  Total Stars Earned:
+                  Total Stars Earned: {post.totalStars}
                 </div>
                 <div className="Profile-stat-bar">
-                  Badges Unlocked: 
+                  Badges Unlocked:  {post.badgesUnlocked}
                 </div>
               </Col>
 
               <Col>
-                <img className="Profile-fav-draw" src="/drawings/car.jpg" alt={"fav draw image"} />
+                <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
               </Col>
 
             </Row>
@@ -132,7 +132,10 @@ function FriendsList() {
             <Row>
               <Col>
                 <div className="Profile-badges-container">
-                  This is where the badges will go
+                {post.badges.map((badges,id) =>{
+                  return(
+                    <img className="Profile-badge-icon" src={badges.badgeIcon} alt={"Badgeicon"} />
+                  )})}
                 </div>
               </Col>
             </Row>
