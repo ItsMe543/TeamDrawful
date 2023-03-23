@@ -51,6 +51,22 @@
   border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
+  font-size: 22px;
+
+}
+
+.disclaimer1 {
+  position: relative;
+  text-align: center;
+  left: 12.7%;
+  width: 75%;
+  margin-top: 35px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
 
 }
 
