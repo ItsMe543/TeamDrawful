@@ -16,7 +16,7 @@ function FriendsList() {
   //    Click me
   //  </button>
 
-  const [selected, setSelected] = useState("friends");
+  const [selected, setSelected] = useState(1);
   
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
@@ -28,10 +28,6 @@ function FriendsList() {
     //];
   //})};
 
-
-
-
-
   return (
     <div className="Profiles-container">
       <Col className="Friend-side">
@@ -40,7 +36,7 @@ function FriendsList() {
           <div className="Friends-list">
           {drawings.map((post, id) => {
             return (
-              <button className="User-preview">
+              <button className="User-preview" onClick={() => handleSelectionClick(post.id)}>
                 <img className="Friend-picture" src={post.drawing} alt={"drawing image"} />
                 <VscCircleFilled className="Friend-status"/>
                 <div className="Friend-username">
@@ -55,17 +51,23 @@ function FriendsList() {
 
       <Col className="Profile-side">
         <div className="Details-to-fill">
+
+          
+          {drawings.map((post, id) => {
+            if (post.id == selected){
+             return(
+          
           <div className="Profile-details">
             
             <Row>
               <Col>
-                <img className="Profile-picture" src="/drawings/car.jpg" alt={"pfp image"} />
+                <img className="Profile-picture" src={post.drawing} alt={"pfp image"} />
               </Col>
 
               <Col>
               <div className="Profile-bio-container">
                 <div className="Profile-bio">
-                  Hello this is my life story i wrote this without any corrections beacuase eme cool and this is only a test ahhahahah but for realthis is just a test of filling the bio, It will go here :D
+                  {post.bio}
                 </div>
               </div>
               </Col>
@@ -74,7 +76,7 @@ function FriendsList() {
             <Row>
               <Col>
               <div className="Profile-username">
-                CoolUser420
+                {post.username}
               </div>
               </Col>
               <Col>
@@ -137,6 +139,7 @@ function FriendsList() {
 
 
           </div>
+             )}})}
         </div>
       </Col>
 
