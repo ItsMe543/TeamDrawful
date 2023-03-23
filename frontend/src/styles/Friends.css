@@ -39,7 +39,7 @@
 .friendSidebar button:not([aria-current="true"]):hover {
     background-color: var(--white);
     color: #000000;
-    
+
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
