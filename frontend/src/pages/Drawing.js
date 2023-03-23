@@ -19,13 +19,6 @@ var imageParcel = {
   timeCompleted:6
 }
 
-
-
-
-
-
-
-
 var the_canvas ;
 var the_canvas_context ;
 
@@ -334,7 +327,7 @@ function Drawing() {
   };*/
   // Change the value after /api/prompts/ to the ID of the prompt you want
   useEffect(() => {
-    axios.get("/api/prompts/69420/").then((data) => {
+    axios.get("/api/prompts/1/").then((data) => {
       console.log(data);
       setPost(data?.data);
     });
@@ -466,6 +459,11 @@ function Drawing() {
 
 
       </div>
+
+      <div className="disclaimer">
+          "Alpha Project Disclaimer This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g., financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed."
+      </div>
+      
     </div >
   );
 }
