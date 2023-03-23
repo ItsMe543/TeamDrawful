@@ -1,7 +1,6 @@
 .friends-container {
     margin-top: 4.5vh;
     margin-left: 4.5vh;
-    height: calc(95.55vh - 90px);
 }
 
 .friendSidebar {
@@ -96,4 +95,11 @@
     font-size: 22px;
     margin-bottom: 30px;
 
+}
+
+.disclaimer1{
+    margin-top: 600px;
+    width: 1400px;
+    color: white;
+    background-color: rgb(0, 0, 0);
 }
