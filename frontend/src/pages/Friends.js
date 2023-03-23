@@ -8,6 +8,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "../styles/Friends.css"
 
 function Friends() {
+  //Hooks in react
+  //  const [varName, setName] = useState(Value);
+  //To update a hook:
+  //  <button onClick={() => setCount(count + 1)}>
+  //    Click me
+  //  </button>
   const [active, setActive] = useState("friends");
 
   const handleSectionClick = (section) => {
