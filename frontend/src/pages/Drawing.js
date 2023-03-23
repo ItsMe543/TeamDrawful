@@ -308,23 +308,6 @@ function Drawing() {
   };
 
   //Code for prompt getting
-  /*const getPrompt = () => {
-    axios
-      .get("/api/prompts/1/")
-      .then((res) => console.log(res.data))
-      //.then((res) => promptObj = res.data)
-      .catch((err) => console.log(err))
-    console.log(promptObj);
-    return (  
-      <span>{promptObj.prompt}</span>
-    )
-  }
-
-  const showPrompt = () => {
-    getPrompt();
-    //console.log("Prompt = " + promptObj);
-    //return ()
-  };*/
   // Change the value after /api/prompts/ to the ID of the prompt you want
   useEffect(() => {
     axios.get("/api/prompts/1/").then((data) => {
@@ -418,8 +401,8 @@ function Drawing() {
             Phil
           </button>
 
-           <br></br>
-           <br></br>
+          <br></br>
+          <br></br>
 
             <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
             id="submtButton"
@@ -431,7 +414,7 @@ function Drawing() {
             Submit
           </button>
 
-           <br></br>
+          <br></br>
 
 
         </div>
