@@ -76,6 +76,18 @@ export default function Account() {
                     onChange={handleBioChange}
                 />
             </div>
+            <div className="badges-header">Badges</div>
+            <div className="badges-container">
+
+            </div>
+            <div className="stats">
+                <div style={{ fontSize: '30px', marginBottom: '6px' }}>Stats</div>
+                <div>Highest Streak: </div>
+                <div>Average Rating: </div>
+                <div>Total Stars Earned: </div>
+                <div>Badges Unlocked: </div>
+            </div>
+
         </div>
     );
 }
