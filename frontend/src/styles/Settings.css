@@ -1,7 +1,6 @@
 .settings-container {
     margin-top: 4.5vh;
     margin-left: 4.5vh;
-    height: calc(95vh - 90px);
 }
 
 .menu {
@@ -11,12 +10,11 @@
     width: 220px;
     background-color: #000000;
     color: white;
-    height: calc(100vh - 90px);
+    bottom: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1;
 }
 
 .menu-header {
@@ -63,8 +61,6 @@
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
-.search-bar {}
-
 .search-bar input {
     border: none;
     border-radius: 20px;
@@ -76,11 +72,4 @@
 .search-bar input:focus::-webkit-input-placeholder {
     transform: translate(-40px, -30px);
     transition: all 0.4s ease-in-out;
-}
-
-.disclaimer2{
-    width: 1400px;
-    color: white;
-    margin-top: 600px;
-    background-color: rgb(0, 0, 0);
 }

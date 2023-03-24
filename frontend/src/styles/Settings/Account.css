@@ -1,12 +1,12 @@
 .input {
-    font-size: 24px;
-    margin: 42px 0;
+    font-size: 22px;
+    margin: 40px 0;
 }
 
 .account-container {
     padding-left: 250px;
     padding-top: 25px;
-    z-index: 2;
+
 }
 
 .account-container img {
@@ -20,7 +20,7 @@
     left: 470px;
     top: 155px;
     margin-left: 50px;
-    padding-top: 20px;
+
 }
 
 .account-container h1>div {
@@ -40,14 +40,14 @@
     border: 1px solid #838383;
     border-radius: 4px;
     padding: 10px;
-    font-size: 24px;
+    font-size: 22px;
     position: absolute;
     left: 500px;
 }
 
 
 .input textarea {
-    height: 200px;
+    height: 170px;
 
 }
 
