@@ -13,6 +13,7 @@ const drawingData = [
         "averageRating":3.9,
         "totalStars":50,
         "badgesUnlocked":2,
+        "mutualFriends":3,
         "favouriteDraw":"/drawings/car.jpg",
         "badges":[
             {
@@ -54,6 +55,7 @@ const drawingData = [
         "averageRating":4.5,
         "totalStars":80,
         "badgesUnlocked":1,
+        "mutualFriends":1,
         "favouriteDraw":"/drawings/house.jpg",
         "badges":[
             {
@@ -90,6 +92,7 @@ const drawingData = [
         "averageRating":2.4,
         "totalStars":69,
         "badgesUnlocked":2,
+        "mutualFriends":2,
         "favouriteDraw":"/drawings/minion.png",
         "badges":[
             {
@@ -136,6 +139,7 @@ const drawingData = [
         "averageRating":4.9,
         "totalStars":9,
         "badgesUnlocked":0,
+        "mutualFriends":2,
         "favouriteDraw":"/drawings/car.jpg",
         "badges":[
             
@@ -162,6 +166,7 @@ const drawingData = [
         "averageRating":3.4,
         "totalStars":690,
         "badgesUnlocked":1,
+        "mutualFriends":2,
         "favouriteDraw":"/drawings/minion.png",
         "badges":[
             {

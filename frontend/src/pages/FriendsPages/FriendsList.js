@@ -31,21 +31,23 @@ function FriendsList() {
   return (
     <div className="Profiles-container">
       <Col className="Friend-side">
-          <input className="F-search-bar" type="text" placeholder="   Search" />
-          
-          <div className="Friends-list">
+        <div className="Friends-title">Friends list</div>
+        <input className="F-search-bar" type="text" placeholder="Search friends list" />
+        
+        <div className="Friends-list">
           {drawings.map((post, id) => {
             return (
               <button className="User-preview" onClick={() => handleSelectionClick(post.id)}>
                 <img className="Friend-picture" src={post.drawing} alt={"drawing image"} />
                 <VscCircleFilled className="Friend-status"/>
-                <div className="Friend-username">
-                  {post.username}
-                </div>
+                <Col>
+                  <div className="Friend-username">
+                    {post.username}
+                  </div>
+                </Col>
               </button>
             )})}
-          </div>
-
+        </div>
       </Col>
 
 
