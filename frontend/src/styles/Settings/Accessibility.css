@@ -57,6 +57,66 @@ body.light-mode .input input {
 
 }
 
+body.light-mode .Friends-list {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid black;
+}
+
+body.light-mode .Friends-list {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid black;
+}
+
+body.light-mode .User-preview {
+
+    border: 1px solid black;
+}
+
+body.light-mode .friendSidebar {
+    background-color: rgb(245, 245, 245);
+}
+
+body.light-mode .friendSidebar button {
+    background-color: rgb(245, 245, 245);
+    color: black;
+}
+
+body.light-mode .friendSidebar-header {
+    border-color: #000000;
+    color: black
+}
+
+body.light-mode .Profile-details {
+    background-color: rgb(245, 245, 245);
+    border: 1px solid black;
+
+}
+
+body.light-mode .Profile-badges-container {
+    border: 1px solid black;
+}
+
+body.light-mode .Profile-bio-container {
+    border: 1px solid black;
+}
+
+body.light-mode .Profile-picture {
+    border: 1px solid black;
+}
+
+body.light-mode .Profile-fav-draw {
+    border: 1px solid black;
+}
+
+body.light-mode .Background {
+    background-color: rgb(255, 255, 255);
+}
+
+body.light-mode .disclaimer {
+    background-color: rgb(214, 214, 214);
+    border: 1px solid black
+}
+
 body.light-mode .input textarea {
     background-color: white;
     border: 1px solid black;
