@@ -13,6 +13,29 @@ export default function Settings() {
     setActive(section);
   };
 
+  const handleSearchInputChange = (event) => {
+    const searchInput = event.target.value.toLowerCase();
+
+    const accessibilityKeywords = /(light|font|contrast|accessibility|mode|high|toggle|switch|appearance|display)/;
+    const accountKeywords = /(account|badges|stats|name|username|email|bio|address|settings|personal|edit|profile|picture|changes|cancel|save|memories)/;
+    const securityKeywords = /(security|privacy|hide|login|password|reset|status|logout|online|offline)/;
+    const generalKeywords = /(general|notifications|sound)/;
+
+
+    if (accessibilityKeywords.test(searchInput)) {
+      setActive("accessibility");
+    }
+    if (accountKeywords.test(searchInput)) {
+      setActive("account");
+    }
+    if (securityKeywords.test(searchInput)) {
+      setActive("security");
+    }
+    if (generalKeywords.test(searchInput)) {
+      setActive("general");
+    }
+  };
+
   const sections = [
     { id: "general", component: <GeneralSettings /> },
     { id: "security", component: <Security /> },
@@ -27,7 +50,7 @@ export default function Settings() {
           Settings
         </div>
         <div className="search-bar">
-          <input type="text" placeholder="   Search" />
+          <input type="text" placeholder="Search" onKeyDown={handleSearchInputChange} />
         </div>
         <div>
           <button className="buttonstyle" onClick={() => handleSectionClick("account")}>
@@ -52,7 +75,6 @@ export default function Settings() {
           </button>
         </div>
       </div>
-
       <div className="settings-sections">
         {sections.map((section) => (
           <div className={`section ${active === section.id.replace("-section", "") ? "active" : ""}`}>

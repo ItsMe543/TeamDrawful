@@ -67,7 +67,10 @@
     padding: 5px;
     font-size: 22px;
     width: 160px;
+    padding-left: 10px
 }
+
+
 
 .search-bar input:focus::-webkit-input-placeholder {
     transform: translate(-40px, -30px);
