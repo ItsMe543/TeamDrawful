@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
@@ -8,15 +7,36 @@ import Friends from "../pages/Friends";
 import Home from "../pages/Home";
 import Memories from "../pages/Memories";
 import Notifications from "../pages/Notifications";
+import Accessibility from "../pages/Settings/Accessibility";
 import Settings from "../pages/Settings";
 import ViewDrawings from "../pages/ViewDraws";
-//Import func from "path";
+import React, { useEffect } from "react";
 
 function Main() {
-  // Main component 
-  //{" "}
-  // When a url is visited, the corroponding page will be shown as defined below:
-  // <Route path="/NametodisplayOnBar" element={<functionName/>}</Route>
+  useEffect(() => {
+    const isLightMode = localStorage.getItem("isLightMode") === "true";
+    const isContrast = localStorage.getItem("isContrast") === "true";
+    const isFont = localStorage.getItem("isFont") === "true";
+
+    if (isLightMode) {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+
+    if (isContrast) {
+      document.body.classList.add("contrast");
+    } else {
+      document.body.classList.remove("contrast");
+    }
+
+    if (isFont) {
+      document.body.classList.add("font");
+    } else {
+      document.body.classList.remove("font");
+    }
+  }, []);
+
   return (
     <Routes>
       <Route path="*" element={<Home />}></Route>

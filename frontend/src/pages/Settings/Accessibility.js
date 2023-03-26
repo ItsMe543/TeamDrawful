@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/Settings/Accessibility.css";
+import "../../styles/Settings/Light.css";
+import "../../styles/Settings/Font.css";
+import "../../styles/Settings/Contrast.css";
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from "@mui/material/Switch";
+
+const LIGHT_MODE_KEY = "isLightMode";
+const CONTRAST_KEY = "isContrast";
+const FONT_KEY = "isFont";
 
 export default function Accessibility() {
     const PinkSwitch = styled(Switch)(({ theme }) => ({
@@ -17,9 +23,18 @@ export default function Accessibility() {
         },
     }));
 
-    const [isLightMode, setIsLightMode] = useState(false);
-    const [isContrast, setContrast] = useState(false);
-    const [isFont, setFont] = useState(false);
+    const [isLightMode, setIsLightMode] = useState(() => {
+        const stored = localStorage.getItem(LIGHT_MODE_KEY);
+        return stored !== null ? JSON.parse(stored) : false;
+    });
+    const [isContrast, setContrast] = useState(() => {
+        const stored = localStorage.getItem(CONTRAST_KEY);
+        return stored !== null ? JSON.parse(stored) : false;
+    });
+    const [isFont, setFont] = useState(() => {
+        const stored = localStorage.getItem(FONT_KEY);
+        return stored !== null ? JSON.parse(stored) : false;
+    });
 
     const toggleMode = () => {
         setIsLightMode(!isLightMode);
@@ -35,15 +50,19 @@ export default function Accessibility() {
         setFont(!isFont);
     };
 
+
     useEffect(() => {
+        localStorage.setItem(LIGHT_MODE_KEY, JSON.stringify(isLightMode));
         document.body.classList.toggle("light-mode", isLightMode);
     }, [isLightMode]);
 
     useEffect(() => {
+        localStorage.setItem(FONT_KEY, JSON.stringify(isFont));
         document.body.classList.toggle("font", isFont);
     }, [isFont]);
 
     useEffect(() => {
+        localStorage.setItem(CONTRAST_KEY, JSON.stringify(isContrast));
         document.body.classList.toggle("contrast", isContrast);
     }, [isContrast]);
 

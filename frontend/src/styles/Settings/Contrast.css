@@ -1,0 +1,119 @@
+body.contrast .App {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Main {
+    background-color: rgb(0, 0, 0)
+}
+
+body.contrast .input {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .input input {
+    color: rgb(0, 255, 255);
+}
+
+body.contrast .input textarea {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast h1 {
+    color: rgb(255, 255, 0)
+}
+
+body.contrast h2 {
+    color: rgb(255, 255, 0)
+}
+
+
+body.contrast .UserElement div {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 0)
+}
+
+body.contrast .UserElement button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 0, 242)
+}
+
+body.contrast .CommentsBox div {
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 255, 242)
+}
+
+
+body.contrast .Stars {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Star1 {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .Star5 {
+    background-color: rgb(0, 0, 0);
+
+}
+
+body.contrast .SubmitButton {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+
+}
+
+body.contrast .links {
+    background-color: rgba(255, 0, 0, 0.459);
+}
+
+body.contrast a {
+    color: rgb(0, 255, 0);
+}
+
+body.contrast a {
+    color: rgb(0, 255, 0);
+}
+
+body.contrast .Drawings {
+    background-color: rgb(0, 0, 0);
+}
+
+
+body.contrast .sub {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .menu button {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .menu {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .drawing_toolbar {
+    background-color: rgb(247, 0, 255);
+}
+
+
+
+body.contrast .prompt_bar {
+    background-color: rgb(0, 255, 0);
+}
+
+body.contrast .prompt {
+    background-color: rgb(0, 0, 0);
+    color: aqua;
+}
+
+body.contrast .time {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 238, 0);
+}
+
+body.contrast .menu {
+    color: rgb(255, 0, 255);
+}
