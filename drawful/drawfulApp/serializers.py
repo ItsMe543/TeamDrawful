@@ -16,3 +16,8 @@ class User_MemoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model =models.User_Memories
         fields = ('id', 'date', 'timeCompleted', 'difficulty', 'avgRating', 'timeTaken', 'prompt', 'drawing')
+
+class User_AccountsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User_Accounts
+        fields = ('username','name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests')

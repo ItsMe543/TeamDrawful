@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useEffect, useRef, useState } from "react";
 import drawingData from "../../drawingData";
 import "../../styles/Settings/Account.css";
+import axios from "axios";
 
 export default function Account() {
+    const [post, setPost] = useState({
+        username: "",
+        email: "",
+        name: "",
+        bio: "",
+    });
     const [name, setName] = useState(drawingData[0].name);
     const [username, setUsername] = useState(drawingData[0].username);
     const [email, setEmail] = useState(drawingData[0].email);
@@ -28,6 +36,13 @@ export default function Account() {
         drawingData[0].bio = event.target.value;
     };
 
+    useEffect(() => {
+        axios.get("/api/user_accounts/1/").then((data) => {
+            console.log(data);
+            setPost(data?.data);
+        });
+    }, []);
+
     return (
         <div className="account-container">
             <div>
@@ -43,7 +58,7 @@ export default function Account() {
                 <input
                     type="text"
                     placeholder="Enter your name"
-                    value={name}
+                    value={post.name}
                     onChange={handleNameChange}
                 />
             </div>
@@ -53,7 +68,7 @@ export default function Account() {
                 <input
                     type="text"
                     placeholder="Enter your username"
-                    value={username}
+                    value={post.username}
                     onChange={handleUsernameChange}
                 />
             </div>
@@ -62,7 +77,7 @@ export default function Account() {
                 <input style={{ color: 'rgb(146,146,146)' }}
                     type="text"
                     placeholder="Enter your email id"
-                    value={email}
+                    value={post.email}
                     onChange={handleEmailChange}
                     readOnly="true"
                 />
@@ -72,7 +87,7 @@ export default function Account() {
                 <textarea
                     type="text"
                     placeholder="Max No. of Characters: 256s"
-                    value={bio}
+                    value={post.bio}
                     onChange={handleBioChange}
                 />
             </div>

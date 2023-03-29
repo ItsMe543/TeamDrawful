@@ -43,18 +43,19 @@ class User_Memories(models.Model):
 #Primary Key = Username
 class User_Accounts(models.Model):
         username = models.CharField(max_length=30)
+        name = models.CharField(max_length=30)
         email = models.CharField(max_length=320)
+        bio = models.CharField(max_length=30)
         profilePicture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
         favouriteDraw = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
         badgesEarned = models.CharField(max_length=30)
-        darkMode = models.BooleanField(default=False)
         averageRating = models.FloatField()
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
         totalStars = models.IntegerField(default=0)
         friends = models.CharField(max_length=30)
         friendRequests = models.CharField(max_length=30)
-        language = models.CharField(max_length=423)
+        
 
 
 

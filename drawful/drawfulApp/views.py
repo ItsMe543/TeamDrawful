@@ -22,3 +22,8 @@ class PromptView(viewsets.ModelViewSet):
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
+
+class User_AccountsView(viewsets.ModelViewSet):
+    serializer_class = serializers.User_AccountsSerializer
+    queryset = models.User_Accounts.objects.all()
+
