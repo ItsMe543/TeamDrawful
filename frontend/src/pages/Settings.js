@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import GeneralSettings from "../pages/Settings/GeneralSettings";
 import Account from "../pages/Settings/Account";
 import Security from "../pages/Settings/Security";
 import Accessibility from "../pages/Settings/Accessibility";
@@ -8,6 +7,8 @@ import "../styles/Settings.css";
 
 export default function Settings() {
   const [active, setActive] = useState("account");
+  const [topPosition, setTopPosition] = useState(90);
+  const [opacity, setOpacity] = useState(1);
 
   const handleSectionClick = (section) => {
     setActive(section);
@@ -16,11 +17,9 @@ export default function Settings() {
   const handleSearchInputChange = (event) => {
     const searchInput = event.target.value.toLowerCase();
 
-    const accessibilityKeywords = /(light|font|contrast|accessibility|mode|high|toggle|switch|appearance|display)/;
+    const accessibilityKeywords = /(light|dark|font|contrast|accessibility|mode|high|toggle|switch|appearance|display|general|notifications|sound)/;
     const accountKeywords = /(account|badges|stats|name|username|email|bio|address|settings|personal|edit|profile|picture|changes|cancel|save|memories)/;
     const securityKeywords = /(security|privacy|hide|login|password|reset|status|logout|online|offline)/;
-    const generalKeywords = /(general|notifications|sound)/;
-
 
     if (accessibilityKeywords.test(searchInput)) {
       setActive("accessibility");
@@ -31,21 +30,44 @@ export default function Settings() {
     if (securityKeywords.test(searchInput)) {
       setActive("security");
     }
-    if (generalKeywords.test(searchInput)) {
-      setActive("general");
-    }
   };
 
   const sections = [
-    { id: "general", component: <GeneralSettings /> },
     { id: "security", component: <Security /> },
     { id: "account", component: <Account /> },
     { id: "accessibility", component: <Accessibility /> }
   ];
 
+  useEffect(() => {
+    function handleScroll() {
+      const verticalPosition = window.scrollY;
+      const horizontalPosition = window.scrollX;
+      let opacity = 1;
+      if (horizontalPosition > 30 && horizontalPosition <= 60) {
+        opacity = 0.8;
+      } else if (horizontalPosition > 60 && horizontalPosition <= 90) {
+        opacity = 0.6;
+      } else if (horizontalPosition > 90 && horizontalPosition <= 120) {
+        opacity = 0.4;
+      } else if (horizontalPosition > 120 && horizontalPosition <= 150) {
+        opacity = 0.2;
+      } else if (horizontalPosition > 150) {
+        opacity = 0;
+      }
+      setOpacity(opacity);
+      setTopPosition(90 - verticalPosition);
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="settings-container">
-      <div className="menu">
+      <div className="menu" style={{
+        top: `${topPosition}px`,
+        opacity: `${opacity}`,
+        transition: "opacity 0.2s ease-in-out"
+      }}>
         <div className="menu-header">
           Settings
         </div>
@@ -58,18 +80,14 @@ export default function Settings() {
           </button>
           <br />
           <button className="buttonstyle" onClick={() => handleSectionClick("accessibility")}>
-            Accessibility
+            Accessibility & General
           </button>
           <br />
           <button className="buttonstyle" onClick={() => handleSectionClick("security")}>
             Privacy & Security
           </button>
           <br />
-          <button className="buttonstyle" onClick={() => handleSectionClick("general")}>
-            General
-          </button>
-          <br />
-          <button className="buttonstyle" style={{ position: 'absolute', bottom: '5%', left: '10%' }}>
+          <button className="buttonstyle" style={{ position: 'relative ', top: '20%', right: '8%' }}>
             <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
             More
           </button>

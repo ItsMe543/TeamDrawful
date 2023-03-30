@@ -4,9 +4,10 @@
 }
 
 .menu {
-    position: absolute;
+    position: fixed;
     top: 90px;
-    left: 0px;
+    left: 0;
+    right: 0;
     width: 220px;
     background-color: #000000;
     color: white;
@@ -33,7 +34,6 @@
     border: none;
     font-size: 22px;
     margin-bottom: 30px;
-
 }
 
 .menu button:not([aria-current="true"]):hover {
@@ -50,7 +50,6 @@
 
 .section {
     visibility: hidden;
-    height: 0;
     color: white;
     opacity: 0;
 }
@@ -67,10 +66,8 @@
     padding: 5px;
     font-size: 22px;
     width: 160px;
-    padding-left: 10px
+    padding-left: 15px
 }
-
-
 
 .search-bar input:focus::-webkit-input-placeholder {
     transform: translate(-40px, -30px);
