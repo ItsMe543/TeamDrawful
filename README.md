@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------
-#T O M I S P O G 
+#D R A W F U L 
 -------------------------------------------------------------------------
 
 ### Intro
@@ -40,7 +40,7 @@ https://drawful.bham.team
 ### Development Mockups:
 ![Accesibility Settings](/Mockup/AccessibilitySettings-MU.png)
 ![Badges](/Mockup/Badges-MU.png)
-![Dark Mode display Account Settings](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/DarkModeAccountSettings-MU.png)
+![Dark Mode display Account Settings](/Mockup/DarkModeAccountSettings-MU.png)
 ![Drawing page](/Mockup/DrawingPage-MU.png)
 ![Friend Requests](/Mockup/FriendRequests-MU.png)
 ![Friends Drawings](/Mockup/FriendsDrawing-MU.png)
