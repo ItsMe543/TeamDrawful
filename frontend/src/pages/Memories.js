@@ -13,6 +13,15 @@ function Memories() {
     setDate(newDate);
   };
 
+  const downloadImage = (URL) => {
+    const link = document.createElement("a");
+    link.href = URL;
+    link.download = "image.jpg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleLeftClick = () => {
     if (ID === 0) {
       setID(drawings.length - 1);
@@ -40,7 +49,9 @@ function Memories() {
 
           <div className="twoButtons">
             <div className="downloadButton">
-              <Button>Download Drawing</Button>
+              <Button onClick={() => downloadImage(drawings[ID].drawing)}>
+                Download Drawing
+              </Button>
             </div>
             <div className="setProfileButton">
               <Button>Set Drawing as Profile Picture</Button>
