@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -10,9 +10,31 @@ function Memories() {
   const [ID, setID] = useState(0);
   const [date, setDate] = useState(new Date());
   const onDateChange = (newDate) => {
-    setDate(newDate);
+    const formattedDate = newDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    console.log("Selected date: " + formattedDate);
+    const found = drawings.find((x) => {
+      const formattedCompletedDate = new Date(
+        x.dateCompleted
+      ).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+      return formattedCompletedDate === formattedDate;
+    });
+    console.log("Found? " + (found !== undefined));
+    if (found) {
+      console.log("Matching element: ", found);
+    }
   };
 
+  useEffect(() => {
+    //convertDates();
+  });
   const downloadImage = (URL) => {
     const link = document.createElement("a");
     link.href = URL;
@@ -20,6 +42,37 @@ function Memories() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+  const convertDates = () => {
+    let count = 0;
+    const highlightedDates = [];
+    drawings.map((drawing, id) => {
+      //  console.log(drawing.completedDate);
+      const date = drawing.completedDate.split("/");
+      highlightedDates[count] = new Date(
+        parseInt(date[2]),
+        parseInt(date[1]) - 1,
+        parseInt(date[0])
+      );
+      count += 1;
+      // console.log(date[0]);
+      // console.log(date[1] - 1);
+      // console.log(date[2]);
+    });
+
+    return highlightedDates;
+    // console.log(date[0]);
+  };
+  const tileContent = ({ date, view }) => {
+    if (view === "month") {
+      // Check if the date is in the array of highlighted dates
+      if (highlightedDates.some((d) => d.getTime() === date.getTime())) {
+        // If the date is in the array of highlighted dates, return a div with a class name
+        return "highlight";
+      } else {
+        return null;
+      }
+    }
   };
 
   const handleLeftClick = () => {
@@ -36,15 +89,19 @@ function Memories() {
       setID(ID + 1);
     }
   };
-  console.log(ID);
+  const highlightedDates = convertDates();
 
-  console.log(drawings);
   return (
     <div className="m-memories">
       <div className="m-title">Memories Page!</div>
       <div className="calanderDrawing">
-        <div className="calender">
-          <Calendar onChange={onDateChange} value={date} className="cal" />
+        <div>
+          <Calendar
+            onChange={onDateChange}
+            value={date}
+            tileClassName={tileContent}
+            // className="cal"
+          />
           <div className="date">Date selected is: {date.toDateString()}</div>
 
           <div className="twoButtons">
