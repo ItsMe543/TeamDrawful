@@ -9,7 +9,7 @@ import { VscCircleFilled } from "react-icons/vsc";
 
 function MutualFriends() {
 
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState(0);
   
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
