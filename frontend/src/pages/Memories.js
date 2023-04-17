@@ -15,26 +15,23 @@ function Memories() {
       month: "2-digit",
       year: "numeric",
     });
-    console.log("Selected date: " + formattedDate);
-    const found = drawings.find((x) => {
-      const formattedCompletedDate = new Date(
-        x.dateCompleted
-      ).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-      return formattedCompletedDate === formattedDate;
-    });
-    console.log("Found? " + (found !== undefined));
+    const found = drawings.find((x) => x.completedDate === formattedDate);
     if (found) {
-      console.log("Matching element: ", found);
+      setID(found.id);
     }
+    setDate(newDate);
+  };
+  const findrecentDate = () => {
+    const recent = drawings
+      .map((obj) => new Date(obj.completedDate.split("/").reverse().join("-")))
+      .reduce((prev, curr) => (curr > prev ? curr : prev));
+
+    return recent;
   };
 
   useEffect(() => {
-    //convertDates();
-  });
+    setDate(findrecentDate());
+  }, []);
   const downloadImage = (URL) => {
     const link = document.createElement("a");
     link.href = URL;
@@ -47,21 +44,10 @@ function Memories() {
     let count = 0;
     const highlightedDates = [];
     drawings.map((drawing, id) => {
-      //  console.log(drawing.completedDate);
-      const date = drawing.completedDate.split("/");
-      highlightedDates[count] = new Date(
-        parseInt(date[2]),
-        parseInt(date[1]) - 1,
-        parseInt(date[0])
-      );
+      highlightedDates[count] = convertDateStringtoObj(drawing.completedDate);
       count += 1;
-      // console.log(date[0]);
-      // console.log(date[1] - 1);
-      // console.log(date[2]);
     });
-
     return highlightedDates;
-    // console.log(date[0]);
   };
   const tileContent = ({ date, view }) => {
     if (view === "month") {
@@ -75,19 +61,29 @@ function Memories() {
     }
   };
 
+  const convertDateStringtoObj = (dateStr) => {
+    let date = dateStr.split("/");
+    let newDate = new Date(
+      parseInt(date[2]),
+      parseInt(date[1]) - 1,
+      parseInt(date[0])
+    );
+    return newDate;
+  };
+
   const handleLeftClick = () => {
-    if (ID === 0) {
-      setID(drawings.length - 1);
-    } else {
-      setID(ID - 1);
-    }
+    setID((prevID) => {
+      const newID = prevID === 0 ? drawings.length - 1 : prevID - 1;
+      setDate(convertDateStringtoObj(drawings[newID].completedDate));
+      return newID;
+    });
   };
   const handleRightClick = () => {
-    if (ID === drawings.length - 1) {
-      setID(0);
-    } else {
-      setID(ID + 1);
-    }
+    setID((prevID) => {
+      const newID = (prevID + 1) % drawings.length;
+      setDate(convertDateStringtoObj(drawings[newID].completedDate));
+      return newID;
+    });
   };
   const highlightedDates = convertDates();
 
