@@ -1,0 +1,100 @@
+
+
+.filtersBar{
+    color: black;
+    background-color: black;
+    width: 300px;
+    height: 100%;
+    display: block;
+    position: absolute;
+}
+
+.filters{
+    font-size: 64px;
+    margin-top: 5vh;
+    text-align: center;
+    color: white;
+    border: none;
+}
+
+.seperator, .seperator2, .seperator3{
+    background-color: white;
+    width: 250px;
+    height: 1px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.seperator2{
+    width: 700px;
+    left: 350px;
+}
+
+.seperator3{
+    width: 700px;
+    left: 350px;
+}
+
+.sortButtons{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.sortButtons button{
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.sortButtons button.toggled{
+    background-color: rgb(32, 34, 37);
+    color: white;
+}
+
+
+
+.badgesContainer{
+    color: white;
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.badgesUnlocked{
+    position: absolute;
+    padding: 20px;
+    left: 0;
+    top: 0;
+    width: 40%;
+    margin-left: 3vh;
+    margin-top: 3vh;
+}
+
+.badgesLocked{
+    position: absolute;
+    padding: 20px;
+    width: 40%;
+    left: 42%;
+    top: 0;
+    margin-left: 3vh;
+    margin-top: 3vh;
+}
+
+.icon{
+    margin-top: 20px;
+    float: left;
+    font-size: 100px;
+}
+
+.heading{
+    font-size: 64px;
+}
+
+.rect{
+    width: 100%;
+    height: 100%;
+}

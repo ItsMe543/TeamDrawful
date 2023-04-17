@@ -12,18 +12,39 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
-  gap: 7%;
+  gap: 4%;
   height: 100%;
+}
+.drawingContainer {
+  display: flex;
+  flex-direction: row;
+}
+.arrow {
+  position: relative;
+  top: 50%;
 }
 .m-drawing {
   color: black;
   width: 60%;
   background-color: white;
+  height: 600px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
 }
+
 .calender {
   padding: 3%;
 }
 
 .downloadButton {
   all: unset;
+}
+
+.cal {
+  font-size: 0.8em;
+}
+
+.highlight {
+  background-color: red;
 }

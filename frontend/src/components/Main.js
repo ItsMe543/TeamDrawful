@@ -10,6 +10,7 @@ import Notifications from "../pages/Notifications";
 import Accessibility from "../pages/Settings/Accessibility";
 import Settings from "../pages/Settings";
 import ViewDrawings from "../pages/ViewDraws";
+import FriendsMemories from "../pages/FriendsMemories"
 import React, { useEffect } from "react";
 
 function Main() {
@@ -49,6 +50,7 @@ function Main() {
       <Route path="/drawing" element={<Drawing />}></Route>
       <Route path="/difficulty" element={<DifficultyPage />}></Route>
       <Route path="/comments/:ID" element={<Comments />}></Route>
+      <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
     </Routes>
   );
 }

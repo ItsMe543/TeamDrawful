@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------
-#T O M I S P O G 
+#D R A W F U L 
 -------------------------------------------------------------------------
 
 ### Intro
@@ -18,7 +18,7 @@ Our users also made it clear that having the app be a quick and simple process w
 
 ### The App
 To use our web-app you need to visit the link:
-**INSERT LINK HERE**
+https://drawful.bham.team
 
 
 
@@ -40,7 +40,7 @@ To use our web-app you need to visit the link:
 ### Development Mockups:
 ![Accesibility Settings](/Mockup/AccessibilitySettings-MU.png)
 ![Badges](/Mockup/Badges-MU.png)
-![Dark Mode display Account Settings](https://git.cs.bham.ac.uk/team-projects-2022-23/team40-22/-/blob/main/Mockup/DarkModeAccountSettings-MU.png)
+![Dark Mode display Account Settings](/Mockup/DarkModeAccountSettings-MU.png)
 ![Drawing page](/Mockup/DrawingPage-MU.png)
 ![Friend Requests](/Mockup/FriendRequests-MU.png)
 ![Friends Drawings](/Mockup/FriendsDrawing-MU.png)

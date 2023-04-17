@@ -71,20 +71,20 @@ function Navbar() {
           </Link>
         </div> */}
 
-        {/* <div className="badges">
+        {<div className="badges">
           <Link to="/badges">
             <BsAward
-              // style={{
-              //   height: "2.7vh",
-              //   width: "2.7vh",
-              //   position: "relative",
-              //   top: "30%",
-              // }}
+              style={{
+              height: "2.7vh",
+              width: "2.7vh",
+              position: "relative",
+              top: "30%",
+              }}
               size={30}
             />
             <div>Badges</div>
           </Link>
-        </div> */}
+        </div>}
       </div>
     </div>
   );
