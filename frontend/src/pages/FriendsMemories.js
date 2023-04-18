@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { GridLayout, Responsive, WidthProvider } from "react-grid-layout";
 import styled from "styled-components";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "../styles/FriendsMemories.css";
 
 function FriendsMemories() {
@@ -10,6 +12,75 @@ function FriendsMemories() {
   //const post = drawings[ID] 
   //These are how I carried the user selected between pages in comments 
   //I left them for reference if you wish to do them similarly
+
+  const [prompt, setPrompt] = useState({
+    id: 0,
+    prompt: "",
+    promptGenre: "",
+    alreadyUsed: false,
+    previousWinner: "",
+  });
+
+  const handleChange1 = (e) => {
+    e.preventDefault();
+
+    setPrompt({
+      id: parseInt(e.target.value),
+      prompt: prompt.prompt,
+      promptGenre: prompt.promptGenre,
+      alreadyUsed: false,
+      previousWinner: "",
+    });
+  };
+
+  const handleChange2 = (e) => {
+    e.preventDefault();
+
+    setPrompt({
+      id: prompt.id,
+      prompt: e.target.value,
+      promptGenre: prompt.promptGenre,
+      alreadyUsed: false,
+      previousWinner: "",
+    });
+  };
+
+  const handleChange3 = (e) => {
+    e.preventDefault();
+
+    setPrompt({
+      id: prompt.id,
+      prompt: prompt.prompt,
+      promptGenre: e.target.value,
+      alreadyUsed: false,
+      previousWinner: "",
+    });
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    //axios
+      //.post(`/api/prompts/`, { prompt })
+      axios({
+        method: 'post',
+        url: 'http://drawful.bham.team:8000/api/prompts/',
+        data: {
+          id: prompt.id,
+          prompt: prompt.prompt,
+          promptGenre: prompt.promptGenre,
+          alreadyUsed: prompt.alreadyUsed,
+          previousWinner: "Random",
+        },
+        headers: {
+          "content-type": "application/json",
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+  };
 
   //Will be really easy to just load every image (with information) into the array
   const layout = [
@@ -44,6 +115,23 @@ function FriendsMemories() {
       <div className="Title">
         User {ID}'s Drawings
       </div>
+
+      <form onSubmit={submitForm}>
+          <label>
+            Enter prompt id:
+            <input type="text" name="id" onChange={handleChange1} />
+          </label>
+          <label>
+            Enter prompt:
+            <input type="text" name="prompt" onChange={handleChange2} />
+          </label>
+          <label>
+            Enter prompt genre:
+            <input type="text" name="promptGenre" onChange={handleChange3} />
+          </label>
+          <button type="submit">Add prompt</button>
+        </form>
+
       <Root>
         <ResponsiveGridLayout
           layouts={{ lg: layout }}

@@ -70,6 +70,10 @@
 
 }
 
+.temp {
+  color: white
+}
+
 @media (max-width: 700px) {
   .Drawings {
     font-size: 50px;
