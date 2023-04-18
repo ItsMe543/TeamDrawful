@@ -96,7 +96,8 @@ function Memories() {
             onChange={onDateChange}
             value={date}
             tileClassName={tileContent}
-            // className="cal"
+            showWeekDays={false}
+            className="cal"
           />
           <div className="date">Date selected is: {date.toDateString()}</div>
 
