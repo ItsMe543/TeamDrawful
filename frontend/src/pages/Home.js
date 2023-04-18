@@ -14,6 +14,11 @@ function Home() {
           <BsFillPencilFill className="Pen2"></BsFillPencilFill>
         </Link>
       </div>
+      <Link to={"/login"}>
+        <button className="Profile-view-memories">
+          Login temp button
+        </button>
+      </Link>
       <div className="privacy">
         <div style={{ fontSize: "50px", color: "white" }}>
           Drawful Privacy Policy

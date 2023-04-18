@@ -12,6 +12,7 @@ import Settings from "../pages/Settings";
 import ViewDrawings from "../pages/ViewDraws";
 import FriendsMemories from "../pages/FriendsMemories"
 import React, { useEffect } from "react";
+import Login from "../pages/Login";
 
 function Main() {
   useEffect(() => {
@@ -51,6 +52,8 @@ function Main() {
       <Route path="/difficulty" element={<DifficultyPage />}></Route>
       <Route path="/comments/:ID" element={<Comments />}></Route>
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+
     </Routes>
   );
 }
