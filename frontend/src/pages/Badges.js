@@ -6,6 +6,19 @@ function Badges() {
 
   const [activeSortButton, setActiveSortButton] = React.useState(null);
 
+  const handleSort = (option) => {
+    setActiveSortButton(option);
+    // sort the data based on the selected option
+    if (option === "rarest") {
+      // sort by rarest
+    } else if (option === "recent") {
+      // sort by most recent
+    } else {
+      // sort by oldest
+    }
+  };
+  
+
   
 
   return (
@@ -22,19 +35,25 @@ function Badges() {
           <div className="sortButtons">
             <button
               className={`sortRarest ${activeSortButton === "rarest" ? "toggled" : ""}`}
-              onClick={() => setActiveSortButton("rarest")}
+              onClick={() => {
+                console.log("rarest")
+                handleSort("rarest")}}
             >
               Rarest
             </button>
             <button
               className={`sortRecent ${activeSortButton === "recent" ? "toggled" : ""}`}
-              onClick={() => setActiveSortButton("recent")}
+              onClick={() => {
+                console.log("recent")
+                handleSort("recent")}}
             >
               Most Recent
             </button>
             <button
               className={`sortOldest ${activeSortButton === "oldest" ? "toggled" : ""}`}
-              onClick={() => setActiveSortButton("oldest")}
+              onClick={() => {
+                console.log("oldest")
+                handleSort("oldest")}}
             >
               Oldest
             </button>
@@ -48,24 +67,156 @@ function Badges() {
         </svg>
 
         <div class="badgesContainer" className="badgesUnlocked">
-          <h1 className="heading">
-            Badges (Unlocked)
-          </h1>
-          <svg className="seperator2">
-            <rect></rect>
-          </svg>
+            <svg class="headingBar">
+              <rect></rect>
+            </svg>
+            <h1 className="heading">
+              Badges (Unlocked)
+            </h1>
+            <svg className="seperator2">
+              <rect></rect>
+            </svg>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
           <EmojiEventsIcon className="icon">
           </EmojiEventsIcon>
         </div>
         <div class="badgesContainer" className="badgesLocked">
-          <h1 className="heading">
-            Badges (Locked)
-          </h1>
-          <svg className="seperator3">
-            <rect></rect>
-          </svg>
+            <svg class="headingBar">
+              <rect></rect>
+            </svg>
+            <h1 className="heading">
+              Badges (Locked)
+            </h1>
+            <svg className="seperator3">
+              <rect></rect>
+            </svg>
           <EmojiEventsIcon className="icon">
 
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
+          </EmojiEventsIcon>
+          <EmojiEventsIcon className="icon">
           </EmojiEventsIcon>
 
         </div>

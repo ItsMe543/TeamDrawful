@@ -16,7 +16,7 @@ function FriendsList() {
   //    Click me
   //  </button>
 
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState(0);
   
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
