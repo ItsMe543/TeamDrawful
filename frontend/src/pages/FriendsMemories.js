@@ -64,7 +64,7 @@ function FriendsMemories() {
       //.post(`/api/prompts/`, { prompt })
       axios({
         method: 'post',
-        url: '/api/prompts/',
+        url: 'http://drawful.bham.team:8000/api/prompts/',
         data: {
           id: prompt.id,
           prompt: prompt.prompt,
