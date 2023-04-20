@@ -5,7 +5,7 @@
 }
 
 div {
-    font-family: 'Sometimes';
+    font-family: 'insta';
 }
 
 
@@ -91,14 +91,14 @@ div {
     margin-left: 7%;
 }
 
-.Background{
+.Background {
     background-color: black;
 }
 
-.disclaimer{
+.disclaimer {
     width: 1400px;
     margin-left: 10px;
     margin-top: 600px;
     color: white;
-    background-color: rgb(45,45,45);
+    background-color: rgb(45, 45, 45);
 }
