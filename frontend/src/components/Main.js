@@ -13,6 +13,7 @@ import ViewDrawings from "../pages/ViewDraws";
 import FriendsMemories from "../pages/FriendsMemories"
 import React, { useEffect } from "react";
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 
 function Main() {
   useEffect(() => {
@@ -60,6 +61,7 @@ function Main() {
       <Route path="/comments/:ID" element={<Comments />}></Route>
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
       <Route path="/login" element={<Login />}></Route>
+      <Route path="/signUp" element={<SignUp />}></Route>
 
     </Routes>
   );
