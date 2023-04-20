@@ -21,12 +21,17 @@ body.light-mode div {
 }
 
 body.light-mode .CommentsBox {
-    background-color: rgb(255, 198, 192);
+    background-color: rgb(255, 204, 174);
+    border: 1px solid black;
+}
+
+body.light-mode .userDrawing {
+
     border: 1px solid black;
 }
 
 body.light-mode .UserProfile {
-    background-color: rgb(239, 211, 255);
+    background-color: rgb(242, 219, 255);
     border: 1px solid black;
 }
 
@@ -167,6 +172,7 @@ body.light-mode .sub {
 
 body.light-mode .m-drawing {
     border: 1px solid black;
+    background-color: white;
 }
 
 body.light-mode .downloadButton button {
@@ -200,13 +206,13 @@ body.light-mode .CommentSection {
 }
 
 body.light-mode .SubCom button {
-    background-color: rgb(255, 227, 176);
+    background-color: rgb(255, 216, 216);
     border: 1px solid black;
     color: black
 }
 
 body.light-mode .react-calendar {
-    background-color: rgb(243, 243, 255);
+    background-color: rgb(252, 230, 255);
     border: 1px solid black;
 
 }
@@ -219,4 +225,41 @@ body.light-mode .Drawings {
 body.light-mode .privacy {
     background-color: rgb(255, 202, 158);
     border: 1px solid black;
+}
+
+body.light-mode .headingBar {
+    background-color: rgb(201, 230, 255)
+}
+
+body.light-mode .filters {
+    background-color: rgb(245, 245, 245);
+}
+
+body.light-mode .seperator,
+.seperator2,
+.seperator3 {
+    background-color: rgb(0, 0, 0)
+}
+
+body.light-mode .filtersBar {
+    background-color: rgb(245, 245, 245);
+}
+
+body.light-mode .Friends-r-list {
+    background-color: rgb(240, 211, 255);
+    border: 1px solid black;
+}
+
+body.light-mode .User-r-preview {
+    border: 1px solid black
+}
+
+body.light-mode .arrow {
+    border-radius: 100px;
+    background-color: #000000;
+}
+
+body.light-mode .DrawingLink {
+    border: 1px solid black;
+    background-color: rgb(255, 221, 221);
 }

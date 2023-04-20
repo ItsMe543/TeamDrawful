@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import drawingData from "../../drawingData";
 import "../../styles/Settings/Account.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Account() {
     const [post, setPost] = useState({
@@ -46,7 +47,9 @@ export default function Account() {
     return (
         <div className="account-container">
             <div>
-                <img src="/drawings/car.jpg" />
+                <Link to="/memories">
+                    <img src="/drawings/car.jpg" />
+                </Link>
                 <h1>
                     Account Settings
                     <div className="sub">Edit your personal Settings</div>
