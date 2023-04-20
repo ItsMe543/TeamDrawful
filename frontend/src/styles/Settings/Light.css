@@ -158,11 +158,13 @@ body.light-mode .account-container img {
 }
 
 body.light-mode .stats {
-    background-color: rgb(255, 218, 237)
+    background-color: rgb(255, 218, 237);
+    border: 1px solid black;
 }
 
 body.light-mode .badges-container {
     background-color: rgb(255, 179, 170);
+    border: 1px solid black;
 }
 
 body.light-mode .sub {
@@ -262,4 +264,9 @@ body.light-mode .arrow {
 body.light-mode .DrawingLink {
     border: 1px solid black;
     background-color: rgb(255, 221, 221);
+}
+
+body.light-mode .login-details {
+    border: 1px solid black;
+
 }
