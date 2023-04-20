@@ -3,6 +3,15 @@
   src: url(../Fonts/Sometimes.otf);
 }
 
+
+
+.Background{
+      	background: linear-gradient(45deg, #0000ff, #ff0000, #23a6d5, #00ff00);
+	background-size: 400% 400%;
+	-webkit-animation: gradient 10s ease infinite;
+	        animation: gradient 10s ease infinite;
+}
+
 .Drawings {
   font-size: 100px;
   color: rgb(45, 45, 45);
@@ -37,7 +46,11 @@
   margin-left: 14%;
   margin-right: 14%;
   padding: 3%;
-  background-color: rgb(47, 0, 50);
+  //background-color: rgb(47, 0, 50);
+  	background: linear-gradient(-45deg, #0000ff, #ff0000, #23a6d5, #00ff00);
+	background-size: 400% 400%;
+	-webkit-animation: gradient 10s ease infinite;
+	        animation: gradient 10s ease infinite;
 }
 
 .disclaimer1 {
@@ -87,4 +100,29 @@
     margin-left: 5%;
     margin-right: 5%;
   }
+}
+
+
+@-webkit-keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
