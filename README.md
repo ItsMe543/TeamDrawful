@@ -49,3 +49,12 @@ https://drawful.bham.team
 ![Memories Page](/Mockup/MemoriesPage-MU.png)
 ![Mutual Friends](/Mockup/MutualFriends-MU.png)
 ![Profile Drawings](/Mockup/ProfileDrawing-MU.png)
+
+
+
+
+### Important links for development process
+
+Meeting log: https://docs.google.com/document/d/1I1QV3peS1dOZQyS4rl_JsaiRePhsE4Rs3cnV_4zF36E/edit
+Feedback form: https://docs.google.com/forms/d/1gixRPjbrJ9Y0k5-bK9kyyvUja34hyC9lU66EJGfdyaY/edit
+Privacy Policy: https://docs.google.com/document/d/1LltmQQed1tgRA7OK9n3qD1fWuyoneY2qFs5VUQjj2aw/edit

@@ -1,27 +1,39 @@
 import React from "react";
-import "../styles/Login.css";
+import "../styles/SignUp.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Login() {
+function SignUp() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   return (
     <div className="login-page">
       <div className="login-details">
         <div className="title-text">
-          Please Log in
+          Sign up
         </div>
-        <input className="username-box" type="text" placeholder="Username" />
+
+        <div className="details-segment">
+            <div className="info-label">Full Name</div>
+            <input className="info-box" type="text" placeholder="Fullname" />
+        </div>
+
+        <input className="info-box" type="text" placeholder="Username" />
+
+        <input className="info-box" type="text" placeholder="Email" />
 
         <input className="password-box" type="text" placeholder="Password" />
 
-        <Link className="sign-up-link" to={"/signUp/"}>
-          Sign up
+        <input className="password-box" type="text" placeholder="Retype your password" />
+
+
+
+        <Link className="sign-up-link" to={"/login/"}>
+          Log in
         </Link>
 
         <button className="submit-acc-details">
           <Link to={"/home/"}>
-            Log in
+            Submit
           </Link>
         </button>
       </div>
@@ -31,4 +43,4 @@ function Login() {
     </div>
   );
 }
-export default Login;
+export default SignUp;
