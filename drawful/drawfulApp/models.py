@@ -55,7 +55,7 @@ class User_Accounts(models.Model):
         totalStars = models.IntegerField(default=0)
         friends = models.CharField(max_length=30)
         friendRequests = models.CharField(max_length=30)
-        
+
 
 
 

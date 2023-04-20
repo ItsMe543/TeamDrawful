@@ -12,12 +12,14 @@ import Settings from "../pages/Settings";
 import ViewDrawings from "../pages/ViewDraws";
 import FriendsMemories from "../pages/FriendsMemories"
 import React, { useEffect } from "react";
+import Login from "../pages/Login";
 
 function Main() {
   useEffect(() => {
     const isLightMode = localStorage.getItem("isLightMode") === "true";
     const isContrast = localStorage.getItem("isContrast") === "true";
     const isFont = localStorage.getItem("isFont") === "true";
+    const isPog = localStorage.getItem("isPog") === "true";
 
     if (isLightMode) {
       document.body.classList.add("light-mode");
@@ -36,6 +38,12 @@ function Main() {
     } else {
       document.body.classList.remove("font");
     }
+
+    if (isPog) {
+      document.body.classList.add("pog");
+    } else {
+      document.body.classList.remove("pog");
+    }
   }, []);
 
   return (
@@ -51,6 +59,8 @@ function Main() {
       <Route path="/difficulty" element={<DifficultyPage />}></Route>
       <Route path="/comments/:ID" element={<Comments />}></Route>
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
+      <Route path="/login" element={<Login />}></Route>
+
     </Routes>
   );
 }

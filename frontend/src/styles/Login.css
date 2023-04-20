@@ -1,7 +1,38 @@
-.text-for-box{
-    size: 15px;
+.login-page{
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
-.box-entry{
-    size: 15px;
+.login-details{
+    margin-left: 500px;
+    margin-right: 500px;
+    margin-top: 70px;
+    font-size: 30px;
+    color: black;
+    display: grid;
+    background-color: rgb(253,205,18);
+    padding: 10px;
+    border-radius: 7px;
+    align-items: center;
+}
+
+.title-text{
+    color: black;
+    text-align: center;
+    font-size: 50px;
+    border-bottom-color: black;
+    border-width: 2px;
+}
+
+.username-box{
+    margin-top: 30px;
+}
+
+.password-box{
+    margin-top: 30px;
+}
+
+.submit-acc-details{
+    margin-top: 40px;
+    width: 100px;
 }

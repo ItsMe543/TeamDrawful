@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../../styles/Settings/Light.css";
 import "../../styles/Settings/Font.css";
 import "../../styles/Settings/Contrast.css";
+import "../../styles/Settings/Pog.css";
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from "@mui/material/Switch";
 
+const POG_KEY = "isPog"
 const LIGHT_MODE_KEY = "isLightMode";
 const CONTRAST_KEY = "isContrast";
 const FONT_KEY = "isFont";
@@ -36,6 +38,11 @@ export default function Accessibility() {
         return stored !== null ? JSON.parse(stored) : false;
     });
 
+    const [isPog, setPog] = useState(() => {
+        const stored = localStorage.getItem(POG_KEY);
+        return stored !== null ? JSON.parse(stored) : false;
+    });
+
     const toggleMode = () => {
         setIsLightMode(!isLightMode);
         setContrast(false);
@@ -49,6 +56,10 @@ export default function Accessibility() {
     const toggleFont = () => {
         setFont(!isFont);
     };
+
+    const togglePog = () => {
+        setPog(!isPog);
+    }
 
 
     useEffect(() => {
@@ -65,6 +76,11 @@ export default function Accessibility() {
         localStorage.setItem(CONTRAST_KEY, JSON.stringify(isContrast));
         document.body.classList.toggle("contrast", isContrast);
     }, [isContrast]);
+
+    useEffect(() => {
+        localStorage.setItem(POG_KEY, JSON.stringify(isPog));
+        document.body.classList.toggle("pog", isPog);
+    }, [isPog]);
 
     return (
         <div className="accessibility-container" style={{ paddingLeft: "250px" }}>
@@ -88,6 +104,14 @@ export default function Accessibility() {
                     checked={isContrast}
                     onChange={toggle}
                     color="warning"
+                />
+
+                <br></br>
+                Pog
+                <Switch
+                    checked={isPog}
+                    onChange={togglePog}
+                    color="secondary"
                 />
             </div>
         </div>

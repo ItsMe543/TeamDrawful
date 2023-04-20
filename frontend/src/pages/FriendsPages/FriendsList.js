@@ -117,11 +117,11 @@ function FriendsList() {
                 </button>
               </Col>
               <Col>
-                <Link to={"/friends/memories/" + post.id}>
                   <button className="Profile-view-memories">
-                    Memories
+                    <Link to={"/friends/memories/" + post.id}>
+                      Memories
+                    </Link>
                   </button>
-                </Link>
               </Col>
             </Row>
 

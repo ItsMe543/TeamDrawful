@@ -15,12 +15,17 @@ function Home() {
           <BsFillPencilFill className="Pen2"></BsFillPencilFill>
         </Link>
       </div>
+      <Link to={"/login"}>
+        <button className="Profile-view-memories">
+          Login temp button
+        </button>
+      </Link>
       <div className="privacy">
-        <div style={{ fontSize: "50px", color: "white" }}>
+        <div style={{ fontSize: "50px" }}>
           Drawful Privacy Policy
         </div>
         <br></br>
-        <div classname="temp" style={{ color: "white" }}>
+        <div classname="temp" >
           This privacy policy will explain how Drawful uses the personal data we
           collect from you when you use our website.<br></br>
           <br></br>
