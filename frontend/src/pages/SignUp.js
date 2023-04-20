@@ -1,15 +1,15 @@
 import React from "react";
-import "../styles/SignUp.css";
+import "../styles/SignUpANDLogIn.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function SignUp() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   return (
-    <div className="login-page">
-      <div className="login-details">
+    <div className="accounts-page">
+      <div className="account-details">
         <div className="title-text">
-          Sign up
+          Create an account
         </div>
 
         <div className="details-segment">
@@ -17,23 +17,33 @@ function SignUp() {
             <input className="info-box" type="text" placeholder="Fullname" />
         </div>
 
-        <input className="info-box" type="text" placeholder="Username" />
+        <div className="details-segment">
+            <div className="info-label">Username</div>
+            <input className="info-box" type="text" placeholder="Username" />
+        </div>
 
-        <input className="info-box" type="text" placeholder="Email" />
+        <div className="details-segment">
+            <div className="info-label">Email</div>
+            <input className="info-box" type="text" placeholder="Email" />
+        </div>
 
-        <input className="password-box" type="text" placeholder="Password" />
+        <div className="details-segment">
+            <div className="info-label">Password</div>
+            <input className="info-box" type="text" placeholder="Password" />
+        </div>
 
-        <input className="password-box" type="text" placeholder="Retype your password" />
+        <div className="details-segment">
+            <div className="info-label">Confirm Password</div>
+            <input className="info-box" type="text" placeholder="Password" />
+        </div>
 
-
-
-        <Link className="sign-up-link" to={"/login/"}>
-          Log in
+        <Link className="login-signup-switch" to={"/login/"}>
+            Already got an account? Login
         </Link>
 
         <button className="submit-acc-details">
-          <Link to={"/home/"}>
-            Submit
+          <Link to={"/login/"}>
+            Create account
           </Link>
         </button>
       </div>

@@ -1,22 +1,29 @@
 import React from "react";
-import "../styles/Login.css";
+import "../styles/SignUpANDLogIn.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Login() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   return (
-    <div className="login-page">
-      <div className="login-details">
+    <div className="accounts-page">
+      <div className="account-details">
         <div className="title-text">
           Please Log in
         </div>
-        <input className="username-box" type="text" placeholder="Username" />
 
-        <input className="password-box" type="text" placeholder="Password" />
+        <div className="details-segment">
+            <div className="info-label">Username</div>
+            <input className="info-box" type="text" placeholder="Username" />
+        </div>
+
+        <div className="details-segment">
+            <div className="info-label">Password</div>
+            <input className="info-box" type="text" placeholder="Password" />
+        </div>
 
         <Link className="sign-up-link" to={"/signUp/"}>
-          Sign up
+          Create an account?
         </Link>
 
         <button className="submit-acc-details">
