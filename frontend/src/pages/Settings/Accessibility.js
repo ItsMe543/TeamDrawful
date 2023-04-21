@@ -83,7 +83,7 @@ export default function Accessibility() {
     }, [isPog]);
 
     return (
-        <div className="accessibility-container" style={{ paddingLeft: "250px" }}>
+        <div className="accessibility-container" style={{}}>
             <div style={{ fontSize: "40px" }}>Accessibility Settings</div>
             <div style={{ fontSize: "22px" }}>
                 Light Mode

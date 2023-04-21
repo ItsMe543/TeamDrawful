@@ -1,34 +1,21 @@
 .input {
     font-size: 22px;
-    margin: 40px 0;
+    margin: 20px;
+    margin-bottom: 30px;
 }
 
 .account-container {
-    padding-left: 250px;
-    padding-top: 25px;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-wrap: wrap;
 
 }
 
 .account-container img {
     width: 150px;
-    margin-left: 40px;
-}
-
-.account-container h1 {
-    font-size: 50px;
-    position: absolute;
-    left: 470px;
-    top: 155px;
-    margin-left: 50px;
-
-}
-
-.account-container h1>div {
-    font-size: 28px;
-    color: rgb(150, 150, 150);
-    position: relative;
-    bottom: 10px;
-    left: 7px;
 }
 
 
@@ -40,9 +27,8 @@
     border: 1px solid #838383;
     border-radius: 4px;
     padding: 10px;
-    font-size: 22px;
-    position: absolute;
-    left: 460px;
+
+
 }
 
 
@@ -51,16 +37,10 @@
 
 }
 
-.input label {
-    position: relative;
-    top: 10px
-        /* add a negative margin-top to move the label up */
-}
+
 
 .badges-container {
-    position: absolute;
-    left: 935px;
-    top: 180px;
+
     width: 500px;
     height: 250px;
     background-color: rgb(202, 79, 79);
@@ -89,17 +69,21 @@
 }
 
 .badges-header {
-    position: absolute;
-    top: 130px;
-    left: 940px;
+    padding-left: 10px;
     font-size: 30px;
     color: white
 }
 
+.stats-header {
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 30px;
+    color: white
+}
+
+
+
 .stats {
-    position: absolute;
-    left: 935px;
-    top: 500px;
     width: 230px;
     height: 200px;
     background-color: rgb(44, 95, 190);
@@ -111,8 +95,6 @@
 }
 
 .stats div {
-    position: relative;
-    bottom: 60px;
     font-size: 20px;
     padding-left: 5px;
     padding-bottom: 12px;
