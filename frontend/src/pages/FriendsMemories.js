@@ -64,13 +64,13 @@ function FriendsMemories() {
       //.post(`/api/prompts/`, { prompt })
       axios({
         method: 'post',
-        url: 'http://drawful.bham.team:8000/api/prompts/',
+        url: '/api/prompts/',
         data: {
           id: prompt.id,
           prompt: prompt.prompt,
           promptGenre: prompt.promptGenre,
           alreadyUsed: prompt.alreadyUsed,
-          previousWinner: "Random",
+          previousWinner: "N/A",
         },
         headers: {
           "content-type": "application/json",
@@ -79,7 +79,10 @@ function FriendsMemories() {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-      });
+      })
+      .catch ((err) => {
+      console.log("Error message " + err)
+    });
   };
 
   //Will be really easy to just load every image (with information) into the array
