@@ -80,7 +80,7 @@ function FriendsMemories() {
         console.log(res);
         console.log(res.data);
       })
-      .catch ((err) => {
+      .catch ((error) => {
         if (error.response) {
         console.log(error.response);
         console.log(error.response.status);
