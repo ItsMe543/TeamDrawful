@@ -71,18 +71,21 @@ function FriendsMemories() {
           promptGenre: prompt.promptGenre,
           alreadyUsed: prompt.alreadyUsed,
           previousWinner: "N/A",
+        },
+        headers: {
+          "content-type": "application/json",
         }
       })
       .then((res) => {
         console.log(res);
         console.log(res.data);
       })
-      .catch ((error) => {
+      .catch ((err) => {
         if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          }
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
     });
   };
 
