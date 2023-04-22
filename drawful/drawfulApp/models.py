@@ -73,7 +73,7 @@ class Badges(models.Model):
 class Prompt_List(models.Model):
         id = models.IntegerField(primary_key=True)
         prompt = models.CharField(max_length=50)
-        promptGenre = models.CharField(max_length=30)
+        promptGenre = models.CharField(max_length=50)
         alreadyUsed = models.BooleanField(default=False)
         previousWinner = models.CharField(max_length=30)
 
