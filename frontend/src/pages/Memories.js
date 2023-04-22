@@ -1,3 +1,4 @@
+import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Calendar from "react-calendar";
@@ -9,6 +10,7 @@ import "../styles/Memories.css";
 function Memories() {
   const [ID, setID] = useState(0);
   const [date, setDate] = useState(new Date());
+  const [data, setData] = useState([]);
   const onDateChange = (newDate) => {
     const formattedDate = newDate.toLocaleDateString("en-GB", {
       day: "2-digit",
@@ -29,7 +31,15 @@ function Memories() {
     return recent;
   };
 
+  const getData = () => {
+    axios.get("https://drawful.bham.team/api/user_memories/").then((data) => {
+      console.log(data);
+      setData(data?.data);
+    });
+  };
+
   useEffect(() => {
+    getData();
     setDate(findrecentDate());
   }, []);
   const downloadImage = (URL) => {

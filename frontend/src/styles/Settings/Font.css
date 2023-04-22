@@ -1,39 +1,25 @@
 body.font div {
-    font-family: 'arial';
-    font-size: 104%
+    font-family: 'insta';
+    font-size: 101%;
+
 }
 
 body.font h1 {
-    font-family: 'arial';
-    font-size: 160%
+    font-family: 'insta';
+    font-size: 102%;
+
+}
+
+body.font input {
+    font-size: 101%;
 }
 
 body.font h2 {
-    font-family: 'arial';
-    font-size: 160%
+    font-family: 'insta';
+    font-size: 102%;
+
 }
 
-body.font .input input {
-    font-size: 100%;
-    position: absolute;
-    left: 30%;
-}
-
-body.font .input {
-    font-size: 80%;
-}
-
-body.font .input textarea {
-    font-size: 120%;
-    position: absolute;
-    left: 30%;
-}
-
-body.font button {
-    font-size: 80%;
-}
-
-body.font .sub {
-    font-size: 20px;
-    margin-top: 10px;
+body.font .buttonstyle {
+    font-size: 97%;
 }

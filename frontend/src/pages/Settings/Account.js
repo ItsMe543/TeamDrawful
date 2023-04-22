@@ -1,8 +1,8 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
-import drawingData from "../../drawingData";
-import "../../styles/Settings/Account.css";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
+import "../../styles/Settings/Account.css";
 
 export default function Account() {
     const [post, setPost] = useState({
@@ -11,30 +11,6 @@ export default function Account() {
         name: "",
         bio: "",
     });
-    const [name, setName] = useState(drawingData[0].name);
-    const [username, setUsername] = useState(drawingData[0].username);
-    const [email, setEmail] = useState(drawingData[0].email);
-    const [bio, setBio] = useState(drawingData[0].bio);
-
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-        drawingData[0].name = event.target.value;
-    };
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-        drawingData[0].username = event.target.value;
-    };
-
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-        drawingData[0].email = event.target.value;
-    };
-
-    const handleBioChange = (event) => {
-        setBio(event.target.value);
-        drawingData[0].bio = event.target.value;
-    };
 
     useEffect(() => {
         axios.get("/api/user_accounts/1/").then((data) => {
@@ -44,65 +20,80 @@ export default function Account() {
     }, []);
 
     return (
-        <div className="account-container">
-            <div>
-                <img src="/drawings/car.jpg" />
-                <h1>
-                    Account Settings
-                    <div className="sub">Edit your personal Settings</div>
-                </h1>
-            </div>
+        <div className="account-container" style={{ border: '1px solid white' }}>
+            <Col style={{ border: '1px solid white' }}>
+                <Row style={{ border: '1px solid white', border: '1px solid white' }}>
+                    <Col md={2.5} style={{ paddingLeft: '30px', border: '1px solid white' }} >
+                        <Link to="/memories">
+                            <img src="/drawings/car.jpg" />
+                        </Link>
+                    </Col>
+                    <Col style={{ paddingLeft: '30px', border: '1px solid white' }}>
+                        <div style={{ fontSize: '44px', marginTop: '5px' }}>Account Settings</div>
+                        <div style={{ color: 'grey', fontSize: '24px', marginTop: '-15px', marginLeft: '8px' }} className="sub">Edit your personal Settings</div>
+                    </Col>
+                </Row>
+                <Row style={{ border: '1px solid white', border: '1px solid white' }}>
+                    <Col md={3} style={{ border: '1px solid white' }}>
+                        <div style={{ fontSize: '22px', paddingTop: '35px' }}>Name</div>
+                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Username</div>
+                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Email Address</div>
+                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Bio</div>
+                    </Col>
+                    <Col style={{ border: '1px solid white' }}>
+                        <div className="input">
+                            <input
+                                type="text"
+                                placeholder="Enter your name"
+                                value={post.name}
+                            />
+                        </div>
+                        <div className="input">
+                            <input
+                                type="text"
+                                placeholder="Enter your username"
+                                value={post.username}
+                            />
+                        </div>
+                        <div className="input" >
+                            <input
+                                style={{ color: 'rgb(146,146,146)' }}
+                                type="text"
+                                placeholder="Enter your email id"
+                                value={post.email}
+                                readOnly="true"
+                            />
+                        </div>
+                        <div className="input">
+                            <textarea
+                                type="text"
+                                placeholder="Max No. of Characters: 256s"
+                                value={post.bio}
+                            />
+                        </div>
+                    </Col>
+                </Row>
+            </Col>
+            <Col style={{ border: '1px solid white' }}>
+                <div className="badges-header">Badges</div>
+                <div className="badges-container"></div>
 
-            <div className="input">
-                <label>Name</label>
-                <input
-                    type="text"
-                    placeholder="Enter your name"
-                    value={post.name}
-                    onChange={handleNameChange}
-                />
-            </div>
+                <Row style={{ border: '1px solid white' }}>
+                    {/* <Col md="3" style={{ border: '1px solid white' }}>
+                        <button>Save Changes</button>
+    </Col>*/}
+                    <Col style={{ border: '1px solid white' }}>
+                        <div className="stats-header">Stats</div>
+                        <div className="stats">
+                            <div>Highest Streak: </div>
+                            <div>Average Rating: </div>
+                            <div>Total Stars Earned: </div>
+                            <div>Badges Unlocked: </div>
+                        </div>
+                    </Col>
 
-            <div className="input">
-                <label>Username</label>
-                <input
-                    type="text"
-                    placeholder="Enter your username"
-                    value={post.username}
-                    onChange={handleUsernameChange}
-                />
-            </div>
-            <div className="input" >
-                <label>Email Address</label>
-                <input style={{ color: 'rgb(146,146,146)' }}
-                    type="text"
-                    placeholder="Enter your email id"
-                    value={post.email}
-                    onChange={handleEmailChange}
-                    readOnly="true"
-                />
-            </div>
-            <div className="input">
-                <label>Bio</label>
-                <textarea
-                    type="text"
-                    placeholder="Max No. of Characters: 256s"
-                    value={post.bio}
-                    onChange={handleBioChange}
-                />
-            </div>
-            <div className="badges-header">Badges</div>
-            <div className="badges-container">
-
-            </div>
-            <div className="stats">
-                <div style={{ fontSize: '30px', marginBottom: '6px' }}>Stats</div>
-                <div>Highest Streak: </div>
-                <div>Average Rating: </div>
-                <div>Total Stars Earned: </div>
-                <div>Badges Unlocked: </div>
-            </div>
-
+                </Row>
+            </Col>
         </div>
     );
 }
