@@ -1,7 +1,12 @@
-import React from "react";
+import React, {Component} from "react";
 import "../styles/SignUpANDLogIn.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PasswordInput from "./PasswordInput";
+
+//<div className="info-label">Password</div>
+//<input className="info-box" type="text" placeholder="Password" />
+
 
 function Login() {
   //<div style={{ fontSize: "50px", color: "white" }}>
@@ -18,8 +23,7 @@ function Login() {
         </div>
 
         <div className="details-segment">
-            <div className="info-label">Password</div>
-            <input className="info-box" type="text" placeholder="Password" />
+            <PasswordInput/>
         </div>
 
         <Link className="sign-up-link" to={"/signUp/"}>
