@@ -13,7 +13,8 @@ function FriendsMemories() {
   //These are how I carried the user selected between pages in comments 
   //I left them for reference if you wish to do them similarly
 
-  const [prompt, setPrompt] = useState({
+  //Leaving this here as an example, working, POST request!
+  /*const [prompt, setPrompt] = useState({
     id: 0,
     prompt: "",
     promptGenre: "",
@@ -87,7 +88,7 @@ function FriendsMemories() {
         console.log(error.response.headers);
         }
     });
-  };
+  }; */
 
   //Will be really easy to just load every image (with information) into the array
   const layout = [
