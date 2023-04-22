@@ -124,22 +124,6 @@ function FriendsMemories() {
         User {ID}'s Drawings
       </div>
 
-      <form onSubmit={submitForm}>
-          <label>
-            Enter prompt id:
-            <input type="text" name="id" onChange={handleChange1} />
-          </label>
-          <label>
-            Enter prompt:
-            <input type="text" name="prompt" onChange={handleChange2} />
-          </label>
-          <label>
-            Enter prompt genre:
-            <input type="text" name="promptGenre" onChange={handleChange3} />
-          </label>
-          <button type="submit">Add prompt</button>
-        </form>
-
       <Root>
         <ResponsiveGridLayout
           layouts={{ lg: layout }}
