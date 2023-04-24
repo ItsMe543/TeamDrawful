@@ -356,9 +356,15 @@ function Drawing() {
   //Code for prompt getting
   // Change the value after /api/prompts/ to the ID of the prompt you want
   useEffect(() => {
-    axios.get("/api/prompts/1/").then((data) => {
-      console.log(data);
+    console.log("hello");
+    axios.get("/api/prompts/").then((data) => {
+      console.log(data.data.length);
+      var id =Math.floor(Math.random() * data.data.length);
+      console.log(id);
+          axios.get("/api/prompts/"+id+"/").then((data) => {
+      //console.log(data);
       setPost(data?.data);
+    });
     });
   }, []);
 
