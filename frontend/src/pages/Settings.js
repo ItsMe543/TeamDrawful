@@ -9,6 +9,7 @@ export default function Settings() {
   const [active, setActive] = useState("account");
   const [topPosition, setTopPosition] = useState(90);
   const [opacity, setOpacity] = useState(1);
+  const [popupVisible, setPopupVisible] = useState(false);
 
   const handleSectionClick = (section) => {
     setActive(section);
@@ -61,6 +62,14 @@ export default function Settings() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handlePopupClick = () => {
+    setPopupVisible(!popupVisible);
+  };
+
+  const handleLogoutClick = () => {
+
+  };
+
   return (
     <div className="settings-container">
       <div className="menu" style={{
@@ -87,10 +96,17 @@ export default function Settings() {
             Privacy & Security
           </button>
           <br />
-          <button className="buttonstyle" style={{ position: 'relative ', top: '20%', right: '8%' }}>
-            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
+          <br />
+          <button className="buttonstyleMore" onClick={handlePopupClick}>
             More
           </button>
+          {popupVisible && (
+            <div className="popup">
+              <button onClick={handleLogoutClick}>
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className="settings-sections">
@@ -100,9 +116,10 @@ export default function Settings() {
           </div>
         ))}
       </div>
+
       <div style={{ marginTop: '50px', marginLeft: '-40px' }} className="disclaimer1">
         "Alpha Project Disclaimer This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g., financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed."
       </div>
-    </div>
+    </div >
   );
 }

@@ -36,6 +36,28 @@
     margin-bottom: 30px;
 }
 
+.buttonstyleMore {
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #000000;
+    border: none;
+    font-size: 22px;
+}
+
+.popup button {
+    background-color: rgb(252, 67, 67);
+    color: rgb(255, 255, 255);
+    border: none;
+    font-size: 18px;
+    position: relative;
+    left: 7px;
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
 .menu button:not([aria-current="true"]):hover {
     background-color: var(--white);
     color: #000000;
