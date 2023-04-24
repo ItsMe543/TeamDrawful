@@ -33,11 +33,13 @@ function Memories() {
   };
 
   const getData = () => {
-    axios.get("https://drawful.bham.team/api/user_memories/").then((data) => {
-      // data.data.sort((a, b) => a.date - b.date);
-      setData(data?.data);
-      setLoaded(true);
-    });
+    axios
+      .get("https://drawful.bham.team/api/user_memories/api/user_memories/")
+      .then((data) => {
+        // data.data.sort((a, b) => a.date - b.date);
+        setData(data?.data);
+        setLoaded(true);
+      });
   };
 
   useEffect(() => {
@@ -45,6 +47,9 @@ function Memories() {
     setDate(findrecentDate());
   }, []);
   const downloadImage = async (imgURL) => {
+    imgURL = imgURL;
+    imgURL = imgURL.slice(0, 4) + "s" + imgURL.slice(4);
+
     const response = await fetch(imgURL);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
