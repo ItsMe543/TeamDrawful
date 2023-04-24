@@ -14,13 +14,10 @@ function SignUp() {
     name: "",
     email: "",
     bio: "",
-    profilePicture: "",
-    favouriteDraw: "",
     badgesEarned: "",
     averageRating: 0.0,
     currentStreak: 0,
     maxStreak: 0,
-    totalStars: 0,
     totalStars: 0,
     friends: {},
     friendRequests: {},
@@ -29,28 +26,56 @@ function SignUp() {
 
 
 
-  const setDetails = (e) => {
-    e.preventDefault();
+  const setDetails = () => {
     setAccountDetails({
       username: fullname,
       name: accountUserName,
       email: accountEmail,
+      bio: "",
+      badgesEarned: "",
+      averageRating: 0.0,
+      currentStreak: 0,
+      maxStreak: 0,
+      totalStars: 0,
+      friends: {},
+      friendRequests: {},
     })
+    sendNewDetails();
   }
 
   const [fullname, setFullName] = useState("");
   const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
   const [accountEmail, setAccountEmail] = useState({accountEmail: ""});
 
-  const sendNewDetails = (e) => {
-    e.preventDefault();
-    axios
-      .post("/api/User_Accounts", {accountDetails})
+  const sendNewDetails = () => {
+    axios({
+      method: 'post',
+      url: '/api/user_accounts/',
+      data: {
+        username: fullname,
+        name: accountUserName,
+        email: accountEmail,
+        bio: "",
+        badgesEarned: "",
+        averageRating: 0.0,
+        currentStreak: 0,
+        maxStreak: 0,
+        totalStars: 0,
+        friends: "",
+        friendRequests: "",
+      },
+        headers: {
+          "content-type": "application/json",
+        }
+      })
+      .then((res) => console.log("Sent: " + res))
+      .catch((err) => console.log("Err: " + err))
   }
 
 
   // \s = space
-  const checkUserDetails = () => {
+  const checkUserDetails = (e) => {
+    e.preventDefault();
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
     if ((fullname.length) < 2 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){ //
       console.log("YOUR NAME IS BAD!");
@@ -65,6 +90,7 @@ function SignUp() {
     //Check password (at least 8 characters, at least 1 number)
 
     //If all checks are passed, send details to database 
+    setDetails();
   }
   
   return (

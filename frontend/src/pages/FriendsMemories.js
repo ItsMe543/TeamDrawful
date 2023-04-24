@@ -184,6 +184,8 @@ function FriendsMemories() {
                 <option value="unrelated">The drawing is unrelated to the prompt</option>
               </select>
             </label> <br></br><br></br>
+            Any other comments? <br></br>
+            <input></input> <br></br><br></br>
             <button onClick={submitReport}>Submit Report</button>
             <button onClick={closeModal}>Cancel Report</button>
           </form>

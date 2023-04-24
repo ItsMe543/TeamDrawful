@@ -51,19 +51,23 @@ class User_Memories(models.Model):
 #Primary Key = Username
 class User_Accounts(models.Model):
         username = models.CharField(max_length=30)
+        hashedPass = models.CharField(max_length=10000, null=True, blank=True)
         name = models.CharField(max_length=30)
         email = models.CharField(max_length=320)
-        bio = models.CharField(max_length=30)
-        profilePicture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-        favouriteDraw = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-        badgesEarned = models.CharField(max_length=30)
+        bio = models.CharField(max_length=30, null=True, blank=True)
+        profilePicture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True, blank=True)
+        favouriteDraw = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True, blank=True)
+        badgesEarned = models.CharField(max_length=30, null=True, blank=True)
         averageRating = models.FloatField()
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
         totalStars = models.IntegerField(default=0)
-        friends = models.CharField(max_length=30) #List of users who are friends with this user
-        friendRequests = models.CharField(max_length=30) #List of users which have sent friend requests to this account
-
+        friends = models.CharField(max_length=30, null=True, blank=True) #List of users who are friends with this user
+        friendRequests = models.CharField(max_length=30, null=True, blank=True) #List of users which have sent friend requests to this account
+        RSAPub = models.CharField(max_length=10000, null=True, blank=True)
+        RSAPriv = models.CharField(max_length=10000, null=True, blank=True)
+        AESPriv = models.CharField(max_length=10000, null=True, blank=True)
+        AESSemi = models.CharField(max_length=10000, null=True, blank=True)
 
 
 #This tables stores all badges for each user, with each entry being the badge, alone with unlocked status
