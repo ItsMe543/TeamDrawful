@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../styles/SignUpANDLogIn.css";
+import "../styles/SignUpAndLogIn.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";

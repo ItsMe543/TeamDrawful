@@ -61,9 +61,8 @@ class User_Accounts(models.Model):
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
         totalStars = models.IntegerField(default=0)
-        friends = models.CharField(max_length=30)
-        friendRequests = models.CharField(max_length=30)
-
+        friends = models.CharField(max_length=30) #List of users who are friends with this user
+        friendRequests = models.CharField(max_length=30) #List of users which have sent friend requests to this account
 
 
 
