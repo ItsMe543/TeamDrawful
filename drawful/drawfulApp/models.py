@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.utils import timezone
+import os
 # Create your models here.
 #class Todo(models.Model):
 #        title = models.CharField(max_length=120)
@@ -25,6 +26,13 @@ from django.db import models
 
 #Table for each users memories
 #Primary key = date
+def generateFilename(instance,filename):
+        timestamp = timezone.now().strftime('%Y%m%d_%H%M%S')
+        basename, extension = os.path.splitext(filename)
+        new_filename = f'mem_{timestamp}{extension}'
+        return f'uploads/drawings/{new_filename}'
+
+
 class User_Memories(models.Model):
         id = models.AutoField(primary_key=True)
         date = models.CharField(max_length=10)
@@ -35,7 +43,7 @@ class User_Memories(models.Model):
         #auto_now updates this field to the last time this object saves data
         prompt = models.CharField(max_length=50)
         #***None must be filled*** pip install pillow
-        drawing = models.ImageField(upload_to='uploads/drawings', height_field=None, width_field=None, max_length=100)
+        drawing = models.ImageField(upload_to=generateFilename, height_field=None, width_field=None, max_length=100)
 
 
 
