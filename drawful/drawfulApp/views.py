@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
+from django.views.decorators.csrf import csrf_exempt
 from drawfulApp import serializers
 from drawfulApp import models
 
@@ -27,3 +28,6 @@ class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
+    def signUp(request):
+        if request.method == 'POST':
+            print(request.body)

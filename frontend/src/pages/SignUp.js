@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 import ConfirmPassword from "./ConfirmPassword"
 import axios from "axios"; //Used for database interactivity
+import validator from 'validator';
 import { useEffect, useState } from "react";
 
 function SignUp() {
@@ -23,9 +24,6 @@ function SignUp() {
     friendRequests: {},
   })
 
-
-
-
   const setDetails = () => {
     setAccountDetails({
       username: fullname,
@@ -42,6 +40,23 @@ function SignUp() {
     })
     sendNewDetails();
   }
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = validator.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
 
   const [fullname, setFullName] = useState("");
   const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
@@ -66,6 +81,7 @@ function SignUp() {
       },
         headers: {
           "content-type": "application/json",
+          'X-CSRFToken': csrftoken
         }
       })
       .then((res) => console.log("Sent: " + res))
