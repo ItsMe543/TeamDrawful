@@ -5,13 +5,11 @@
 }
 
 .account-container {
-
     padding-top: 30px;
     padding-bottom: 30px;
     padding-right: 30px;
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .account-container img {
@@ -27,20 +25,16 @@
     border: 1px solid #838383;
     border-radius: 4px;
     padding: 10px;
-
-
 }
 
 
 .input textarea {
     height: 170px;
-
 }
 
 
 
 .badges-container {
-
     width: 500px;
     height: 250px;
     background-color: rgb(202, 79, 79);
@@ -57,13 +51,11 @@
     background-color: #F5F5F5;
 }
 
-/* Style the scrollbar thumb */
 .badges-container::-webkit-scrollbar-thumb {
     background-color: #000;
     border-radius: 10px;
 }
 
-/* Style the scrollbar track */
 .badges-container::-webkit-scrollbar-track {
     border-radius: 10px;
 }
@@ -81,8 +73,6 @@
     color: white
 }
 
-
-
 .stats {
     width: 230px;
     height: 200px;
@@ -98,4 +88,22 @@
     font-size: 20px;
     padding-left: 5px;
     padding-bottom: 12px;
+    padding-top: 2px;
+}
+
+.sub {
+    color: grey;
+    font-size: 24px;
+    margin-top: -15px;
+    margin-left: 8px
+}
+
+.labels {
+    font-size: 22px;
+    padding-top: 35px
+}
+
+.account-header {
+    font-size: 44px;
+    margin-top: 5px
 }

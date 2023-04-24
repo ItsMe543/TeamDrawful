@@ -10,6 +10,10 @@ export default function Account() {
         email: "",
         name: "",
         bio: "",
+        badgesEarned: "",
+        maxStreak: "",
+        totalStars: "",
+        averageRating: "",
     });
 
     useEffect(() => {
@@ -20,37 +24,37 @@ export default function Account() {
     }, []);
 
     return (
-        <div className="account-container" style={{ border: '1px solid white' }}>
-            <Col style={{ border: '1px solid white' }}>
-                <Row style={{ border: '1px solid white', border: '1px solid white' }}>
-                    <Col md={2.5} style={{ paddingLeft: '30px', border: '1px solid white' }} >
+        <div className="account-container">
+            <Col>
+                <Row>
+                    <Col md={2.5} style={{ paddingLeft: '30px' }} >
                         <Link to="/memories">
                             <img src="/drawings/car.jpg" />
                         </Link>
                     </Col>
-                    <Col style={{ paddingLeft: '30px', border: '1px solid white' }}>
-                        <div style={{ fontSize: '44px', marginTop: '5px' }}>Account Settings</div>
-                        <div style={{ color: 'grey', fontSize: '24px', marginTop: '-15px', marginLeft: '8px' }} className="sub">Edit your personal Settings</div>
+                    <Col style={{ paddingLeft: '30px' }}>
+                        <div className="account-header" >Account Settings</div>
+                        <div className="sub">Edit your personal Settings</div>
                     </Col>
                 </Row>
-                <Row style={{ border: '1px solid white', border: '1px solid white' }}>
-                    <Col md={3} style={{ border: '1px solid white' }}>
-                        <div style={{ fontSize: '22px', paddingTop: '35px' }}>Name</div>
-                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Username</div>
-                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Email Address</div>
-                        <div style={{ fontSize: '22px', paddingTop: '50px' }}>Bio</div>
+                <Row>
+                    <Col md={3}>
+                        <div className="labels">Name</div>
+                        <div className="labels">Username</div>
+                        <div className="labels">Email Address</div>
+                        <div className="labels">Bio</div>
                     </Col>
-                    <Col style={{ border: '1px solid white' }}>
+                    <Col >
                         <div className="input">
                             <input
-                                type="text"
+
                                 placeholder="Enter your name"
                                 value={post.name}
                             />
                         </div>
                         <div className="input">
                             <input
-                                type="text"
+
                                 placeholder="Enter your username"
                                 value={post.username}
                             />
@@ -58,37 +62,39 @@ export default function Account() {
                         <div className="input" >
                             <input
                                 style={{ color: 'rgb(146,146,146)' }}
-                                type="text"
-                                placeholder="Enter your email id"
+
+                                placeholder="email id"
                                 value={post.email}
                                 readOnly="true"
                             />
                         </div>
                         <div className="input">
                             <textarea
-                                type="text"
+
                                 placeholder="Max No. of Characters: 256s"
                                 value={post.bio}
+                                style={{ resize: "none" }}
+                                maxLength={256}
                             />
                         </div>
                     </Col>
                 </Row>
             </Col>
-            <Col style={{ border: '1px solid white' }}>
+            <Col>
                 <div className="badges-header">Badges</div>
                 <div className="badges-container"></div>
 
-                <Row style={{ border: '1px solid white' }}>
+                <Row>
                     {/* <Col md="3" style={{ border: '1px solid white' }}>
                         <button>Save Changes</button>
     </Col>*/}
-                    <Col style={{ border: '1px solid white' }}>
+                    <Col>
                         <div className="stats-header">Stats</div>
                         <div className="stats">
-                            <div>Highest Streak: </div>
-                            <div>Average Rating: </div>
-                            <div>Total Stars Earned: </div>
-                            <div>Badges Unlocked: </div>
+                            <div>Highest Streak: {post.maxStreak} </div>
+                            <div>Average Rating: {post.averageRating}</div>
+                            <div>Total Stars Earned: {post.totalStars} </div>
+                            <div>Badges Unlocked: {post.badgesEarned}</div>
                         </div>
                     </Col>
 

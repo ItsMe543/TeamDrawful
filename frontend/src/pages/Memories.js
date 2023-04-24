@@ -95,6 +95,14 @@ function Memories() {
       return newID;
     });
   };
+  const isDateAllowed = (date) => {
+    return highlightedDates.some(
+      (allowedDate) =>
+        allowedDate.getDate() === date.getDate() &&
+        allowedDate.getMonth() === date.getMonth() &&
+        allowedDate.getFullYear() === date.getFullYear()
+    );
+  };
   const highlightedDates = convertDates();
 
   return (
@@ -106,6 +114,7 @@ function Memories() {
             onChange={onDateChange}
             value={date}
             tileClassName={tileContent}
+            //  tileDisabled={({ date }) => !isDateAllowed(date)}
             showWeekDays={false}
             className="cal"
           />
