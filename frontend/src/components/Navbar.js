@@ -88,7 +88,9 @@ function Navbar() {
           </div>
         }
         <div className="profile">
-          <img src={require("../minion.png")} className="profilePic" />
+          <Link to="/settings">
+            <img src={require("../minion.png")} className="profilePic" />
+          </Link>
           {/* <div className="userName">defaultUsername</div> */}
         </div>
       </div>

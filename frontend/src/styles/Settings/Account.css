@@ -100,7 +100,8 @@
 
 .labels {
     font-size: 22px;
-    padding-top: 35px
+    padding-top: 35px;
+    margin-bottom: 14px;
 }
 
 .account-header {

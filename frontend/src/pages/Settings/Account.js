@@ -17,11 +17,25 @@ export default function Account() {
     });
 
     useEffect(() => {
-        axios.get("/api/user_accounts/1/").then((data) => {
+        const username = "DrawingGod69";
+        axios.get(`/api/user_accounts/${username}/`).then((data) => {
             console.log(data);
             setPost(data?.data);
         });
     }, []);
+
+    function deleteAccount() {
+        const username = "DrawingGod69";
+        axios.delete(`/api/user_accounts/${username}/`)
+            .then(response => {
+                console.log(response);
+
+            })
+            .catch(error => {
+                console.log(error);
+
+            });
+    }
 
     return (
         <div className="account-container">
@@ -95,6 +109,7 @@ export default function Account() {
                             <div>Average Rating: {post.averageRating}</div>
                             <div>Total Stars Earned: {post.totalStars} </div>
                             <div>Badges Unlocked: {post.badgesEarned}</div>
+                            <button onClick={deleteAccount}>Temporary Delete</button>
                         </div>
                     </Col>
 
