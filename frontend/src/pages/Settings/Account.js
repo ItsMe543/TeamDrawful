@@ -84,9 +84,11 @@ export default function Account() {
                         </div>
                         <div className="input">
                             <input
+                                style={{ color: "rgb(146,146,146)" }}
                                 placeholder="Enter your username"
                                 value={post.username}
                                 onChange={(e) => setPost({ ...post, username: e.target.value })}
+                                readOnly="true"
                             />
                         </div>
                         <div className="input">
