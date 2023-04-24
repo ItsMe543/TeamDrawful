@@ -50,7 +50,7 @@ class User_Memories(models.Model):
 #Tables of all accounts and applicable data, each row is a new user
 #Primary Key = Username
 class User_Accounts(models.Model):
-        username = models.CharField(max_length=30)
+        username = models.CharField(max_length=30,primary_key=True)
         hashedPass = models.CharField(max_length=10000, null=True, blank=True)
         name = models.CharField(max_length=30)
         email = models.CharField(max_length=320)
