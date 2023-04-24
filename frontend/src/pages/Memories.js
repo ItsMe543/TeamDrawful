@@ -33,13 +33,11 @@ function Memories() {
   };
 
   const getData = () => {
-    axios
-      .get("https://drawful.bham.team/api/user_memories/api/user_memories/")
-      .then((data) => {
-        // data.data.sort((a, b) => a.date - b.date);
-        setData(data?.data);
-        setLoaded(true);
-      });
+    axios.get("https://drawful.bham.team/api/user_memories/").then((data) => {
+      // data.data.sort((a, b) => a.date - b.date);
+      setData(data?.data);
+      setLoaded(true);
+    });
   };
 
   useEffect(() => {
