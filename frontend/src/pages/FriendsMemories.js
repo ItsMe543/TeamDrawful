@@ -5,7 +5,10 @@ import { GridLayout, Responsive, WidthProvider } from "react-grid-layout";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Modal from 'react-modal';
 import "../styles/FriendsMemories.css";
+
+//Modal.setAppElement('#FriendsMemories');
 
 function FriendsMemories() {
   const {ID} = useParams();
@@ -90,6 +93,38 @@ function FriendsMemories() {
     });
   }; */
 
+  const [value, setValue] = useState('date');
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const [reason, setReason] = useState('default');
+
+  const handleReportChange = (e) => {
+    setReason(e.target.value);
+  };
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function submitReport() {
+    setIsOpen(false);
+  }
+
   //Will be really easy to just load every image (with information) into the array
   const layout = [
     { i: "blue-eyes-dragon", x: 0, y: 0, w: 1, h: 1 },
@@ -116,12 +151,54 @@ function FriendsMemories() {
   
   const Root = styled.div`
     padding: 16px;
+    margin-top: 20px
   `;
 
   return (
     <div className="FriendsMemoriesDiv">
       <div className="Title">
         User {ID}'s Drawings
+      </div>
+
+      <div>
+        <button onClick={openModal}>Open Modal</button>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          contentLabel="Report Modal"
+        >
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report</h2>
+          <button onClick={closeModal} className="closeButton">X</button>
+          <div className="ReportHeader">
+            <h1><u>Report X's Drawing</u></h1>
+            <p>You are reporting X's drawing.</p>
+          </div>
+          <form className="ReportForm">
+            <label>
+              Please pick an option that best describes the drawing: <br></br>
+              <select value={reason} onChange={handleReportChange}>
+                <option value="default">Please select</option>
+                <option value="offensive">The drawing is offensive</option>
+                <option value="inappropriate">The drawing is inappropriate</option>
+                <option value="unrelated">The drawing is unrelated to the prompt</option>
+              </select>
+            </label> <br></br><br></br>
+            <button onClick={submitReport}>Submit Report</button>
+            <button onClick={closeModal}>Cancel Report</button>
+          </form>
+        </Modal>
+      </div>
+
+      <div className="DropdownDiv">
+        <label>
+          Order By:
+          <select value={value} onChange={handleChange}>
+            <option value="date">Date Drawn</option>
+            <option value="highRate">Highest Rated</option>
+            <option value="lowRate">Lowest Rated</option>
+          </select>
+        </label>
       </div>
 
       <Root>
@@ -137,35 +214,35 @@ function FriendsMemories() {
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Innappropriate Drawing
+              Report Inappropriate Drawing
             </GridItemContent>
           </GridItemWrapper>
           <GridItemWrapper key="dark-magician">
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Innappropriate Drawing
+              Report Inappropriate Drawing
             </GridItemContent>
           </GridItemWrapper>
           <GridItemWrapper key="kuriboh">
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Innappropriate Drawing
+              Report Inappropriate Drawing
             </GridItemContent>
           </GridItemWrapper>
           <GridItemWrapper key="spell-caster">
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Innappropriate Drawing
+              Report Inappropriate Drawing
             </GridItemContent>
           </GridItemWrapper>
           <GridItemWrapper key="summoned-skull">
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Innappropriate Drawing
+              Report Inappropriate Drawing
             </GridItemContent>
           </GridItemWrapper>
         </ResponsiveGridLayout>
