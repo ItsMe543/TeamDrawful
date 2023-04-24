@@ -26,30 +26,45 @@ function SignUp() {
     friendRequests: {},
   })
 
-  const setNewDetails = (e) =>{
+
+
+
+  const setDetails = (e) => {
     e.preventDefault();
     setAccountDetails({
-      username: e.target.value,
-      name: e.target.value,
-      email: e.target.value,
-      bio: "",
-      profilePicture: "",
-      favouriteDraw: "",
-      badgesEarned: "",
-      averageRating: 0.0,
-      currentStreak: 0,
-      maxStreak: 0,
-      totalStars: 0,
-      totalStars: 0,
-      friends: {},
-      friendRequests: {},
+      username: fullname,
+      name: accountUserName,
+      email: accountEmail,
     })
   }
+
+  const [fullname, setFullName] = useState("");
+  const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
+  const [accountEmail, setAccountEmail] = useState({accountEmail: ""});
 
   const sendNewDetails = (e) => {
     e.preventDefault();
     axios
       .post("/api/User_Accounts", {accountDetails})
+  }
+
+
+  // \s = space
+  const checkUserDetails = () => {
+    //Check fullname (at least 2 letters/spaces, no symbols or numbers)
+    if ((fullname.length) < 2 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){ //
+      console.log("YOUR NAME IS BAD!");
+      return;
+    }
+    console.log("You have a wonderful name :)");
+
+    //check username (at least 8 characters, no duplicate usernames)
+
+    //check email (Real email adress, no duplicate emails)
+
+    //Check password (at least 8 characters, at least 1 number)
+
+    //If all checks are passed, send details to database 
   }
   
   return (
@@ -62,17 +77,17 @@ function SignUp() {
 
         <div className="details-segment">
             <div className="info-label">Full Name</div>
-            <input className="info-fullname-box" type="text" placeholder="Fullname" />
+            <input className="info-fullname-box" type="text" placeholder="Fullname" onChange={e => setFullName(e.target.value)}/>
         </div>
 
         <div className="details-segment">
             <div className="info-label">Username</div>
-            <input className="info-username-box" type="text" placeholder="Username" />
+            <input className="info-username-box" type="text" placeholder="Username" onChange={e => setAccountUsername(e.target.value)}/>
         </div>
 
         <div className="details-segment">
             <div className="info-label">Email</div>
-            <input className="info-email-box" type="text" placeholder="ExampleUser@examplemail.co.uk" />
+            <input className="info-email-box" type="text" placeholder="ExampleUser@examplemail.co.uk" onChange={e => setAccountEmail(e.target.value)}/>
         </div>
 
         <div className="details-segment">
@@ -87,10 +102,8 @@ function SignUp() {
             Already got an account? Login
         </Link>
 
-        <button className="submit-acc-details">
-          <Link onClick={setNewDetails} to={"/login/"}>
-            Create account
-          </Link>
+        <button className="submit-acc-details" onClick={checkUserDetails}>
+          Create account
         </button>
       </div>
     </div>
