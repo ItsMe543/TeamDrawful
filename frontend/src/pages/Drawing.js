@@ -177,34 +177,43 @@ class canFill {
   }
 }
 
+var intervalId = window.setInterval(function(){checkURL();}, 1000);
 
+function checkURL(){
+  var url = window.location.href;
+  var urlEnd = url.substring(url.length-7);
 
-window.onload = function () {
-  document.getElementById("Label1").innerHTML = "1:00";
+  if(urlEnd === "drawing"){
+    document.getElementById("Label1").innerHTML = "1:00";
 
-  Label1 = window.setInterval(function () {
+    Label1 = window.setInterval(function () {
     myFunction();
-  }, 1000); // every second
-
+    }, 1000); // every second
+    clearInterval(intervalId);
+  }
 }
 
 
-///////////////////////////////////////////////////////////
+
 var seconds = 60;
 var Label1;
 function myFunction() {
+  var url = window.location.href;
+  var urlEnd = url.substring(url.length-7);
+  if(urlEnd != "drawing"){
+    clearInterval(Label1);
+    return;
+  }
   if (seconds < 60) { // I want it to say 1:00, not 60
     document.getElementById("Label1").innerHTML = seconds;
   }
   if (seconds > 0) { // so it doesn't go to -1
     seconds--;
-    console.log(seconds)
   } else {
     clearInterval(Label1);
-    alert("You type X WPM");
+    alert("TOMISPOG");
   }
 }
-///////////////////////////////////////////////////////////
 
 
 function Drawing() {
