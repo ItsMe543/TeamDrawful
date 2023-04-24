@@ -71,20 +71,26 @@ function Navbar() {
           </Link>
         </div> */}
 
-        {<div className="badges">
-          <Link to="/badges">
-            <BsAward
-              style={{
-              height: "2.7vh",
-              width: "2.7vh",
-              position: "relative",
-              top: "30%",
-              }}
-              size={30}
-            />
-            <div>Badges</div>
-          </Link>
-        </div>}
+        {
+          <div className="badges">
+            <Link to="/badges">
+              <BsAward
+                style={{
+                  height: "2.7vh",
+                  width: "2.7vh",
+                  position: "relative",
+                  top: "30%",
+                }}
+                size={30}
+              />
+              <div>Badges</div>
+            </Link>
+          </div>
+        }
+        <div className="profile">
+          <img src={require("../minion.png")} className="profilePic" />
+          {/* <div className="userName">defaultUsername</div> */}
+        </div>
       </div>
     </div>
   );

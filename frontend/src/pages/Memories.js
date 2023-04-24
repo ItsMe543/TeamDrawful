@@ -138,7 +138,7 @@ function Memories() {
             onClick={() => handleLeftClick()}
           />
           <div className="m-drawing">
-            <img src={drawings[ID].drawing} alt={"drawing image"} />
+            <img src={data.drawing} alt={"drawing image"} />
           </div>
           <HiArrowCircleRight
             className="arrow"
