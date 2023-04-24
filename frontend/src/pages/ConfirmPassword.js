@@ -3,7 +3,7 @@ import { useState } from "react";
 
 //export default PasswordTextBox;
 
-export default function PasswordInput(){
+export default function ConfirmPassword(){
     const[password, setPassword] = useState("");
     const[visible, setVisible] = useState(false);
 
@@ -11,10 +11,10 @@ export default function PasswordInput(){
         <div>
         <form>
             <label htmlFor="password" className="info-label">
-            Password
+            Confirm Password
             </label>
             <div className="infoP-box">
-            <input value={password} type={visible ? "text" : "password"} id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="yeet">
+            <input value={password} type={visible ? "text" : "password"} id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="blay">
             </input>
             </div>
         </form>

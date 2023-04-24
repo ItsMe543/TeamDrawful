@@ -1,11 +1,14 @@
 .accounts-page{
     padding-left: 50px;
     padding-right: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .account-details{
-    margin-left: 500px;
-    margin-right: 500px;
+    width: 500px;
     margin-top: 30px;
     font-size: 30px;
     color: black;
@@ -14,6 +17,8 @@
     padding: 10px;
     border-radius: 7px;
     align-items: center;
+    
+    
 }
 
 .title-text{
@@ -39,12 +44,46 @@
     color: black;
 }
 
+.info-fullname-box{
+    margin-top: 15px;
+    font-family: "Handmade";
+    font-size: 20px;
+    width: 400px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.info-username-box{
+    margin-top: 15px;
+    font-family: "Handmade";
+    font-size: 20px;
+    width: 400px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.info-email-box{
+    margin-top: 15px;
+    font-family: "Handmade";
+    font-size: 20px;
+    width: 400px;
+    border-radius: 5px;
+    border: 0px;
+}
+
 .info-box{
     margin-top: 15px;
     font-family: "Handmade";
     font-size: 20px;
     width: 400px;
+    border-radius: 5px;
+    border: 0px;
 }
+
+
+
+
+
 
 .login-signup-switch{
     font-size: 25px;
@@ -54,4 +93,13 @@
 .submit-details{
     margin-top: 40px;
     width: 100px;
+}
+
+.infoP-box{
+    margin-top: -13px;
+    font-family: "Handmade";
+    font-size: 20px;
+    width: 400px;
+    border-radius: 5px;
+    border: 0px;
 }
