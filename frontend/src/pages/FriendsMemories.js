@@ -172,7 +172,7 @@ function FriendsMemories() {
           <button onClick={closeModal} className="closeButton">X</button>
           <div className="ReportHeader">
             <h1><u>Report X's Drawing</u></h1>
-            <p>You are reporting X's drawing.</p>
+            <p>You are reporting X's drawing</p>
           </div>
           <form className="ReportForm">
             <label>
