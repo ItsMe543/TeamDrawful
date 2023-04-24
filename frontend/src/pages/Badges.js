@@ -4,10 +4,7 @@ import { Col, Row } from "react-bootstrap";
 
 
 function Badges() {
-
-  const [activeSortButton, setActiveSortButton] = React.useState(null);
-  const [sortedBadgesArray, setSortedBadgesArray] = React.useState(null);
-
+  
   const badgesArray = [
     // example badges
     {
@@ -36,7 +33,7 @@ function Badges() {
       description: "Completed 5 drawings!",
       image: "/drawings/award.png",
       unlocked: false,
-      timeUnlocked: 2,
+      timeUnlocked: 0,
     },
     {
       name: "Badge 5",
@@ -50,7 +47,7 @@ function Badges() {
       description: "Completed 5 drawings!",
       image: "/drawings/award.png",
       unlocked: false,
-      timeUnlocked: 8,
+      timeUnlocked: 0,
     },
     {
       name: "Badge 7",
@@ -61,6 +58,13 @@ function Badges() {
     }
   ];
 
+  const [activeSortButton, setActiveSortButton] = React.useState(null);
+  const [sortedBadgesArray, setSortedBadgesArray] = React.useState(badgesArray);
+
+  React.useEffect(() => {
+    setSortedBadgesArray(badgesArray);
+  }, []);
+
   const handleSort = (option) => {
     setActiveSortButton(option);
     // sort the data based on the selected option
@@ -69,20 +73,22 @@ function Badges() {
     } else if (option === "recent") {
       // sort by most recent
       console.log("recent");
-      badgesArray.sort((a, b) => a.timeUnlocked - b.timeUnlocked);
+      const sortedBadges = [...sortedBadgesArray].sort((a, b) => a.timeUnlocked - b.timeUnlocked);
+      setSortedBadgesArray(sortedBadges);
     } else {
-      console.log("oldest");
-      badgesArray.sort((a, b) => b.timeUnlocked - a.timeUnlocked);
       // sort by oldest
+      console.log("oldest");
+      const sortedBadges = [...sortedBadgesArray].sort((a, b) => b.timeUnlocked - a.timeUnlocked);
+      setSortedBadgesArray(sortedBadges);
+      
     }
-    setSortedBadgesArray([...badgesArray]);
   };
 
 
   
 
   function Badge(props) {
-    const { name, image, unlocked, description } = props;
+    const { name, image, unlocked, description} = props;
     return (
       <div className={`badge ${unlocked ? 'unlocked' : 'locked'}`}>
         <Row>
@@ -108,7 +114,7 @@ function Badges() {
         <Col>
           {badges.map((badge, id) => (
             <div className="badgeElement" key={id}>
-              <Badge name={badge.name} image={badge.image} unlocked={badge.unlocked} description={badge.description} />
+              <Badge name={badge.name} image={badge.image} unlocked={badge.unlocked} description={badge.description} timeUnlocked={badge.timeUnlocked} />
             </div>
           ))}
         </Col>
@@ -116,8 +122,8 @@ function Badges() {
   }
   
 
-  const unlockedBadgesIcons = badgesArray.filter(badge => badge.unlocked);
-  const lockedBadgesIcons = badgesArray.filter(badge => !badge.unlocked);
+  const unlockedBadgesIcons = sortedBadgesArray.filter(badge => badge.unlocked);
+  const lockedBadgesIcons = sortedBadgesArray.filter(badge => !badge.unlocked);
 
   return (
     <div className="Badges">
