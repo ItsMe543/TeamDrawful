@@ -1,21 +1,65 @@
 import React from "react";
 import "../styles/Badges.css"
-import drawingData from "../drawingData";
 import { Col, Row } from "react-bootstrap";
 
-function Badge(props) {
-  const { name, image, unlocked } = props;
-  return (
-    <div className={`badge ${unlocked ? 'unlocked' : 'locked'}`}>
-      <img src={image} alt={name} />
-      <div className="badge-name">{name}</div>
-    </div>
-  );
-}
 
 function Badges() {
 
   const [activeSortButton, setActiveSortButton] = React.useState(null);
+  const [sortedBadgesArray, setSortedBadgesArray] = React.useState(null);
+
+  const badgesArray = [
+    // example badges
+    {
+      name: "Badge 1",
+      description: "Completed a drawing!",
+      image: "/drawings/star.png",
+      unlocked: true,
+      timeUnlocked: 7,
+    },
+    {
+      name: "Badge 2",
+      description: "Completed 5 drawings!",
+      image: "/drawings/award.png",
+      unlocked: true,
+      timeUnlocked: 2,
+    },
+    {
+      name: "Badge 3",
+      description: "Completed 5 drawings!",
+      image: "/drawings/award.png",
+      unlocked: true,
+      timeUnlocked: 10,
+    },
+    {
+      name: "Badge 4",
+      description: "Completed 5 drawings!",
+      image: "/drawings/award.png",
+      unlocked: false,
+      timeUnlocked: 2,
+    },
+    {
+      name: "Badge 5",
+      description: "Completed 5 drawings!",
+      image: "/drawings/award.png",
+      unlocked: true,
+      timeUnlocked: 1,
+    },
+    {
+      name: "Badge 6",
+      description: "Completed 5 drawings!",
+      image: "/drawings/award.png",
+      unlocked: false,
+      timeUnlocked: 8,
+    },
+    {
+      name: "Badge 7",
+      description: "Completed a motorsport drawing!",
+      image: "/drawings/car.jpg",
+      unlocked: false,
+      timeUnlocked: 0,
+    }
+  ];
 
   const handleSort = (option) => {
     setActiveSortButton(option);
@@ -24,48 +68,56 @@ function Badges() {
       // sort by rarest
     } else if (option === "recent") {
       // sort by most recent
+      console.log("recent");
+      badgesArray.sort((a, b) => a.timeUnlocked - b.timeUnlocked);
     } else {
+      console.log("oldest");
+      badgesArray.sort((a, b) => b.timeUnlocked - a.timeUnlocked);
       // sort by oldest
     }
+    setSortedBadgesArray([...badgesArray]);
   };
 
 
-  const badgesArray = [
-    // example badges
-    {
-      name: "badge1",
-      image: "/drawings/star.png",
-      unlocked: false,
-    },
-    {
-      name: "badge2",
-      image: "/drawings/award.png",
-      unlocked: true,
-    },
-    {
-      name: "badge3",
-      image: "/drawings/car.jpg",
-      unlocked: true,
-    }
-  ];
+  
 
-  function createBadgeElements(badges) {
+  function Badge(props) {
+    const { name, image, unlocked, description } = props;
     return (
-      <div className="badgesIcons">
-        <Col>
-          {badges.map((badge, id) => (
-            <div className="badges" key={id}>
-              <img className="badgeIcon" src={badge.image} alt={badge.name} />
-            </div>
-          ))}
-        </Col>
+      <div className={`badge ${unlocked ? 'unlocked' : 'locked'}`}>
+        <Row>
+          <Col>
+            <img className="badgeIcon" src={image} alt={name} />
+          </Col>
+          <Col>
+            <Row>
+              <div className="badgeName">{name}</div>
+            </Row>
+            <Row>
+              <div className="badgeDescription">{description}</div>
+            </Row>
+          </Col>
+        </Row>
       </div>
     );
   }
   
 
-  const unlockedBadges = badgesArray.filter(badge => badge.unlocked);
-  const lockedBadges = badgesArray.filter(badge => !badge.unlocked);
+  function createBadgeElements(badges) {
+    return (
+        <Col>
+          {badges.map((badge, id) => (
+            <div className="badgeElement" key={id}>
+              <Badge name={badge.name} image={badge.image} unlocked={badge.unlocked} description={badge.description} />
+            </div>
+          ))}
+        </Col>
+    );
+  }
+  
+
+  const unlockedBadgesIcons = badgesArray.filter(badge => badge.unlocked);
+  const lockedBadgesIcons = badgesArray.filter(badge => !badge.unlocked);
 
   return (
     <div className="Badges">
@@ -82,7 +134,6 @@ function Badges() {
             <button
               className={`sortRarest ${activeSortButton === "rarest" ? "toggled" : ""}`}
               onClick={() => {
-                console.log("rarest")
                 handleSort("rarest")}}
             >
               Rarest
@@ -90,7 +141,6 @@ function Badges() {
             <button
               className={`sortRecent ${activeSortButton === "recent" ? "toggled" : ""}`}
               onClick={() => {
-                console.log("recent")
                 handleSort("recent")}}
             >
               Most Recent
@@ -98,7 +148,6 @@ function Badges() {
             <button
               className={`sortOldest ${activeSortButton === "oldest" ? "toggled" : ""}`}
               onClick={() => {
-                console.log("oldest")
                 handleSort("oldest")}}
             >
               Oldest
@@ -114,8 +163,10 @@ function Badges() {
           <svg className="seperator2">
             <rect></rect>
           </svg>
-          <div className="badgesIcons">
-            {createBadgeElements(unlockedBadges)}
+          <div className="badgeElement">
+            <Row>
+              {createBadgeElements(unlockedBadgesIcons)}
+            </Row>
           </div>
         </div>
 
@@ -126,8 +177,10 @@ function Badges() {
           <svg className="seperator3">
               <rect></rect>
           </svg>
-          <div className="badgesIcons">
-            {createBadgeElements(lockedBadges)}
+          <div className="badgeElement">
+            <Row>
+              {createBadgeElements(lockedBadgesIcons)}
+            </Row>
           </div>
         </div>
       </div>
