@@ -82,14 +82,18 @@ body{
 .seperator2, .seperator3{
     height: 1px;
     width: 80%;
-    background-color: white;
 }
-
 
 .heading{
     font-size: 64px;
     margin-left: 5%;
 }
+
+.searchBar{
+    text-align: center;
+    font-size: 24px;
+}
+
 
 
 
