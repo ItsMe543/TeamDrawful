@@ -1,19 +1,19 @@
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
 import DifficultyPage from "../pages/DifficultyPage";
 import Drawing from "../pages/Drawing";
 import Friends from "../pages/Friends";
+import FriendsMemories from "../pages/FriendsMemories";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
 import Memories from "../pages/Memories";
 import Notifications from "../pages/Notifications";
-import Accessibility from "../pages/Settings/Accessibility";
 import Settings from "../pages/Settings";
-import ViewDrawings from "../pages/ViewDraws";
-import FriendsMemories from "../pages/FriendsMemories"
-import React, { useEffect } from "react";
-import Login from "../pages/Login";
+import Accessibility from "../pages/Settings/Accessibility";
 import SignUp from "../pages/SignUp";
+import ViewDrawings from "../pages/ViewDraws";
 
 function Main() {
   useEffect(() => {
@@ -50,6 +50,7 @@ function Main() {
   return (
     <Routes>
       <Route path="*" element={<Home />}></Route>
+      <Route path="/" element={<Login />}></Route>
       <Route path="/viewingDrawings" element={<ViewDrawings />}></Route>
       <Route path="/settings" element={<Settings />}></Route>
       <Route path="/friends" element={<Friends />}></Route>
@@ -62,7 +63,6 @@ function Main() {
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
-
     </Routes>
   );
 }

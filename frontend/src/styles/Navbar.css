@@ -39,6 +39,23 @@ a {
   width: 90px;
   height: 90px;
 }
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  outline-style: double;
+  outline-width: 2px;
+}
+.userName {
+  font-size: 0.8em;
+}
+.profilePic {
+  max-height: 80px;
+  max-width: 80px;
+  width: 80px;
+  height: 80px;
+  /* width: 100%; */
+}
 
 @media (max-width: 700px) {
   .links {
