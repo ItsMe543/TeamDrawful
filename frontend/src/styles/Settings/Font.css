@@ -1,25 +1,21 @@
 body.font div {
-    font-family: 'insta';
-    font-size: 101%;
+    font-family: 'sometimes';
+
 
 }
 
 body.font h1 {
-    font-family: 'insta';
-    font-size: 102%;
+    font-family: 'sometimes';
+
 
 }
 
-body.font input {
-    font-size: 101%;
-}
+body.font input {}
 
 body.font h2 {
-    font-family: 'insta';
-    font-size: 102%;
+    font-family: 'sometimes';
+
 
 }
 
-body.font .buttonstyle {
-    font-size: 97%;
-}
+body.font .buttonstyle {}
