@@ -47,7 +47,6 @@ class User_Memories(models.Model):
         drawing = Base64Field(max_length=3000000, blank=True, null=True)
 
 
-
 #Tables of all accounts and applicable data, each row is a new user
 #Primary Key = Username
 class User_Accounts(AbstractUser):
