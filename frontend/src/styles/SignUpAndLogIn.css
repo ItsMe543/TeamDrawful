@@ -38,7 +38,14 @@
 }
 
 .info-label {
-    margin-bottom: -26px;
+    margin-bottom: -20px;
+    margin-left: 4px;
+    font-family: "insta";
+    color: black;
+}
+
+.infoP-label {
+    margin-bottom: 5px;
     margin-left: 4px;
     font-family: "insta";
     color: black;
