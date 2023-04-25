@@ -10,7 +10,7 @@
     height: 30px;
     font-size: 21px;
     margin-left: 110px;
-    margin-top: 20px;
+    margin-top: 35px;
 }
 
 .Friend-m-side {
@@ -65,7 +65,7 @@
 }
 
 .Friend-m-username {
-    font-size: 30px;
+    font-size: 22px;
     margin-left: 10px;
     background-color: rgb(210, 171, 13);
     border-radius: 30px;
@@ -151,7 +151,7 @@
 
 .Profile-unfriend-mf-button {
     font-size: 20px;
-    width: 75px;
+    width: 100px;
     text-align: center;
     margin-left: 60px;
     border-color: rgb(103, 103, 103);
@@ -159,7 +159,7 @@
 
 .Profile-befriend-button {
     font-size: 20px;
-    width: 75px;
+    width: 100px;
     text-align: center;
     margin-left: 40px;
     border-color: rgb(48, 174, 193);
@@ -183,7 +183,7 @@
 }
 
 .Profile-section-header1 {
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: underline;
     margin-right: 110px;
 }
