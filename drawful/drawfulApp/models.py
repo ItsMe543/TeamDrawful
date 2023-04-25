@@ -36,7 +36,7 @@ def generateFilename(instance,filename):
 #Primary key = date
 class User_Memories(models.Model):
         id = models.AutoField(primary_key=True)
-        username = models.CharField(max_length=30)
+        username = models.CharField(max_length=30, null = True)
         date = models.DateField()
         timeCompleted = models.TimeField()
         difficulty = models.CharField(max_length=10)
