@@ -30,17 +30,22 @@ body.contrast h2 {
 
 body.contrast .UserElement div {
     background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 0)
+    color: rgb(255, 0, 255)
+}
+
+body.contrast .RateText {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 0, 255)
 }
 
 body.contrast .UserElement button {
     background-color: rgb(0, 0, 0);
-    color: rgb(255, 0, 242)
+    color: rgb(255, 0, 255)
 }
 
 body.contrast .CommentsBox div {
     background-color: rgb(0, 0, 0);
-    color: rgb(0, 255, 242)
+    color: rgb(0, 255, 255)
 }
 
 
@@ -95,7 +100,7 @@ body.contrast .menu {
 }
 
 body.contrast .drawing_toolbar {
-    background-color: rgb(247, 0, 255);
+    background-color: rgb(255, 0, 255);
 }
 
 
@@ -106,14 +111,241 @@ body.contrast .prompt_bar {
 
 body.contrast .prompt {
     background-color: rgb(0, 0, 0);
-    color: aqua;
+    color: rgb(255, 255, 0)
 }
 
 body.contrast .time {
     background-color: rgb(0, 0, 0);
-    color: rgb(255, 238, 0);
+    color: rgb(255, 255, 0);
 }
 
 body.contrast .menu {
     color: rgb(255, 0, 255);
+}
+
+body.contrast .account-details {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .details-segment {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .sign-up-link {
+    color: black
+}
+
+body.contrast .submit-acc-details a {
+    color: black
+}
+
+body.contrast .submit-acc-details {
+    background-color: white;
+}
+
+body.contrast .info-box {
+    border: 1px solid black
+}
+
+body.contrast .infoP-box {
+    border: 1px solid black
+}
+
+body.contrast .login-signup-switch {
+    color: black
+}
+
+body.contrast .info-username-box {
+    border: 1px solid black
+}
+
+body.contrast .info-fullname-box {
+    border: 1px solid black
+}
+
+body.contrast .info-email-box {
+    border: 1px solid black
+}
+
+body.contrast .Background {
+    background: none;
+}
+
+body.contrast .privacy {
+    background: none;
+    border: 1px solid rgb(255, 0, 255)
+}
+
+body.contrast .privacy div {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .CommentSection {
+    background-color: rgb(255, 255, 0)
+}
+
+body.contrast .CommentBar {
+    background-color: black;
+}
+
+body.contrast .CommentMesg {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .Username {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .SubCom button {
+    color: black;
+    background-color: white
+}
+
+body.contrast .input input {
+    background-color: rgba(75, 75, 75, 0.459);
+}
+
+body.contrast .input textarea {
+    background-color: rgba(75, 75, 75, 0.459);
+}
+
+body.contrast .account-header {
+    color: rgb(255, 255, 0)
+}
+
+body.contrast .labels {
+    color: rgb(255, 255, 0)
+}
+
+body.contrast .badges-header {
+    color: rgb(255, 255, 0)
+}
+
+body.contrast .badges-container {
+    background-color: white;
+}
+
+body.contrast .stats {
+    background-color: rgba(75, 75, 75, 0.459);
+    color: white
+}
+
+body.contrast .stats-header {
+
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .accessibility-container div {
+    color: rgb(255, 255, 0);
+}
+
+body.contrast .popup button {
+    color: black;
+    background-color: white;
+}
+
+body.contrast .badgeName {
+    color: rgb(255, 0, 255)
+}
+
+body.contrast .badgeDescription {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .friendSidebar {
+    color: rgb(255, 0, 255);
+}
+
+body.contrast .friendSidebar button {
+    color: rgb(255, 0, 255)
+}
+
+body.contrast .Friends-title {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .Mutual-title {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .Requests-title {
+    color: rgb(0, 255, 255)
+}
+
+body.contrast .User-preview {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .Friend-username {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+body.contrast .Friend-picture {
+    border: 1px solid black
+}
+
+body.contrast .Profile-bio-container {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .Profile-stat-bar {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .Profile-unfriend-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .Profile-view-memories a {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .Profile-username {
+    color: rgb(255, 0, 255)
+}
+
+body.contrast .User-m-preview {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .User-r-preview {
+    background-color: rgb(255, 255, 0);
+}
+
+body.contrast .Friend-m-username {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+body.contrast .Friend-r-username {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+body.contrast .Profile-befriend-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .Profile-unfriend-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .Profile-r-reject {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .Profile-r-accept {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+body.contrast .controlpanel button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 255, 255)
 }
