@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 import ConfirmPassword from "./ConfirmPassword"
 import axios from "axios"; //Used for database interactivity
-import validator from 'validator';
 import { useEffect, useState } from "react";
 
 function SignUp() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   const [accountDetails, setAccountDetails] = useState({
     username: "",
-    name: "",
+    password: "",
+    first_name: "",
+    last_name: "",
     email: "",
     bio: "",
     badgesEarned: "",
@@ -27,7 +28,9 @@ function SignUp() {
   const setDetails = () => {
     setAccountDetails({
       username: fullname,
-      name: accountUserName,
+      password: accountHashedPass,
+      first_name: fullname.split(" ")[0],
+      last_name: fullname.split(" ")[1],
       email: accountEmail,
       bio: "",
       badgesEarned: "",
@@ -41,24 +44,8 @@ function SignUp() {
     sendNewDetails();
   }
 
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = validator.trim(cookies[i]);
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-var csrftoken = getCookie('csrftoken');
-
   const [fullname, setFullName] = useState("");
+  const [accountHashedPass, setAccountHashedPass] = useState("");
   const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
   const [accountEmail, setAccountEmail] = useState({accountEmail: ""});
 
@@ -68,7 +55,9 @@ var csrftoken = getCookie('csrftoken');
       url: '/api/user_accounts/',
       data: {
         username: fullname,
-        name: accountUserName,
+        password: accountHashedPass,
+        first_name: fullname.split(" ")[0],
+        last_name: fullname.split(" ")[1],
         email: accountEmail,
         bio: "",
         badgesEarned: "",
@@ -80,8 +69,7 @@ var csrftoken = getCookie('csrftoken');
         friendRequests: "",
       },
         headers: {
-          "content-type": "application/json",
-          'X-CSRFToken': csrftoken
+          "content-type": "application/json"
         }
       })
       .then((res) => console.log("Sent: " + res))
@@ -106,8 +94,10 @@ var csrftoken = getCookie('csrftoken');
     //Check password (at least 8 characters, at least 1 number)
 
     //If all checks are passed, send details to database 
-    setDetails();
+    sendNewDetails();
   }
+
+  //<PasswordInput onChange={e => setAccountHashedPass(e.target.value)}/>
   
   return (
     <div className="page">
@@ -133,7 +123,8 @@ var csrftoken = getCookie('csrftoken');
         </div>
 
         <div className="details-segment">
-          <PasswordInput/>
+            <div className="info-label">Password</div>
+            <input className="info-pass-box" type="text" placeholder="Password" onChange={e => setAccountHashedPass(e.target.value)}/>
         </div>
 
         <div className="details-segment">

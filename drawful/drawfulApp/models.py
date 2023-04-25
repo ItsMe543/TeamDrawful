@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 import os
 # Create your models here.
 #class Todo(models.Model):
@@ -9,7 +10,6 @@ import os
 #
 #        def _str_(self):
 #                return self.title
-
 
 
 #Table for todays drawings
@@ -23,9 +23,6 @@ import os
 #        TimeTaken = models.TimeField()
 
 
-
-#Table for each users memories
-#Primary key = date
 def generateFilename(instance,filename):
         timestamp = timezone.now().strftime('%Y%m%d_%H%M%S')
         basename, extension = os.path.splitext(filename)
@@ -33,6 +30,8 @@ def generateFilename(instance,filename):
         return f'uploads/drawings/{new_filename}'
 
 
+#Table for each users memories
+#Primary key = date
 class User_Memories(models.Model):
         id = models.AutoField(primary_key=True)
         date = models.CharField(max_length=10)
@@ -46,13 +45,14 @@ class User_Memories(models.Model):
         drawing = models.ImageField(upload_to=generateFilename, height_field=None, width_field=None, max_length=100)
 
 
-
 #Tables of all accounts and applicable data, each row is a new user
 #Primary Key = Username
-class User_Accounts(models.Model):
-        username = models.CharField(max_length=30)
-        hashedPass = models.CharField(max_length=10000, null=True, blank=True)
-        name = models.CharField(max_length=30)
+class User_Accounts(AbstractUser):
+        username = models.CharField(max_length=30, unique=True)
+        password = models.CharField(max_length=10000, null=True, blank=True)
+        #name = models.CharField(max_length=30)
+        first_name = models.CharField(max_length=50)
+        last_name = models.CharField(max_length=50, null=True, blank=True)
         email = models.CharField(max_length=320)
         bio = models.CharField(max_length=30, null=True, blank=True)
         profilePicture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True, blank=True)
@@ -64,10 +64,10 @@ class User_Accounts(models.Model):
         totalStars = models.IntegerField(default=0)
         friends = models.CharField(max_length=30, null=True, blank=True) #List of users who are friends with this user
         friendRequests = models.CharField(max_length=30, null=True, blank=True) #List of users which have sent friend requests to this account
-        RSAPub = models.CharField(max_length=10000, null=True, blank=True)
-        RSAPriv = models.CharField(max_length=10000, null=True, blank=True)
-        AESPriv = models.CharField(max_length=10000, null=True, blank=True)
-        AESSemi = models.CharField(max_length=10000, null=True, blank=True)
+        #The extra following fields are required
+        last_login = models.DateTimeField(null=True, blank=True)
+        is_superuser = models.BooleanField(null=True, blank=True)
+
 
 
 #This tables stores all badges for each user, with each entry being the badge, alone with unlocked status
@@ -75,7 +75,7 @@ class User_Accounts(models.Model):
 class Badges(models.Model):
         badgeName = models.CharField(max_length=20, primary_key=True)
         badgeIcon = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-        badgeDescirption = models.CharField(max_length=500)
+        badgeDescription = models.CharField(max_length=500)
         badgeUnlocked = models.BooleanField(default=False)
 
 
@@ -87,4 +87,3 @@ class Prompt_List(models.Model):
         promptGenre = models.CharField(max_length=50)
         alreadyUsed = models.BooleanField(default=False)
         previousWinner = models.CharField(max_length=30)
-
