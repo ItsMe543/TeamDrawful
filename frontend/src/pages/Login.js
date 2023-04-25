@@ -20,7 +20,7 @@ function Login() {
 
           <div className="details-segment">
               <div className="info-label">Username</div>
-              <input className="info-box" type="text" placeholder="Username" />
+              <input id="user"  className="info-box" type="text" placeholder="Username" />
           </div>
 
           <div className="details-segment">
@@ -31,10 +31,14 @@ function Login() {
             Create an account?
           </Link>
 
-          <button className="submit-acc-details">
-            <Link to={"/home/"}>
+          <button className="submit-acc-details"
+          onClick={() => {
+              console.log(document.getElementById("user").value);
+              document.cookie ="username ="+document.getElementById("user").value;
+            }}>
+              <Link to={"/home/"}>
               Log in
-            </Link>
+              </Link>
           </button>
         </div>
         <div className="disclaimer1">
