@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import validator from 'validator';
+
 
 
 
@@ -211,33 +213,89 @@ function myFunction() {
     seconds--;
   } else {
     clearInterval(Label1);
-    alert("TOMISPOG");
+    //alert("TOMISPOG");
   }
 }
 
 
+
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = validator.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+var csrftoken = getCookie('csrftoken');
+
+function getDate(){
+  const date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${year}-${month}-${day}`;
+  return currentDate;
+}
+
+function getTime(){
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  return time;
+}
+
+
+function getSeconds(){
+  if(seconds ===60){
+    return "00:01:00"
+  }
+  else{
+    return "00:00:"+seconds
+  }
+}
+
+function getDrawing(){
+  var canvas = document.getElementById("canvasID");
+  var dataURL = canvas.toDataURL("image/png");
+  return dataURL;
+
+}
 function Drawing() {
   const [date, setName, difficulty] = useState({
     date: " ", difficulty: " "
   });
 
-  const handleChange = (e) => {
-    //e.preventDefault();
-    setName({
-      date: e.date,
-      difficulty: e.difficulty
-    });
-  };
 
-  const submitForm = (e) => {
+  const submitForm = () => {
     //e.preventDefault();
-
-    axios
-      .post(`/api/user_memories/`, { date, difficulty })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
+    axios({
+      method: 'post',
+      url: 'api/user_memories/',
+      data: {
+        date: getDate(),
+        timeCompleted: getTime(),
+        difficulty: "69",
+        timeTaken: getSeconds(),
+        prompt: post.prompt,
+        drawing: getDrawing(),
+      },
+        headers: {
+          "content-type": "application/json",
+          'X-CSRFToken': csrftoken
+        }
+    })
+    .then((res) => console.log("Sent: " + res))
+    .catch((err) => console.log("Err: " + err))
   };
 
 
@@ -459,8 +517,7 @@ function Drawing() {
           <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
             id="submtButton"
             onClick={() => {
-              handleChange(imageParcel);
-              submitForm(imageParcel);
+              submitForm();
             }}
           >
             Submit

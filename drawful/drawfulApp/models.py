@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from django_base64field.fields import Base64Field
+
 import os
 # Create your models here.
 #class Todo(models.Model):
@@ -34,7 +36,7 @@ def generateFilename(instance,filename):
 #Primary key = date
 class User_Memories(models.Model):
         id = models.AutoField(primary_key=True)
-        date = models.CharField(max_length=10)
+        date = models.DateField()
         timeCompleted = models.TimeField()
         difficulty = models.CharField(max_length=10)
         avgRating = models.FloatField(default=0.0)
@@ -43,6 +45,7 @@ class User_Memories(models.Model):
         prompt = models.CharField(max_length=50)
         #***None must be filled*** pip install pillow
         drawing = models.ImageField(upload_to=generateFilename, height_field=None, width_field=None, max_length=100)
+
 
 
 #Tables of all accounts and applicable data, each row is a new user
