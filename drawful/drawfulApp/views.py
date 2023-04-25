@@ -4,6 +4,9 @@ from rest_framework import viewsets
 from django.views.decorators.csrf import csrf_exempt
 from drawfulApp import serializers
 from drawfulApp import models
+import sys
+sys.path.append('../../frontend/pages/src/SignUp.js')
+from SignUp.js import x
 
 # Create your views here.
 
@@ -36,3 +39,8 @@ class User_AccountsView(viewsets.ModelViewSet):
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
+
+
+class Usernames(viewsets.ModelViewSet):
+    serializer_class = serializers.User_AccountsSerializer
+    #queryset = models.User_Accounts.objects.filter(username=)
