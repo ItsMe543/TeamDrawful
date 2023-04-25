@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { GridLayout, Responsive, WidthProvider } from "react-grid-layout";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Modal from 'react-modal';
@@ -93,6 +94,16 @@ function FriendsMemories() {
     });
   }; */
 
+  const [userData, setUserData] = useState([]);
+
+  axios({
+    method: 'get',
+    url: '/api/user_memories/'
+  })
+  .then((res) => {
+    console.log("Data is = " + res)
+  })
+
   const [value, setValue] = useState('date');
 
   const handleChange = (e) => {
@@ -160,38 +171,6 @@ function FriendsMemories() {
         User {ID}'s Drawings
       </div>
 
-      <div>
-        <button onClick={openModal}>Open Modal</button>
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          contentLabel="Report Modal"
-        >
-          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report</h2>
-          <button onClick={closeModal} className="closeButton">X</button>
-          <div className="ReportHeader">
-            <h1><u>Report X's Drawing</u></h1>
-            <p>You are reporting X's drawing</p>
-          </div>
-          <form className="ReportForm">
-            <label>
-              Please pick an option that best describes the drawing: <br></br>
-              <select value={reason} onChange={handleReportChange}>
-                <option value="default">Please select</option>
-                <option value="offensive">The drawing is offensive</option>
-                <option value="inappropriate">The drawing is inappropriate</option>
-                <option value="unrelated">The drawing is unrelated to the prompt</option>
-              </select>
-            </label> <br></br><br></br>
-            Any other comments? <br></br>
-            <input></input> <br></br><br></br>
-            <button onClick={submitReport}>Submit Report</button>
-            <button onClick={closeModal}>Cancel Report</button>
-          </form>
-        </Modal>
-      </div>
-
       <div className="DropdownDiv">
         <label>
           Order By:
@@ -216,35 +195,37 @@ function FriendsMemories() {
             <GridItemContent>
               <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
               Drawn on: DD/MM/YYYY <br></br>
-              Report Inappropriate Drawing
-            </GridItemContent>
-          </GridItemWrapper>
-          <GridItemWrapper key="dark-magician">
-            <GridItemContent>
-              <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
-              Drawn on: DD/MM/YYYY <br></br>
-              Report Inappropriate Drawing
-            </GridItemContent>
-          </GridItemWrapper>
-          <GridItemWrapper key="kuriboh">
-            <GridItemContent>
-              <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
-              Drawn on: DD/MM/YYYY <br></br>
-              Report Inappropriate Drawing
-            </GridItemContent>
-          </GridItemWrapper>
-          <GridItemWrapper key="spell-caster">
-            <GridItemContent>
-              <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
-              Drawn on: DD/MM/YYYY <br></br>
-              Report Inappropriate Drawing
-            </GridItemContent>
-          </GridItemWrapper>
-          <GridItemWrapper key="summoned-skull">
-            <GridItemContent>
-              <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
-              Drawn on: DD/MM/YYYY <br></br>
-              Report Inappropriate Drawing
+              <Button onClick={openModal}>
+                Report Inappropriate Drawing
+              </Button>
+              <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                contentLabel="Report Modal"
+              >
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report</h2>
+                <button onClick={closeModal} className="closeButton">X</button>
+                <div className="ReportHeader">
+                  <h1><u>Report {ID}'s Drawing</u></h1>
+                  <p>You are reporting {ID}'s drawing</p>
+                </div>
+                <form className="ReportForm">
+                  <label>
+                    Please pick an option that best describes the drawing: <br></br>
+                    <select value={reason} onChange={handleReportChange}>
+                      <option value="default">Please select</option>
+                      <option value="offensive">The drawing is offensive</option>
+                      <option value="inappropriate">The drawing is inappropriate</option>
+                      <option value="unrelated">The drawing is unrelated to the prompt</option>
+                    </select>
+                  </label> <br></br><br></br>
+                  Any other comments? <br></br>
+                  <input></input> <br></br><br></br>
+                  <button onClick={submitReport}>Submit Report</button>
+                  <button onClick={closeModal}>Cancel Report</button>
+                </form>
+              </Modal>
             </GridItemContent>
           </GridItemWrapper>
         </ResponsiveGridLayout>
