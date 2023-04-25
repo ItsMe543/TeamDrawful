@@ -13,6 +13,18 @@ function SignUp() {
   const[confirmPassword, setConfirmPassword] = useState("");
   const[cpVisible, setCPVisible] = useState(false);
 
+  const[errormsg, setErrormsg] = useState("");
+
+  var x = 1;
+
+  //const [checkIfExists, setCheckIfExists] = ({ key:values});
+
+  //useEffect(() => {
+    //axios.get("/api/User_Accounts/").then((checkIfExists) => {
+      //setCheckIfExists(checkIfExists?.checkIfExists);
+    //});
+  //}, []);
+
   const [accountDetails, setAccountDetails] = useState({
     username: "",
     password: "",
@@ -28,25 +40,6 @@ function SignUp() {
     friends: {},
     friendRequests: {},
   })
-
-  const setDetails = () => {
-    setAccountDetails({
-      username: fullname,
-      password: accountHashedPass,
-      first_name: fullname.split(" ")[0],
-      last_name: fullname.split(" ")[1],
-      email: accountEmail,
-      bio: "",
-      badgesEarned: "",
-      averageRating: 0.0,
-      currentStreak: 0,
-      maxStreak: 0,
-      totalStars: 0,
-      friends: {},
-      friendRequests: {},
-    })
-    sendNewDetails();
-  }
 
   const [fullname, setFullName] = useState("");
   const [accountHashedPass, setAccountHashedPass] = useState("");
@@ -85,29 +78,41 @@ function SignUp() {
   const checkUserDetails = (e) => {
     e.preventDefault();
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
-    if ((fullname.length) < 2 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
+    if ((fullname.length) < 1 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
+      setErrormsg("You must provide a name with no symbols or numbers");
       return;
     }
     //console.log("You have a wonderful name :)");
 
     //check username (at least 8 characters, no duplicate usernames)
     if ((accountUserName.length < 8 || accountUserName.match(/[/\s/g]/))){
+      setErrormsg("Username must be at least 8 characters long with no spaces");
       return;
     }
 
     
 
     //check email (Real email adress, no duplicate emails)
-    if ((accountEmail.length < 1) || !(accountEmail.match(/[@]/))){
+    if ((accountEmail.length < 2)){
+      setErrormsg("Must be a valid email address");
       return;
     }
 
     console.log("All good!");
 
     //Check password (at least 8 characters, at least 1 number)
+    if ((password.length < 8)){
+      setErrormsg("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (password != confirmPassword){
+      setErrormsg("Passwords do not match");
+      return;
+    }
 
     //If all checks are passed, send details to database 
-
+    setErrormsg("Success");
     setAccountHashedPass(password);
     sendNewDetails(); 
   }
@@ -164,6 +169,10 @@ function SignUp() {
           <Link className="login-signup-switch" to={"/login/"}>
               Already got an account? Login
           </Link>
+
+          <div className="error-msg">
+            {errormsg} {'\n'}
+          </div>
 
           <button className="submit-acc-details" onClick={checkUserDetails}>
             Create account

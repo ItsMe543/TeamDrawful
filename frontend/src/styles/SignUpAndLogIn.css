@@ -88,13 +88,15 @@
 }
 
 
-
-
-
+.error-msg{
+    margin-bottom: 5px;
+    font-family: "insta";
+    color: red;
+    font-size: 15px;
+}
 
 .login-signup-switch {
     font-size: 25px;
-
 }
 
 .submit-details {
