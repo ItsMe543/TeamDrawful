@@ -33,6 +33,7 @@ WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PIP_ROOT_USER_ACTION=ignore
 #ENV PYTHONPATH "{PYTHONPATH}:/home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22"
 # install psycopg2 dependencies
 RUN apk update \
