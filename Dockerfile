@@ -39,7 +39,7 @@ ENV PIP_ROOT_USER_ACTION=ignore
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 # install dependencies
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip --root-user-action=ignore
 COPY ./requirements.txt .
 RUN pip3 install -r requirements.txt
 # install python packages
