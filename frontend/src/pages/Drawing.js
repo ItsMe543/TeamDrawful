@@ -265,10 +265,10 @@ function getTime(){
 
 function getSeconds(){
   if(seconds ===60){
-    return "00:01:00"
+    return "00:00:00";
   }
   else{
-    return "00:00:"+seconds
+    return "00:00:"+(60-seconds);
   }
 }
 

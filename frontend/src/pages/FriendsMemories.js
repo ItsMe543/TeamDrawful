@@ -108,7 +108,17 @@ function FriendsMemories() {
   const [value, setValue] = useState('date');
 
   const handleChange = (e) => {
+    console.log(value);
     setValue(e.target.value);
+    userData.sort(function(a, b) {
+      if (value === 'date') {
+        console.log("Here!");
+        return a.id - b.id;
+      } else {
+        console.log("Or here...");
+        return b.id - a.id;
+      }
+    });
   };
 
   const [reason, setReason] = useState('default');
@@ -192,7 +202,7 @@ function FriendsMemories() {
           width={1000}
           isDraggable={false}
         >
-          {userData.map((item, i) => {
+          {userData.sort().map((item, i) => {
             return (
               <GridItemWrapper key={i}>
                 <GridItemContent>
