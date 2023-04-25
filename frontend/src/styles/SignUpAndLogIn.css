@@ -1,4 +1,4 @@
-.accounts-page{
+.accounts-page {
     padding-left: 50px;
     padding-right: 50px;
     align-items: center;
@@ -7,21 +7,21 @@
     justify-content: center;
 }
 
-.account-details{
+.account-details {
     width: 500px;
     margin-top: 30px;
     font-size: 30px;
     color: black;
     display: grid;
-    background-color: rgb(253,205,18);
+    background-color: rgb(253, 205, 18);
     padding: 10px;
     border-radius: 7px;
     align-items: center;
-    
-    
+
+
 }
 
-.title-text{
+.title-text {
     color: black;
     text-align: center;
     font-size: 50px;
@@ -29,51 +29,51 @@
     border-width: 2px;
 }
 
-.details-segment{
-    background-color: rgb(210,171,13);
+.details-segment {
+    background-color: rgb(210, 171, 13);
     padding: 6px;
     margin-bottom: 8px;
     border-radius: 9px;
-    font-family: "Handmade";
+    font-family: "insta";
 }
 
-.info-label{
+.info-label {
     margin-bottom: -26px;
     margin-left: 4px;
-    font-family: "Handmade";
+    font-family: "insta";
     color: black;
 }
 
-.info-fullname-box{
+.info-fullname-box {
     margin-top: 15px;
-    font-family: "Handmade";
+    font-family: "insta";
     font-size: 20px;
     width: 400px;
     border-radius: 5px;
     border: 0px;
 }
 
-.info-username-box{
+.info-username-box {
     margin-top: 15px;
-    font-family: "Handmade";
+    font-family: "insta";
     font-size: 20px;
     width: 400px;
     border-radius: 5px;
     border: 0px;
 }
 
-.info-email-box{
+.info-email-box {
     margin-top: 15px;
-    font-family: "Handmade";
+    font-family: "insta";
     font-size: 20px;
     width: 400px;
     border-radius: 5px;
     border: 0px;
 }
 
-.info-box{
+.info-box {
     margin-top: 15px;
-    font-family: "Handmade";
+    font-family: "insta";
     font-size: 20px;
     width: 400px;
     border-radius: 5px;
@@ -85,19 +85,19 @@
 
 
 
-.login-signup-switch{
+.login-signup-switch {
     font-size: 25px;
-    
+
 }
 
-.submit-details{
+.submit-details {
     margin-top: 40px;
     width: 100px;
 }
 
-.infoP-box{
+.infoP-box {
     margin-top: -13px;
-    font-family: "Handmade";
+    font-family: "insta";
     font-size: 20px;
     width: 400px;
     border-radius: 5px;
