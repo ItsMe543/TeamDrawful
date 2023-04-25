@@ -95,7 +95,7 @@ function SignUp() {
       return;
     }
 
-    if ()
+    
 
     //check email (Real email adress, no duplicate emails)
     if ((accountEmail.length < 1) || !(accountEmail.match(/[@]/))){

@@ -65,7 +65,7 @@ function Main() {
       <Route path="/notifications" element={<Notifications />}></Route>
       <Route path="/badges" element={<Badges />}></Route>
       <Route path="/drawing" element={<Drawing />}></Route>
-      <Route path="/difficulty" element={<DifficultyPage />}></Route>
+      {/* <Route path="/difficulty" element={<DifficultyPage />}></Route> */}
       <Route path="/comments/:ID" element={<Comments />}></Route>
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
       <Route path="/login" element={<Login />}></Route>
