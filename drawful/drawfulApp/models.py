@@ -44,7 +44,7 @@ class User_Memories(models.Model):
         #auto_now updates this field to the last time this object saves data
         prompt = models.CharField(max_length=50)
         #***None must be filled*** pip install pillow
-        drawing = models.ImageField(upload_to=generateFilename, height_field=None, width_field=None, max_length=100)
+        drawing = Base64Field(max_length=3000000, blank=True, null=True)
 
 
 
@@ -58,8 +58,8 @@ class User_Accounts(AbstractUser):
         last_name = models.CharField(max_length=50, null=True, blank=True)
         email = models.CharField(max_length=320)
         bio = models.CharField(max_length=30, null=True, blank=True)
-        profilePicture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True, blank=True)
-        favouriteDraw = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True, blank=True)
+        profilePicture = Base64Field(max_length=3000000, blank=True, null=True)
+        favouriteDraw = Base64Field(max_length=3000000, blank=True, null=True)
         badgesEarned = models.CharField(max_length=30, null=True, blank=True)
         averageRating = models.FloatField()
         currentStreak = models.IntegerField(default=0)
@@ -77,7 +77,7 @@ class User_Accounts(AbstractUser):
 #Primary key = badgeName
 class Badges(models.Model):
         badgeName = models.CharField(max_length=20, primary_key=True)
-        badgeIcon = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+        badgeIcon = Base64Field(max_length=3000000, blank=True, null=True)
         badgeDescription = models.CharField(max_length=500)
         badgeUnlocked = models.BooleanField(default=False)
 
