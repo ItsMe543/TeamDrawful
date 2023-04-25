@@ -85,16 +85,26 @@ function SignUp() {
       console.log("YOUR NAME IS BAD!");
       return;
     }
-    console.log("You have a wonderful name :)");
+    //console.log("You have a wonderful name :)");
 
     //check username (at least 8 characters, no duplicate usernames)
+    if ((accountUserName.length < 8)){
+      console.log("Username NOT allowed");
+      return;
+    }
 
     //check email (Real email adress, no duplicate emails)
+    if ((accountEmail.length < 1) || !(accountEmail.match(/[@]/))){
+      console.log("No way thats a real email");
+      return;
+    }
+
+    console.log("All good!");
 
     //Check password (at least 8 characters, at least 1 number)
 
     //If all checks are passed, send details to database 
-    sendNewDetails();
+    sendNewDetails(); 
   }
 
   //<PasswordInput onChange={e => setAccountHashedPass(e.target.value)}/>

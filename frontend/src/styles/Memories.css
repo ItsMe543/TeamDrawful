@@ -25,12 +25,17 @@
 }
 .m-drawing {
   color: rgb(54, 54, 54);
-  width: 60%;
+
   background-color: rgb(54, 54, 54);
   height: 600px;
   width: 1000px;
   display: flex;
   justify-content: center;
+}
+.m-drawing img {
+  max-width: 1000px;
+  object-fit: contain;
+  max-height: 600px;
 }
 .twoButtons {
   margin-left: 5%;
