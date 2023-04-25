@@ -21,3 +21,8 @@ class User_AccountsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User_Accounts
         fields = ('username','name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests')
+
+class BadgesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Badges
+        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked', 'badgeDateUnlocked', 'badgeTimeUnlocked')

@@ -75,8 +75,10 @@ class User_Accounts(models.Model):
 class Badges(models.Model):
         badgeName = models.CharField(max_length=20, primary_key=True)
         badgeIcon = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-        badgeDescirption = models.CharField(max_length=500)
+        badgeDescription = models.CharField(max_length=500)
         badgeUnlocked = models.BooleanField(default=False)
+        badgeDateUnlocked = models.DateField(default=0)
+        badgeTimeUnlocked = models.TimeField(default=0)
 
 
 #This table is the table for prompts which can be generated
