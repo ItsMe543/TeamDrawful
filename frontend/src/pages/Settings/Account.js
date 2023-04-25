@@ -8,7 +8,8 @@ export default function Account() {
     const [post, setPost] = useState({
         username: "",
         email: "",
-        name: "",
+        first_name: "",
+        last_name: "",
         bio: "",
         badgesEarned: "",
         maxStreak: "",
@@ -16,55 +17,75 @@ export default function Account() {
         averageRating: "",
     });
 
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
+
+    useEffect(() => {
+        axios.get(`/api/user_accounts/1/`).then((data) => {
+            console.log(data);
+            setPost(data?.data);
+            setName(data?.data.first_name + " " + data?.data.last_name);
+            setUsername(data?.data.username);
+            setEmail(data?.data.email);
+            setBio(data?.data.bio);
+        });
+    }, []);
+
+    const handleSave = () => {
+        axios
+            .put(`/api/user_accounts/1/`, {
+                username: username,
+                email: email,
+                first_name: name.split(' ')[0],
+                last_name: name.split(' ')[1],
+                bio: bio,
+                badgesEarned: post.badgesEarned,
+                maxStreak: post.maxStreak,
+                totalStars: post.totalStars,
+                averageRating: post.averageRating,
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    //temporary
     const [data, setData] = useState({
         drawing: null
     })
 
+    //temporary
     useEffect(() => {
-        const email = "test";
-        //axios.get(`/api/user_accounts/${email}/`).then((data) => {
         axios.get(`/api/user_memories/1/`).then((data) => {
             console.log(data);
             setData(data?.data);
         });
     }, []);
 
-    useEffect(() => {
-        const email = "test";
-        //axios.get(`/api/user_accounts/${email}/`).then((data) => {
-        axios.get(`/api/user_accounts/1/`).then((data) => {
-            console.log(data);
-            setPost(data?.data);
-        });
-    }, []);
+    const checkUserDetails = (e) => {
+        e.preventDefault();
+        //Check fullname (at least 2 letters/spaces, no symbols or numbers)
+        if ((name.length) < 1 || name.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)) {
+            return;
+        }
 
-    function deleteAccount() {
-        const email = "test";
-        axios
-            //.delete(`/api/user_accounts/${email}/`)
-            .delete(`/api/user_accounts/1/`)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        //check username (at least 8 characters, no duplicate usernames)
+        if ((username.length < 8)) {
+            return;
+        }
+
+        //check bio (no more than 200 characters)
+        if ((bio.length > 200)) {
+            return;
+        }
+
+        handleSave();
     }
-
-    function updateAccount() {
-        const email = "test";
-        axios
-            //.put(`/api/user_accounts/${email}/`, post)
-            .put(`/api/user_accounts/1/`, post)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-
 
     return (
         <div className="account-container">
@@ -72,7 +93,6 @@ export default function Account() {
                 <Row>
                     <Col md={2.5} style={{ paddingLeft: "30px" }}>
                         <Link to="/memories">
-
                             <img src={data.drawing} alt={"drawing image"} />
                         </Link>
                     </Col>
@@ -92,34 +112,31 @@ export default function Account() {
                         <div className="input">
                             <input
                                 placeholder="Enter your name"
-                                value={post.name}
-                                onChange={(e) => setPost({ ...post, name: e.target.value })}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
                         <div className="input">
                             <input
-                                style={{ color: "rgb(146,146,146)" }}
                                 placeholder="Enter your username"
-                                value={post.username}
-                                onChange={(e) => setPost({ ...post, username: e.target.value })}
-                                readOnly="true"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
                         <div className="input">
                             <input
-                                style={{ color: "rgb(146,146,146)" }}
+                                style={{ color: "rgb(120,120,120)" }}
                                 placeholder="email id"
-                                value={post.email}
+                                value={email}
                                 readOnly="true"
                             />
                         </div>
                         <div className="input">
                             <textarea
                                 placeholder="Max No. of Characters: 256s"
-                                value={post.bio}
+                                value={bio}
                                 style={{ resize: "none" }}
-                                maxLength={256}
-                                onChange={(e) => setPost({ ...post, bio: e.target.value })}
+                                onChange={(e) => setBio(e.target.value)}
                             />
                         </div>
                     </Col>
@@ -137,8 +154,7 @@ export default function Account() {
                             <div>Average Rating: {post.averageRating}</div>
                             <div>Total Stars Earned: {post.totalStars} </div>
                             <div>Badges Unlocked: {post.badgesEarned}</div>
-                            {/*<button onClick={deleteAccount}>Delete Account</button>*/}
-                            <button onClick={updateAccount}>Save Changes</button>
+                            <button onClick={checkUserDetails}>Save Changes</button>
 
                         </div>
                     </Col>
