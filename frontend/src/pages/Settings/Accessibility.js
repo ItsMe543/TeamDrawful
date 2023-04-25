@@ -3,6 +3,7 @@ import "../../styles/Settings/Light.css";
 import "../../styles/Settings/Font.css";
 import "../../styles/Settings/Contrast.css";
 import "../../styles/Settings/Pog.css";
+import "../../styles/Settings/Large.css";
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from "@mui/material/Switch";
@@ -11,6 +12,7 @@ const POG_KEY = "isPog"
 const LIGHT_MODE_KEY = "isLightMode";
 const CONTRAST_KEY = "isContrast";
 const FONT_KEY = "isFont";
+const LARGE_KEY = "isLarge"
 
 export default function Accessibility() {
     const PinkSwitch = styled(Switch)(({ theme }) => ({
@@ -43,6 +45,11 @@ export default function Accessibility() {
         return stored !== null ? JSON.parse(stored) : false;
     });
 
+    const [isLarge, setLarge] = useState(() => {
+        const stored = localStorage.getItem(LARGE_KEY);
+        return stored !== null ? JSON.parse(stored) : false;
+    });
+
     const toggleMode = () => {
         setIsLightMode(!isLightMode);
         setContrast(false);
@@ -59,6 +66,10 @@ export default function Accessibility() {
 
     const togglePog = () => {
         setPog(!isPog);
+    }
+
+    const toggleLarge = () => {
+        setLarge(!isLarge);
     }
 
 
@@ -81,6 +92,11 @@ export default function Accessibility() {
         localStorage.setItem(POG_KEY, JSON.stringify(isPog));
         document.body.classList.toggle("pog", isPog);
     }, [isPog]);
+
+    useEffect(() => {
+        localStorage.setItem(LARGE_KEY, JSON.stringify(isLarge));
+        document.body.classList.toggle("large", isLarge);
+    }, [isLarge]);
 
     return (
         <div className="accessibility-container" style={{}}>
@@ -107,10 +123,18 @@ export default function Accessibility() {
                 />
 
                 <br></br>
-                Pog
+                Pog will be removed soon
                 <Switch
                     checked={isPog}
                     onChange={togglePog}
+                    color="secondary"
+                />
+
+                <br></br>
+                Larger Text
+                <Switch
+                    checked={isLarge}
+                    onChange={toggleLarge}
                     color="secondary"
                 />
             </div>

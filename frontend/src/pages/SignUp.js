@@ -11,7 +11,9 @@ function SignUp() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   const [accountDetails, setAccountDetails] = useState({
     username: "",
-    name: "",
+    password: "",
+    first_name: "",
+    last_name: "",
     email: "",
     bio: "",
     badgesEarned: "",
@@ -23,13 +25,12 @@ function SignUp() {
     friendRequests: {},
   })
 
-
-
-
   const setDetails = () => {
     setAccountDetails({
       username: fullname,
-      name: accountUserName,
+      password: accountHashedPass,
+      first_name: fullname.split(" ")[0],
+      last_name: fullname.split(" ")[1],
       email: accountEmail,
       bio: "",
       badgesEarned: "",
@@ -44,6 +45,7 @@ function SignUp() {
   }
 
   const [fullname, setFullName] = useState("");
+  const [accountHashedPass, setAccountHashedPass] = useState("");
   const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
   const [accountEmail, setAccountEmail] = useState({accountEmail: ""});
 
@@ -53,7 +55,9 @@ function SignUp() {
       url: '/api/user_accounts/',
       data: {
         username: fullname,
-        name: accountUserName,
+        password: accountHashedPass,
+        first_name: fullname.split(" ")[0],
+        last_name: fullname.split(" ")[1],
         email: accountEmail,
         bio: "",
         badgesEarned: "",
@@ -65,7 +69,7 @@ function SignUp() {
         friendRequests: "",
       },
         headers: {
-          "content-type": "application/json",
+          "content-type": "application/json"
         }
       })
       .then((res) => console.log("Sent: " + res))
@@ -100,8 +104,10 @@ function SignUp() {
     //Check password (at least 8 characters, at least 1 number)
 
     //If all checks are passed, send details to database 
-    //setDetails();
+    sendNewDetails(); 
   }
+
+  //<PasswordInput onChange={e => setAccountHashedPass(e.target.value)}/>
   
   return (
     <div className="page">
@@ -127,7 +133,8 @@ function SignUp() {
         </div>
 
         <div className="details-segment">
-          <PasswordInput/>
+            <div className="info-label">Password</div>
+            <input className="info-pass-box" type="text" placeholder="Password" onChange={e => setAccountHashedPass(e.target.value)}/>
         </div>
 
         <div className="details-segment">

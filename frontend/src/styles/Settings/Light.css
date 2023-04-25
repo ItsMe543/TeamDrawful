@@ -270,3 +270,8 @@ body.light-mode .login-details {
     border: 1px solid black;
 
 }
+
+body.light-mode .popup button {
+    background-color: rgb(255, 137, 137);
+    border: 1px solid black;
+}

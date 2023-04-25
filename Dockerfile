@@ -33,18 +33,20 @@ WORKDIR /home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PIP_ROOT_USER_ACTION=ignore
 #ENV PYTHONPATH "{PYTHONPATH}:/home/gitlab-runner/builds/ZTttgQvU/0/team-projects-2022-23/team40-22"
 # install psycopg2 dependencies
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 # install dependencies
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip 
 COPY ./requirements.txt .
 RUN pip3 install -r requirements.txt
 # install python packages
 RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 RUN pip3 install pillow
+RUN pip3 install django-base64field
 # copy project
 COPY . .
 #CMD python3 manage.py runserver
