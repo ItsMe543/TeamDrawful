@@ -77,21 +77,22 @@ body{
     width: 80%;
     left: 50%;
     transform: translate(-50%);
+
 }
 
-.seperator2, .seperator3{
-    height: 1px;
-    width: 80%;
+.underline{
+    border-bottom: 1px solid white;
 }
 
-.heading{
+.badgeHeading{
     font-size: 64px;
     margin-left: 5%;
 }
 
 .searchBar{
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
+    
 }
 
 
