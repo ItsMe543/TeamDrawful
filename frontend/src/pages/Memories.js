@@ -51,18 +51,16 @@ function Memories() {
   }, []);
 
   const downloadImage = async (imgURL) => {
-    imgURL = imgURL;
-    imgURL = imgURL.slice(0, 4) + "s" + imgURL.slice(4);
-
-    const response = await fetch(imgURL);
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = data[ID].date;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    var a = document.createElement("a"); //Create <a>
+    a.href = imgURL; //Image Base64 Goes here
+    a.download =
+      date.getFullYear() +
+      "-" +
+      date.getMonth() +
+      "-" +
+      date.getDate() +
+      ".png"; //File name Here
+    a.click(); //Downloaded file
   };
   const convertDates = () => {
     let count = 0;
