@@ -30,3 +30,9 @@ class User_AccountsSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class BadgesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Badges
+        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked', 'badgeDateUnlocked', 'badgeTimeUnlocked')

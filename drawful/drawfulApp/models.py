@@ -79,6 +79,8 @@ class Badges(models.Model):
         badgeIcon = Base64Field(max_length=3000000, blank=True, null=True)
         badgeDescription = models.CharField(max_length=500)
         badgeUnlocked = models.BooleanField(default=False)
+        badgeDateUnlocked = models.DateField(default=0)
+        badgeTimeUnlocked = models.TimeField(default=0)
 
 
 #This table is the table for prompts which can be generated

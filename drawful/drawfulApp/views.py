@@ -31,3 +31,8 @@ class User_AccountsView(viewsets.ModelViewSet):
     def signUp(request):
         if request.method == 'POST':
             print(request.body)
+
+
+class BadgesView(viewsets.ModelViewSet):
+    serializer_class = serializers.BadgesSerializer
+    queryset = models.Badges.objects.all()
