@@ -3,6 +3,9 @@
   height: 100%;
   width: 100%;
 }
+p {
+  color: white;
+}
 .m-title {
   text-align: center;
 }
@@ -122,4 +125,9 @@
 }
 .react-calendar__tile--active {
   background-color: rgb(54, 54, 54);
+}
+
+.m-errors {
+  color: red;
+  font-size: 1.5em;
 }
