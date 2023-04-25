@@ -217,6 +217,14 @@ function myFunction() {
   }
 }
 
+function listCookies() {
+    var theCookies = document.cookie.split(';');
+    var aString = '';
+    for (var i = 1 ; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i-1] + "\n";
+    }
+    console.log(aString);
+}
 
 
 
@@ -270,10 +278,16 @@ function getDrawing(){
   return dataURL;
 
 }
+
+function getUsername(){
+  return getCookie('username');
+}
+
 function Drawing() {
   const [date, setName, difficulty] = useState({
     date: " ", difficulty: " "
   });
+
 
 
   const submitForm = () => {
@@ -282,6 +296,7 @@ function Drawing() {
       method: 'post',
       url: 'api/user_memories/',
       data: {
+        username: getUsername(),
         date: getDate(),
         timeCompleted: getTime(),
         difficulty: "69",
