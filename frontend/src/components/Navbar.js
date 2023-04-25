@@ -16,7 +16,9 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="logo">
-        <img src={logo} alt="drawful logo" />
+        <Link to="/">
+          <img src={logo} alt="drawful logo" />
+        </Link>
       </div>
       <div className="links">
         <div className="home">

@@ -14,8 +14,6 @@ body.light-mode h2 {
     color: rgb(0, 0, 0);
 }
 
-
-
 body.light-mode div {
     color: black;
 }
@@ -273,5 +271,17 @@ body.light-mode .login-details {
 
 body.light-mode .popup button {
     background-color: rgb(255, 137, 137);
+    border: 1px solid black;
+}
+
+body.light-mode .Friend-picture {
+    border: 1px solid black;
+}
+
+body.light-mode .Friend-m-picture {
+    border: 1px solid black;
+}
+
+body.light-mode .Friend-r-picture {
     border: 1px solid black;
 }

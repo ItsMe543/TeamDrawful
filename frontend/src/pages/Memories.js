@@ -13,28 +13,33 @@ function Memories() {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const onDateChange = (newDate) => {
-    const formattedDate = newDate.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
+    let formattedDate = newDate;
+
+    const day = formattedDate.getDate();
+    let month = formattedDate.getMonth() + 1;
+    month = month.toString().padStart(2, "0");
+    const year = formattedDate.getFullYear();
+
+    formattedDate = year + "-" + month + "-" + day;
+
     const found = data.find((x) => x.date === formattedDate);
+
     if (found) {
       setID(data.indexOf(found));
+      console.log("found");
     }
     setDate(newDate);
   };
   const findrecentDate = () => {
     const recent = data
-      .map((obj) => new Date(obj.date.split("/").reverse().join("-")))
+      .map((obj) => new Date(obj.date))
       .reduce((prev, curr) => (curr > prev ? curr : prev), 0);
 
     return recent;
   };
 
   const getData = () => {
-    axios.get("https://drawful.bham.team/api/user_memories/").then((data) => {
-      // data.data.sort((a, b) => a.date - b.date);
+    axios.get("/api/user_memories/").then((data) => {
       setData(data?.data);
       setLoaded(true);
     });
@@ -44,19 +49,18 @@ function Memories() {
     getData();
     setDate(findrecentDate());
   }, []);
-  const downloadImage = async (imgURL) => {
-    imgURL = imgURL;
-    imgURL = imgURL.slice(0, 4) + "s" + imgURL.slice(4);
 
-    const response = await fetch(imgURL);
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = data[ID].date;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const downloadImage = async (imgURL) => {
+    var a = document.createElement("a"); //Create <a>
+    a.href = imgURL; //Image Base64 Goes here
+    a.download =
+      date.getFullYear() +
+      "-" +
+      date.getMonth() +
+      "-" +
+      date.getDate() +
+      ".png"; //File name Here
+    a.click(); //Downloaded file
   };
   const convertDates = () => {
     let count = 0;
@@ -70,7 +74,14 @@ function Memories() {
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       // Check if the date is in the array of highlighted dates
-      if (highlightedDates.some((d) => d.getTime() === date.getTime())) {
+      if (
+        highlightedDates.some(
+          (d) =>
+            d.getDate() === date.getDate() &&
+            d.getMonth() === date.getMonth() &&
+            d.getFullYear() === date.getFullYear()
+        )
+      ) {
         // If the date is in the array of highlighted dates, return a div with a class name
         return "highlight";
       } else {
@@ -80,12 +91,8 @@ function Memories() {
   };
 
   const convertDateStringtoObj = (dateStr) => {
-    let date = dateStr.split("/");
-    let newDate = new Date(
-      parseInt(date[2]),
-      parseInt(date[1]) - 1,
-      parseInt(date[0])
-    );
+    let newDate = new Date(dateStr);
+
     return newDate;
   };
 
@@ -113,8 +120,8 @@ function Memories() {
   };
   const highlightedDates = convertDates();
   // console.log(data[0].drawing);
-  console.log(ID);
-  console.log(data);
+  // console.log(date);
+
   if (!loaded) return <p>Loading...</p>;
 
   return (
@@ -150,7 +157,7 @@ function Memories() {
             onClick={() => handleLeftClick()}
           />
           <div className="m-drawing">
-            <img src={data[ID]?.drawing} alt={"drawing image"} />
+            <img src={data[ID].drawing} alt={"drawing image"} />
           </div>
           <HiArrowCircleRight
             className="arrow"

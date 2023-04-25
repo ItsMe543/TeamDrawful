@@ -21,6 +21,7 @@ function Main() {
     const isContrast = localStorage.getItem("isContrast") === "true";
     const isFont = localStorage.getItem("isFont") === "true";
     const isPog = localStorage.getItem("isPog") === "true";
+    const isLarge = localStorage.getItem("isLarge") === "true";
 
     if (isLightMode) {
       document.body.classList.add("light-mode");
@@ -45,6 +46,12 @@ function Main() {
     } else {
       document.body.classList.remove("pog");
     }
+
+    if (isLarge) {
+      document.body.classList.add("large");
+    } else {
+      document.body.classList.remove("large");
+    }
   }, []);
 
   return (
@@ -58,7 +65,7 @@ function Main() {
       <Route path="/notifications" element={<Notifications />}></Route>
       <Route path="/badges" element={<Badges />}></Route>
       <Route path="/drawing" element={<Drawing />}></Route>
-      <Route path="/difficulty" element={<DifficultyPage />}></Route>
+      {/* <Route path="/difficulty" element={<DifficultyPage />}></Route> */}
       <Route path="/comments/:ID" element={<Comments />}></Route>
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
       <Route path="/login" element={<Login />}></Route>

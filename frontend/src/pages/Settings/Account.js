@@ -16,6 +16,19 @@ export default function Account() {
         averageRating: "",
     });
 
+    const [data, setData] = useState({
+        drawing: null
+    })
+
+    useEffect(() => {
+        const email = "test";
+        //axios.get(`/api/user_accounts/${email}/`).then((data) => {
+        axios.get(`/api/user_memories/1/`).then((data) => {
+            console.log(data);
+            setData(data?.data);
+        });
+    }, []);
+
     useEffect(() => {
         const email = "test";
         //axios.get(`/api/user_accounts/${email}/`).then((data) => {
@@ -59,7 +72,8 @@ export default function Account() {
                 <Row>
                     <Col md={2.5} style={{ paddingLeft: "30px" }}>
                         <Link to="/memories">
-                            <img src="/drawings/car.jpg" alt="car" />
+
+                            <img src={data.drawing} alt={"drawing image"} />
                         </Link>
                     </Col>
                     <Col style={{ paddingLeft: "30px" }}>
