@@ -78,33 +78,41 @@ function SignUp() {
   const checkUserDetails = (e) => {
     e.preventDefault();
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
-    if ((fullname.length) < 2 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
-      setErrormsg("This is too short to be a name");
+    if ((fullname.length) < 1 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
+      setErrormsg("You must provide a name with no symbols or numbers");
       return;
     }
     //console.log("You have a wonderful name :)");
 
     //check username (at least 8 characters, no duplicate usernames)
     if ((accountUserName.length < 8 || accountUserName.match(/[/\s/g]/))){
+      setErrormsg("Username must be at least 8 characters long with no spaces");
       return;
     }
 
     
 
     //check email (Real email adress, no duplicate emails)
-    if ((accountEmail.length < 1) || !(accountEmail.match(/[@]/))){
+    if ((accountEmail.length < 2)){
+      setErrormsg("Must be a valid email address");
       return;
     }
 
     console.log("All good!");
 
     //Check password (at least 8 characters, at least 1 number)
-    if ((password.length < 8) || password != confirmPassword){
+    if ((password.length < 8)){
+      setErrormsg("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (password != confirmPassword){
+      setErrormsg("Passwords do not match");
       return;
     }
 
     //If all checks are passed, send details to database 
-
+    setErrormsg("Success");
     setAccountHashedPass(password);
     sendNewDetails(); 
   }
@@ -163,7 +171,7 @@ function SignUp() {
           </Link>
 
           <div className="error-msg">
-            {errormsg} {'\n'}vgh
+            {errormsg} {'\n'}
           </div>
 
           <button className="submit-acc-details" onClick={checkUserDetails}>
