@@ -6,7 +6,7 @@
 }
 
 .Title {
-  font-family: "sometimes";
+  font-family: "insta";
   font-size: 100px;
   color: rgb(255, 255, 255);
   margin-bottom: 1%;
@@ -16,7 +16,7 @@
 }
 
 .PromptName {
-  font-family: "sometimes";
+  font-family: "insta";
   font-size: 10;
   color: rgb(255, 255, 255);
   /* margin-left: 40%;
@@ -46,11 +46,13 @@
   flex: 0 0 25%;
   padding: 10px;
 }
+
 .userDrawing {
   display: flex;
   justify-content: center;
   object-fit: contain;
 }
+
 .userDrawing img {
   max-width: 200px;
 }
@@ -61,7 +63,7 @@
 }
 
 .UserName {
-  font-family: "sometimes";
+  font-family: "insta";
   font-size: 33px;
   color: rgb(255, 255, 255);
   /* border-bottom: 2px solid rgb(255, 255, 255); */
@@ -72,7 +74,7 @@
 }
 
 .Stats {
-  font-family: "sometimes";
+  font-family: "insta";
   font-size: 25px;
   color: rgb(255, 255, 255);
   margin-bottom: -2%;
@@ -122,11 +124,13 @@
   background-color: rgb(253, 205, 18);
   color: white;
 }
+
 .Ratings {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .RateText {
   /*background-color: rgb(45,45,45);*/
   /*
@@ -210,13 +214,13 @@
 
 .CommentText {
   color: rgb(255, 255, 255);
-  font-family: "Handmade";
+  font-family: "insta";
   font-size: 20px;
 }
 
 .CommentUsername {
   color: rgb(253, 205, 18);
-  font-family: "Handmade";
+  font-family: "insta";
   font-size: 20px;
 }
 
@@ -227,21 +231,26 @@
     flex-direction: column;
     justify-content: center;
   }
+
   .RateText {
     justify-content: center;
   }
+
   .StarBar {
     display: flex;
     justify-content: center;
     margin: 0;
     margin-top: 3%;
   }
+
   .SubmitButton {
     top: 20px;
   }
+
   .Title {
     font-size: 3em;
   }
+
   .Comment {
     grid-template-columns: auto;
   }
