@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Placeholder } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { GridLayout, Responsive, WidthProvider } from "react-grid-layout";
 import styled from "styled-components";
@@ -96,13 +96,14 @@ function FriendsMemories() {
 
   const [userData, setUserData] = useState([]);
 
-  axios({
-    method: 'get',
-    url: '/api/user_memories/'
-  })
-  .then((res) => {
-    console.log("Data is = " + res)
-  })
+  useEffect(() => {
+    axios
+    .get("/api/user_memories/")
+    .then((data) => {
+      console.log(data)
+      setUserData(data?.data);
+    });
+  }, []);
 
   const [value, setValue] = useState('date');
 
@@ -137,13 +138,13 @@ function FriendsMemories() {
   }
 
   //Will be really easy to just load every image (with information) into the array
-  const layout = [
-    { i: "blue-eyes-dragon", x: 0, y: 0, w: 1, h: 1 },
-    { i: "dark-magician", x: 1, y: 0, w: 1, h: 1 },
-    { i: "kuriboh", x: 2, y: 0, w: 1, h: 1 },
-    { i: "spell-caster", x: 3, y: 0, w: 1, h: 1 },
-    { i: "summoned-skull", x: 0, y: 1, w: 1, h: 1 }
-  ];
+  //const layout = [{i: "i", x: 0, y: 0, w: 1, h:1}]
+  var layout = [];
+
+  for (let j = 0; j < userData.length; j++) {
+    layout.push({i: String(j), x: (j)%4, y: Math.floor((j+1)/4), w: 1, h: 1});
+    //console.log(layout);
+  }
 
   const ResponsiveGridLayout = WidthProvider(Responsive);
   
@@ -191,43 +192,47 @@ function FriendsMemories() {
           width={1000}
           isDraggable={false}
         >
-          <GridItemWrapper key="blue-eyes-dragon">
-            <GridItemContent>
-              <img src="PLACEHOLDER" alt={"Missing image"}/> <br></br>
-              Drawn on: DD/MM/YYYY <br></br>
-              <Button onClick={openModal}>
-                Report Inappropriate Drawing
-              </Button>
-              <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                contentLabel="Report Modal"
-              >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report</h2>
-                <button onClick={closeModal} className="closeButton">X</button>
-                <div className="ReportHeader">
-                  <h1><u>Report {ID}'s Drawing</u></h1>
-                  <p>You are reporting {ID}'s drawing</p>
-                </div>
-                <form className="ReportForm">
-                  <label>
-                    Please pick an option that best describes the drawing: <br></br>
-                    <select value={reason} onChange={handleReportChange}>
-                      <option value="default">Please select</option>
-                      <option value="offensive">The drawing is offensive</option>
-                      <option value="inappropriate">The drawing is inappropriate</option>
-                      <option value="unrelated">The drawing is unrelated to the prompt</option>
-                    </select>
-                  </label> <br></br><br></br>
-                  Any other comments? <br></br>
-                  <input></input> <br></br><br></br>
-                  <button onClick={submitReport}>Submit Report</button>
-                  <button onClick={closeModal}>Cancel Report</button>
-                </form>
-              </Modal>
-            </GridItemContent>
-          </GridItemWrapper>
+          {userData.map((item, i) => {
+            return (
+              <GridItemWrapper key={i}>
+                <GridItemContent>
+                <img src={item?.drawing} alt={"Missing image"} width={300} height={165}/> <br></br>
+                  Drawn on: {item?.date} <br></br>
+                  <Button onClick={openModal}>
+                    Report Inappropriate Drawing
+                  </Button>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    contentLabel="Report Modal"
+                  >
+                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report</h2>
+                    <button onClick={closeModal} className="closeButton">X</button>
+                    <div className="ReportHeader">
+                      <h1><u>Report {ID}'s Drawing</u></h1>
+                      <p>You are reporting {ID}'s drawing</p>
+                    </div>
+                    <form className="ReportForm">
+                      <label>
+                        Please pick an option that best describes the drawing: <br></br>
+                        <select value={reason} onChange={handleReportChange}>
+                          <option value="default">Please select</option>
+                          <option value="offensive">The drawing is offensive</option>
+                          <option value="inappropriate">The drawing is inappropriate</option>
+                          <option value="unrelated">The drawing is unrelated to the prompt</option>
+                        </select>
+                      </label> <br></br><br></br>
+                      Any other comments? <br></br>
+                      <input></input> <br></br><br></br>
+                      <button onClick={submitReport}>Submit Report</button>
+                      <button onClick={closeModal}>Cancel Report</button>
+                    </form>
+                  </Modal>
+                </GridItemContent>
+              </GridItemWrapper>
+            )
+          })}
         </ResponsiveGridLayout>
       </Root>
     </div>
