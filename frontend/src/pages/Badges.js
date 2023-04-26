@@ -82,7 +82,17 @@ function Badges() {
     // sort the data based on the selected option
     if (option === "alphabetical") {
       // sort by alphabetical
-
+      const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
+        if (a.badgeName < b.badgeName) {
+          return -1;
+        }
+        if (a.badgeName > b.badgeName) {
+          return 1;
+        }
+        return 0;
+      });
+      
+      setSortedBadgesArray(sortedBadges);
     
     } else if (option === "recent") {
       // sort by most recent
