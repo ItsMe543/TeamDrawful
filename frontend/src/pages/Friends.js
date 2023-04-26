@@ -27,7 +27,6 @@ function Friends() {
   ];
 
   const buttonStyle = {
-    fontFamily: "insta",
     fontSize: "22px",
     textTransform: "none",
     margin: "10px 0",
