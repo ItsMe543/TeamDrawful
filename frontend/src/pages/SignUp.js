@@ -40,12 +40,13 @@ function SignUp() {
     friendRequests: {},
   });
 
+  var isUsernameUnique = false;
+  var isEmailUnique = false;
+
   const [fullname, setFullName] = useState("");
   const [accountHashedPass, setAccountHashedPass] = useState("");
-  const [accountUserName, setAccountUsername] = useState({
-    accountUserName: "",
-  });
-  const [accountEmail, setAccountEmail] = useState({ accountEmail: "" });
+  const [accountUserName, setAccountUsername] = useState("a");
+  const [accountEmail, setAccountEmail] = useState("a");
 
   const sendNewDetails = () => {
     axios({
@@ -70,13 +71,39 @@ function SignUp() {
         "content-type": "application/json",
       },
     })
-      .then((res) => console.log("Sent: " + res))
+      .then((res) => {
+        console.log("Sent: " + res);
+        window.location.replace("/login");
+      })
       .catch((err) => console.log("Err: " + err));
   };
 
-  // \s = space
-  const checkUserDetails = (e) => {
+  const middleMan = (e) => {
     e.preventDefault();
+    axios
+      .get("/getUsernameCount", { params: { username: accountUserName } })
+      .then(
+        (data) => {
+          isUsernameUnique = data.data === 0 ? true : false;
+          middleMan2();
+        },
+        [accountUserName]
+      );
+  };
+
+  const middleMan2 = () => {
+    axios.get("/getEmailCount", { params: { email: accountEmail } }).then(
+      (data) => {
+        isEmailUnique = data.data === 0 ? true : false;
+        checkUserDetails();
+      },
+      [accountEmail]
+    );
+  };
+
+  // \s = space
+  const checkUserDetails = () => {
+    console.log("I was called! WOOO!");
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
     if (
       fullname.length < 1 ||
@@ -94,7 +121,10 @@ function SignUp() {
     }
 
     //check email (Real email adress, no duplicate emails)
-    if (accountEmail.length < 2) {
+    if (
+      accountEmail.length < 2 ||
+      !accountEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    ) {
       setErrormsg("Must be a valid email address");
       return;
     }
@@ -110,8 +140,17 @@ function SignUp() {
       return;
     }
 
+    if (!isEmailUnique) {
+      setErrormsg("This email is already linked to an account");
+      return;
+    }
+
+    if (!isUsernameUnique) {
+      setErrormsg("Username is already taken");
+      return;
+    }
+
     //If all checks are passed, send details to database
-    setErrormsg("Success");
     setAccountHashedPass(password);
     sendNewDetails();
   };
@@ -198,7 +237,7 @@ function SignUp() {
             {errormsg} {"\n"}
           </div>
 
-          <button className="submit-acc-details" onClick={checkUserDetails}>
+          <button className="submit-acc-details" onClick={middleMan}>
             Create account
           </button>
         </div>

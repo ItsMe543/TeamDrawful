@@ -11,6 +11,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+
+  function checkCredentials() {
+    sessionStorage.setItem("token", document.getElementById(username).value);
+    navigate("/home");
+  }
 
   return (
     <div className="page">
@@ -25,6 +31,7 @@ function Login() {
               className="info-box"
               type="text"
               placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -50,19 +57,7 @@ function Login() {
             Create an account?
           </Link>
 
-          <button
-            className="submit-acc-details"
-            onClick={() => {
-              console.log(document.getElementById("user").value);
-              document.cookie =
-                "username =" + document.getElementById("user").value;
-              sessionStorage.setItem(
-                "token",
-                document.getElementById("user").value
-              );
-              navigate("/home");
-            }}
-          >
+          <button className="submit-acc-details" onClick={checkCredentials}>
             Log in
           </button>
         </div>
