@@ -32,5 +32,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
     path('signUp/', views.User_AccountsView.signUp),
+    path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
