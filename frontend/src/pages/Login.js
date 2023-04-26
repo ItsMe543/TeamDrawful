@@ -14,7 +14,7 @@ function Login() {
   const [username, setUsername] = useState("");
 
   function checkCredentials() {
-    sessionStorage.setItem("token", document.getElementById(username).value);
+    sessionStorage.setItem("token", username);
     navigate("/home");
   }
 
