@@ -7,9 +7,9 @@ from drawfulApp import models
 #class TodoAdmin(admin.ModelAdmin):
 #    list_display = ('title', 'description', 'completed')
 
-class PromptAdmin(admin.ModelAdmin):
-    list_display = ('id', 'prompt', 'promptGenre', 'alreadyUsed', 'previousWinner')
+class User_AccountsAdmin(admin.ModelAdmin):
+    pass
 
 # Register your models here.
 #admin.site.register(Todo, TodoAdmin)
-admin.site.register(models.Prompt_List, PromptAdmin)
+admin.site.register(models.User_Accounts, User_AccountsAdmin)

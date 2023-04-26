@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "../styles/SignUpAndLogIn.css";
 import { Button } from "react-bootstrap";
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -13,9 +14,39 @@ function Login() {
   const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
   const[visible, setVisible] = useState(false);
+  const [errormsg, setErrormsg] = useState("");
 
-  function checkCredentials() {
+  var isCorrectCredentials = false;
 
+  const middleMan = () => {
+    axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
+      isCorrectCredentials = ((data.data === 1) ? true : false);
+      if (!isCorrectCredentials) {
+        setErrormsg("Incorrect details. Please try again");
+      } else {
+        logUserIn();
+      }
+    }, [username, password]);
+  }
+
+  function checkCredentials(e) {
+    e.preventDefault();
+
+    if (username.length === 0) {
+      setErrormsg("Please enter a username");
+      return;
+    }
+
+    if (password.length === 0) {
+      setErrormsg("Please enter your password");
+      return;
+    }
+
+    middleMan();
+  }
+
+  function logUserIn() {
+    window.location.replace('*');
   }
 
   return (
@@ -46,6 +77,10 @@ function Login() {
           <Link className="sign-up-link" to={"/signUp/"}>
             Create an account?
           </Link>
+
+          <div className="error-msg">
+            {errormsg}
+          </div>
 
           <button className="submit-acc-details"
           onClick={checkCredentials}>

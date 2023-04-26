@@ -25,22 +25,6 @@ function SignUp() {
     //});
   //}, []);
 
-  const [accountDetails, setAccountDetails] = useState({
-    username: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    bio: "",
-    badgesEarned: "",
-    averageRating: 0.0,
-    currentStreak: 0,
-    maxStreak: 0,
-    totalStars: 0,
-    friends: {},
-    friendRequests: {},
-  })
-
   var isUsernameUnique = false;
   var isEmailUnique = false;
 
@@ -65,8 +49,8 @@ function SignUp() {
         currentStreak: 0,
         maxStreak: 0,
         totalStars: 0,
-        friends: "",
-        friendRequests: "",
+        friends: [],
+        friendRequests: [],
       },
         headers: {
           "content-type": "application/json"
@@ -97,7 +81,6 @@ function SignUp() {
 
   // \s = space
   const checkUserDetails = () => {
-    console.log("I was called! WOOO!");
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
     if ((fullname.length) < 1 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
       setErrormsg("You must provide a name with no symbols or numbers");
@@ -186,7 +169,7 @@ function SignUp() {
               Confirm Password
               </label>
               <div className="infoP-box">
-                <input value={confirmPassword} type={cpVisible ? "text" : "password"} id="password" placeholder="Password" onChange={(e) => setConfirmPassword(e.target.value)} className="infoP-box">
+                <input value={confirmPassword} type={cpVisible ? "text" : "password"} id="passwordReEnter" placeholder="Password" onChange={(e) => setConfirmPassword(e.target.value)} className="infoP-box">
                 </input>
               </div>
             </form>
@@ -197,7 +180,7 @@ function SignUp() {
           </Link>
 
           <div className="error-msg">
-            {errormsg} {'\n'}
+            {errormsg}
           </div>
 
           <button className="submit-acc-details" onClick={middleMan}>
