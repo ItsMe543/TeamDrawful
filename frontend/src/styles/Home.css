@@ -3,16 +3,16 @@
   src: url(../Fonts/Sometimes.otf);
 }
 
-body{
+body {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.Background{
+.Background {
   background: linear-gradient(45deg, #0000ff, #ff0000, #23a6d5, #00ff00);
-	background-size: 400% 400%;
-	-webkit-animation: gradient 30s ease infinite;
-	animation: gradient 30s ease infinite;
+  background-size: 400% 400%;
+  -webkit-animation: gradient 30s ease infinite;
+  animation: gradient 30s ease infinite;
   width: 100%;
   height: 101%;
   margin-top: -5%;
@@ -47,12 +47,12 @@ body{
   text-align: center;
 }
 
-.loginButton{
+.loginButton {
   position: relative;
   text-align: center;
 }
 
-.privacyHeading{
+.privacyHeading {
   font-size: 70px;
   text-align: center;
 }
@@ -75,18 +75,18 @@ body{
   z-index: 5;
 }
 
-.privacyInfoButton{
+.privacyInfoButton {
   position: relative;
   color: white;
   z-index: 6;
 }
 
-.privacyInfoButtonDiv{
+.privacyInfoButtonDiv {
   position: relative;
   text-align: center;
 }
 
-.privacyInfoButton:hover{
+.privacyInfoButton:hover {
   cursor: pointer;
   color: rgb(224, 224, 224);
 }
@@ -103,9 +103,7 @@ body{
   border-radius: 10px;
   padding: 10px;
   font-size: 22px;
-
 }
-
 
 @media (max-width: 700px) {
   .Drawings {
@@ -126,27 +124,26 @@ body{
   }
 }
 
-
 @-webkit-keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

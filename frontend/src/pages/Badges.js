@@ -236,12 +236,12 @@ function Badges() {
 
       <div className="badgesContainer">
         <div className="badgesUnlocked">
-          <h1 className="heading">
-            Badges (Unlocked)
-          </h1>
-          <svg className="seperator2">
-            <rect></rect>
-          </svg>
+          <div className="underline">
+            <h1 className="badgeHeading">
+              Badges (Unlocked)
+            </h1>
+          </div>
+
           <div className="badgeElement">
             <Row>
               {createBadgeElements(unlockedBadges)}
@@ -250,12 +250,11 @@ function Badges() {
         </div>
 
         <div className="badgesLocked">
-          <h1 className="heading">
-            Badges (Locked)
-          </h1>
-          <svg className="seperator3">
-              <rect></rect>
-          </svg>
+          <div className="underline">
+            <h1 className="badgeHeading">
+              Badges (Locked)
+            </h1>
+          </div>
           <div className="badgeElement">
             <Row>
               {createBadgeElements(lockedBadges)}

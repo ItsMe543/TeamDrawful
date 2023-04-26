@@ -12,6 +12,7 @@ function Memories() {
   const [date, setDate] = useState(new Date());
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [errors, setErrors] = useState({ code: "", message: "" });
   const onDateChange = (newDate) => {
     let formattedDate = newDate;
 
@@ -39,10 +40,24 @@ function Memories() {
   };
 
   const getData = () => {
-    axios.get("/api/user_memories/").then((data) => {
-      setData(data?.data);
-      setLoaded(true);
-    });
+    axios
+      .get("/api/user_memories/")
+      .then((data) => {
+        setData(data.data);
+        setLoaded(true);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+
+          setErrors({
+            code: error.response.status,
+            message: error.response.data,
+          });
+        }
+      });
   };
 
   useEffect(() => {
@@ -121,9 +136,18 @@ function Memories() {
   const highlightedDates = convertDates();
   // console.log(data[0].drawing);
   // console.log(date);
-
-  if (!loaded) return <p>Loading...</p>;
-
+  console.log(data);
+  if (errors.code !== "")
+    return (
+      <div className="m-errors">
+        Error code: {errors.code}
+        <br />
+        Message: {errors.message}
+      </div>
+    );
+  if (!loaded) return <div className="m-errors">Loading...</div>;
+  if (data.length === 0) return <div className="m-errors">No data lol</div>;
+  // if (data === null) return <p>Server error</p>;
   return (
     <div className="m-memories">
       <div className="m-title">Memories Page!</div>
@@ -157,7 +181,7 @@ function Memories() {
             onClick={() => handleLeftClick()}
           />
           <div className="m-drawing">
-            <img src={data[ID].drawing} alt={"drawing image"} />
+            <img src={data[ID]?.drawing} alt={"drawing image"} />
           </div>
           <HiArrowCircleRight
             className="arrow"

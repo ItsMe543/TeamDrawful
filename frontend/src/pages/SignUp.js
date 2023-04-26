@@ -85,7 +85,7 @@ function SignUp() {
     //console.log("You have a wonderful name :)");
 
     //check username (at least 8 characters, no duplicate usernames)
-    if ((accountUserName.length < 8 || accountUserName.match(/[/\s/g]/))){
+    if ((accountUserName.length < 8)){
       setErrormsg("Username must be at least 8 characters long with no spaces");
       return;
     }
@@ -97,8 +97,6 @@ function SignUp() {
       setErrormsg("Must be a valid email address");
       return;
     }
-
-    console.log("All good!");
 
     //Check password (at least 8 characters, at least 1 number)
     if ((password.length < 8)){
