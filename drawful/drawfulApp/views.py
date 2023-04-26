@@ -44,14 +44,25 @@ class User_MemoriesView(viewsets.ModelViewSet):
         print(q[0]["id"])
 
         return HttpResponse(p)
+
+
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
-    def getUsernamesCount(request):
-        value = request.GET.get('username')
+    def getUsernameCount(request):
+        username = request.GET.get('username')
         try:
-            q = models.User_Accounts.objects.filter(username=value).count();
+            q = models.User_Accounts.objects.filter(username=username).count()
+        except:
+            q = 0
+        
+        return HttpResponse(q)
+
+    def getEmailCount(request):
+        email = request.GET.get('email')
+        try:
+            q = models.User_Accounts.objects.filter(email=email).count()
         except:
             q = 0
         

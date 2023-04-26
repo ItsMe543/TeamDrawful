@@ -41,10 +41,13 @@ function SignUp() {
     friendRequests: {},
   })
 
+  var isUsernameUnique = false;
+  var isEmailUnique = false;
+
   const [fullname, setFullName] = useState("");
   const [accountHashedPass, setAccountHashedPass] = useState("");
-  const [accountUserName, setAccountUsername] = useState({accountUserName: ""});
-  const [accountEmail, setAccountEmail] = useState({accountEmail: ""});
+  const [accountUserName, setAccountUsername] = useState("a");
+  const [accountEmail, setAccountEmail] = useState("a");
 
   const sendNewDetails = () => {
     axios({
@@ -76,11 +79,25 @@ function SignUp() {
       .catch((err) => console.log("Err: " + err))
   }
 
+  const middleMan = (e) => {
+    e.preventDefault();
+    axios.get("/getUsernameCount", { params: { username: accountUserName } }).then((data) => {
+      isUsernameUnique = ((data.data === 0) ? true : false);
+      middleMan2();
+    }, [accountUserName]);
+  }
+
+  const middleMan2 = () => {
+    axios.get("/getEmailCount", { params: { email: accountEmail } }).then((data) => {
+      isEmailUnique = ((data.data === 0) ? true : false);
+      checkUserDetails();
+    }, [accountEmail]);
+  }
+
 
   // \s = space
-  const checkUserDetails = (e) => {
-    e.preventDefault();
-    var isUsernameUnique = false;
+  const checkUserDetails = () => {
+    console.log("I was called! WOOO!");
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
     if ((fullname.length) < 1 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
       setErrormsg("You must provide a name with no symbols or numbers");
@@ -88,27 +105,14 @@ function SignUp() {
     }
     //console.log("You have a wonderful name :)");
 
-    axios.get("/getUsernamesCount?username=${username}").then((data) => {
-      console.log(data);
-      isUsernameUnique = ((data.data === 0) ? true : false);
-      //console.log(isUsernameUnique);
-    }, [accountUserName])
-
     //check username (at least 8 characters, no duplicate usernames)
     if ((accountUserName.length < 8)){
       setErrormsg("Username must be at least 8 characters long with no spaces");
       return;
     }
-    console.log(isUsernameUnique);
-    if (!isUsernameUnique) {
-      setErrormsg("Username is already taken");
-      return
-    }
-
-    
 
     //check email (Real email adress, no duplicate emails)
-    if ((accountEmail.length < 2)){
+    if ((accountEmail.length < 2) || !accountEmail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)){
       setErrormsg("Must be a valid email address");
       return;
     }
@@ -121,6 +125,16 @@ function SignUp() {
 
     if (password != confirmPassword){
       setErrormsg("Passwords do not match");
+      return;
+    }
+
+    if (!isEmailUnique) {
+      setErrormsg("This email is already linked to an account");
+      return;
+    }
+
+    if (!isUsernameUnique) {
+      setErrormsg("Username is already taken");
       return;
     }
 
@@ -186,7 +200,7 @@ function SignUp() {
             {errormsg} {'\n'}
           </div>
 
-          <button className="submit-acc-details" onClick={checkUserDetails}>
+          <button className="submit-acc-details" onClick={middleMan}>
             Create account
           </button>
         </div>

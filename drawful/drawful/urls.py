@@ -32,7 +32,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
-    path('getUsernamesCount',views.User_AccountsView.getUsernamesCount),
+    path('getUsernameCount',views.User_AccountsView.getUsernameCount),
+    path('getEmailCount',views.User_AccountsView.getEmailCount),
     path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
