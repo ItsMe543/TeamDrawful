@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
 import DifficultyPage from "../pages/DifficultyPage";
 import Drawing from "../pages/Drawing";
+import FinishedDrawing from "../pages/FinishedDrawing";
 import Friends from "../pages/Friends";
 import FriendsMemories from "../pages/FriendsMemories";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Memories from "../pages/Memories";
 import Notifications from "../pages/Notifications";
+import PrivateRoute from "../pages/PrivateRoute";
 import Settings from "../pages/Settings";
 import Accessibility from "../pages/Settings/Accessibility";
 import SignUp from "../pages/SignUp";
 import ViewDrawings from "../pages/ViewDraws";
-import FinishedDrawing from "../pages/FinishedDrawing";
 
 function Main() {
+  const AuthContext = React.createContext(null);
+  const [error, setError] = useState("");
+  const naviagate = useNavigate();
   useEffect(() => {
     const isLightMode = localStorage.getItem("isLightMode") === "true";
     const isContrast = localStorage.getItem("isContrast") === "true";
@@ -57,22 +61,100 @@ function Main() {
 
   return (
     <Routes>
-      <Route path="*" element={<Home />}></Route>
-      <Route path="/" element={<Login />}></Route>
-      <Route path="/viewingDrawings" element={<ViewDrawings />}></Route>
-      <Route path="/settings" element={<Settings />}></Route>
-      <Route path="/friends" element={<Friends />}></Route>
-      <Route path="/memories" element={<Memories />}></Route>
+      <Route
+        path="*"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/viewingDrawings"
+        element={
+          <PrivateRoute>
+            <ViewDrawings />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        exact
+        path="/settings"
+        element={
+          <PrivateRoute>
+            <Settings />
+          </PrivateRoute>
+        }
+      ></Route>
+
+      <Route
+        path="/friends"
+        element={
+          <PrivateRoute>
+            <Friends />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/memories"
+        element={
+          <PrivateRoute>
+            <Memories />
+          </PrivateRoute>
+        }
+      ></Route>
       <Route path="/notifications" element={<Notifications />}></Route>
-      <Route path="/badges" element={<Badges />}></Route>
-      <Route path="/drawing" element={<Drawing />}></Route>
+      <Route
+        path="/badges"
+        element={
+          <PrivateRoute>
+            <Badges />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/drawing"
+        element={
+          <PrivateRoute>
+            <Drawing />
+          </PrivateRoute>
+        }
+      ></Route>
       {/* <Route path="/difficulty" element={<DifficultyPage />}></Route> */}
-      <Route path="/comments/:ID" element={<Comments />}></Route>
-      <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
+      <Route
+        path="/comments/:ID"
+        element={
+          <PrivateRoute>
+            <Comments />
+          </PrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/friends/memories/:ID"
+        element={
+          <PrivateRoute>
+            <FriendsMemories />
+          </PrivateRoute>
+        }
+      ></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
-      <Route path="/finishedDrawing" element={<FinishedDrawing />}></Route>
-
+      <Route
+        path="/finishedDrawing"
+        element={
+          <PrivateRoute>
+            <FinishedDrawing />
+          </PrivateRoute>
+        }
+      ></Route>
     </Routes>
   );
 }

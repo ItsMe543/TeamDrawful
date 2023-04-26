@@ -1,4 +1,5 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import {
   AiOutlineBell,
   AiOutlineCalendar,
@@ -7,11 +8,18 @@ import {
 import { BsAward, BsPeople, BsVectorPen } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import logo from "../navbarLogo.png";
 import "../styles/Navbar.css";
 function Navbar() {
-  // Navbar component
+  const navigate = useNavigate();
+
+  function signOut() {
+    sessionStorage.removeItem("token");
+    console.log("Signed out");
+    navigate("/login");
+  }
 
   return (
     <div className="Navbar">
@@ -27,35 +35,30 @@ function Navbar() {
             <div>Home</div>
           </Link>
         </div>
-
         <div className="ViewDraws">
           <Link to="/viewingDrawings">
             <BsVectorPen size={30} />
             <div>Drawings</div>
           </Link>
         </div>
-
         <div className="settings">
           <Link to="/settings">
             <FiSettings size={30} />
             <div>Settings</div>
           </Link>
         </div>
-
         <div className="friends">
           <Link to="/friends">
             <BsPeople size={30} />
             <div>Friends</div>
           </Link>
         </div>
-
         <div className="memories" style={{}}>
           <Link to="/memories">
             <AiOutlineCalendar size={30} />
             <div>Memories</div>
           </Link>
         </div>
-
         {/* <div className="notifications">
           <Link to="/notifications">
             <AiOutlineBell
@@ -72,7 +75,6 @@ function Navbar() {
             <div>Notifications</div>
           </Link>
         </div> */}
-
         {
           <div className="badges">
             <Link to="/badges">
@@ -89,12 +91,20 @@ function Navbar() {
             </Link>
           </div>
         }
-        <div className="profile">
-          <Link to="/settings">
-            <img src={require("../minion.png")} className="profilePic" />
-          </Link>
-          {/* <div className="userName">defaultUsername</div> */}
-        </div>
+        {sessionStorage.getItem("token") && (
+          <>
+            <div className="profile">
+              <Link to="/settings">
+                <img src={require("../minion.png")} className="profilePic" />
+              </Link>
+              {/* <div className="userName">defaultUsername</div> */}
+            </div>
+
+            <Button className="sign out" onClick={() => signOut()}>
+              Sign out
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
