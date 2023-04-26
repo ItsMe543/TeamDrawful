@@ -98,18 +98,18 @@ function FriendsMemories() {
 
   useEffect(() => {
     axios
-    .get("/api/user_memories/")
+    .get("/api/user_memories/?id=${id}")
     .then((data) => {
       console.log(data)
       setUserData(data?.data);
     });
-  }, []);
+  }, [ID]);
 
   const [value, setValue] = useState('date');
 
   const handleChange = (e) => {
-    console.log(value);
     setValue(e.target.value);
+    //console.log(value);
     userData.sort(function(a, b) {
       if (value === 'date') {
         console.log("Here!");

@@ -30,7 +30,6 @@ router.register(r'user_accounts', views.User_AccountsView, 'user_accounts')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('', views.main, name="main"),
-    path('signUp/', views.User_AccountsView.signUp),
+    path(r'^drawfulApp', include("drawfulApp.urls")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

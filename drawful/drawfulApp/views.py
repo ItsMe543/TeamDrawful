@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
-from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 from drawfulApp import serializers
 from drawfulApp import models
 
@@ -18,7 +18,14 @@ def main(request):
 
 class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
-    queryset = models.Prompt_List.objects.all()
+
+    def id_list(request):
+        print("Here")
+        id = request.GET.get('id', None)
+        queryset = models.Prompt_List.objects.all()
+        if id:
+            print("Id query")
+            queryset = queryset.filter(Q(id=id))
 
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
@@ -27,10 +34,6 @@ class User_MemoriesView(viewsets.ModelViewSet):
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
-
-    def signUp(request):
-        if request.method == 'POST':
-            print(request.body)
 
 
 class BadgesView(viewsets.ModelViewSet):
