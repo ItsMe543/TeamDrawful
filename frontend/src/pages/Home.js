@@ -22,11 +22,6 @@ function Home() {
           <BsFillPencilFill className="Pen2"></BsFillPencilFill>
         </Link>
       </div>
-      <div className="loginButton">
-        <Link to={"/login"}>
-          <button className="Profile-view-memories">Login temp button</button>
-        </Link>
-      </div>
 
       <div className="disclaimer1">
         "Alpha Project Disclaimer This server is provided by the School of

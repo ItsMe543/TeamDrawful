@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 import "../styles/SignUpAndLogIn.css";
@@ -13,7 +13,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [errormsg, setErrormsg] = useState("");
-  const navigate = useNavigate();
 
   var isCorrectCredentials = false;
 
@@ -45,11 +44,10 @@ function Login() {
 
     sessionStorage.setItem("token", username);
     document.cookie = "username =" + username;
-    navigate("/home");
   }
 
   function logUserIn() {
-    window.location.replace('*');
+    window.location.replace('/home');
   }
 
   return (
@@ -90,10 +88,6 @@ function Login() {
           <Link className="sign-up-link" to={"/signUp/"}>
             Create an account?
           </Link>
-
-          <div className="error-msg">
-            {errormsg}
-          </div>
 
           <div className="error-msg">
             {errormsg}

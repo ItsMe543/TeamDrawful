@@ -334,7 +334,7 @@ function Drawing() {
             })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-            window.location.href = window.location.href.replace("/drawing", "/finishedDrawing");
+            window.location.href = window.location.href.replace("/drawing", "/memories");
 
     };
 
