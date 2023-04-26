@@ -55,6 +55,15 @@ class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
 
+    def getTotalDrawings(request):
+        value = request.GET.get('username')
+
+        try:
+            total = models.User_Memories.objects.filter(username=value)
+            print(len(total))
+        except:
+            total ="not working"
+        return HttpResponse(len(total))    
 
 class Usernames(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer

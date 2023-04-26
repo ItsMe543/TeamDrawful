@@ -28,81 +28,6 @@ function Badges() {
   }, [badgesData]);
 
 
-
-
-  
-  // console.log(badgesData[0]?.badgeName);
-  // console.log(badgesData[0]?.badgeIcon);
-  // console.log(badgesData[0]?.badgeDescription);
-  // console.log(badgesData[0]?.badgeUnlocked);
-  // console.log(badgesData[0]?.badgeTimeUnlocked);
-
-  
-
-
-  // class BadgeDataClass {
-  //   badgeName = badgesData.badgeName;
-  //   badgeIcon = badgesData.badgeIcon;
-  //   badgeDescription = badgesData.badgeDescription;
-  //   badgeUnlocked = badgesData.badgeUnlocked;
-  //   badgeDateUnlocked = badgesData.badgeDateUnlocked;
-  //   badgeTimeUnlocked = badgesData.badgeTimeUnlocked;
-  // }
-
-
-  // const badgesArray = [
-  //   // example badges
-  //   {
-  //     name: "Badge 1",
-  //     description: "Completed a drawing!",
-  //     image: "/drawings/star.png",
-  //     unlocked: true,
-  //     timeUnlocked: 7,
-  //   },
-  //   {
-  //     name: "Badge 2",
-  //     description: "Completed 5 drawings!",
-  //     image: "/drawings/award.png",
-  //     unlocked: true,
-  //     timeUnlocked: 2,
-  //   },
-  //   {
-  //     name: "Badge 3",
-  //     description: "Completed 5 drawings!",
-  //     image: "/drawings/award.png",
-  //     unlocked: true,
-  //     timeUnlocked: 10,
-  //   },
-  //   {
-  //     name: "Badge 4",
-  //     description: "Completed 5 drawings!",
-  //     image: "/drawings/award.png",
-  //     unlocked: false,
-  //     timeUnlocked: 0,
-  //   },
-  //   {
-  //     name: "Badge 5",
-  //     description: "Completed 5 drawings!",
-  //     image: "/drawings/award.png",
-  //     unlocked: true,
-  //     timeUnlocked: 1,
-  //   },
-  //   {
-  //     name: "Badge 6",
-  //     description: "Completed 5 drawings!",
-  //     image: "/drawings/award.png",
-  //     unlocked: false,
-  //     timeUnlocked: 0,
-  //   },
-  //   {
-  //     name: "Badge 7",
-  //     description: "Completed a motorsport drawing!",
-  //     image: "/drawings/car.jpg",
-  //     unlocked: false,
-  //     timeUnlocked: 0,
-  //   }
-  // ];
-
   function createBadgeElements(badges) {
     return (
         <Col>
@@ -155,8 +80,9 @@ function Badges() {
   const handleSort = (option) => {
     setActiveSortButton(option);
     // sort the data based on the selected option
-    if (option === "rarest") {
-      // sort by rarest
+    if (option === "alphabetical") {
+      // sort by alphabetical
+
     
     } else if (option === "recent") {
       // sort by most recent
@@ -211,11 +137,11 @@ function Badges() {
         
         <div className="sortButtons">
           <button
-            className={`sortRarest ${activeSortButton === "rarest" ? "toggled" : ""}`}
+            className={`sortAlphabetical ${activeSortButton === "alphabetical" ? "toggled" : ""}`}
             onClick={() => {
-              handleSort("rarest")}}
+              handleSort("alphabetical")}}
           >
-            Rarest
+            Alphabetical
           </button>
           <button
             className={`sortRecent ${activeSortButton === "recent" ? "toggled" : ""}`}
