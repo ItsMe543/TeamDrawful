@@ -204,6 +204,7 @@ function Memories() {
             onClick={() => handleRightClick()}
           />
         </div>
+        <div className="currentDate">{date.toDateString()}</div>
       </div>
       <div className="disclaimer1">
         "Alpha Project Disclaimer This server is provided by the School of
