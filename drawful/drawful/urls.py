@@ -27,12 +27,16 @@ router.register(r'user_memories', views.User_MemoriesView, 'user_memories')
 router.register(r'user_accounts', views.User_AccountsView, 'user_accounts')
 router.register(r'badges', views.BadgesView, 'badges')
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
+<<<<<<< HEAD
     path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
+=======
+    path('getUsernamesCount',views.User_AccountsView.getUsernamesCount),
+    path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
+>>>>>>> 2a3b042f8fcb286b882df81adacd024f3a12b0f2
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

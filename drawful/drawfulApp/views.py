@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
-from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 from drawfulApp import serializers
 from drawfulApp import models
 
@@ -23,9 +23,11 @@ class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
     queryset = models.Prompt_List.objects.all()
 
+
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
-    queryset = models.User_Memories.objects.all()
+    queryset = models.User_Memories.objects.all();
+
 
 
     def getLatestDrawing(request):
@@ -58,6 +60,13 @@ class User_AccountsView(viewsets.ModelViewSet):
             q ="NO DRAWINGS WITH USERNAME: "+value
         print(q)
 
+    def getUsernamesCount(request):
+        value = request.GET.get('username')
+        try:
+            q = models.User_Accounts.objects.filter(username=value).count();
+        except:
+            q = 0
+        
         return HttpResponse(q)
 
 
@@ -65,6 +74,15 @@ class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
 
+    def getTotalDrawings(request):
+        value = request.GET.get('username')
+
+        try:
+            total = models.User_Memories.objects.filter(username=value)
+            print(len(total))
+        except:
+            total ="not working"
+        return HttpResponse(len(total))    
 
 class Usernames(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer

@@ -50,24 +50,25 @@ body{
 .badgeElement{
     border-color: white;
     border-width: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     margin-left: 20px;
 }
 
 .badgeIcon{
-    width: 100px;
+    max-width: 100px;
     height: 100px;
     margin-right: 20px;
 }
 
 .badgeName{
     float: left;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .badgeDescription{
     float: left;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .seperator{

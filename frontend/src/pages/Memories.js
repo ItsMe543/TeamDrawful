@@ -13,6 +13,7 @@ function Memories() {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [errors, setErrors] = useState({ code: "", message: "" });
+
   const onDateChange = (newDate) => {
     let formattedDate = newDate;
 
@@ -31,19 +32,29 @@ function Memories() {
     }
     setDate(newDate);
   };
-  const findrecentDate = () => {
-    const recent = data
-      .map((obj) => new Date(obj.date))
-      .reduce((prev, curr) => (curr > prev ? curr : prev), 0);
+  // const findrecentDate = () => {
+  //   const recent = data
+  //     .map((obj) => new Date(obj.date))
+  //     .reduce((prev, curr) => (curr > prev ? curr : prev), 0);
 
-    return recent;
-  };
+  //   return recent;
+  // };
+
+  function sortByDate(data) {
+    let sortedMems = data.sort((a, b) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+
+    return sortedMems;
+  }
 
   const getData = () => {
     axios
       .get("/api/user_memories/")
       .then((data) => {
-        setData(data.data);
+        const sortedData = sortByDate(data.data);
+        setData(sortedData);
+        setID(sortedData.length - 1);
         setLoaded(true);
       })
       .catch(function (error) {
@@ -62,7 +73,10 @@ function Memories() {
 
   useEffect(() => {
     getData();
-    setDate(findrecentDate());
+    // let sorted = sortByDate(data);
+    // setSortedData(sorted);
+
+    // setDate(findrecentDate());
   }, []);
 
   const downloadImage = async (imgURL) => {
@@ -107,7 +121,6 @@ function Memories() {
 
   const convertDateStringtoObj = (dateStr) => {
     let newDate = new Date(dateStr);
-
     return newDate;
   };
 
@@ -134,9 +147,11 @@ function Memories() {
     );
   };
   const highlightedDates = convertDates();
-  // console.log(data[0].drawing);
-  // console.log(date);
+
+  console.log("Sorted: ");
   console.log(data);
+  console.log(ID);
+
   if (errors.code !== "")
     return (
       <div className="m-errors">
@@ -145,6 +160,7 @@ function Memories() {
         Message: {errors.message}
       </div>
     );
+
   if (!loaded) return <div className="m-errors">Loading...</div>;
   if (data.length === 0) return <div className="m-errors">No data lol</div>;
   // if (data === null) return <p>Server error</p>;
@@ -157,7 +173,6 @@ function Memories() {
             onChange={onDateChange}
             value={date}
             tileClassName={tileContent}
-            //  tileDisabled={({ date }) => !isDateAllowed(date)}
             showWeekDays={false}
             className="cal"
           />
@@ -189,6 +204,7 @@ function Memories() {
             onClick={() => handleRightClick()}
           />
         </div>
+        <div className="currentDate">{date.toDateString()}</div>
       </div>
       <div className="disclaimer1">
         "Alpha Project Disclaimer This server is provided by the School of
