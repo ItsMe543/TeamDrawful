@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import viewsets
-from django.db.models import Q
 from drawfulApp import serializers
 from drawfulApp import models
+from drawfulApp.authenticationbackend import CustomBackend
 
 # Create your views here.
 
@@ -26,7 +26,7 @@ class PromptView(viewsets.ModelViewSet):
 
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
-    queryset = models.User_Memories.objects.all();
+    queryset = models.User_Memories.objects.all()
 
     def getLatestDrawing(request):
         value = request.GET.get('username')
@@ -74,6 +74,16 @@ class User_AccountsView(viewsets.ModelViewSet):
             q = 0
         
         return HttpResponse(q)
+    
+    def authenticateUser(request):
+        username = request.GET.get('username')
+        password = request.GET.get('password')
+
+        user = CustomBackend.authenticate(request, username=username, password=password)
+        if user is not None:
+            return HttpResponse("1")
+        else:
+            return HttpResponse("0")
 
 
 class BadgesView(viewsets.ModelViewSet):

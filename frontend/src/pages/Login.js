@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from 'axios';
 
 import "../styles/SignUpAndLogIn.css";
 //<div className="info-label">Password</div>
@@ -8,15 +9,45 @@ import "../styles/SignUpAndLogIn.css";
 
 function Login() {
   //<div style={{ fontSize: "50px", color: "white" }}>
+  const[username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [errormsg, setErrormsg] = useState("");
 
-  function checkCredentials() {
+  var isCorrectCredentials = false;
+
+  const middleMan = () => {
+    axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
+      isCorrectCredentials = ((data.data === 1) ? true : false);
+      if (!isCorrectCredentials) {
+        setErrormsg("Incorrect details. Please try again");
+      } else {
+        logUserIn();
+      }
+    }, [username, password]);
+  }
+
+  function checkCredentials(e) {
+    e.preventDefault();
+
+    if (username.length === 0) {
+      setErrormsg("Please enter a username");
+      return;
+    }
+
+    if (password.length === 0) {
+      setErrormsg("Please enter your password");
+      return;
+    }
+
+    middleMan();
+
     sessionStorage.setItem("token", username);
     document.cookie = "username =" + username;
-    navigate("/home");
+  }
+
+  function logUserIn() {
+    window.location.replace('/home');
   }
 
   return (
@@ -57,6 +88,10 @@ function Login() {
           <Link className="sign-up-link" to={"/signUp/"}>
             Create an account?
           </Link>
+
+          <div className="error-msg">
+            {errormsg}
+          </div>
 
           <button className="submit-acc-details" onClick={checkCredentials}>
             Log in
