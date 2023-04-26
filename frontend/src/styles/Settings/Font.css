@@ -9,3 +9,15 @@ body.font h1 {
 body.font h2 {
     font-family: 'Handmade';
 }
+
+body.font label {
+    font-family: 'Handmade';
+}
+
+body.font input {
+    font-family: 'Handmade';
+}
+
+body.font button {
+    font-family: 'Handmade';
+}
