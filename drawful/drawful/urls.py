@@ -25,6 +25,7 @@ router.register(r'prompts', views.PromptView, 'prompt')
 router.register(r'user_memories', views.User_MemoriesView, 'user_memories')
 # router.register(r'user_memories/delete/<int>', views.User_MemoriesDeleteView, 'user_memories_delete')
 router.register(r'user_accounts', views.User_AccountsView, 'user_accounts')
+router.register(r'badges', views.BadgesView, 'badges')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getUsernamesCount',views.User_AccountsView.getUsernamesCount),
+    path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

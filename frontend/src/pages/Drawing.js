@@ -1,25 +1,23 @@
 // Import dependencies
-
 import React from "react";
 import "../styles/Drawing.css";
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState
+} from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import validator from 'validator';
+import {
+    Link,
+    useNavigate
+} from "react-router-dom";
 
 
 
-
-var imageParcel = {
-  timeTaken: 1,
-  date: 2,
-  difficulty: 3,
-  drawing: 4,
-  prompt: 5,
-  timeCompleted: 6
-}
 
 var the_canvas;
 var the_canvas_context;
@@ -34,194 +32,166 @@ var new_pixel;
 var pixel_stack;
 
 function flood_fill(x, y, color) {
-  pixel_stack = [{ x: x, y: y }];
-  pixels = the_canvas_context.getImageData(0, 0, the_canvas.width, the_canvas.height);
-  var linear_cords = (y * the_canvas.width + x) * 4;
-  original_color = {
-    r: pixels.data[linear_cords],
-    g: pixels.data[linear_cords + 1],
-    b: pixels.data[linear_cords + 2],
-    a: pixels.data[linear_cords + 3]
-  };
+    pixel_stack = [{
+        x: x,
+        y: y
+    }];
+    pixels = the_canvas_context.getImageData(0, 0, the_canvas.width, the_canvas.height);
+    var linear_cords = (y * the_canvas.width + x) * 4;
+    original_color = {
+        r: pixels.data[linear_cords],
+        g: pixels.data[linear_cords + 1],
+        b: pixels.data[linear_cords + 2],
+        a: pixels.data[linear_cords + 3]
+    };
 
-  while (pixel_stack.length > 0) {
-    new_pixel = pixel_stack.shift();
-    x = new_pixel.x;
-    y = new_pixel.y;
+    while (pixel_stack.length > 0) {
+        new_pixel = pixel_stack.shift();
+        x = new_pixel.x;
+        y = new_pixel.y;
 
-    //console.log( x + ", " + y ) ;
+        //console.log( x + ", " + y ) ;
 
-    linear_cords = (y * the_canvas.width + x) * 4;
-    while (y-- >= 0 &&
-      (pixels.data[linear_cords] == original_color.r &&
-        pixels.data[linear_cords + 1] == original_color.g &&
-        pixels.data[linear_cords + 2] == original_color.b &&
-        pixels.data[linear_cords + 3] == original_color.a)) {
-      linear_cords -= the_canvas.width * 4;
-    }
-    linear_cords += the_canvas.width * 4;
-    y++;
-
-    var reached_left = false;
-    var reached_right = false;
-    while (y++ < the_canvas.height &&
-      (pixels.data[linear_cords] == original_color.r &&
-        pixels.data[linear_cords + 1] == original_color.g &&
-        pixels.data[linear_cords + 2] == original_color.b &&
-        pixels.data[linear_cords + 3] == original_color.a)) {
-      pixels.data[linear_cords] = color.r;
-      pixels.data[linear_cords + 1] = color.g;
-      pixels.data[linear_cords + 2] = color.b;
-      pixels.data[linear_cords + 3] = color.a;
-
-      if (x > 0) {
-        if (pixels.data[linear_cords - 4] == original_color.r &&
-          pixels.data[linear_cords - 4 + 1] == original_color.g &&
-          pixels.data[linear_cords - 4 + 2] == original_color.b &&
-          pixels.data[linear_cords - 4 + 3] == original_color.a) {
-          if (!reached_left) {
-            pixel_stack.push({ x: x - 1, y: y });
-            reached_left = true;
-          }
-        } else if (reached_left) {
-          reached_left = false;
+        linear_cords = (y * the_canvas.width + x) * 4;
+        while (y-- >= 0 &&
+            (pixels.data[linear_cords] == original_color.r &&
+                pixels.data[linear_cords + 1] == original_color.g &&
+                pixels.data[linear_cords + 2] == original_color.b &&
+                pixels.data[linear_cords + 3] == original_color.a)) {
+            linear_cords -= the_canvas.width * 4;
         }
-      }
+        linear_cords += the_canvas.width * 4;
+        y++;
 
-      if (x < the_canvas.width - 1) {
-        if (pixels.data[linear_cords + 4] == original_color.r &&
-          pixels.data[linear_cords + 4 + 1] == original_color.g &&
-          pixels.data[linear_cords + 4 + 2] == original_color.b &&
-          pixels.data[linear_cords + 4 + 3] == original_color.a) {
-          if (!reached_right) {
-            pixel_stack.push({ x: x + 1, y: y });
-            reached_right = true;
-          }
-        } else if (reached_right) {
-          reached_right = false;
+        var reached_left = false;
+        var reached_right = false;
+        while (y++ < the_canvas.height &&
+            (pixels.data[linear_cords] == original_color.r &&
+                pixels.data[linear_cords + 1] == original_color.g &&
+                pixels.data[linear_cords + 2] == original_color.b &&
+                pixels.data[linear_cords + 3] == original_color.a)) {
+            pixels.data[linear_cords] = color.r;
+            pixels.data[linear_cords + 1] = color.g;
+            pixels.data[linear_cords + 2] = color.b;
+            pixels.data[linear_cords + 3] = color.a;
+
+            if (x > 0) {
+                if (pixels.data[linear_cords - 4] == original_color.r &&
+                    pixels.data[linear_cords - 4 + 1] == original_color.g &&
+                    pixels.data[linear_cords - 4 + 2] == original_color.b &&
+                    pixels.data[linear_cords - 4 + 3] == original_color.a) {
+                    if (!reached_left) {
+                        pixel_stack.push({
+                            x: x - 1,
+                            y: y
+                        });
+                        reached_left = true;
+                    }
+                } else if (reached_left) {
+                    reached_left = false;
+                }
+            }
+
+            if (x < the_canvas.width - 1) {
+                if (pixels.data[linear_cords + 4] == original_color.r &&
+                    pixels.data[linear_cords + 4 + 1] == original_color.g &&
+                    pixels.data[linear_cords + 4 + 2] == original_color.b &&
+                    pixels.data[linear_cords + 4 + 3] == original_color.a) {
+                    if (!reached_right) {
+                        pixel_stack.push({
+                            x: x + 1,
+                            y: y
+                        });
+                        reached_right = true;
+                    }
+                } else if (reached_right) {
+                    reached_right = false;
+                }
+            }
+
+            linear_cords += the_canvas.width * 4;
         }
-      }
-
-      linear_cords += the_canvas.width * 4;
     }
-  }
-  the_canvas_context.putImageData(pixels, 0, 0);
+    the_canvas_context.putImageData(pixels, 0, 0);
 }
 
 function is_in_pixel_stack(x, y, pixel_stack) {
-  for (var i = 0; i < pixel_stack.length; i++) {
-    if (pixel_stack[i].x == x && pixel_stack[i].y == y) {
-      return true;
+    for (var i = 0; i < pixel_stack.length; i++) {
+        if (pixel_stack[i].x == x && pixel_stack[i].y == y) {
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 
 // adapted from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 function color_to_rgba(color) {
-  if (color[0] == "#") { // hex notation
-    color = color.replace("#", "");
-    var bigint = parseInt(color, 16);
-    var r = (bigint >> 16) & 255;
-    var g = (bigint >> 8) & 255;
-    var b = bigint & 255;
-    return {
-      r: r,
-      g: g,
-      b: b,
-      a: 255
-    };
-  } else if (color.indexOf("rgba(") == 0) { // already in rgba notation
-    color = color.replace("rgba(", "").replace(" ", "").replace(")", "").split(",");
-    return {
-      r: color[0],
-      g: color[1],
-      b: color[2],
-      a: color[3] * 255
-    };
-  } else {
-    console.error("warning: can't convert color to rgba: " + color);
-    return {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 0
-    };
-  }
+    if (color[0] == "#") { // hex notation
+        color = color.replace("#", "");
+        var bigint = parseInt(color, 16);
+        var r = (bigint >> 16) & 255;
+        var g = (bigint >> 8) & 255;
+        var b = bigint & 255;
+        return {
+            r: r,
+            g: g,
+            b: b,
+            a: 255
+        };
+    } else if (color.indexOf("rgba(") == 0) { // already in rgba notation
+        color = color.replace("rgba(", "").replace(" ", "").replace(")", "").split(",");
+        return {
+            r: color[0],
+            g: color[1],
+            b: color[2],
+            a: color[3] * 255
+        };
+    } else {
+        console.error("warning: can't convert color to rgba: " + color);
+        return {
+            r: 0,
+            g: 0,
+            b: 0,
+            a: 0
+        };
+    }
 }
 
 function body_loaded() {
-  the_canvas = document.getElementById("canvasID");
-  the_canvas_context = the_canvas.getContext("2d");
+    the_canvas = document.getElementById("canvasID");
+    the_canvas_context = the_canvas.getContext("2d");
 }
 
 
 class Mode {
-  static mode = "none";
-  static setMode(penMode) {
-    this.mode = penMode;
-  }
-  static getMode() {
-    return this.mode;
-  }
+    static mode = "none";
+    static setMode(penMode) {
+        this.mode = penMode;
+    }
+    static getMode() {
+        return this.mode;
+    }
 }
 
 
 
 class canFill {
-  static mode = "none";
-  static setMode(fillMode) {
-    this.mode = fillMode;
-  }
-  static getMode() {
-    return this.mode;
-  }
+    static mode = "none";
+    static setMode(fillMode) {
+        this.mode = fillMode;
+    }
+    static getMode() {
+        return this.mode;
+    }
 }
 
-var intervalId = window.setInterval(function(){checkURL();}, 1000);
-
-function checkURL(){
-  var url = window.location.href;
-  var urlEnd = url.substring(url.length-7);
-
-  if(urlEnd === "drawing"){
-    document.getElementById("Label1").innerHTML = "1:00";
-
-    Label1 = window.setInterval(function () {
-    myFunction();
-    }, 1000); // every second
-    clearInterval(intervalId);
-  }
-}
-
-
-
-var seconds = 60;
-var Label1;
-function myFunction() {
-  var url = window.location.href;
-  var urlEnd = url.substring(url.length-7);
-  if(urlEnd != "drawing"){
-    clearInterval(Label1);
-    return;
-  }
-  if (seconds < 60) { // I want it to say 1:00, not 60
-    document.getElementById("Label1").innerHTML = seconds;
-  }
-  if (seconds > 0) { // so it doesn't go to -1
-    seconds--;
-  } else {
-    clearInterval(Label1);
-    //alert("TOMISPOG");
-  }
-}
 
 function listCookies() {
     var theCookies = document.cookie.split(';');
     var aString = '';
-    for (var i = 1 ; i <= theCookies.length; i++) {
-        aString += i + ' ' + theCookies[i-1] + "\n";
+    for (var i = 1; i <= theCookies.length; i++) {
+        aString += i + ' ' + theCookies[i - 1] + "\n";
     }
     console.log(aString);
 }
@@ -246,20 +216,20 @@ function getCookie(name) {
 
 var csrftoken = getCookie('csrftoken');
 
-function getDate(){
-  const date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  // This arrangement can be altered based on how we want the date's format to appear.
-  let currentDate = `${year}-${month}-${day}`;
-  return currentDate;
+function getDate() {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${year}-${month}-${day}`;
+    return currentDate;
 }
 
-function getTime(){
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  return time;
+function getTime() {
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return time;
 }
 
 
@@ -272,174 +242,239 @@ function getSeconds(){
   }
 }
 
-function getDrawing(){
-  var canvas = document.getElementById("canvasID");
-  var dataURL = canvas.toDataURL("image/png");
-  return dataURL;
+function getDrawing() {
+    var canvas = document.getElementById("canvasID");
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL;
 
 }
 
-function getUsername(){
-  return getCookie('username');
+function getUsername() {
+    return getCookie('username');
 }
 
 function Drawing() {
-  const [date, setName, difficulty] = useState({
-    date: " ", difficulty: " "
-  });
 
 
 
-  const submitForm = () => {
-    //e.preventDefault();
-    axios({
-      method: 'post',
-      url: 'api/user_memories/',
-      data: {
-        username: getUsername(),
-        date: getDate(),
-        timeCompleted: getTime(),
-        difficulty: "69",
-        timeTaken: getSeconds(),
-        prompt: post.prompt,
-        drawing: getDrawing(),
-      },
-        headers: {
-          "content-type": "application/json",
-          'X-CSRFToken': csrftoken
+
+    function getSeconds() {
+        if (seconds === 60) {
+            return "00:01:00"
+        } else {
+            return "00:00:" + seconds
         }
-    })
-    .then((res) => console.log("Sent: " + res))
-    .catch((err) => console.log("Err: " + err))
-  };
-
-
-
-
-  //Mode.setMode('pen');
-  const canvasRef = useRef(null);
-  const [mouseData, setMouseData] = useState({ x: 0, y: 0 });
-  const [canvasCTX, setCanvasCTX] = useState(null);
-  const [color, setColor] = useState("#000000"); // Default color is black
-  const [size, setSize] = useState(10); // Default size is 10
-
-  const [post, setPost] = useState({
-    id: 0,
-    prompt: "",
-    promptGenre: "",
-    alreadyUsed: false,
-    previousWinner: ""
-  });
-
-  // Set the canvas ctx as the state
-  useEffect(() => {
-    const canvas = canvasRef.current; // Select the canvas element
-    const ctx = canvas.getContext("2d"); // The canvas context
-    canvas.width = window.innerWidth * 0.811; // Set width of the canvas to the width of the screen
-    canvas.height = window.innerHeight * 0.755;// Set height of the canvas to the height of the screen
-    setCanvasCTX(ctx); // Finally, set the state
-  }, [canvasRef]); // Do this everytime the canvas element is changed
-
-  const SetPos = (e) => {
-    // The e variable is the event
-    const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
-    setMouseData({
-      x: e.clientX - canvasRect.left, // Mouse X position
-      y: e.clientY - canvasRect.top, // Mouse Y position
-    });
-    if (Mode.getMode() == 'fill') {
-      if (e.buttons !== 1) {
-        canFill.setMode(1);
-        return;
-
-      }
-      console.log(canFill.getMode());
-      if (canFill.getMode() == 1) {
-        console.log(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
-        body_loaded();
-        var canvasX = e.clientX - canvasRect.left;
-        var canvasY = e.clientY - canvasRect.top;
-        flood_fill(Math.round(canvasX), Math.round(canvasY), color_to_rgba(color));
-        //flood_fill(100,100,color_to_rgba(generate_random_color()));
-        canFill.setMode(0);
-      }
     }
-  };
-  const Draw = (e) => {
 
-    const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
-    setMouseData({
-      x: e.clientX - canvasRect.left, // Update the mouse location
-      y: e.clientY - canvasRect.top, // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    var intervalId = window.setInterval(function() {
+        checkURL();
+    }, 1000);
+
+    function checkURL() {
+        var url = window.location.href;
+        var urlEnd = url.substring(url.length - 7);
+
+        if (urlEnd === "drawing") {
+          if(document.getElementById("Label1").innerHTML == ''){
+
+            document.getElementById("Label1").innerHTML = "1:00";
+
+            Label1 = window.setInterval(function() {
+                timer();
+            }, 1000); // every second
+            clearInterval(intervalId);
+        }
+        }
+    }
+
+
+    var seconds = 60;
+    var Label1;
+
+    function timer() {
+        var url = window.location.href;
+        var urlEnd = url.substring(url.length - 7);
+        if (urlEnd != "drawing") {
+            clearInterval(Label1);
+            return;
+        }
+        if (seconds < 60) { // I want it to say 1:00, not 60
+            document.getElementById("Label1").innerHTML = seconds;
+        }
+        if (seconds > 0) { // so it doesn't go to -1
+            seconds--;
+        } else {
+            clearInterval(Label1);
+            submitForm()
+
+        }
+    }
+
+
+
+    const [date, setName, difficulty] = useState({
+        date: " ",
+        difficulty: " "
     });
 
 
-    //----------------------------------------------------------------------
-    //PEN
 
-    if (Mode.getMode() == 'pen') {
-      if (e.buttons !== 1) return;
 
-      const ctx = canvasCTX; // Our saved context
-      ctx.beginPath(); // Start the line
-      ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
-      ctx.globalCompositeOperation = "source-over";
-      ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top); // Again draw a line to the mouse postion
-      ctx.strokeStyle = color; // Set the color as the saved state
-      ctx.lineWidth = size; // Set the size to the saved state
-      // Set the line cap to round
-      ctx.lineCap = "round";
-      ctx.stroke(); // Draw it!
-    }
-    //ERASE
-    else if (Mode.getMode() == 'erase') {
-      if (e.buttons !== 1) return;
+    const submitForm = () => {
+        //e.preventDefault();
+        axios({
+                method: 'post',
+                url: 'api/user_memories/',
+                data: {
+                    username: getUsername(),
+                    date: getDate(),
+                    timeCompleted: getTime(),
+                    difficulty: "69",
+                    timeTaken: getSeconds(),
+                    prompt: document.getElementById('promptID').innerHTML,
+                    drawing: getDrawing(),
+                },
+                headers: {
+                    "content-type": "application/json",
+                    'X-CSRFToken': csrftoken
+                }
+            })
+            .then((res) => console.log("Sent: " + res))
+            .catch((err) => console.log("Err: " + err))
+            window.location.href = window.location.href.replace("/drawing", "/finishedDrawing");
 
-      const ctx = canvasCTX; // Our saved context
-      ctx.moveTo(mouseData.x, mouseData.y);
-      ctx.globalCompositeOperation = "destination-out";
-      //ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top,false); // Again draw a line to the mouse postion
+    };
 
-      ctx.arc(e.clientX - canvasRect.left, e.clientY - canvasRect.top, size * 0.6, 0, Math.PI * 2, false);
-      // Set the line cap to round
-      ctx.lineCap = "round";
-      ctx.fill();
-    }
-    //FILL
-    else if (Mode.getMode() == 'fill') {
-      if (e.buttons !== 1) {
-        canFill.setMode(1);
-        return;
 
-      }
-      console.log(canFill.getMode());
-      if (canFill.getMode() == 1) {
-        console.log(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
-        body_loaded();
-        var canvasX = e.clientX - canvasRect.left;
-        var canvasY = e.clientY - canvasRect.top;
-        flood_fill(Math.round(canvasX), Math.round(canvasY), color_to_rgba(color));
-        //flood_fill(100,100,color_to_rgba(generate_random_color()));
-        canFill.setMode(0);
-      }
 
-    }
-  };
 
-  //Code for prompt getting
-  // Change the value after /api/prompts/ to the ID of the prompt you want
-  useEffect(() => {
-    console.log("hello");
-    axios.get("/api/prompts/").then((data) => {
-      console.log(data.data.length);
-      var id =Math.floor(Math.random() * data.data.length);
-      console.log(id);
-          axios.get("/api/prompts/"+id+"/").then((data) => {
-      //console.log(data);
-      setPost(data?.data);
+    //Mode.setMode('pen');
+    const canvasRef = useRef(null);
+    const [mouseData, setMouseData] = useState({
+        x: 0,
+        y: 0
     });
+    const [canvasCTX, setCanvasCTX] = useState(null);
+    const [color, setColor] = useState("#000000"); // Default color is black
+    const [size, setSize] = useState(10); // Default size is 10
+
+    const [post, setPost] = useState({
+        id: 0,
+        prompt: "",
+        promptGenre: "",
+        alreadyUsed: false,
+        previousWinner: ""
     });
-  }, []);
+
+    // Set the canvas ctx as the state
+    useEffect(() => {
+        const canvas = canvasRef.current; // Select the canvas element
+        const ctx = canvas.getContext("2d"); // The canvas context
+        canvas.width = window.innerWidth * 0.811; // Set width of the canvas to the width of the screen
+        canvas.height = window.innerHeight * 0.755; // Set height of the canvas to the height of the screen
+        setCanvasCTX(ctx); // Finally, set the state
+    }, [canvasRef]); // Do this everytime the canvas element is changed
+
+    const SetPos = (e) => {
+        // The e variable is the event
+        const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
+        setMouseData({
+            x: e.clientX - canvasRect.left, // Mouse X position
+            y: e.clientY - canvasRect.top, // Mouse Y position
+        });
+        if (Mode.getMode() == 'fill') {
+            if (e.buttons !== 1) {
+                canFill.setMode(1);
+                return;
+
+            }
+            console.log(canFill.getMode());
+            if (canFill.getMode() == 1) {
+                console.log(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
+                body_loaded();
+                var canvasX = e.clientX - canvasRect.left;
+                var canvasY = e.clientY - canvasRect.top;
+                flood_fill(Math.round(canvasX), Math.round(canvasY), color_to_rgba(color));
+                //flood_fill(100,100,color_to_rgba(generate_random_color()));
+                canFill.setMode(0);
+            }
+        }
+    };
+    const Draw = (e) => {
+
+        const canvasRect = canvasRef.current.getBoundingClientRect(); // Get Boundaries of Canvas
+        setMouseData({
+            x: e.clientX - canvasRect.left, // Update the mouse location
+            y: e.clientY - canvasRect.top, // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        });
+
+
+        //----------------------------------------------------------------------
+        //PEN
+
+        if (Mode.getMode() == 'pen') {
+            if (e.buttons !== 1) return;
+
+            const ctx = canvasCTX; // Our saved context
+            ctx.beginPath(); // Start the line
+            ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
+            ctx.globalCompositeOperation = "source-over";
+            ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top); // Again draw a line to the mouse postion
+            ctx.strokeStyle = color; // Set the color as the saved state
+            ctx.lineWidth = size; // Set the size to the saved state
+            // Set the line cap to round
+            ctx.lineCap = "round";
+            ctx.stroke(); // Draw it!
+        }
+        //ERASE
+        else if (Mode.getMode() == 'erase') {
+            if (e.buttons !== 1) return;
+
+            const ctx = canvasCTX; // Our saved context
+            ctx.moveTo(mouseData.x, mouseData.y);
+            ctx.globalCompositeOperation = "destination-out";
+            //ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top,false); // Again draw a line to the mouse postion
+
+            ctx.arc(e.clientX - canvasRect.left, e.clientY - canvasRect.top, size * 0.6, 0, Math.PI * 2, false);
+            // Set the line cap to round
+            ctx.lineCap = "round";
+            ctx.fill();
+        }
+        //FILL
+        else if (Mode.getMode() == 'fill') {
+            if (e.buttons !== 1) {
+                canFill.setMode(1);
+                return;
+
+            }
+            console.log(canFill.getMode());
+            if (canFill.getMode() == 1) {
+                console.log(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
+                body_loaded();
+                var canvasX = e.clientX - canvasRect.left;
+                var canvasY = e.clientY - canvasRect.top;
+                flood_fill(Math.round(canvasX), Math.round(canvasY), color_to_rgba(color));
+                //flood_fill(100,100,color_to_rgba(generate_random_color()));
+                canFill.setMode(0);
+            }
+
+        }
+    };
+
+    //Code for prompt getting
+    // Change the value after /api/prompts/ to the ID of the prompt you want
+    useEffect(() => {
+        console.log("hello");
+        axios.get("/api/prompts/").then((data) => {
+            console.log(data.data.length);
+            var id = Math.floor(Math.random() * data.data.length);
+            console.log(id);
+            axios.get("/api/prompts/" + id + "/").then((data) => {
+                //console.log(data);
+                setPost(data?.data);
+            });
+        });
+    }, []);
 
   return (
     <div className="background">
@@ -528,23 +563,25 @@ function Drawing() {
 
           <br></br>
           <br></br>
+          <div>
+            <Link to={"/finishedDrawing"}>
 
-          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-            id="submtButton"
-            onClick={() => {
-              submitForm();
-            }}
-          >
-            Submit
-          </button>
-
+            <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+              id="submtButton"
+              onClick={() => {
+                submitForm();
+              }}>
+              Submit
+            </button>
+            </Link>
+          </div>
           <br></br>
 
 
         </div>
       </div>
       <div className="prompt_bar">
-        <div className="prompt">
+        <div id="promptID" className="prompt">
           {post.prompt}
         </div>
       </div>

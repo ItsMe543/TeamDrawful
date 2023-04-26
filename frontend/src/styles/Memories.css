@@ -8,6 +8,7 @@ p {
 }
 .m-title {
   text-align: center;
+  color: white;
 }
 
 .calanderDrawing {
@@ -16,6 +17,7 @@ p {
   justify-content: start;
   gap: 4%;
   height: 100%;
+  flex-wrap: wrap;
 }
 .drawingContainer {
   display: flex;
@@ -29,7 +31,8 @@ p {
 .m-drawing {
   color: rgb(54, 54, 54);
 
-  background-color: rgb(54, 54, 54);
+  /* background-color: rgb(54, 54, 54); */
+  background-color: white;
   height: 600px;
   width: 1000px;
   display: flex;
@@ -41,7 +44,11 @@ p {
   max-height: 600px;
 }
 .twoButtons {
-  margin-left: 5%;
+  margin-left: 40px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .downloadButton {
   all: unset;
@@ -111,8 +118,11 @@ p {
   border-radius: 10%;
 }
 .react-calendar__navigation__arrow:active {
-  color: white !important;
+  /* color: white !important; */
   background-color: black !important;
+}
+.react-calendar__navigation__arrow:enabled:focus {
+  background-color: rgb(54, 54, 54) !important;
 }
 .react-calendar__navigation button:enabled:focus {
   /* background-color: #e6e6e6; */
@@ -121,7 +131,8 @@ p {
   background-color: black !important;
 }
 .react-calendar__tile--now {
-  background-color: silver;
+  /* background-color: silver; */
+  color: red !important;
 }
 .react-calendar__tile--active {
   background-color: rgb(54, 54, 54);
@@ -130,4 +141,11 @@ p {
 .m-errors {
   color: red;
   font-size: 1.5em;
+}
+.currentDate {
+  color: white;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  padding: 10px;
 }
