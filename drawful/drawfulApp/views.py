@@ -21,14 +21,8 @@ def main(request):
 
 class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
+    queryset = models.Prompt_List.objects.all()
 
-    def id_list(request):
-        print("Here")
-        id = request.GET.get('id', None)
-        queryset = models.Prompt_List.objects.all()
-        if id:
-            print("Id query")
-            queryset = queryset.filter(Q(id=id))
 
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
@@ -52,6 +46,15 @@ class User_MemoriesView(viewsets.ModelViewSet):
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
+
+    def getUsernamesCount(request):
+        value = request.GET.get('username')
+        try:
+            q = models.User_Accounts.objects.filter(username=value).count();
+        except:
+            q = 0
+        
+        return HttpResponse(q)
 
 
 class BadgesView(viewsets.ModelViewSet):

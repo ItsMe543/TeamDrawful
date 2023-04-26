@@ -10,8 +10,14 @@ import { useState } from "react";
 
 function Login() {
   //<div style={{ fontSize: "50px", color: "white" }}>
+  const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
   const[visible, setVisible] = useState(false);
+
+  function checkCredentials() {
+
+  }
+
   return (
   <div className="page">
       <div className="accounts-page">
@@ -22,7 +28,7 @@ function Login() {
 
           <div className="details-segment">
               <div className="info-label">Username</div>
-              <input id="user"  className="info-box" type="text" placeholder="Username" />
+              <input id="user"  className="info-box" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
           </div>
 
           <div className="details-segment">
@@ -42,13 +48,8 @@ function Login() {
           </Link>
 
           <button className="submit-acc-details"
-          onClick={() => {
-              console.log(document.getElementById("user").value);
-              document.cookie ="username ="+document.getElementById("user").value;
-            }}>
-              <Link to={"/home/"}>
-              Log in
-              </Link>
+          onClick={checkCredentials}>
+          Log in
           </button>
         </div>
       </div>

@@ -69,7 +69,10 @@ function SignUp() {
           "content-type": "application/json"
         }
       })
-      .then((res) => console.log("Sent: " + res))
+      .then((res) => {
+        console.log("Sent: " + res)
+        window.location.replace('/login');
+      })
       .catch((err) => console.log("Err: " + err))
   }
 
@@ -77,6 +80,7 @@ function SignUp() {
   // \s = space
   const checkUserDetails = (e) => {
     e.preventDefault();
+    var isUsernameUnique = false;
     //Check fullname (at least 2 letters/spaces, no symbols or numbers)
     if ((fullname.length) < 1 || fullname.match(/[0-9]/ || /[',./?@;:{}=+-_)(*&^%$£"!¬`¦\|><[]]/)){
       setErrormsg("You must provide a name with no symbols or numbers");
@@ -84,10 +88,21 @@ function SignUp() {
     }
     //console.log("You have a wonderful name :)");
 
+    axios.get("/getUsernamesCount?username=${username}").then((data) => {
+      console.log(data);
+      isUsernameUnique = ((data.data === 0) ? true : false);
+      //console.log(isUsernameUnique);
+    }, [accountUserName])
+
     //check username (at least 8 characters, no duplicate usernames)
     if ((accountUserName.length < 8)){
       setErrormsg("Username must be at least 8 characters long with no spaces");
       return;
+    }
+    console.log(isUsernameUnique);
+    if (!isUsernameUnique) {
+      setErrormsg("Username is already taken");
+      return
     }
 
     
@@ -110,7 +125,6 @@ function SignUp() {
     }
 
     //If all checks are passed, send details to database 
-    setErrormsg("Success");
     setAccountHashedPass(password);
     sendNewDetails(); 
   }
