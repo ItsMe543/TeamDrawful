@@ -247,7 +247,7 @@ function getUsername() {
 }
 
 function Drawing() {
-
+    const navigate = useNavigate();
 
 
 
@@ -268,15 +268,15 @@ function Drawing() {
         var urlEnd = url.substring(url.length - 7);
 
         if (urlEnd === "drawing") {
-          if(document.getElementById("Label1").innerHTML == ''){
+            if(document.getElementById("Label1").innerHTML == ''){
 
-            document.getElementById("Label1").innerHTML = "1:00";
+                document.getElementById("Label1").innerHTML = "1:00";
 
-            Label1 = window.setInterval(function() {
-                timer();
-            }, 1000); // every second
-            clearInterval(intervalId);
-        }
+                Label1 = window.setInterval(function() {
+                    timer();
+                }, 1000); // every second
+                clearInterval(intervalId);
+            }
         }
     }
 
@@ -333,7 +333,7 @@ function Drawing() {
             })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-            window.location.href = window.location.href.replace("/drawing", "/memories");
+            navigate('/memories');
 
     };
 
