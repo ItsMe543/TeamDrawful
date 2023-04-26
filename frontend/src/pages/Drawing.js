@@ -233,14 +233,7 @@ function getTime() {
 }
 
 
-function getSeconds(){
-  if(seconds ===60){
-    return "00:00:00";
-  }
-  else{
-    return "00:00:"+(60-seconds);
-  }
-}
+
 
 function getDrawing() {
     var canvas = document.getElementById("canvasID");
@@ -286,6 +279,7 @@ function Drawing() {
         }
         }
     }
+
 
     var seconds = 60;
     var Label1;
