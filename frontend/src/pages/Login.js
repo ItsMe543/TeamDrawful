@@ -15,6 +15,7 @@ function Login() {
 
   function checkCredentials() {
     sessionStorage.setItem("token", username);
+    document.cookie = "username =" + username;
     navigate("/home");
   }
 
