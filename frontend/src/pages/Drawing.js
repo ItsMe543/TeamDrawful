@@ -287,7 +287,6 @@ function Drawing() {
         }
     }
 
-
     var seconds = 60;
     var Label1;
 
