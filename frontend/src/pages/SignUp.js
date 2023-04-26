@@ -64,8 +64,8 @@ function SignUp() {
         currentStreak: 0,
         maxStreak: 0,
         totalStars: 0,
-        friends: "",
-        friendRequests: "",
+        friends: null,
+        friendRequests: null,
       },
       headers: {
         "content-type": "application/json",

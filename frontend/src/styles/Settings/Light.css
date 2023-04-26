@@ -78,11 +78,13 @@ body.light-mode .Friends-m-list {
 body.light-mode .User-m-preview {
 
     border: 1px solid black;
+    background-color: rgb(255, 215, 103);
 }
 
 body.light-mode .User-preview {
 
     border: 1px solid black;
+    background-color: rgb(255, 215, 103);
 }
 
 body.light-mode .friendSidebar {
@@ -111,6 +113,11 @@ body.light-mode .Profile-badges-container {
 
 body.light-mode .Profile-bio-container {
     border: 1px solid black;
+    background-color: rgb(255, 215, 103);
+}
+
+body.light-mode .Profile-stat-bar {
+    background-color: rgb(255, 215, 103);
 }
 
 body.light-mode .Profile-picture {
@@ -156,12 +163,12 @@ body.light-mode .account-container img {
 }
 
 body.light-mode .stats {
-    background-color: rgb(255, 218, 237);
+    background-color: rgb(240, 211, 255);
     border: 1px solid black;
 }
 
 body.light-mode .badges-container {
-    background-color: rgb(255, 179, 170);
+    background-color: rgb(255, 159, 159);
     border: 1px solid black;
 }
 
@@ -203,6 +210,7 @@ body.light-mode .CommentBar {
 
 body.light-mode .CommentSection {
     border: 1px solid black;
+    background-color: rgb(255, 215, 103);
 }
 
 body.light-mode .SubCom button {
@@ -212,7 +220,7 @@ body.light-mode .SubCom button {
 }
 
 body.light-mode .react-calendar {
-    background-color: rgb(252, 230, 255);
+    background-color: rgb(184, 121, 255);
     border: 1px solid black;
 
 }
@@ -251,7 +259,8 @@ body.light-mode .Friends-r-list {
 }
 
 body.light-mode .User-r-preview {
-    border: 1px solid black
+    border: 1px solid black;
+    background-color: rgb(255, 215, 103);
 }
 
 body.light-mode .arrow {
@@ -284,4 +293,30 @@ body.light-mode .Friend-m-picture {
 
 body.light-mode .Friend-r-picture {
     border: 1px solid black;
+}
+
+body.light-mode .sign-out {
+    background-color: rgb(160, 185, 255);
+    border: 1px solid black;
+    color: #000000
+}
+
+body.light-mode .underline {
+    border-color: #000000;
+}
+
+body.light-mode .Friend-username {
+    background-color: rgb(236, 197, 88);
+}
+
+body.light-mode .Friend-m-username {
+    background-color: rgb(236, 197, 88);
+}
+
+body.light-mode .Friend-r-username {
+    background-color: rgb(236, 197, 88);
+}
+
+body.light-mode .Profile-unfriend-button {
+    color: rgb(0, 0, 0)
 }

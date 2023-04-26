@@ -7,10 +7,9 @@
 
   padding-left: 100px;
   align-items: center;
-
   height: 100%;
   background-color: #dfdfdf;
-  font-size: 1.8em;
+  font-size: 22px;
 }
 
 /*Colour of logos*/
@@ -39,6 +38,7 @@ a {
   width: 90px;
   height: 90px;
 }
+
 .profile {
   display: flex;
   flex-direction: row;
@@ -46,9 +46,11 @@ a {
   outline-style: double;
   outline-width: 2px;
 }
+
 .userName {
   font-size: 0.8em;
 }
+
 .profilePic {
   max-height: 80px;
   max-width: 80px;
@@ -63,6 +65,7 @@ a {
     font-size: 1em;
     padding: 0;
   }
+
   .logo img {
     display: none;
   }

@@ -100,7 +100,7 @@ function Navbar() {
               {/* <div className="userName">defaultUsername</div> */}
             </div>
 
-            <Button className="sign out" onClick={() => signOut()}>
+            <Button className="sign-out" onClick={() => signOut()}>
               Sign out
             </Button>
           </>
