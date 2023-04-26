@@ -50,6 +50,15 @@ class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
+    def getFriendsByUsername(request):
+        value = request.GET.get('username')
+
+        try:
+            q = models.User_Accounts.objects.filter(username=value).values()
+        except:
+            q ="NO DRAWINGS WITH USERNAME: "+value
+        print(q)
+
     def getUsernameCount(request):
         username = request.GET.get('username')
         try:

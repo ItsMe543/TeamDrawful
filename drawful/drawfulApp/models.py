@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django_base64field.fields import Base64Field
+from django.contrib.postgres.fields import ArrayField
 
 import os
 # Create your models here.
@@ -65,8 +66,14 @@ class User_Accounts(AbstractUser):
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
         totalStars = models.IntegerField(default=0)
-        friends = models.CharField(max_length=30, null=True, blank=True) #List of users who are friends with this user
-        friendRequests = models.CharField(max_length=30, null=True, blank=True) #List of users which have sent friend requests to this account
+        friends = ArrayField(
+            models.CharField(max_length=30, blank=True),
+            size=100,blank = True, null = True
+        )
+        friendRequests = ArrayField(
+            models.CharField(max_length=30, blank=True),
+            size=100, blank = True, null = True
+        )
         #The extra following fields are required
         last_login = models.DateTimeField(null=True, blank=True)
         is_superuser = models.BooleanField(null=True, blank=True)
