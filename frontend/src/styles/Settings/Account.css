@@ -110,3 +110,22 @@
     font-size: 44px;
     margin-top: 5px
 }
+
+.save {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 8px;
+    margin-left: 25px;
+    margin-top: 60px;
+}
+
+.save:hover {
+    background-color: rgb(255, 207, 117);
+}
+
+.save:active {
+    background-color: rgb(255, 169, 88);
+}

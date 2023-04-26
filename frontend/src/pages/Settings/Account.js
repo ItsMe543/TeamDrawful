@@ -147,16 +147,19 @@ export default function Account() {
                 <div className="badges-container"></div>
 
                 <Row>
-                    <Col>
+                    <Col md={"2.5"}>
                         <div className="stats-header">Stats</div>
                         <div className="stats">
                             <div>Highest Streak: {post.maxStreak} </div>
                             <div>Average Rating: {post.averageRating}</div>
                             <div>Total Stars Earned: {post.totalStars} </div>
                             <div>Badges Unlocked: {post.badgesEarned}</div>
-                            <button onClick={checkUserDetails}>Save Changes</button>
+
 
                         </div>
+                    </Col>
+                    <Col>
+                        <button className="save" onClick={checkUserDetails}>Save Changes</button>
                     </Col>
 
                 </Row>
