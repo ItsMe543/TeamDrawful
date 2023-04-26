@@ -42,13 +42,23 @@ class User_MemoriesView(viewsets.ModelViewSet):
         print(q[0]["id"])
 
         return HttpResponse(p)
+    
+
+
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
-    def signUp(request):
-        if request.method == 'POST':
-            print(request.body)
+    def getFriendsByUsername(request):
+        value = request.GET.get('username')
+
+        try:
+            q = models.User_Accounts.objects.filter(username=value).values()
+        except:
+            q ="NO DRAWINGS WITH USERNAME: "+value
+        print(q)
+
+        return HttpResponse(q)
 
 
 class BadgesView(viewsets.ModelViewSet):

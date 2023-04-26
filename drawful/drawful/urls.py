@@ -32,7 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
-    path('signUp/', views.User_AccountsView.signUp),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
+    path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
