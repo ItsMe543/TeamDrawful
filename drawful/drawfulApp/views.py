@@ -25,7 +25,8 @@ class PromptView(viewsets.ModelViewSet):
 
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
-    queryset = models.User_Memories.objects.all()
+    queryset = models.User_Memories.objects.all();
+
 
 
     def getLatestDrawing(request):
