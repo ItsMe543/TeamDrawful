@@ -4,8 +4,18 @@ import Account from "../pages/Settings/Account";
 import Security from "../pages/Settings/Security";
 import Accessibility from "../pages/Settings/Accessibility";
 import "../styles/Settings.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Settings() {
+
+  const navigate = useNavigate();
+
+  function signOut() {
+    sessionStorage.removeItem("token");
+    console.log("Signed out");
+    navigate("/login");
+  }
+
   const [active, setActive] = useState("account");
   const [topPosition, setTopPosition] = useState(90);
   const [opacity, setOpacity] = useState(1);
@@ -66,10 +76,6 @@ export default function Settings() {
     setPopupVisible(!popupVisible);
   };
 
-  const handleLogoutClick = () => {
-
-  };
-
   return (
     <div className="settings-container">
       <div className="menu" style={{
@@ -89,7 +95,7 @@ export default function Settings() {
           </button>
           <br />
           <button className="buttonstyle" onClick={() => handleSectionClick("accessibility")}>
-            Accessibility & General
+            Accessibility
           </button>
           <br />
           <button className="buttonstyle" onClick={() => handleSectionClick("security")}>
@@ -98,11 +104,12 @@ export default function Settings() {
           <br />
           <br />
           <button className="buttonstyleMore" onClick={handlePopupClick}>
+            <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
             More
           </button>
           {popupVisible && (
             <div className="popup">
-              <button onClick={handleLogoutClick}>
+              <button onClick={() => signOut()}>
                 Logout
               </button>
             </div>

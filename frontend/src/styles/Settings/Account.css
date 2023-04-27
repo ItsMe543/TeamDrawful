@@ -70,12 +70,13 @@
 
 .stats-header {
     margin-top: 10px;
-    padding-left: 10px;
+    padding-left: 30px;
     font-size: 30px;
     color: white
 }
 
 .stats {
+    margin-left: 15px;
     width: 230px;
     height: 200px;
     background-color: rgb(44, 95, 190);
@@ -112,7 +113,7 @@
 }
 
 .save {
-    background-color: white;
+    background-color: rgb(255, 236, 182);
     color: black;
     border: 1px solid black;
     border-radius: 5px;

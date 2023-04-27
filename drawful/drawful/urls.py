@@ -32,11 +32,10 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
-<<<<<<< HEAD
     path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
-=======
-    path('getUsernamesCount',views.User_AccountsView.getUsernamesCount),
+    path('getUsernameCount',views.User_AccountsView.getUsernameCount),
+    path('getEmailCount',views.User_AccountsView.getEmailCount),
+    path('authenticateUser',views.User_AccountsView.authenticateUser),
     path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
->>>>>>> 2a3b042f8fcb286b882df81adacd024f3a12b0f2
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

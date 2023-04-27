@@ -4,6 +4,7 @@ import "../../styles/Settings/Font.css";
 import "../../styles/Settings/Contrast.css";
 import "../../styles/Settings/Pog.css";
 import "../../styles/Settings/Large.css";
+import "../../styles/Settings/Accessibility.css";
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from "@mui/material/Switch";
@@ -100,8 +101,8 @@ export default function Accessibility() {
 
     return (
         <div className="accessibility-container" style={{}}>
-            <div style={{ fontSize: "40px" }}>Accessibility Settings</div>
-            <div style={{ fontSize: "22px" }}>
+            <div className="accessibility-header">Accessibility Settings</div>
+            <div className="accessibility-text">
                 Light Mode
                 <PinkSwitch
                     checked={isLightMode}
