@@ -20,6 +20,9 @@ def main(request):
     context = { }
     return render(request, "index.html", context)
 
+def generalView(request):
+    pass
+
 class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
     queryset = models.Prompt_List.objects.all()

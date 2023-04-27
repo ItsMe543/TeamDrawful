@@ -23,6 +23,8 @@ function Login() {
       if (!isCorrectCredentials) {
         setErrormsg("Incorrect details. Please try again");
       } else {
+        sessionStorage.setItem("token", username);
+        document.cookie = "username =" + username;
         logUserIn();
       }
     }, [username, password]);
@@ -42,9 +44,6 @@ function Login() {
     }
 
     middleMan();
-
-    sessionStorage.setItem("token", username);
-    document.cookie = "username =" + username;
   }
 
   function logUserIn() {
