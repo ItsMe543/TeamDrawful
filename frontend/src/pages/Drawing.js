@@ -334,7 +334,7 @@ function Drawing() {
             })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-            window.location.href = window.location.href.replace("/drawing", "/finishedDrawing");
+            window.location.href = window.location.href.replace("/drawing", "/viewingDrawings/");
 
     };
 
@@ -557,7 +557,7 @@ function Drawing() {
           <br></br>
           <br></br>
           <div>
-            <Link to={"/finishedDrawing"}>
+            <Link to={"/viewingDrawings/"}>
 
             <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
               id="submtButton"

@@ -9,12 +9,6 @@ import { VscCircleFilled } from "react-icons/vsc";
 
 function FriendsList() {
 
-  //Hooks in react
-  //  const [varName, setName] = useState(Value);
-  //To update a hook:
-  //  <button onClick={() => setCount(count + 1)}>
-  //    Click me
-  //  </button>
 
   const [selected, setSelected] = useState(0);
   
@@ -22,11 +16,9 @@ function FriendsList() {
     setSelected(fProfile);
   };
 
-  //{drawings.map((post, id) => {
-    //const friendsProfiles = [
-      //{ id: post.id, component: <post /> }
-    //];
-  //})};
+  const [friendsAdded, setFriendsAdded] = useState([]);
+
+
 
   return (
     <div className="Profiles-container">
@@ -35,14 +27,25 @@ function FriendsList() {
         <input className="F-search-bar" type="text" placeholder="Search friends list" />
         
         <div className="Friends-list">
-          {drawings.map((post, id) => {
-            return (
-              <button className="User-preview" onClick={() => handleSelectionClick(post.id)}>
-                <img className="Friend-picture" src={post.drawing} alt={"drawing image"} />
+
+          {/*HERE*/}
+          {drawings.map((post, id) => { 
+
+            return ( 
+
+              //HERE
+              <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
+
+                {/*HERE*/}
+                <img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> 
+
                 <VscCircleFilled className="Friend-status"/>
                 <Col>
                   <div className="Friend-username">
+
+                    {/*HERE*/}
                     {post.username}
+
                   </div>
                 </Col>
               </button>
@@ -54,22 +57,31 @@ function FriendsList() {
       <Col className="Profile-side">
         <div className="Details-to-fill">
 
-          
+          {/*HERE*/}
           {drawings.map((post, id) => {
+
+            //HERE
             if (post.id == selected){
+
              return(
           
           <div className="Profile-details">
             
             <Row>
               <Col>
+
+                 {/*HERE*/}
                 <img className="Profile-picture" src={post.drawing} alt={"pfp image"} />
+
               </Col>
 
               <Col>
               <div className="Profile-bio-container">
                 <div className="Profile-bio">
+
+                  {/*HERE*/}
                   {post.bio}
+
                 </div>
               </div>
               </Col>
@@ -78,7 +90,10 @@ function FriendsList() {
             <Row>
               <Col>
               <div className="Profile-username">
+
+                 {/*HERE*/}
                 {post.username}
+
               </div>
               </Col>
               <Col>
@@ -91,21 +106,36 @@ function FriendsList() {
             <Row>
               <Col>
                 <div className="Profile-stat-bar">
+
+                  {/*HERE*/}
                   Highest Streak: {post.highestStreak}
+
                 </div>
                 <div className="Profile-stat-bar">
+
+                  {/*HERE*/}
                   Average Rating: {post.averageRating}
+
                 </div>
                 <div className="Profile-stat-bar">
+
+                  {/*HERE*/}
                   Total Stars Earned: {post.totalStars}
+
                 </div>
                 <div className="Profile-stat-bar">
+
+                  {/*HERE*/}
                   Badges Unlocked:  {post.badgesUnlocked}
+
                 </div>
               </Col>
 
               <Col>
+
+                 {/*HERE*/}
                 <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
+
               </Col>
 
             </Row>
@@ -118,7 +148,10 @@ function FriendsList() {
               </Col>
               <Col>
                   <button className="Profile-view-memories">
+
+                    {/*HERE*/}
                     <Link to={"/friends/memories/" + post.id}>
+
                       Memories
                     </Link>
                   </button>
@@ -136,9 +169,15 @@ function FriendsList() {
             <Row>
               <Col>
                 <div className="Profile-badges-container">
+
+                {/*HERE*/}
                 {post.badges.map((badges,id) =>{
+
                   return(
+
+                    //HERE
                     <img className="Profile-badge-icon" src={badges.badgeIcon} alt={"Badgeicon"} />
+
                   )})}
                 </div>
               </Col>

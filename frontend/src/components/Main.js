@@ -14,7 +14,6 @@ import Settings from "../pages/Settings";
 import Accessibility from "../pages/Settings/Accessibility";
 import SignUp from "../pages/SignUp";
 import ViewDrawings from "../pages/ViewDraws";
-import FinishedDrawing from "../pages/FinishedDrawing";
 
 function Main() {
   useEffect(() => {
@@ -71,7 +70,6 @@ function Main() {
       <Route path="/friends/memories/:ID" element={<FriendsMemories />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
-      <Route path="/finishedDrawing" element={<FinishedDrawing />}></Route>
 
     </Routes>
   );
