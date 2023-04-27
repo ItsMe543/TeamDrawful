@@ -4,7 +4,6 @@ import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
 import DifficultyPage from "../pages/DifficultyPage";
 import Drawing from "../pages/Drawing";
-import FinishedDrawing from "../pages/FinishedDrawing";
 import Friends from "../pages/Friends";
 import FriendsMemories from "../pages/FriendsMemories";
 import Home from "../pages/Home";
@@ -147,14 +146,6 @@ function Main() {
       ></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
-      <Route
-        path="/finishedDrawing"
-        element={
-          <PrivateRoute>
-            <FinishedDrawing />
-          </PrivateRoute>
-        }
-      ></Route>
     </Routes>
   );
 }

@@ -124,7 +124,7 @@ export default function Account() {
                             />
                         </div>
                         <div className="input">
-                            <input
+                            <input className="email"
                                 style={{ color: "rgb(120,120,120)" }}
                                 placeholder="email id"
                                 value={email}
@@ -132,7 +132,7 @@ export default function Account() {
                             />
                         </div>
                         <div className="input">
-                            <textarea
+                            <textarea className="textarea"
                                 placeholder="Max No. of Characters: 256s"
                                 value={bio}
                                 style={{ resize: "none" }}
