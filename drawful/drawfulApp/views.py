@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth import login
 from rest_framework import viewsets
 from drawfulApp import serializers
 from drawfulApp import models
@@ -81,6 +82,7 @@ class User_AccountsView(viewsets.ModelViewSet):
 
         user = CustomBackend.authenticate(request, username=username, password=password)
         if user is not None:
+            login(request, user)
             return HttpResponse("1")
         else:
             return HttpResponse("0")

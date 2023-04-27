@@ -37,5 +37,15 @@ urlpatterns = [
     path('getEmailCount',views.User_AccountsView.getEmailCount),
     path('authenticateUser',views.User_AccountsView.authenticateUser),
     path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
+    path('/viewingDrawings'),
+    path('/settings'),
+    path('/friends'),
+    path('/memories'),
+    path('/badges'),
+    path('/drawing'),
+    path('/comments/:ID'),
+    path('/friends/memories/:ID'),
+    path('/login'),
+    path('/signUp'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
