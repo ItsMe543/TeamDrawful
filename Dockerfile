@@ -47,6 +47,7 @@ RUN pip3 install django-cors-headers
 RUN pip3 install djangorestframework
 RUN pip3 install pillow
 RUN pip3 install django-base64field
+RUN pip3 install django_filters
 # copy project
 COPY . .
 #CMD python3 manage.py runserver
