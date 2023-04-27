@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import "../styles/SignUpAndLogIn.css";
@@ -13,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [errormsg, setErrormsg] = useState("");
+  const navigate = useNavigate();
 
   var isCorrectCredentials = false;
 
@@ -47,8 +48,19 @@ function Login() {
   }
 
   function logUserIn() {
-    window.location.replace('/home');
+    navigate("/home");
   }
+
+  //Attempt to allow enter to work:
+  useEffect(() => {
+    var passInput = document.getElementById("user");
+    passInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitButton").click();
+      }
+    });
+  });
 
   return (
     <div className="page">
@@ -93,7 +105,7 @@ function Login() {
             {errormsg}
           </div>
 
-          <button className="submit-acc-details" onClick={checkCredentials}>
+          <button className="submit-acc-details" id="submitButton" onClick={checkCredentials}>
             Log in
           </button>
         </div>

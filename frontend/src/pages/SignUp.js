@@ -1,18 +1,17 @@
 import axios from "axios"; //Used for database interactivity
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/SignUpAndLogIn.css";
 
 function SignUp() {
   //<div style={{ fontSize: "50px", color: "white" }}>
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [cpVisible, setCPVisible] = useState(false);
-
   const [errormsg, setErrormsg] = useState("");
+  const navigate = useNavigate();
 
   var x = 1;
 
@@ -57,7 +56,7 @@ function SignUp() {
     })
       .then((res) => {
         console.log("Sent: " + res);
-        window.location.replace("/login");
+        navigate('/login');
       })
       .catch((err) => console.log("Err: " + err));
   };
