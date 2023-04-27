@@ -42,7 +42,6 @@ function Login() {
       setErrormsg("Please enter your password");
       return;
     }
-
     middleMan();
   }
 
