@@ -4,7 +4,7 @@ import Badges from "../pages/Badges";
 import Comments from "../pages/Comments";
 import DifficultyPage from "../pages/DifficultyPage";
 import Drawing from "../pages/Drawing";
-import FinishedDrawing from "../pages/FinishedDrawing";
+//import FinishedDrawing from "../pages/FinishedDrawing";
 import Friends from "../pages/Friends";
 import FriendsMemories from "../pages/FriendsMemories";
 import Home from "../pages/Home";

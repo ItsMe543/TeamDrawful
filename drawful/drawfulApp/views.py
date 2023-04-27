@@ -4,6 +4,10 @@ from rest_framework import viewsets
 from drawfulApp import serializers
 from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
+from datetime import datetime
+import django_filters.rest_framework
+
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -27,6 +31,9 @@ class PromptView(viewsets.ModelViewSet):
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['date']
+
 
     def getLatestDrawing(request):
         value = request.GET.get('username')
@@ -42,6 +49,25 @@ class User_MemoriesView(viewsets.ModelViewSet):
         print(q[0]["id"])
 
         return HttpResponse(p)
+
+
+
+
+
+    def getTodaysDrawings(request):
+        serializer_class = serializers.User_MemoriesSerializer
+        date = request.GET.get('date')
+        today = datetime.today().strftime('%Y-%m-%d')
+        print(today)
+        try:
+             q = models.User_Memories.objects.filter(date = today ).values().order_by("-id")
+        except:
+             q ="No drawings today: "
+        print(q)
+
+
+        return HttpResponse(q)
+
 
 
 class User_AccountsView(viewsets.ModelViewSet):
@@ -63,7 +89,7 @@ class User_AccountsView(viewsets.ModelViewSet):
             q = models.User_Accounts.objects.filter(username=username).count()
         except:
             q = 0
-        
+
         return HttpResponse(q)
 
     def getEmailCount(request):
@@ -72,9 +98,9 @@ class User_AccountsView(viewsets.ModelViewSet):
             q = models.User_Accounts.objects.filter(email=email).count()
         except:
             q = 0
-        
+
         return HttpResponse(q)
-    
+
     def authenticateUser(request):
         username = request.GET.get('username')
         password = request.GET.get('password')
@@ -98,7 +124,7 @@ class BadgesView(viewsets.ModelViewSet):
             print(len(total))
         except:
             total ="not working"
-        return HttpResponse(len(total))    
+        return HttpResponse(len(total))
 
 class Usernames(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer

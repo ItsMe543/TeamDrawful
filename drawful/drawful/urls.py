@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 router = routers.DefaultRouter()
 router.register(r'prompts', views.PromptView, 'prompt')
 router.register(r'user_memories', views.User_MemoriesView, 'user_memories')
+# router.register(r'user_memories/getToday', views.TodaysDrawingView, 'TodaysDrawings')
 # router.register(r'user_memories/delete/<int>', views.User_MemoriesDeleteView, 'user_memories_delete')
 router.register(r'user_accounts', views.User_AccountsView, 'user_accounts')
 router.register(r'badges', views.BadgesView, 'badges')
@@ -32,6 +33,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
+    path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
     path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
     path('getEmailCount',views.User_AccountsView.getEmailCount),
