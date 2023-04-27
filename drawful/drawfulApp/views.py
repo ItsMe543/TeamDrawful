@@ -7,6 +7,7 @@ from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
 from datetime import datetime
 from django.http import JsonResponse
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 
@@ -28,6 +29,7 @@ class PromptView(viewsets.ModelViewSet):
 class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
+    filter_backends = [DjangoFilterBackend]
     filterset_fields = ['date']
 
 

@@ -6,10 +6,10 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import "../Fonts/Sometimes.otf";
 
-import "../styles/ViewPage.css";
+import "../styles/TodaysDrawings.css";
 
 // Ctrl + k to comment out region
-function ViewDrawings() {
+function TodaysDrawings() {
   const [posts, setPosts] = useState([]);
   const [errors, setErrors] = useState("");
   const [loading, setLoading] = useState(true);
@@ -72,36 +72,46 @@ function ViewDrawings() {
   if (loading) return <p>Loading...</p>;
   return (
     <div>
-      <h1 className="Title">Today's Pictures</h1>
+      <h2 className="Title">Today's Drawings</h2>
 
       {posts.map((post, id) => {
         return (
           <>
-            <h2 className="PromptName">Today's Prompt: {post.prompt}</h2>
-            <div className="UserProfile">
-              <div className="userDrawing">
-                <img src={post.drawing} alt={"drawing image"} />
-              </div>
+            <div className="p-container">
+              <div className="post">
+                <div className="top-bar">
+                  <div className="UserName">
+                    @{post.username} {" - "}{" "}
+                    {new Date(post.date).toDateString()} -{" "}
+                    {post.timeTaken
+                      .split(":")
+                      .reduce((acc, time) => 60 * acc + +time)}{" "}
+                    seconds
+                  </div>
 
-              <div className="UserElement">
-                <div className="UserName">{post.username}</div>
-                <div className="Stats">
-                  Completed: {post.completedTime} - {post.date}
+                  <div className="PromptName">
+                    Today's Prompt: {post.prompt}
+                  </div>
                 </div>
-                <div className="Stats">Difficulty: {post.difficulty} / 5</div>
-                <div className="Stats">Time taken: {post.timeTaken}</div>
-                <div className="StarBarAvg">
-                  Rating
-                  <Rating
-                    className="StarRating"
-                    value={1}
-                    readOnly
-                    precision={0.1}
-                  />
+                <div className="userDrawing">
+                  <img src={post.drawing} alt={"drawing image"} />
                 </div>
-              </div>
 
-              {/* <div className="Ratings">
+                <div className="bottom-bar">
+                  <div className="Stats">Difficulty: {post.difficulty} / 5</div>
+                  {/* <div className="Stats">Time taken: {post.timeTaken}</div> */}
+                  <div className="StarBarAvg">
+                    Rating
+                    <Rating
+                      className="StarRating"
+                      value={1}
+                      readOnly
+                      precision={0.1}
+                    />
+                  </div>
+                </div>
+
+                {/* <div className="Ratings">
                 <div className="RateText">Rate the drawing?</div>
                 <div className="StarBar">
                   {[0, 1, 2, 3, 4].map((index) => (
@@ -121,29 +131,11 @@ function ViewDrawings() {
                 </div>
                 <Button className="SubmitButton">Submit Rating</Button>
               </div> */}
-
-              <div className="UserElement">
-                {/* <Link to={"/comments/" + post.id}>
-                  <div className="CommentsBox">
-                    <div className="CommentHeading">Comments</div>
-                    <div className="Comment">
-                      {post.Comments.map((Comments, id) => {
-                        return (
-                          <>
-                            <div className="CommentUsername">
-                              {Comments.UserCommenting}:
-                            </div>
-
-                            <div className="CommentText">
-                              {Comments.Comment}
-                            </div>
-                          </>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </Link> */}
               </div>
+              {/* <div className="CommentsBox">
+                <div className="CommentHeading">Comments</div>
+                <div className="Comment"></div>
+              </div> */}
             </div>
           </>
         );
@@ -162,4 +154,4 @@ function ViewDrawings() {
   );
 }
 
-export default ViewDrawings;
+export default TodaysDrawings;

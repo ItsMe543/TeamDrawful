@@ -13,10 +13,9 @@
 }
 
 /*Colour of logos*/
-a {
+.links a {
   color: black;
 }
-
 /*Centers icons*/
 .Navbar {
   text-align: center;
