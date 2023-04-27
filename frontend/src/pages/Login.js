@@ -20,14 +20,14 @@ function Login() {
   const middleMan = () => {
     axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
       isCorrectCredentials = ((data.data === 1) ? true : false);
-      if (!isCorrectCredentials) {
+      //console.log(data.data)
+      /*if (!isCorrectCredentials) {
         setErrormsg("Incorrect details. Please try again");
       } else {
-        sessionStorage.setItem("token", username);
-        document.cookie = "username =" + username;
         logUserIn();
-      }
+      }*/
     }, [username, password]);
+    logUserIn();
   }
 
   function checkCredentials(e) {
@@ -47,19 +47,10 @@ function Login() {
   }
 
   function logUserIn() {
+    sessionStorage.setItem("token", username);
+    document.cookie = "username =" + username;
     navigate("/home");
   }
-
-  //Attempt to allow enter to work:
-  useEffect(() => {
-    var passInput = document.getElementById("user");
-    passInput.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("submitButton").click();
-      }
-    });
-  });
 
   return (
     <div className="page">

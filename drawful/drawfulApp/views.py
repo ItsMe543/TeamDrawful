@@ -77,6 +77,7 @@ class User_AccountsView(viewsets.ModelViewSet):
     def authenticateUser(request):
         username = request.GET.get('username')
         password = request.GET.get('password')
+        print("Password =", password)
 
         user = CustomBackend.authenticate(request, username=username, password=password)
         if user is not None:

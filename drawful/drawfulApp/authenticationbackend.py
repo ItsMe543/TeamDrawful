@@ -4,12 +4,15 @@ from drawfulApp.models import User_Accounts
 
 class CustomBackend(BaseBackend):
     def authenticate(self, username, password):
+        print("Auth password =", password)
         try:
             user = User_Accounts.objects.get(username=username)
 
             if check_password(password, user.password):
+                print("Got here!")
                 return user
             else:
+                print("Actually got here :(")
                 return None
         except User_Accounts.DoesNotExist:
             return None
