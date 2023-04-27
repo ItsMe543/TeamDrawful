@@ -6,8 +6,6 @@ from drawfulApp import serializers
 from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
 from datetime import datetime
-
-
 from django.http import JsonResponse
 
 # Create your views here.
