@@ -14,8 +14,6 @@ from drawfulApp.authenticationbackend import CustomBackend
 #    queryset = models.Todo.objects.all()
 
 
-
-
 def main(request):
     context = { }
     return render(request, "index.html", context)
