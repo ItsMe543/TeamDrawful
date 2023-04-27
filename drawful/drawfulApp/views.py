@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth import login
 from rest_framework import viewsets
 from drawfulApp import serializers
 from drawfulApp import models
@@ -15,8 +16,6 @@ from django.http import JsonResponse
 #class TodoView(viewsets.ModelViewSet):#
 #    serializer_class = serializers.TodoSerializer
 #    queryset = models.Todo.objects.all()
-
-
 
 
 def main(request):
@@ -104,9 +103,11 @@ class User_AccountsView(viewsets.ModelViewSet):
     def authenticateUser(request):
         username = request.GET.get('username')
         password = request.GET.get('password')
+        print("Password =", password)
 
         user = CustomBackend.authenticate(request, username=username, password=password)
         if user is not None:
+            login(request, user)
             return HttpResponse("1")
         else:
             return HttpResponse("0")
