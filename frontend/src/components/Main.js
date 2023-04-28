@@ -137,7 +137,7 @@ function Main() {
         }
       ></Route>
       <Route
-        path="/friends/memories/:ID"
+        path="/friends/memories/:username"
         element={
           <PrivateRoute>
             <FriendsMemories />

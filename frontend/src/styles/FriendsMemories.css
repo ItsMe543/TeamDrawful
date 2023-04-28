@@ -36,3 +36,18 @@ select {
     padding-right: 2%;
     font-size: 20px;
 }
+
+.load {
+    color: red;
+}
+
+.NoDrawings {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+}
+
+.rootDiv {
+    margin: auto;
+    width: 23%;
+}

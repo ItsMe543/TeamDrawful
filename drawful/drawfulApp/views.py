@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import login
 from rest_framework import viewsets
 from drawfulApp import serializers
 from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
 from datetime import datetime
-from django.http import JsonResponse
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
@@ -49,22 +48,32 @@ class User_MemoriesView(viewsets.ModelViewSet):
         return HttpResponse(p)
 
 
-
-
-
     def getTodaysDrawings(request):
         serializer_class = serializers.User_MemoriesSerializer
         date = request.GET.get('date')
         today = datetime.today().strftime('%Y-%m-%d')
         print(today)
         try:
-             q = models.User_Memories.objects.filter(date = today ).values().order_by("-id")
+            q = models.User_Memories.objects.filter(date = today ).values().order_by("-id")
         except:
-             q ="No drawings today: "
+            q ="No drawings today: "
         print(q)
 
-
         return HttpResponse(q)
+    
+
+    def getUserDrawings(request):
+        username = request.GET.get('username')
+        try:
+            #print("Queryset =", User_MemoriesView.queryset)
+            p = models.User_Memories.objects.filter(username=username).values()
+            #print("p =", p)
+
+            data = list(p)
+        except:
+            p = "0"
+
+        return JsonResponse({"data": data})
 
 
 
@@ -120,7 +129,7 @@ class BadgesView(viewsets.ModelViewSet):
         value = request.GET.get('username')
 
         try:
-            total = models.User_Memories.objects.filter(username=value)
+            total = models.User_Memories.objects.filter(username=value).values()
             print(len(total))
         except:
             total ="not working"
