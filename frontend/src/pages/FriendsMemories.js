@@ -272,9 +272,7 @@ function FriendsMemories() {
               </select>
             </label>
           </div>
-
           <br></br>
-
           <Root>
             <ResponsiveGridLayout
               layouts={{ lg: layout }}
