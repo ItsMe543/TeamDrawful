@@ -132,6 +132,7 @@ function SignUp() {
       return;
     }
 
+    setErrormsg("");
     //If all checks are passed, send details to database
     setAccountHashedPass(password);
     sendNewDetails();

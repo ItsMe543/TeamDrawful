@@ -164,6 +164,15 @@
     color: white;
 }
 
+.Profile-unfriend-button-default {
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+    margin-left: 60px;
+    border-color: rgb(236, 101, 172);
+    color: rgb(236, 101, 172);
+}
+
 .Profile-view-memories {
     font-size: 20px;
     width: 100px;
@@ -177,6 +186,15 @@
     background-color: rgb(48, 174, 193);
     border-color: white;
     color: white;
+}
+
+.Profile-view-memories-default {
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+    margin-left: 40px;
+    border-color: rgb(48, 174, 193);
+    color: rgb(48, 174, 193);
 }
 
 .Profile-badges-container {
@@ -211,6 +229,14 @@
 }
 
 /*----Profile detailed view end----*/
+
+
+
+.default-profile{
+    height: 200px;
+    width: 200px;
+}
+
 
 
 

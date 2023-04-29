@@ -44,7 +44,7 @@ function Friends() {
         </Button>
         <br />
         <Button style={buttonStyle} onClick={() => handleSectionClick("mutual")}>
-          Mutual Friends
+          Find Friends
         </Button>
         <br />
         <Button style={buttonStyle} onClick={() => handleSectionClick("requests")}>

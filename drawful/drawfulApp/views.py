@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from drawfulApp import serializers
 from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
-
+from django.db.models import Q
 # Create your views here.
 
 ########## Example view ##########
@@ -50,12 +50,40 @@ class User_AccountsView(viewsets.ModelViewSet):
 
     def getFriendsByUsername(request):
         value = request.GET.get('username')
+        #print("1")
+        friends = []
+        try:
+            #print("1.5")
+            q = models.User_Accounts.objects.filter(username=value).values_list('friends')
+            #print("2")
+        except:
+            q ="NO DRAWINGS WITH USERNAME: "+value
+            #print("3")
+        #print("4")
+        for i in range(0, len(q)):
+            #print("Spam")
+            try:
+                #print("pre")
+                friends.append(models.User_Accounts.objects.filter(username=q[i]))
+                #print("post")
+            except:
+                #print("fail")
+                friends = []
+        #print("100")
+        return HttpResponse(friends)
+    
+
+
+    def getFriendsEntries(request):
+        value = request.GET.get('username')
 
         try:
-            q = models.User_Accounts.objects.filter(username=value).values()
+            q = models.User_Accounts.objects.filter(username=value).values_list('friends')
         except:
             q ="NO DRAWINGS WITH USERNAME: "+value
         print(q)
+        return HttpResponse(q)
+
 
     def getUsernameCount(request):
         username = request.GET.get('username')
@@ -84,6 +112,16 @@ class User_AccountsView(viewsets.ModelViewSet):
             return HttpResponse("1")
         else:
             return HttpResponse("0")
+        
+    def getUsernames(request):
+        value = request.GET.get('username')
+        print("We got...", value)
+        try:
+            q = models.User_Accounts.objects.exclude(username=value).values()
+        except:
+            q = 0
+        return HttpResponse(q)
+
 
 
 class BadgesView(viewsets.ModelViewSet):

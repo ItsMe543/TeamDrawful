@@ -66,13 +66,17 @@ class User_Accounts(AbstractUser):
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
         totalStars = models.IntegerField(default=0)
-        friends = ArrayField(
+        friends = ArrayField (
+                ArrayField(
             models.CharField(max_length=30, blank=True),
             size=100,blank = True, null = True
+                ), size=100, blank = True, null = True
         )
         friendRequests = ArrayField(
-            models.CharField(max_length=30, blank=True),
-            size=100, blank = True, null = True
+                ArrayField (
+                        models.CharField(max_length=30, blank=True),
+                        size=100, blank = True, null = True
+                ), size=100, blank = True, null = True
         )
         #The extra following fields are required
         last_login = models.DateTimeField(null=True, blank=True)
