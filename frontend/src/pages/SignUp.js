@@ -23,6 +23,23 @@ function SignUp() {
   //});
   //}, []);
 
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
   var isUsernameUnique = false;
   var isEmailUnique = false;
 
@@ -31,13 +48,14 @@ function SignUp() {
   const [accountUserName, setAccountUsername] = useState("a");
   const [accountEmail, setAccountEmail] = useState("a");
 
-  const sendNewDetails = () => {
+  const sendNewDetails = (TOMISPOG) => {
     axios({
       method: "post",
+      
       url: "/api/user_accounts/",
       data: {
         username: accountUserName,
-        password: accountHashedPass,
+        password: TOMISPOG,
         first_name: fullname.split(" ")[0],
         last_name: fullname.split(" ")[1],
         email: accountEmail,
@@ -51,7 +69,8 @@ function SignUp() {
         friendRequests: [],
       },
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/json", 
+        'X-CSRFToken':getCookie('csrftoken')
       },
     })
       .then((res) => {
@@ -134,7 +153,7 @@ function SignUp() {
 
     //If all checks are passed, send details to database
     setAccountHashedPass(password);
-    sendNewDetails();
+    sendNewDetails(password);
   };
 
   //<PasswordInput onChange={e => setAccountHashedPass(e.target.value)}/>
