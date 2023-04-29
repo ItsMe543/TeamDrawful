@@ -14,7 +14,7 @@ import PrivateRoute from "../pages/PrivateRoute";
 import Settings from "../pages/Settings";
 import Accessibility from "../pages/Settings/Accessibility";
 import SignUp from "../pages/SignUp";
-import ViewDrawings from "../pages/ViewDraws";
+import TodaysDrawings from "../pages/TodaysDrawings";
 
 function Main() {
   const AuthContext = React.createContext(null);
@@ -77,10 +77,10 @@ function Main() {
         }
       ></Route>
       <Route
-        path="/viewingDrawings"
+        path="/feed"
         element={
           <PrivateRoute>
-            <ViewDrawings />
+            <TodaysDrawings />
           </PrivateRoute>
         }
       ></Route>
@@ -137,7 +137,7 @@ function Main() {
         }
       ></Route>
       <Route
-        path="/friends/memories/:ID"
+        path="/friends/memories/:username"
         element={
           <PrivateRoute>
             <FriendsMemories />

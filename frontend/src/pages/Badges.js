@@ -94,16 +94,23 @@ function Badges() {
       
       setSortedBadgesArray(sortedBadges);
     
-    } else if (option === "recent") {
+    }else if (option === "recent") {
       // sort by most recent
       console.log("recent");
-      const sortedBadges = [...sortedBadgesArray].sort((a, b) => new Date(b.badgeDateUnlocked) - new Date(a.badgeDateUnlocked));
-      
+      const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
+        const dateA = new Date(`${a.badgeDateUnlocked}T${a.badgeTimeUnlocked}Z`).getTime();
+        const dateB = new Date(`${b.badgeDateUnlocked}T${b.badgeTimeUnlocked}Z`).getTime();
+        return dateB - dateA;
+      });
       setSortedBadgesArray(sortedBadges); 
     } else {
       // sort by oldest
       console.log("oldest");
-      const sortedBadges = [...sortedBadgesArray].sort((a, b) => new Date(a.badgeDateUnlocked) - new Date(b.badgeDateUnlocked));
+      const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
+        const dateA = new Date(`${a.badgeDateUnlocked}T${a.badgeTimeUnlocked}Z`).getTime();
+        const dateB = new Date(`${b.badgeDateUnlocked}T${b.badgeTimeUnlocked}Z`).getTime();
+        return dateA - dateB;
+      });
       setSortedBadgesArray(sortedBadges);
       
     }

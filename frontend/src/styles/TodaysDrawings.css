@@ -14,37 +14,62 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
+/* .p-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-top: 2px solid rgb(57, 59, 61);
+  border-bottom: 2px solid rgb(57, 59, 61);
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+} */
 
 .PromptName {
   font-family: "insta";
-  font-size: 10;
+  font-size: 20px;
   color: rgb(255, 255, 255);
   /* margin-left: 40%;
     margin-bottom: 0%; */
+  /* text-align: center; */
+}
+.top-bar {
+  display: flex;
+  flex-direction: row;
   text-align: center;
+  justify-content: space-between;
+  width: 60%;
+  left: 20%;
+  position: relative;
+}
+.timeDate {
+  color: white;
+}
+.bottom-bar {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+  width: 60%;
+  left: 20%;
+  position: relative;
+  color: white;
 }
 
 /*I've coloured the region grey so you can see the space.*/
-.UserProfile {
-  margin-left: 3%;
-  margin-right: 3%;
-  /*background-color: grey;*/
+.post {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 3%;
-  border-top: 2px solid rgb(57, 59, 61);
-  border-bottom: 2px solid rgb(57, 59, 61);
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 
 /*Each User profile is composed of user elements*/
 .UserElement {
   color: white;
-  font-size: 30px;
-  margin-bottom: -0%;
-  height: 6cm;
-  flex: 0 0 25%;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .userDrawing {
@@ -54,22 +79,18 @@
 }
 
 .userDrawing img {
-  max-width: 200px;
-}
-
-* {
-  margin: 0;
-  box-sizing: border-box;
+  max-width: 60%;
+  object-fit: contain;
+  height: 700px;
+  background-color: white;
 }
 
 .UserName {
   font-family: "insta";
-  font-size: 33px;
+  font-size: 20px;
   color: rgb(255, 255, 255);
   /* border-bottom: 2px solid rgb(255, 255, 255); */
-  margin-right: 58%;
-  margin-bottom: 0%;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   text-decoration-thickness: 2px;
 }
 
@@ -163,6 +184,7 @@
   border-radius: 0%;
   margin-top: 10px;
   margin-left: 10px;
+  background-color: grey;
 }
 
 .SubmitButton {
@@ -195,8 +217,9 @@
 .CommentsBox {
   color: white;
   background-color: rgb(45, 45, 45);
-  font-size: 30px;
-  height: 200px;
+  /* font-size: 30px;
+  height: 200px; */
+  height: 700px;
 }
 
 .CommentHeading {

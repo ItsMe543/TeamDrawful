@@ -36,9 +36,9 @@ function Navbar() {
           </Link>
         </div>
         <div className="ViewDraws">
-          <Link to="/viewingDrawings">
+          <Link to="/feed">
             <BsVectorPen size={30} />
-            <div>Drawings</div>
+            <div>Today's Drawings</div>
           </Link>
         </div>
         <div className="settings">
