@@ -77,6 +77,17 @@ class User_MemoriesView(viewsets.ModelViewSet):
 
 
 
+    def getAvgRating(request):
+        username = request.GET.get('username')
+        try:
+            q = models.User_Memories.objects.filter(username=username).values_list('avgRating')
+            
+        except:
+            q = "not working"
+        return HttpResponse(q)
+
+
+
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
@@ -158,6 +169,19 @@ class User_AccountsView(viewsets.ModelViewSet):
         return HttpResponse(q)
 
 
+    def getBadgesEarned(request):
+        badgesEarned = request.GET.get('badgesEarned')
+        name = request.GET.get('username')
+        try:
+            user_account = models.User_Accounts.objects.get(username=name)
+            badges_earned = user_account.badgesEarned
+            print("badgesEarned: ", badges_earned)
+        except:
+            print("not working")
+
+        return HttpResponse(badges_earned)
+
+
 
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
@@ -168,7 +192,6 @@ class BadgesView(viewsets.ModelViewSet):
 
         try:
             total = models.User_Memories.objects.filter(username=value).values()
-            print(len(total))
         except:
             total ="not working"
         return HttpResponse(len(total))

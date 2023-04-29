@@ -3,23 +3,130 @@ import "../styles/Badges.css"
 import { Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import minion from "../minion.png";
+import validator from "validator";
 
 
 
 function Badges() {
 
   const [badgesData, setBadges] = useState([]);
+  const [badgesEarned, setBadgesEarned] = useState([]);
 
-  const getBadgeData = () => {
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = validator.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+  var username = getCookie('username');
+
+  const getBadgeData = (badgesEarned) => {
     axios.get("/api/badges/").then((badgesData) => {
       setBadges(badgesData?.data);
-      // console.log(badgesData);
-    });
+
+
+      // set badge unlocked value from user data
+      for (let i = 0; i < badgesData.data.length; i++) {
+        if (badgesEarned.toString()[i] == 1)
+          badgesData.data[i].badgeUnlocked = true;
+        else if (badgesEarned.toString()[i] == 0)
+          badgesData.data[i].badgeUnlocked = false;
+      }
+    },[]);
   };
 
+  
+const updateBadgesEarned = (newBadgesEarned) => {
+  console.log("actual",newBadgesEarned);
+  axios.put("/api/user_accounts/", {username, newBadgesEarned})
+    .then(() => console.log("Badges earned updated successfully!"))
+    .catch((error) => console.error("Failed to update badges earned:", error));
+};
+
+
+  const getBadgesEarned = () => {
+    axios.get("getBadgesEarned", {params: {username}}).then((badgesEarned) => {
+      
+      unlockBadges(badgesEarned.data);
+      getBadgeData(badgesEarned.data);
+
+      
+      
+    },[username]);
+  };
+
+  function changeBadgesEarned(badgesEarned, index){
+    badgesEarned = badgesEarned.split('');
+    badgesEarned[index] = '1';
+    badgesEarned = badgesEarned.join('');
+    return badgesEarned;
+  }
+
+  function findLargestNumber(data) {
+    const values = data.split(')(');
+    let max = -Infinity;
+    for (let i = 0; i < values.length; i++) {
+      const value = parseFloat(values[i].replace(/\(|\)/g, ''));
+      if (!isNaN(value) && value > max) {
+        max = value;
+      }
+    }
+    return max;
+  }
+  
+
+
+  const unlockBadges = (badgesEarned) => {
+    axios.get("getTotalDrawings", {params: {username}}).then((totalDrawings) => {
+      const prevBadgesEarned = badgesEarned;
+
+      totalDrawings = totalDrawings.data;
+
+      if (totalDrawings >= 1) {
+        badgesEarned = changeBadgesEarned(badgesEarned, 0);
+      }
+      if (totalDrawings >= 5) {
+        badgesEarned = changeBadgesEarned(badgesEarned, 1);
+      }
+      if (totalDrawings >= 20) {
+        badgesEarned = changeBadgesEarned(badgesEarned, 2);
+      }
+      if (prevBadgesEarned != badgesEarned){
+        setBadgesEarned(badgesEarned);
+        //updateBadgesEarned(badgesEarned);
+      }
+
+      console.log("badges: ",badgesEarned);
+      
+    });
+
+    axios.get("getAvgRating", {params: {username}}).then((avgRating) => {
+      const largestAvgRating = findLargestNumber(avgRating.data);
+      if (largestAvgRating >= "4" && badgesEarned[3] === '0'){
+        badgesEarned = changeBadgesEarned(badgesEarned, 3);
+        console.log(badgesEarned);
+        //updateBadgesEarned(badgesEarned);
+      }
+    });
+
+    
+  }
+  
+
+  
   useEffect(() => {
-    getBadgeData();
-   
+    getBadgesEarned();
+    
   }, []);
 
 
@@ -53,7 +160,7 @@ function Badges() {
       <div className={`badge ${unlocked ? 'unlocked' : 'locked'}`}>
         <Row>
           <Col>
-            <img className="badgeIcon" src={image} alt={name} />
+            <img className="badgeIcon" src={minion} alt={name} />
           </Col>
           <Col>
             <Row>

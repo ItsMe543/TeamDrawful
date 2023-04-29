@@ -42,7 +42,7 @@ function SignUp() {
         last_name: fullname.split(" ")[1],
         email: accountEmail,
         bio: "",
-        badgesEarned: "",
+        badgesEarned: "00000000",
         averageRating: 0.0,
         currentStreak: 0,
         maxStreak: 0,
@@ -132,7 +132,6 @@ function SignUp() {
       return;
     }
 
-    setErrormsg("");
     //If all checks are passed, send details to database
     setAccountHashedPass(password);
     sendNewDetails();
