@@ -92,7 +92,7 @@ export default function Account() {
             <Col>
                 <Row>
                     <Col md={2.5} style={{ paddingLeft: "30px" }}>
-                        <Link to="/memories">
+                        <Link to="/memories" aria-label="Profile Picture, link to memories">
                             <img src={data.drawing} alt={"drawing image"} />
                         </Link>
                     </Col>

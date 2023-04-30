@@ -34,11 +34,19 @@ function Home() {
         server and all associated data will be destroyed."
       </div>
 
-      <div className="privacyInfoButtonDiv">
+      <div className="privacyInfoButtonDiv" >
         <InfoIcon
-          className="privacyInfoButton"
+          className="privacyInfoButton" aria-label="Drawful Privacy Policy"
           onClick={handleButtonClick}
           style={{ fontSize: 50 }}
+          tabIndex={0}
+          role="button"
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              handleButtonClick();
+            }
+          }}
         >
           Toggle Privacy
         </InfoIcon>
