@@ -31,11 +31,16 @@ function Badges() {
   };
 
   
-const updateBadgesEarned = (badgesEarned) => {
-  console.log("actual",badgesEarned);
-  axios.get("updateBadges", {params: {username, badgesEarned}})
-  getBadgesEarned();
-};
+  const updateBadgesEarned = (badgesEarned) => {
+    console.log("actual",badgesEarned);
+    axios.get("updateBadges", {params: {username, badgesEarned}}).then()
+    getBadgesEarned();
+  };
+
+  const updateBadgeTime = (badgeName) => {
+    axios.get("updateBadgeTime", {params: {badgeName}})
+    getBadgesEarned();
+  }
 
 
   const getBadgesEarned = () => {
@@ -57,6 +62,27 @@ const updateBadgesEarned = (badgesEarned) => {
     return badgesEarned;
   }
 
+  function fixGenreData(data){
+    var words = [];
+      var current_word = "";
+
+      for (var i = 0; i < data.length; i++) {
+        var char = data[i];
+        if (/[a-zA-Z]/.test(char)) {
+          current_word += char;
+        } else {
+          if (current_word) {
+            words.push(current_word);
+            current_word = "";
+          }
+        }
+      }
+      if (current_word) {
+        words.push(current_word);
+      }
+    return words;
+  }
+
   function findLargestNumber(data) {
     const values = data.split(')(');
     let max = -Infinity;
@@ -73,16 +99,28 @@ const updateBadgesEarned = (badgesEarned) => {
 
   const unlockBadges = (badgesEarned) => {
     var change = 0;
-    axios.get("getTotalDrawings", {params: {username}}).then((totalDrawings) => {
+
+    const requests = [
+      axios.get("getTotalDrawings", {params: {username}}),
+      axios.get("getAvgRating", {params: {username}}),
+      axios.get("getPromptGenre", {params: {username}}),
+    ];
+
+    Promise.all(requests).then(([totalDrawings, avgRating, promptGenre]) => {
+
+      // all genres user has done
+      promptGenre = fixGenreData(promptGenre.data);
+
+      
+
+    
       
       totalDrawings = totalDrawings.data;
-
       if (totalDrawings >= 1 && badgesEarned.toString()[0] !== "1") { 
         badgesEarned = changeBadgesEarned(badgesEarned, 0);
         setBadgesEarned(badgesEarned);
         console.log("unlocked 1 drawings completed", badgesEarned);
         change = 1;
-        
       }
       if (totalDrawings >= 5 && badgesEarned.toString()[1] !== "1") {
         badgesEarned = changeBadgesEarned(badgesEarned, 1);
@@ -96,16 +134,43 @@ const updateBadgesEarned = (badgesEarned) => {
         console.log("unlocked 20 drawings completed");
         change = 1;
       }
+      if (totalDrawings >= 50 && badgesEarned.toString()[3] !== "1") {
+        badgesEarned = changeBadgesEarned(badgesEarned, 3);
+        setBadgesEarned(badgesEarned);
+        console.log("unlocked 20 drawings completed");
+        change = 1;
+      }
 
-      axios.get("getAvgRating", {params: {username}}).then((avgRating) => {
-        const largestAvgRating = findLargestNumber(avgRating.data);
-        if (largestAvgRating >= "4" && (avgRating.length/6) && badgesEarned.toString()[3] !== "1"){
-          badgesEarned = changeBadgesEarned(badgesEarned, 3);
-          setBadgesEarned(badgesEarned);
-          console.log("unlocked high rating badge");
-          change = 1;
+      
+      const largestAvgRating = findLargestNumber(avgRating.data);
+      if (largestAvgRating >= "4" && badgesEarned.toString()[4] !== "1"){
+        badgesEarned = changeBadgesEarned(badgesEarned, 4);
+        setBadgesEarned(badgesEarned);
+        console.log("unlocked high rating badge");
+        change = 1;
+      }
+
+      if (badgesEarned.toString()[5] === "1" && badgesEarned.toString()[6] === "1") {
+        console.log("Genres already unlocked");
+      } else {
+        for (var i = 0; i < promptGenre.length; i++) {
+          var genre = promptGenre[i];
+          if (genre === "Space" && badgesEarned.toString()[5] !== "1") {
+            badgesEarned = changeBadgesEarned(badgesEarned, 5);
+            setBadgesEarned(badgesEarned);
+            console.log("Unlocked Space genre");
+          } else if (genre === "Ancient" && badgesEarned.toString()[6] !== "1") {
+            badgesEarned = changeBadgesEarned(badgesEarned, 6);
+            setBadgesEarned(badgesEarned);
+            console.log("Unlocked Ancient genre");
+          } else {
+            console.log("Genre not found: " + genre);
+          }
         }
-      });
+      }
+      
+      
+
   
       if (change == 1){
         console.log("update");
@@ -140,9 +205,7 @@ const updateBadgesEarned = (badgesEarned) => {
                 name={badge.badgeName} 
                 image={badge.badgeIcon}
                 description={badge.badgeDescription} 
-                unlocked={badge.badgeUnlocked} 
-                dateUnlocked={badge.badgeDateUnlocked}
-                timeUnlocked={badge.badgeTimeUnlocked} 
+                unlocked={badge.badgeUnlocked}
               />
             </div>
           ))}
@@ -196,23 +259,31 @@ const updateBadgesEarned = (badgesEarned) => {
       });
       
       setSortedBadgesArray(sortedBadges);
+      
     
     }else if (option === "recent") {
       // sort by most recent
       console.log("recent");
       const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
-        const dateA = new Date(`${a.badgeDateUnlocked}T${a.badgeTimeUnlocked}Z`).getTime();
-        const dateB = new Date(`${b.badgeDateUnlocked}T${b.badgeTimeUnlocked}Z`).getTime();
-        return dateB - dateA;
+        if (a.badgeName < b.badgeName) {
+          return -1;
+        }
+        if (a.badgeName > b.badgeName) {
+          return 1;
+        }
+        return 0;
       });
       setSortedBadgesArray(sortedBadges); 
     } else {
       // sort by oldest
-      console.log("oldest");
       const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
-        const dateA = new Date(`${a.badgeDateUnlocked}T${a.badgeTimeUnlocked}Z`).getTime();
-        const dateB = new Date(`${b.badgeDateUnlocked}T${b.badgeTimeUnlocked}Z`).getTime();
-        return dateA - dateB;
+        if (a.badgeName > b.badgeName) {
+          return -1;
+        }
+        if (a.badgeName < b.badgeName) {
+          return 1;
+        }
+        return 0;
       });
       setSortedBadgesArray(sortedBadges);
       

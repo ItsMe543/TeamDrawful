@@ -98,6 +98,16 @@ class User_MemoriesView(viewsets.ModelViewSet):
         return HttpResponse(len(total))
 
 
+    def getPromptGenre(request):
+        name = request.GET.get('username')
+        try:
+            allPromptsDone = models.User_Memories.objects.filter(username=name).values_list('prompt')
+            genre = models.Prompt_List.objects.filter(prompt__in=allPromptsDone).values_list('promptGenre')
+        except:
+            prompt_genre = "Unknown"
+        return HttpResponse(genre)
+
+
 
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
@@ -199,15 +209,32 @@ class BadgesView(viewsets.ModelViewSet):
     def updateBadges(request):
         user = request.GET.get('username')
         badgesEarned = request.GET.get('badgesEarned')
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        current_date = now.strftime("%Y/%m/%d")
+        
         try:
             accountData = models.User_Accounts.objects.filter(username=user) 
         except:
             return HttpResponse('Failed to identify user, are you sure you entered the username correctly?')
         accountData.update(badgesEarned=badgesEarned)
         return HttpResponse('badges updated successfully', badgesEarned)
+
+
+    
+
+
+    
+    # def updateBadgeTime(request):
+    #     badgeName = request.GET.get('badgeName')
+    #     now = datetime.now()
+    #     current_time = now.strftime("%H:%M:%S")
+    #     current_date = now.strftime("%Y-%m-%d")
+    #     try:
+    #         badgeData = models.Badges.objects.filter(badgeName=badgeName)
+    #         print(badgeData)
+    #     except:
+    #         print("no")
+    #     badgeData.update(badgeTimeUnlocked=current_time, badgeDateUnlocked=current_date)
+    #     return HttpResponse('badge time updated')
+
 
 
 

@@ -38,4 +38,4 @@ class User_AccountsSerializer(serializers.ModelSerializer):
 class BadgesSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Badges
-        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked', 'badgeDateUnlocked', 'badgeTimeUnlocked')
+        fields = ('badgeName', 'badgeIcon', 'badgeDescription', 'badgeUnlocked')
