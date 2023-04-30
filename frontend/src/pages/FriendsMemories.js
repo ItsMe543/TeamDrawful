@@ -103,7 +103,7 @@ function FriendsMemories() {
     //.get("/api/user_memories/")
     .then((data) => {
       setUserData(data?.data.data);
-      console.log(data?.data.data);
+      //console.log(data?.data.data);
       setLoaded(true);
       //setUserData(["Hello"]);
     });

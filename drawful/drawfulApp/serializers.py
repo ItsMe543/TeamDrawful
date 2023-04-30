@@ -23,16 +23,18 @@ class User_AccountsSerializer(serializers.ModelSerializer):
         fields = ('username','password','first_name','last_name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests','last_login','is_superuser')
 
     def create(self, validated_data):
-        user = models.User_Accounts.objects.create(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-        return user
-        #password = validated_data.pop('password', None)
+        print("Create is called!")
+        #user = models.User_Accounts.objects.create(**validated_data)
+        #user.password = ArgonHash.hashPassword(validated_data['password'])
+        #user.save()
+        #return user
+        password = validated_data.pop('password', None)
         #instance = self.Meta.model(**validated_data)
-        #if password is not None:
-        #    instance.set_password(password)
-        #instance.save()
-        #return instance
+        instance = models.User_Accounts(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
 
 class BadgesSerializer(serializers.ModelSerializer):

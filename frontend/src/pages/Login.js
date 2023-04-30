@@ -17,21 +17,47 @@ function Login() {
 
   var isCorrectCredentials = false;
 
+  // COOKIE GETTER
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+//CSRF TOKEN 
+const csrftoken = getCookie('csrftoken');
+
   const middleMan = () => {
-    axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
+    axios({
+      method: "get",
+      url: "/authenticateUser", 
+      params: { username: username, password: password},
+      headers: {
+        'X-CSRFToken': csrftoken
+      }
+    }).then((data) => {
       isCorrectCredentials = ((data.data === 1) ? true : false);
-      //console.log(data.data)
-      /*if (!isCorrectCredentials) {
+      console.log(data.data)
+      if (!isCorrectCredentials) {
         setErrormsg("Incorrect details. Please try again");
       } else {
         logUserIn();
-      }*/
+      }
     }, [username, password]);
-    logUserIn();
   }
 
   function checkCredentials(e) {
     e.preventDefault();
+    setErrormsg("");
 
     if (username.length === 0) {
       setErrormsg("Please enter a username");
