@@ -61,7 +61,7 @@ class User_Accounts(AbstractUser):
         bio = models.CharField(max_length=30, null=True, blank=True)
         profilePicture = Base64Field(max_length=3000000, blank=True, null=True)
         favouriteDraw = Base64Field(max_length=3000000, blank=True, null=True)
-        badgesEarned = models.CharField(max_length=30, null=True, blank=True)
+        badgesEarned = models.CharField(max_length=30, default="00000000")
         averageRating = models.FloatField()
         currentStreak = models.IntegerField(default=0)
         maxStreak = models.IntegerField(default=0)
@@ -87,8 +87,6 @@ class Badges(models.Model):
         badgeIcon = Base64Field(max_length=3000000, blank=True, null=True)
         badgeDescription = models.CharField(max_length=500)
         badgeUnlocked = models.BooleanField(default=False)
-        badgeDateUnlocked = models.DateField(default=0)
-        badgeTimeUnlocked = models.TimeField(default=0)
 
 
 #This table is the table for prompts which can be generated
