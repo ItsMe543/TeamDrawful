@@ -34,11 +34,20 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
-    path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
     path('getEmailCount',views.User_AccountsView.getEmailCount),
     path('authenticateUser',views.User_AccountsView.authenticateUser),
     path('getUserDrawings',views.User_MemoriesView.getUserDrawings),
-    path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
+    path('getTotalDrawings',views.User_MemoriesView.getTotalDrawings),
+    path('getUsernames', views.User_AccountsView.getUsernames),
+    path('getBadgesEarned',views.User_AccountsView.getBadgesEarned),
+    path('getAvgRating', views.User_MemoriesView.getAvgRating),
+    path('updateBadges',views.BadgesView.updateBadges),
+    path('getPromptGenre',views.User_MemoriesView.getPromptGenre),
+    #path('updateBadgeTime',views.BadgesView.updateBadgeTime),
+
+    path('getFriendsNew', views.User_AccountsView.getFriendsNew),
+    path('getFriendsNames', views.User_AccountsView.getFriendsNames),
+    path('getUserEntry', views.User_AccountsView.getUserEntry),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

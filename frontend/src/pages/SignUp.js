@@ -23,16 +23,6 @@ function SignUp() {
   //});
   //}, []);
 
-  var isUsernameUnique = false;
-  var isEmailUnique = false;
-
-  const [fullname, setFullName] = useState("");
-  const [accountHashedPass, setAccountHashedPass] = useState("");
-  const [accountUserName, setAccountUsername] = useState("a");
-  const [accountEmail, setAccountEmail] = useState("a");
-
-
-  // COOKIE GETTER
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -48,21 +38,29 @@ function SignUp() {
     }
     return cookieValue;
 }
-//CSRF TOKEN 
 const csrftoken = getCookie('csrftoken');
 
-  const sendNewDetails = () => {
+  var isUsernameUnique = false;
+  var isEmailUnique = false;
+
+  const [fullname, setFullName] = useState("");
+  const [accountHashedPass, setAccountHashedPass] = useState("");
+  const [accountUserName, setAccountUsername] = useState("a");
+  const [accountEmail, setAccountEmail] = useState("a");
+
+  const sendNewDetails = (TOMISPOG) => {
     axios({
       method: "post",
+      
       url: "/api/user_accounts/",
       data: {
         username: accountUserName,
-        password: accountHashedPass,
+        password: TOMISPOG,
         first_name: fullname.split(" ")[0],
         last_name: fullname.split(" ")[1],
         email: accountEmail,
         bio: "",
-        badgesEarned: "",
+        badgesEarned: "00000000",
         averageRating: 0.0,
         currentStreak: 0,
         maxStreak: 0,
@@ -71,8 +69,8 @@ const csrftoken = getCookie('csrftoken');
         friendRequests: [],
       },
       headers: {
-        "content-type": "application/json",
-        'X-CSRFToken': csrftoken
+        "content-type": "application/json", 
+        'X-CSRFToken':getCookie('csrftoken')
       },
     })
       .then((res) => {
@@ -155,7 +153,7 @@ const csrftoken = getCookie('csrftoken');
 
     //If all checks are passed, send details to database
     setAccountHashedPass(password);
-    sendNewDetails();
+    sendNewDetails(password);
   };
 
   //<PasswordInput onChange={e => setAccountHashedPass(e.target.value)}/>

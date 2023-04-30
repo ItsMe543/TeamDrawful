@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <div className="Navbar">
       <div className="logo">
-        <Link to="/">
+        <Link to="/" aria-label="Link to home">
           <img src={logo} alt="drawful logo" />
         </Link>
       </div>
@@ -94,7 +94,7 @@ function Navbar() {
         {sessionStorage.getItem("token") && (
           <>
             <div className="profile">
-              <Link to="/settings">
+              <Link to="/settings" aria-label="Profile Picture, Link to settings">
                 <img src={require("../minion.png")} className="profilePic" />
               </Link>
               {/* <div className="userName">defaultUsername</div> */}

@@ -191,17 +191,36 @@ function Memories() {
         </div>
         <div className="drawingContainer">
           <HiArrowCircleLeft
+            aria-label="Left Arrow"
             className="arrow"
             size={45}
             onClick={() => handleLeftClick()}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleLeftClick();
+              }
+            }}
           />
+
           <div className="m-drawing">
             <img src={data[ID]?.drawing} alt={"drawing image"} />
           </div>
           <HiArrowCircleRight
+            aria-label="Right Arrow"
             className="arrow"
             size={45}
             onClick={() => handleRightClick()}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleRightClick();
+              }
+            }}
           />
         </div>
         <div className="currentDate">{date.toDateString()}</div>

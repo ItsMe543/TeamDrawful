@@ -7,7 +7,8 @@ from drawfulApp import models
 from drawfulApp.authenticationbackend import CustomBackend
 from datetime import datetime
 from django_filters.rest_framework import DjangoFilterBackend
-
+from django.db.models import Q
+from datetime import datetime
 # Create your views here.
 
 ########## Example view ##########
@@ -72,8 +73,39 @@ class User_MemoriesView(viewsets.ModelViewSet):
             data = list(p)
         except:
             p = "0"
-
+        #print("\n\nType is : ", data)
         return JsonResponse({"data": data})
+
+
+
+    def getAvgRating(request):
+        username = request.GET.get('username')
+        try:
+            q = models.User_Memories.objects.filter(username=username).values_list('avgRating')
+            
+        except:
+            q = "not working"
+        return HttpResponse(q)
+
+
+    def getTotalDrawings(request):
+        value = request.GET.get('username')
+
+        try:
+            total = models.User_Memories.objects.filter(username=value).values()
+        except:
+            total ="not working"
+        return HttpResponse(len(total))
+
+
+    def getPromptGenre(request):
+        name = request.GET.get('username')
+        try:
+            allPromptsDone = models.User_Memories.objects.filter(username=name).values_list('prompt')
+            genre = models.Prompt_List.objects.filter(prompt__in=allPromptsDone).values_list('promptGenre')
+        except:
+            prompt_genre = "Unknown"
+        return HttpResponse(genre)
 
 
 
@@ -81,14 +113,72 @@ class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
-    def getFriendsByUsername(request):
+    def getFriendsNew(request):
+        value = request.GET.get('username')
+        friendsList = []
+        try:
+            friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
+            #friendsList = list(friendsElement)
+            print("List of friends: \n", friendsElement)
+            print("Friend 1: \n", friendsElement[0])
+            print("Friend 2: \n", friendsElement[1])
+            #for i in range(0, len(friendsList)):
+            try:
+                friendsQuerySet = models.User_Accounts.objects.filter(username=friendsElement[0])
+                friendsList = list(friendsQuerySet)
+                print("INNER TRY: friendsList = ", friendsList)
+            except:
+                friendsList = []
+                print("ERROR OCCURED with INNER try except")
+        except:
+            friendsList = []
+            print("ERROR OCCURED with OUTER try except")
+        print("Final return \n", friendsList)
+        return JsonResponse({{"friendList": (friendsList)}})
+    
+
+
+
+    def getFriendsNames(request):
+        value = request.GET.get('username')
+        friendsElement = []
+        try:
+            friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
+            #friendsList = list(friendsElement)
+            print("List of friends: \n", friendsElement)
+        except:
+            print("ERROR OCCURED with OUTER try except")
+        return HttpResponse(friendsElement)
+
+
+
+
+
+    def getUserEntry(request):
+        value = request.GET.get('username')
+        userEntry = []
+        try:
+            userDetails = models.User_Accounts.objects.filter(username=value)
+            userEntry = list(userDetails)
+            print("List of friends: \n", userEntry)
+        except:
+            print("ERROR OCCURED with OUTER try except")
+        return JsonResponse({{"aFriend": (userEntry)}})
+
+
+
+
+
+    def getFriendsEntries(request):
         value = request.GET.get('username')
 
         try:
-            q = models.User_Accounts.objects.filter(username=value).values()
+            q = models.User_Accounts.objects.filter(username=value).values_list('friends')
         except:
             q ="NO DRAWINGS WITH USERNAME: "+value
         print(q)
+        return HttpResponse(q)
+
 
     def getUsernameCount(request):
         username = request.GET.get('username')
@@ -119,22 +209,71 @@ class User_AccountsView(viewsets.ModelViewSet):
             return HttpResponse("1")
         else:
             return HttpResponse("0")
+        
+    def getUsernames(request): #that aren't your own
+        value = request.GET.get('username')
+        #print("We got...", value)
+        try:
+            q = models.User_Accounts.objects.exclude(username=value).values()
+        except:
+            q = 0
+        data = list(q)
+        #print("\n")
+        #print(" \n \n Th DATATATATATAT iss... \n \n", data)
+        #print("\n")
+        return JsonResponse({"allUsers":data})
+
+
+    def getBadgesEarned(request):
+        name = request.GET.get('username')
+        try:
+            user_account = models.User_Accounts.objects.get(username=name)
+            badges_earned = user_account.badgesEarned
+        except:
+            print("not working")
+
+        return HttpResponse(badges_earned)
+
 
 
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
-
-    def getTotalDrawings(request):
-        value = request.GET.get('username')
-
+    
+    def updateBadges(request):
+        user = request.GET.get('username')
+        badgesEarned = request.GET.get('badgesEarned')
+        
         try:
-            total = models.User_Memories.objects.filter(username=value).values()
-            print(len(total))
+            accountData = models.User_Accounts.objects.filter(username=user) 
         except:
-            total ="not working"
-        return HttpResponse(len(total))
+            return HttpResponse('Failed to identify user, are you sure you entered the username correctly?')
+        accountData.update(badgesEarned=badgesEarned)
+        return HttpResponse('badges updated successfully', badgesEarned)
 
-class Usernames(viewsets.ModelViewSet):
-    serializer_class = serializers.User_AccountsSerializer
+
+    
+
+
+    
+    # def updateBadgeTime(request):
+    #     badgeName = request.GET.get('badgeName')
+    #     now = datetime.now()
+    #     current_time = now.strftime("%H:%M:%S")
+    #     current_date = now.strftime("%Y-%m-%d")
+    #     try:
+    #         badgeData = models.Badges.objects.filter(badgeName=badgeName)
+    #         print(badgeData)
+    #     except:
+    #         print("no")
+    #     badgeData.update(badgeTimeUnlocked=current_time, badgeDateUnlocked=current_date)
+    #     return HttpResponse('badge time updated')
+
+
+
+
+
+
+#class Usernames(viewsets.ModelViewSet):
+ #   serializer_class = serializers.User_AccountsSerializer
     #queryset = models.User_Accounts.objects.filter(username=)
