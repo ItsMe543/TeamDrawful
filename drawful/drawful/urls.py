@@ -39,7 +39,7 @@ urlpatterns = [
     path('getEmailCount',views.User_AccountsView.getEmailCount),
     path('authenticateUser',views.User_AccountsView.authenticateUser),
     path('getUserDrawings',views.User_MemoriesView.getUserDrawings),
-    path('getTotalDrawings',views.BadgesView.getTotalDrawings),
+    path('getTotalDrawings',views.User_MemoriesView.getTotalDrawings),
     path('getUsernames', views.User_AccountsView.getUsernames),
     path('getBadgesEarned',views.User_AccountsView.getBadgesEarned),
     path('getAvgRating', views.User_MemoriesView.getAvgRating),

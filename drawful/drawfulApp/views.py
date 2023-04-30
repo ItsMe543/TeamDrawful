@@ -8,6 +8,7 @@ from drawfulApp.authenticationbackend import CustomBackend
 from datetime import datetime
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
+from datetime import datetime
 # Create your views here.
 
 ########## Example view ##########
@@ -85,6 +86,16 @@ class User_MemoriesView(viewsets.ModelViewSet):
         except:
             q = "not working"
         return HttpResponse(q)
+
+
+    def getTotalDrawings(request):
+        value = request.GET.get('username')
+
+        try:
+            total = models.User_Memories.objects.filter(username=value).values()
+        except:
+            total ="not working"
+        return HttpResponse(len(total))
 
 
 
@@ -170,12 +181,10 @@ class User_AccountsView(viewsets.ModelViewSet):
 
 
     def getBadgesEarned(request):
-        badgesEarned = request.GET.get('badgesEarned')
         name = request.GET.get('username')
         try:
             user_account = models.User_Accounts.objects.get(username=name)
             badges_earned = user_account.badgesEarned
-            print("badgesEarned: ", badges_earned)
         except:
             print("not working")
 
@@ -186,25 +195,19 @@ class User_AccountsView(viewsets.ModelViewSet):
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
-
-    def getTotalDrawings(request):
-        value = request.GET.get('username')
-
-        try:
-            total = models.User_Memories.objects.filter(username=value).values()
-        except:
-            total ="not working"
-        return HttpResponse(len(total))
     
     def updateBadges(request):
         user = request.GET.get('username')
         badgesEarned = request.GET.get('badgesEarned')
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        current_date = now.strftime("%Y/%m/%d")
         try:
-            accountData = models.User_Accounts.objects.filter(username=user)
+            accountData = models.User_Accounts.objects.filter(username=user) 
         except:
             return HttpResponse('Failed to identify user, are you sure you entered the username correctly?')
         accountData.update(badgesEarned=badgesEarned)
-        return HttpResponse('badges update successfully P.S TOMISPOG')
+        return HttpResponse('badges updated successfully', badgesEarned)
 
 
 

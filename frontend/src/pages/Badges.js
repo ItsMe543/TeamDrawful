@@ -13,22 +13,7 @@ function Badges() {
   const [badgesData, setBadges] = useState([]);
   const [badgesEarned, setBadgesEarned] = useState([]);
 
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = validator.trim(cookies[i]);
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-  var username = getCookie('username');
+  const username = sessionStorage.getItem("token");
 
   const getBadgeData = (badgesEarned) => {
     axios.get("/api/badges/").then((badgesData) => {
@@ -46,17 +31,15 @@ function Badges() {
   };
 
   
-const updateBadgesEarned = (newBadgesEarned) => {
-  console.log("actual",newBadgesEarned);
-  axios.put("/api/user_accounts/", {username, newBadgesEarned})
-    .then(() => console.log("Badges earned updated successfully!"))
-    .catch((error) => console.error("Failed to update badges earned:", error));
+const updateBadgesEarned = (badgesEarned) => {
+  console.log("actual",badgesEarned);
+  axios.get("updateBadges", {params: {username, badgesEarned}})
+  getBadgesEarned();
 };
 
 
   const getBadgesEarned = () => {
     axios.get("getBadgesEarned", {params: {username}}).then((badgesEarned) => {
-      
       unlockBadges(badgesEarned.data);
       getBadgeData(badgesEarned.data);
 
@@ -66,9 +49,11 @@ const updateBadgesEarned = (newBadgesEarned) => {
   };
 
   function changeBadgesEarned(badgesEarned, index){
-    badgesEarned = badgesEarned.split('');
+    console.log("before", badgesEarned, typeof(badgesEarned));
+    badgesEarned = badgesEarned.toString().split('');
     badgesEarned[index] = '1';
     badgesEarned = badgesEarned.join('');
+    console.log("after", badgesEarned, typeof(badgesEarned));
     return badgesEarned;
   }
 
@@ -87,45 +72,56 @@ const updateBadgesEarned = (newBadgesEarned) => {
 
 
   const unlockBadges = (badgesEarned) => {
+    var change = 0;
     axios.get("getTotalDrawings", {params: {username}}).then((totalDrawings) => {
-      const prevBadgesEarned = badgesEarned;
-
+      
       totalDrawings = totalDrawings.data;
 
-      if (totalDrawings >= 1) {
+      if (totalDrawings >= 1 && badgesEarned.toString()[0] !== "1") { 
         badgesEarned = changeBadgesEarned(badgesEarned, 0);
-      }
-      if (totalDrawings >= 5) {
-        badgesEarned = changeBadgesEarned(badgesEarned, 1);
-      }
-      if (totalDrawings >= 20) {
-        badgesEarned = changeBadgesEarned(badgesEarned, 2);
-      }
-      if (prevBadgesEarned != badgesEarned){
         setBadgesEarned(badgesEarned);
-        //updateBadgesEarned(badgesEarned);
+        console.log("unlocked 1 drawings completed", badgesEarned);
+        change = 1;
+        
+      }
+      if (totalDrawings >= 5 && badgesEarned.toString()[1] !== "1") {
+        badgesEarned = changeBadgesEarned(badgesEarned, 1);
+        setBadgesEarned(badgesEarned);
+        console.log("unlocked 5 drawings completed");
+        change = 1;
+      }
+      if (totalDrawings >= 20 && badgesEarned.toString()[2] !== "1") {
+        badgesEarned = changeBadgesEarned(badgesEarned, 2);
+        setBadgesEarned(badgesEarned);
+        console.log("unlocked 20 drawings completed");
+        change = 1;
       }
 
-      console.log("badges: ",badgesEarned);
+      axios.get("getAvgRating", {params: {username}}).then((avgRating) => {
+        const largestAvgRating = findLargestNumber(avgRating.data);
+        if (largestAvgRating >= "4" && (avgRating.length/6) && badgesEarned.toString()[3] !== "1"){
+          badgesEarned = changeBadgesEarned(badgesEarned, 3);
+          setBadgesEarned(badgesEarned);
+          console.log("unlocked high rating badge");
+          change = 1;
+        }
+      });
+  
+      if (change == 1){
+        console.log("update");
+        updateBadgesEarned(badgesEarned);
+      }
+      
       
     });
-
-    axios.get("getAvgRating", {params: {username}}).then((avgRating) => {
-      const largestAvgRating = findLargestNumber(avgRating.data);
-      if (largestAvgRating >= "4" && badgesEarned[3] === '0'){
-        badgesEarned = changeBadgesEarned(badgesEarned, 3);
-        console.log(badgesEarned);
-        //updateBadgesEarned(badgesEarned);
-      }
-    });
-
-    
-  }
+  };
   
 
   
   useEffect(() => {
+    console.log(username);
     getBadgesEarned();
+    
     
   }, []);
 
