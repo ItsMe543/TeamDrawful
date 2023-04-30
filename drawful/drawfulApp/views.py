@@ -195,6 +195,20 @@ class BadgesView(viewsets.ModelViewSet):
         except:
             total ="not working"
         return HttpResponse(len(total))
+    
+    def updateBadges(request):
+        user = request.GET.get('username')
+        badgesEarned = request.GET.get('badgesEarned')
+        try:
+            accountData = models.User_Accounts.objects.filter(username=user)
+        except:
+            return HttpResponse('Failed to identify user, are you sure you entered the username correctly?')
+        accountData.update(badgesEarned=badgesEarned)
+        return HttpResponse('badges update successfully P.S TOMISPOG')
+
+
+
+
 
 class Usernames(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer

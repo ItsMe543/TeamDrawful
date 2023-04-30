@@ -43,5 +43,6 @@ urlpatterns = [
     path('getUsernames', views.User_AccountsView.getUsernames),
     path('getBadgesEarned',views.User_AccountsView.getBadgesEarned),
     path('getAvgRating', views.User_MemoriesView.getAvgRating),
+    path('updateBadges',views.BadgesView.updateBadges),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
