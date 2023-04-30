@@ -259,7 +259,7 @@ function Drawing() {
         }
     }
 
-    var intervalId = window.setInterval(function() {
+    var intervalId = window.setInterval(function () {
         checkURL();
     }, 1000);
 
@@ -268,11 +268,11 @@ function Drawing() {
         var urlEnd = url.substring(url.length - 7);
 
         if (urlEnd === "drawing") {
-            if(document.getElementById("Label1").innerHTML == ''){
+            if (document.getElementById("Label1").innerHTML == '') {
 
                 document.getElementById("Label1").innerHTML = "1:00";
 
-                Label1 = window.setInterval(function() {
+                Label1 = window.setInterval(function () {
                     timer();
                 }, 1000); // every second
                 clearInterval(intervalId);
@@ -315,25 +315,25 @@ function Drawing() {
     const submitForm = () => {
         //e.preventDefault();
         axios({
-                method: 'post',
-                url: 'api/user_memories/',
-                data: {
-                    username: getUsername(),
-                    date: getDate(),
-                    timeCompleted: getTime(),
-                    difficulty: "69",
-                    timeTaken: getSeconds(),
-                    prompt: document.getElementById('promptID').innerHTML,
-                    drawing: getDrawing(),
-                },
-                headers: {
-                    "content-type": "application/json",
-                    'X-CSRFToken': csrftoken
-                }
-            })
+            method: 'post',
+            url: 'api/user_memories/',
+            data: {
+                username: getUsername(),
+                date: getDate(),
+                timeCompleted: getTime(),
+                difficulty: "69",
+                timeTaken: getSeconds(),
+                prompt: document.getElementById('promptID').innerHTML,
+                drawing: getDrawing(),
+            },
+            headers: {
+                "content-type": "application/json",
+                'X-CSRFToken': csrftoken
+            }
+        })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-            window.location.href = window.location.href.replace("/drawing", "/viewingDrawings/");
+        window.location.href = window.location.href.replace("/drawing", "/viewingDrawings/");
 
     };
 
@@ -468,139 +468,139 @@ function Drawing() {
         });
     }, []);
 
-  return (
-    <div className="background">
-      <div className="drawing_toolbar" >
-        <div
-          className="controlpanel"
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            width: "100%",
-          }}
-        >
-          <input style={{ marginRight: '12%' }}
-            type="range"
-            value={size}
-            max={40}
-            onChange={(e) => {
-              setSize(e.target.value);
-            }}
-          />
-          <input
-            style={{ width: '20%', height: '30px' }}
-            type="color"
-            value={color}
-            onChange={(e) => {
-              setColor(e.target.value);
+    return (
+        <div className="background">
+            <div className="drawing_toolbar" >
+                <div
+                    className="controlpanel"
+                    style={{
+                        position: "absolute",
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                    }}
+                >
+                    <input style={{ marginRight: '12%' }}
+                        type="range"
+                        value={size}
+                        max={40}
+                        onChange={(e) => {
+                            setSize(e.target.value);
+                        }}
+                    />
+                    <input
+                        style={{ width: '20%', height: '30px' }}
+                        type="color"
+                        value={color}
+                        onChange={(e) => {
+                            setColor(e.target.value);
 
-            }}
-          />
-          <br></br>
-          <br></br>
-          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-            onClick={() => {
-              const ctx = canvasCTX;
-              ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-            }}
-          >
-            Clear
-          </button>
+                        }}
+                    />
+                    <br></br>
+                    <br></br>
+                    <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+                        onClick={() => {
+                            const ctx = canvasCTX;
+                            ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+                        }}
+                    >
+                        Clear
+                    </button>
 
-          <br></br>
-          <br></br>
+                    <br></br>
+                    <br></br>
 
-          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-            id="eraseButton"
-            onClick={() => {
-              Mode.setMode('erase');
-              document.getElementById("eraseButton").style.background = '#aaaaaa';
-              document.getElementById("penButton").style.background = '#efefef';
-              document.getElementById("fillButton").style.background = '#efefef';
-
-
-            }}
-          >
-            Erase
-          </button>
-
-          <br></br>
-          <br></br>
-          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-            id="penButton"
-            onClick={() => {
-              Mode.setMode('pen');
-              document.getElementById("eraseButton").style.background = '#efefef';
-              document.getElementById("penButton").style.background = '#aaaaaa';
-              document.getElementById("fillButton").style.background = '#efefef';
-            }}
-          >
-            Pen
-          </button>
-
-          <br></br>
-          <br></br>
-          <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-            id="fillButton"
-            onClick={() => {
-              Mode.setMode('fill');
-              document.getElementById("eraseButton").style.background = '#efefef';
-              document.getElementById("penButton").style.background = '#efefef';
-              document.getElementById("fillButton").style.background = '#aaaaaa';
-            }}
-          >
-            Phil
-          </button>
-
-          <br></br>
-          <br></br>
-          <div>
-            <Link to={"/viewingDrawings/"}>
-
-            <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
-              id="submtButton"
-              onClick={() => {
-                submitForm();
-              }}>
-              Submit
-            </button>
-            </Link>
-          </div>
-          <br></br>
+                    <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+                        id="eraseButton"
+                        onClick={() => {
+                            Mode.setMode('erase');
+                            document.getElementById("eraseButton").style.background = '#aaaaaa';
+                            document.getElementById("penButton").style.background = '#efefef';
+                            document.getElementById("fillButton").style.background = '#efefef';
 
 
-        </div>
-      </div>
-      <div className="prompt_bar">
-        <div id="promptID" className="prompt">
-          {post.prompt}
-        </div>
-      </div>
-      <div className="canvas">
+                        }}
+                    >
+                        Erase
+                    </button>
+
+                    <br></br>
+                    <br></br>
+                    <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+                        id="penButton"
+                        onClick={() => {
+                            Mode.setMode('pen');
+                            document.getElementById("eraseButton").style.background = '#efefef';
+                            document.getElementById("penButton").style.background = '#aaaaaa';
+                            document.getElementById("fillButton").style.background = '#efefef';
+                        }}
+                    >
+                        Pen
+                    </button>
+
+                    <br></br>
+                    <br></br>
+                    <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+                        id="fillButton"
+                        onClick={() => {
+                            Mode.setMode('fill');
+                            document.getElementById("eraseButton").style.background = '#efefef';
+                            document.getElementById("penButton").style.background = '#efefef';
+                            document.getElementById("fillButton").style.background = '#aaaaaa';
+                        }}
+                    >
+                        Phil
+                    </button>
+
+                    <br></br>
+                    <br></br>
+                    <div>
+                        <Link to={"/viewingDrawings/"}>
+
+                            <button style={{ fontSize: '150%', width: '50%', position: 'relative', left: '18%' }}
+                                id="submtButton"
+                                onClick={() => {
+                                    submitForm();
+                                }}>
+                                Submit
+                            </button>
+                        </Link>
+                    </div>
+                    <br></br>
 
 
-        <canvas
-          ref={canvasRef}
-          id="canvasID"
-          background-color="white"
-          onMouseEnter={(e) => SetPos(e)}
-          onMouseDown={(e) => SetPos(e)}
-          onMouseMove={(e) => Draw(e)}
-        ></canvas>
-
-        <div className="time">
-          <label ID="Label1" runat="server"></label>
-        </div>
+                </div>
+            </div>
+            <div className="prompt_bar" aria-label="prompt">
+                <div id="promptID" className="prompt">
+                    {post.prompt}
+                </div>
+            </div>
+            <div className="canvas" aria-label="canvas">
 
 
-      </div>
+                <canvas
+                    ref={canvasRef}
+                    id="canvasID"
+                    background-color="white"
+                    onMouseEnter={(e) => SetPos(e)}
+                    onMouseDown={(e) => SetPos(e)}
+                    onMouseMove={(e) => Draw(e)}
+                ></canvas>
 
-      <div className="disclaimer">
-        "Alpha Project Disclaimer This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g., financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed."
-      </div>
-    </div >
-  );
+                <div className="time" aria-label="time">
+                    <label ID="Label1" runat="server"></label>
+                </div>
+
+
+            </div>
+
+            <div className="disclaimer">
+                "Alpha Project Disclaimer This server is provided by the School of Computer Science at the University of Birmingham to allow users to provide feedback on software developed by students as part of an assignment. While we take reasonable precautions, we cannot guarantee the security of the data entered into the system. Do NOT enter any real personal data (e.g., financial information or otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be destroyed."
+            </div>
+        </div >
+    );
 }
 export default Drawing;
 
