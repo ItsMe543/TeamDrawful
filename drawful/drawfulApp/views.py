@@ -72,7 +72,7 @@ class User_MemoriesView(viewsets.ModelViewSet):
             data = list(p)
         except:
             p = "0"
-
+        #print("\n\nType is : ", data)
         return JsonResponse({"data": data})
 
 
@@ -81,30 +81,60 @@ class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
 
-    def getFriendsByUsername(request):
+    def getFriendsNew(request):
         value = request.GET.get('username')
-        #print("1")
-        friends = []
+        friendsList = []
         try:
-            #print("1.5")
-            q = models.User_Accounts.objects.filter(username=value).values_list('friends')
-            #print("2")
-        except:
-            q ="NO DRAWINGS WITH USERNAME: "+value
-            #print("3")
-        #print("4")
-        for i in range(0, len(q)):
-            #print("Spam")
+            friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
+            #friendsList = list(friendsElement)
+            print("List of friends: \n", friendsElement)
+            print("Friend 1: \n", friendsElement[0])
+            print("Friend 2: \n", friendsElement[1])
+            #for i in range(0, len(friendsList)):
             try:
-                #print("pre")
-                friends.append(models.User_Accounts.objects.filter(username=q[i]))
-                #print("post")
+                friendsQuerySet = models.User_Accounts.objects.filter(username=friendsElement[0])
+                friendsList = list(friendsQuerySet)
+                print("INNER TRY: friendsList = ", friendsList)
             except:
-                #print("fail")
-                friends = []
-        #print("100")
-        return HttpResponse(friends)
+                friendsList = []
+                print("ERROR OCCURED with INNER try except")
+        except:
+            friendsList = []
+            print("ERROR OCCURED with OUTER try except")
+        print("Final return \n", friendsList)
+        return JsonResponse({{"friendList": (friendsList)}})
     
+
+
+
+    def getFriendsNames(request):
+        value = request.GET.get('username')
+        friendsElement = []
+        try:
+            friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
+            #friendsList = list(friendsElement)
+            print("List of friends: \n", friendsElement)
+        except:
+            print("ERROR OCCURED with OUTER try except")
+        return HttpResponse(friendsElement)
+
+
+
+
+
+    def getUserEntry(request):
+        value = request.GET.get('username')
+        userEntry = []
+        try:
+            userDetails = models.User_Accounts.objects.filter(username=value)
+            userEntry = list(userDetails)
+            print("List of friends: \n", userEntry)
+        except:
+            print("ERROR OCCURED with OUTER try except")
+        return JsonResponse({{"aFriend": (userEntry)}})
+
+
+
 
 
     def getFriendsEntries(request):
@@ -148,14 +178,18 @@ class User_AccountsView(viewsets.ModelViewSet):
         else:
             return HttpResponse("0")
         
-    def getUsernames(request):
+    def getUsernames(request): #that aren't your own
         value = request.GET.get('username')
-        print("We got...", value)
+        #print("We got...", value)
         try:
             q = models.User_Accounts.objects.exclude(username=value).values()
         except:
             q = 0
-        return HttpResponse(q)
+        data = list(q)
+        #print("\n")
+        #print(" \n \n Th DATATATATATAT iss... \n \n", data)
+        #print("\n")
+        return JsonResponse({"allUsers":data})
 
 
 
@@ -173,6 +207,6 @@ class BadgesView(viewsets.ModelViewSet):
             total ="not working"
         return HttpResponse(len(total))
 
-class Usernames(viewsets.ModelViewSet):
-    serializer_class = serializers.User_AccountsSerializer
+#class Usernames(viewsets.ModelViewSet):
+ #   serializer_class = serializers.User_AccountsSerializer
     #queryset = models.User_Accounts.objects.filter(username=)

@@ -42,7 +42,7 @@ function MutualFriends() {
 
   useEffect(() => {
     axios.get("/getUsernames", { params: { username: getUsername() } }).then((data) => {
-      setAllUsers(data?.data);
+      setAllUsers(data?.data.allUsers);
         });
   }, [getUsername()])
   
@@ -66,11 +66,12 @@ function MutualFriends() {
     } else{
       <div>
         {allUsers.map((post, id) => {
-          console.log("helloHA");
+          //console.log("helloHA");
           return ( 
             <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
               <img className="Friend-picture" src={post.profilePicture} alt={"drawing image"} /> 
               <VscCircleFilled className="Friend-status"/>
+              {console.log("Unga Bunga" + post.username)}
               <Col>
                 <div className="Friend-username">
                   {post.username}

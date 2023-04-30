@@ -34,12 +34,14 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
-    path('getFriendsByUsername',views.User_AccountsView.getFriendsByUsername),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
     path('getEmailCount',views.User_AccountsView.getEmailCount),
     path('authenticateUser',views.User_AccountsView.authenticateUser),
     path('getUserDrawings',views.User_MemoriesView.getUserDrawings),
     path('api/badges/getTotalDrawings',views.BadgesView.getTotalDrawings),
     path('getUsernames', views.User_AccountsView.getUsernames),
+    path('getFriendsNew', views.User_AccountsView.getFriendsNew),
+    path('getFriendsNames', views.User_AccountsView.getFriendsNames),
+    path('getUserEntry', views.User_AccountsView.getUserEntry),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

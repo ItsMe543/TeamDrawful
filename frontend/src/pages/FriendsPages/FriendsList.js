@@ -40,19 +40,36 @@ function FriendsList() {
 
 
   const [friendsAdded, setFriendsAdded] = useState([]);
-
+  const [storeFriendsNames, setFriendsNames] = useState([]);
+  
   useEffect(() => {
-    axios.get("/getFriendsByUsername", { params: { username: getUsername() } }).then((data) => {
-      setFriendsAdded(data?.data);
+    axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => {
+      setFriendsNames(data?.data.friendList);
         });
   }, [getUsername()])
 
+  //for (var z=0; z++; z<storeFriendsNames.length){
+    useEffect(() => {
+      axios.get("/getUserEntry", { params: { username: storeFriendsNames[0] } }).then((data) => {
+        setFriendsAdded(data?.data.friendList);
+          });
+    }, [storeFriendsNames[0]])
+  //}
+  
+  
+  /*
+  useEffect(() => {
+    axios.get("/getFriendsNew", { params: { username: getUsername() } }).then((data) => {
+      setFriendsAdded(data?.data.friendList);
+        });
+  }, [getUsername()])
+  */
 
-
+  console.log("User logged in is: " + getUsername());
 
 
   function friendsListDisplay () {
-    if (friendsAdded.length < 1){
+    if (friendsAdded.length < 2){ 
       return(
         <button className="User-preview">
             {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
@@ -98,7 +115,7 @@ function FriendsList() {
 
 
   function friendProfileDisplay() {
-    if (friendsAdded.length < 1){
+    if (friendsAdded.length < 2){
       return (
         <div>
           <div className="Profile-details">
