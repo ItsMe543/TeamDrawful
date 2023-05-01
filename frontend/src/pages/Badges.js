@@ -110,11 +110,7 @@ function Badges() {
 
       // all genres user has done
       promptGenre = fixGenreData(promptGenre.data);
-
-      
-
-    
-      
+     
       totalDrawings = totalDrawings.data;
       if (totalDrawings >= 1 && badgesEarned.toString()[0] !== "1") { 
         badgesEarned = changeBadgesEarned(badgesEarned, 0);
@@ -155,14 +151,19 @@ function Badges() {
       } else {
         for (var i = 0; i < promptGenre.length; i++) {
           var genre = promptGenre[i];
-          if (genre === "Space" && badgesEarned.toString()[5] !== "1") {
+          if (genre === "Scene" && badgesEarned.toString()[5] !== "1") {
             badgesEarned = changeBadgesEarned(badgesEarned, 5);
             setBadgesEarned(badgesEarned);
-            console.log("Unlocked Space genre");
-          } else if (genre === "Ancient" && badgesEarned.toString()[6] !== "1") {
+            console.log("Unlocked Scene genre");
+          } else if (genre === "Building" && badgesEarned.toString()[6] !== "1") {
             badgesEarned = changeBadgesEarned(badgesEarned, 6);
             setBadgesEarned(badgesEarned);
-            console.log("Unlocked Ancient genre");
+            console.log("Unlocked Building genre");
+          } else if (genre === "Animal" && badgesEarned.toString()[7] !== "1") {
+            badgesEarned = changeBadgesEarned(badgesEarned, 7);
+            setBadgesEarned(badgesEarned);
+            console.log("Unlocked Animal genre");
+            
           } else {
             console.log("Genre not found: " + genre);
           }
