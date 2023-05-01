@@ -73,12 +73,17 @@ const csrftoken = getCookie('csrftoken');
         'X-CSRFToken':getCookie('csrftoken')
       },
     })
-      .then((res) => {
-        console.log("Sent: " + res);
-        navigate('/login');
+      .then(() => {
+        signUserIn();
       })
       .catch((err) => console.log("Err: " + err));
   };
+
+  function signUserIn() {
+    sessionStorage.setItem("token", accountUserName);
+    document.cookie = "username =" + accountUserName;
+    navigate("/home");
+  }
 
   const middleMan = (e) => {
     e.preventDefault();

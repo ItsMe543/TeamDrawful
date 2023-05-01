@@ -115,22 +115,24 @@ class User_AccountsView(viewsets.ModelViewSet):
 
     def getFriendsNew(request):
         value = request.GET.get('username')
-        print("Username =", value)
+        #print("Username =", value)
         friendsList = []
         try:
             friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
             #friendsList = list(friendsElement)
-            print("List of friends: \n", friendsElement)
-            print("Friend 1: \n", friendsElement[0])
-            print("Friend 2: \n", friendsElement[1])
+            #print("List of friends: \n", friendsElement)
+            #print("Friend 1: \n", friendsElement[0])
+            #print("Friend 2: \n", friendsElement[1])
             #for i in range(0, len(friendsList)):
             try:
                 friendsQuerySet = models.User_Accounts.objects.filter(username=friendsElement[0])
                 friendsList = list(friendsQuerySet)
                 print("INNER TRY: friendsList = ", friendsList)
             except:
+                friendsList = []
                 print("ERROR OCCURED with INNER try except")
         except:
+            friendsList = []
             print("ERROR OCCURED with OUTER try except")
         print("Final return \n", friendsList)
         return JsonResponse({{"friendList": (friendsList)}})
@@ -138,28 +140,25 @@ class User_AccountsView(viewsets.ModelViewSet):
 
     def getFriendsNames(request):
         value = request.GET.get('username')
-        friendsElement = []
         try:
             friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
             #friendsList = list(friendsElement)
             print("List of friends: \n", friendsElement)
         except:
             print("ERROR OCCURED with OUTER try except")
-        return HttpResponse(friendsElement)
+        data = list(friendsElement)
+        return JsonResponse({"data": data})
 
 
     def getUserEntry(request):
         value = request.GET.get('username')
         userEntry = []
-        print("Commencing")
         try:
             userDetails = models.User_Accounts.objects.filter(username=value)
             userEntry = list(userDetails)
             print("List of friends: \n", userEntry)
         except:
             print("ERROR OCCURED with OUTER try except")
-        
-        print("\n\n\nMWUAHAHAHAHHHAHAH Im sending: ", userEntry)
         return JsonResponse({{"aFriend": (userEntry)}})
 
 
@@ -215,7 +214,7 @@ class User_AccountsView(viewsets.ModelViewSet):
         #print("\n")
         #print(" \n \n Th DATATATATATAT iss... \n \n", data)
         #print("\n")
-        return JsonResponse({"allUsers":data})
+        return JsonResponse({"allUsers": data})
 
 
     def getBadgesEarned(request):
@@ -228,6 +227,17 @@ class User_AccountsView(viewsets.ModelViewSet):
 
         return HttpResponse(badges_earned)
 
+
+    def getFriendSearch(request):
+        username = request.GET.get('username')
+        print("Username =", username)
+        try:
+            p = models.User_Accounts.objects.filter(username=username).values()
+        except:
+            p = "ERROR"
+        data = list(p)
+        print("Data =", data)
+        return JsonResponse({"data": data})
 
 
 class BadgesView(viewsets.ModelViewSet):

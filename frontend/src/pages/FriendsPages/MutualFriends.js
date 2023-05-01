@@ -45,13 +45,30 @@ function MutualFriends() {
       setAllUsers(data?.data.allUsers);
         });
   }, [getUsername()])
+
   
+
+
+  var friendName;
+  const [searchedData, setSearchedData] = useState([])
+
+  function friendFinder(e) {
+    e.preventDefault();
+    axios({
+      method: "get",
+      url: "/getFriendSearch",
+      params: {username: friendName}
+    })
+    .then((data) => {
+      setSearchedData(data?.data.data);
+    })
+  }
 
 
 
 
   function displayAllUsers() {
-    if (allUsers.length < 1){
+    if (searchedData.length < 1){
       return(
         <button className="User-preview">
           <BsPersonSquare className="Friend-picture" />
@@ -65,13 +82,13 @@ function MutualFriends() {
       );
     } else{
       <div>
-        {allUsers.map((post, id) => {
+        {searchedData.map((post, id) => {
           //console.log("helloHA");
           return ( 
-            <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
+            <button className="User-preview" id={id} onClick={() => handleSelectionClick(id)}> 
               <img className="Friend-picture" src={post.profilePicture} alt={"drawing image"} /> 
               <VscCircleFilled className="Friend-status"/>
-              {console.log("Unga Bunga" + post.username)}
+              {console.log("Unga Bunga " + post.username)}
               <Col>
                 <div className="Friend-username">
                   {post.username}
@@ -87,35 +104,124 @@ function MutualFriends() {
 
 
 
-
-
   function displayUserProfile() {
-    if (allUsers.length < 1) {
-      return(
-          <div>
+    if (searchedData.length < 1) {
+      return (
+        <div>
+          <div className="Profile-details">
+            <Row>
+              <Col>
+                <BsPersonSquare className="Profile-picture"/>
+              </Col>
+
+              <Col>
+                <div className="Profile-bio-container">
+                  <div className="Profile-bio">
+                    This is where my bio would be if I were your friend!
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+
+            <Row>
+              <Col>
+                <div className="Profile-username">
+                  Username
+                </div>
+              </Col>
+
+              <Col>
+                <div className="Profile-section-header1">
+                  Favourite Draw
+                </div>
+              </Col>
+            </Row>
+
+
+            <Row>
+              <Col>
+                <div className="Profile-stat-bar">
+                  Highest Streak: 0
+                </div>
+                <div className="Profile-stat-bar">
+                  Average Rating: 0
+                </div>
+                <div className="Profile-stat-bar">
+                  Total Stars Earned: 0
+                </div>
+                <div className="Profile-stat-bar">
+                  Badges Unlocked: 0
+                </div>
+              </Col>
+
+              <Col>
+                <BsFillTaxiFrontFill className="Profile-fav-draw"/>
+              </Col>
+            </Row>
+
+
+            <Row>
+              <Col>
+                <button className="Profile-unfriend-mf-button" disabled>
+                  Unfriend
+                </button>
+              </Col>
+              <Col>
+                <button className="Profile-befriend-button">
+                  Befriend
+                </button>
+              </Col>
+            </Row>
+
+
+            <Row>
+              <Col>
+                <div className="Profile-section-header2">
+                  Badges
+                </div>
+              </Col>
+            </Row>
+
+
+            <Row>
+              <Col>
+                <div className="Profile-badges-container">
+                
+                </div>
+              </Col>
+            </Row>
+
+          </div>
+        </div>
+      )
+    } else {
+      {searchedData.map((post, id) => {
+        if (id == selected){
+          return(
+      
             <div className="Profile-details">
+              
               <Row>
                 <Col>
-                  <BsPersonSquare className="Profile-picture"/>
+                  <img className="Profile-picture" src={post.profilePicture} alt={"pfp image"} />
                 </Col>
 
                 <Col>
-                  <div className="Profile-bio-container">
-                    <div className="Profile-bio">
-                      This is where my bio would be if I were your friend!
-                    </div>
+                <div className="Profile-bio-container">
+                  <div className="Profile-bio">
+                    {post.bio}
                   </div>
+                </div>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col>
-                  <div className="Profile-username">
-                    Username
-                  </div>
+                <div className="Profile-username">
+                  {post.username}
+                </div>
                 </Col>
-
                 <Col>
                   <div className="Profile-section-header1">
                     Favourite Draw
@@ -123,28 +229,27 @@ function MutualFriends() {
                 </Col>
               </Row>
 
-
               <Row>
                 <Col>
                   <div className="Profile-stat-bar">
-                    Highest Streak: 0
+                    Highest Streak: {post.maxStreak}
                   </div>
                   <div className="Profile-stat-bar">
-                    Average Rating: 0
+                    Average Rating: {post.averageRating}
                   </div>
                   <div className="Profile-stat-bar">
-                    Total Stars Earned: 0
+                    Total Stars Earned: {post.totalStars}
                   </div>
                   <div className="Profile-stat-bar">
-                    Badges Unlocked: 0
+                    Badges Unlocked:  {post.badgesEarned}
                   </div>
                 </Col>
 
                 <Col>
-                  <BsFillTaxiFrontFill className="Profile-fav-draw"/>
+                  <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
                 </Col>
-              </Row>
 
+              </Row>
 
               <Row>
                 <Col>
@@ -154,20 +259,18 @@ function MutualFriends() {
                 </Col>
                 <Col>
                   <button className="Profile-befriend-button">
-                     Befriend
+                    Befriend
                   </button>
                 </Col>
               </Row>
 
-
               <Row>
-                <Col>
+              <Col>
                   <div className="Profile-section-header2">
                     Badges
                   </div>
                 </Col>
               </Row>
-
 
               <Row>
                 <Col>
@@ -177,97 +280,11 @@ function MutualFriends() {
                 </Col>
               </Row>
 
+
             </div>
-          </div>
-      )
-    } else {
-      {allUsers.map((post, id) => {
-        if (post.id == selected){
-         return(
-      
-      <div className="Profile-details">
-        
-        <Row>
-          <Col>
-            <img className="Profile-picture" src={post.profilePicture} alt={"pfp image"} />
-          </Col>
-
-          <Col>
-          <div className="Profile-bio-container">
-            <div className="Profile-bio">
-              {post.bio}
-            </div>
-          </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-          <div className="Profile-username">
-            {post.username}
-          </div>
-          </Col>
-          <Col>
-            <div className="Profile-section-header1">
-              Favourite Draw
-            </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <div className="Profile-stat-bar">
-              Highest Streak: {post.maxStreak}
-            </div>
-            <div className="Profile-stat-bar">
-              Average Rating: {post.averageRating}
-            </div>
-            <div className="Profile-stat-bar">
-              Total Stars Earned: {post.totalStars}
-            </div>
-            <div className="Profile-stat-bar">
-              Badges Unlocked:  {post.badgesEarned}
-            </div>
-          </Col>
-
-          <Col>
-            <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
-          </Col>
-
-        </Row>
-
-        <Row>
-          <Col>
-            <button className="Profile-unfriend-mf-button" disabled>
-              Unfriend
-            </button>
-          </Col>
-          <Col>
-            <button className="Profile-befriend-button">
-              Befriend
-            </button>
-          </Col>
-        </Row>
-
-        <Row>
-        <Col>
-            <div className="Profile-section-header2">
-              Badges
-            </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <div className="Profile-badges-container">
-            
-            </div>
-          </Col>
-        </Row>
-
-
-      </div>
-         )}})}
+          )
+        }
+      })}
     }
   }
 
@@ -284,7 +301,10 @@ function MutualFriends() {
     <div className="Profiles-container">
       <Col className="Friend-m-side">
         <div className="Mutual-title">Find Friends</div>
-          <input className="F-m-search-bar" type="text" placeholder="Search users" />
+          <form onSubmit={friendFinder}>
+            <input className="F-m-search-bar" type="text" placeholder="Search users" onChange={(e) => friendName = e.target.value}/>
+            <button type="submit">Find friends!</button>
+          </form>
           
           <div className="Friends-m-list">
             {displayAllUsers()}

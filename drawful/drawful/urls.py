@@ -32,8 +32,8 @@ router.register(r'badges', views.BadgesView, 'badges')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    # path('', views.main, name="main"),
-    re_path(r'^.*', views.main, name="main"),
+    path('', views.main, name="main"),
+    #re_path(r'^.*', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
@@ -47,9 +47,9 @@ urlpatterns = [
     path('updateBadges',views.BadgesView.updateBadges),
     path('getPromptGenre',views.User_MemoriesView.getPromptGenre),
     #path('updateBadgeTime',views.BadgesView.updateBadgeTime),
-
     path('getFriendsNew', views.User_AccountsView.getFriendsNew),
     path('getFriendsNames', views.User_AccountsView.getFriendsNames),
     path('getUserEntry', views.User_AccountsView.getUserEntry),
+    path('getFriendSearch', views.User_AccountsView.getFriendSearch),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

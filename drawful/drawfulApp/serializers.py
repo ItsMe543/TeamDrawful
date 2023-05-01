@@ -20,7 +20,7 @@ class User_MemoriesSerializer(serializers.ModelSerializer):
 class User_AccountsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User_Accounts
-        fields = ('username','password','first_name','last_name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests','last_login','is_superuser')
+        fields = ('id','username','password','first_name','last_name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests','last_login','is_superuser')
 
     def create(self, validated_data):
         #user = models.User_Accounts.objects.create(**validated_data)

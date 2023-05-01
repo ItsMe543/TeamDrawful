@@ -51,7 +51,7 @@ function FriendsList() {
   
   useEffect(() => {
     axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
-      setFriendsNames(data?.data);
+      setFriendsNames(data?.data.data[0]);
         });
     console.log("kdsn kvjsdnvrk HEY");
     for (var z=0; z++; z<storeFriendsNames.length){
@@ -93,7 +93,7 @@ function FriendsList() {
 
 
   function friendsListDisplay () {
-    if (friendsAdded.length < 2){ 
+    if (friendsAdded.length < 1){ 
       return(
         <button className="User-preview">
             {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
