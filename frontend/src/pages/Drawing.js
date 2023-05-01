@@ -243,7 +243,7 @@ function getDrawing() {
 }
 
 function getUsername() {
-    return getCookie('username');
+    return sessionStorage.getItem("token");
 }
 
 function Drawing() {
@@ -252,10 +252,15 @@ function Drawing() {
 
 
     function getSeconds() {
-        if (seconds === 60) {
+        var seconds1 = document.getElementById("Label1").innerHTML;
+        if (seconds1 === '0') {
             return "00:01:00"
-        } else {
-            return "00:00:" + seconds
+        }    
+        else if(seconds1==='1:00'){
+            return "00:00:00"
+        }    
+        else {
+            return "00:00:" + (60-parseInt(seconds1))
         }
     }
 
