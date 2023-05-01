@@ -252,10 +252,11 @@ function Drawing() {
 
 
     function getSeconds() {
-        if (seconds === 60) {
+        var seconds1 = document.getElementById("Label1").innerHTML;
+        if (seconds1 === 60) {
             return "00:01:00"
         } else {
-            return "00:00:" + seconds
+            return "00:00:" + seconds1
         }
     }
 
