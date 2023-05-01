@@ -7,6 +7,7 @@ import { VscCircleFilled } from "react-icons/vsc";
 import { BsPersonSquare, BsFillTaxiFrontFill} from "react-icons/bs"
 import validator from "validator";
 import axios from "axios";
+import { List } from "native-base";
 
 
 function FriendsList() {
@@ -41,29 +42,35 @@ function FriendsList() {
 
   const [friendsAdded, setFriendsAdded] = useState([]);
   const [storeFriendsNames, setFriendsNames] = useState([]);
-  
-  function append (newItem){
-    setFriendsAdded(friendsAdded, [newItem]);
-  }
-
+  const friendsNames = [];
+  const friends = [];
   //Method 1 (Front end Based)
   //------------------------------------------------------------------------------//
   
   useEffect(() => {
     axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
-      setFriendsNames(data?.data.data[0]);
+      //console.log("Length is: " + (data?.data.users[0].friends).length);
+      
+      for (var i=0; i<(data?.data.users[0].friends).length; i++){
+        friendsNames.push(data?.data.users[0].friends[i]);
+        console.log(("data.data " + data?.data.users[0].friends[i]));
+      }
+
+      console.log("This runs! SO: " + friendsNames);
+      console.log("Name 1 is : " + friendsNames[0]);
         });
-    console.log("kdsn kvjsdnvrk HEY");
-    for (var z=0; z++; z<storeFriendsNames.length){
-      axios.get("/getUserEntry", { params: { username: storeFriendsNames[z] } }).then((data) => { //gets the friends entry in User_Accounts
-        setFriendsAdded(data?.data.aFriend);
-        console.log("kdsn kvjsdnvrk HEY");
-      });
-    }
+    //for (var z=0; z<storeFriendsNames.length; z++;){
+    axios.get("/getUserEntry", { params: { username: friendsNames[0] } }).then((data) => { //gets the friends entry in User_Accounts
+      friends.push(data?.data.aFriend);
+      console.log("Running this code is" + friends);
+      console.log("Running this code is" + friends[0]);
+    });
+    //console.log("SPRINTING");
+    //}
   }, [getUsername()])
 
 
-  console.log("Username of friend is: ", friendsAdded.username);
+  //console.log("Username of friend is: ", friendsAdded.username);
 
 
 
@@ -89,11 +96,11 @@ function FriendsList() {
   }, [getUsername()])
   */
   //------------------------------------------------------------------------------//
-  console.log("User logged in is: " + getUsername());
+  //console.log("User logged in is: " + getUsername());
 
 
   function friendsListDisplay () {
-    if (friendsAdded.length < 1){ 
+    if (friends.length < 2){ 
       return(
         <button className="User-preview">
             {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
@@ -109,11 +116,11 @@ function FriendsList() {
     } else {
       return(
         <div>
-        {console.log("FRend are: " + friendsAdded)}
-        {friendsAdded.map((post, id) => {
+        {console.log("FRend are: " + friends)}
+        {friends.map((post, id) => {
           return ( 
-            <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
-              <img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> 
+            <button className="User-preview" id={id} onClick={() => handleSelectionClick(post.id)}> 
+              <img className="Friend-picture"  id={id} src={post.drawing} alt={"drawing image"} /> 
               <VscCircleFilled className="Friend-status"/>
               <Col>
                 <div className="Friend-username">
@@ -139,7 +146,7 @@ function FriendsList() {
 
 
   function friendProfileDisplay() {
-    if (friendsAdded.length < 2){
+    if (friends.length < 2){
       return (
         <div>
           <div className="Profile-details">
@@ -233,7 +240,7 @@ function FriendsList() {
     } else {
       return (
         <div>
-          {friendsAdded.map((post, id) => {
+          {friends.map((post, id) => {
             //HERE
             if (post.id == selected){
              return(
@@ -242,7 +249,7 @@ function FriendsList() {
                 <Row>
                   <Col>
                     {/*HERE*/}
-                    <img className="Profile-picture" src={post.profilePicture} alt={"pfp image"} />
+                    <img className="Profile-picture"  id={id} src={post.profilePicture} alt={"pfp image"} />
                   </Col>
 
                   <Col>
@@ -294,7 +301,7 @@ function FriendsList() {
 
                   <Col>
                     {/*HERE*/}
-                    <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
+                    <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
                   </Col>
                 </Row>
 
@@ -310,7 +317,7 @@ function FriendsList() {
                       <button className="Profile-view-memories">
 
                         {/*HERE*/}
-                        <Link to={"/friends/memories/" + post.id}>
+                        <Link  id={id} to={"/friends/memories/" + post.id}>
 
                           Memories
                         </Link>
@@ -335,7 +342,7 @@ function FriendsList() {
                     {post.badges.map((badges,id) =>{
                       return(
                         //HERE
-                        <img className="Profile-badge-icon" src={badges.badgeIcon} alt={"Badgeicon"} />
+                        <img className="Profile-badge-icon"  id={id} src={badges.badgeIcon} alt={"Badgeicon"} />
                       )})}
                     </div>
                   </Col>

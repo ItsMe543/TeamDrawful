@@ -21,43 +21,32 @@ function FriendRequests() {
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
   };
-
-
-
-  function friendsListDisplay () {
-    if (friendsAdded.length < 2){ 
-      return(
-        <button className="User-preview">
-            {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
-            <BsPersonSquare className="Friend-picture" />
-            <VscCircleFilled className="Friend-status"/>
-            <Col>
-              <div className="Friend-username">
-                Username
-            </div>
-          </Col>
-        </button>
-      );
-    } else {
-      return(
-        <div>
-        {console.log("FRend are: " + friendsAdded)}
-        {friendsAdded.map((post, id) => {
-          return ( 
-            <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
-              <img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> 
-              <VscCircleFilled className="Friend-status"/>
-              <Col>
-                <div className="Friend-username">
-                  {post.username}
-                </div>
-              </Col>
-            </button>
-          )})}
+  return (
+    <div className="Profiles-container">
+      <Col className="Friend-r-side">
+        <div className="Requests-title">Friend Requests</div>
+        
+        <div className="Friends-r-list">
+          {drawings.map((post, id) => {
+            return (
+              <button className="User-r-preview"  id={id} onClick={() => handleSelectionClick(post.id)}>
+                <img className="Friend-r-picture"  id={id} src={post.drawing} alt={"drawing image"} />
+                <VscCircleFilled className="Friend-r-status"/>
+                <Col>
+                  <div className="Friend-r-username">
+                    {post.username}
+                  </div>
+                  <div className="Mutual-m-friends">
+                      {post.mutualFriends} Mutual friends
+                  </div>
+                </Col>
+              </button>
+            )})}
         </div>
-      )
-    }
-  }
+      </Col>
+    </div>
+  )
+}
 
 
 
@@ -68,7 +57,7 @@ function FriendRequests() {
           <div className="Profile-details">
             <Row>
               <Col>
-                <BsPersonSquare className="Profile-picture"/>
+                <img className="Profile-picture"  id={id} src={post.drawing} alt={"pfp image"} />
               </Col>
 
               <Col>
@@ -113,7 +102,7 @@ function FriendRequests() {
               </Col>
 
               <Col>
-                <BsFillTaxiFrontFill className="Profile-fav-draw"/>
+                <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
               </Col>
             </Row>
 
@@ -145,127 +134,16 @@ function FriendRequests() {
             <Row>
               <Col>
                 <div className="Profile-badges-container">
-                
+                {post.badges.map((badges,id) =>{
+                  return(
+                    <img className="Profile-badge-icon"  id={id} src={badges.badgeIcon} alt={"Badgeicon"} />
+                  )})}
                 </div>
               </Col>
             </Row>
 
+
           </div>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          {friendsAdded.map((post, id) => {
-            //HERE
-            if (post.id == selected){
-             return(
-          
-              <div className="Profile-details">
-                <Row>
-                  <Col>
-                    {/*HERE*/}
-                    <img className="Profile-picture" src={post.profilePicture} alt={"pfp image"} />
-                  </Col>
-
-                  <Col>
-                  <div className="Profile-bio-container">
-                    <div className="Profile-bio">
-                      {/*HERE*/}
-                      {post.bio}
-                    </div>
-                  </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                  <div className="Profile-username">
-                    {/*HERE*/}
-                    {post.username}
-                  </div>
-                  </Col>
-
-                  <Col>
-                    <div className="Profile-section-header1">
-                      Favourite Draw
-                    </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Highest Streak: {post.maxSteak}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Average Rating: {post.averageRating}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Total Stars Earned: {post.totalStars}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Badges Unlocked:  {post.badgesEarned}
-                    </div>
-                  </Col>
-
-                  <Col>
-                    {/*HERE*/}
-                    <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <button className="Profile-unfriend-button">
-                      Unfriend
-                    </button>
-                  </Col>
-
-                  <Col>
-                      <button className="Profile-view-memories">
-
-                        {/*HERE*/}
-                        <Link to={"/friends/memories/" + post.id}>
-
-                          Memories
-                        </Link>
-                      </button>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-section-header2">
-                      Badges
-                    </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-badges-container">
-                    {/*HERE*/}
-                    {post.badges.map((badges,id) =>{
-                      return(
-                        //HERE
-                        <img className="Profile-badge-icon" src={badges.badgeIcon} alt={"Badgeicon"} />
-                      )})}
-                    </div>
-                  </Col>
-                </Row>
-
-              </div>
-             )}})}
         </div>
       )
     }
@@ -291,6 +169,5 @@ function FriendRequests() {
 
     </div>
   );
-}
         
 export default FriendRequests;
