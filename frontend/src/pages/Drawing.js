@@ -396,6 +396,21 @@ function Drawing() {
                 canFill.setMode(0);
             }
         }
+        else if(Mode.getMode() == 'pen') {
+            if (e.buttons == 1){
+                const ctx = canvasCTX; // Our saved context
+                ctx.beginPath(); // Start the line
+                ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
+                ctx.globalCompositeOperation = "source-over";
+                ctx.arc(e.clientX - canvasRect.left, e.clientY - canvasRect.top, size * 0.1, 0, Math.PI * 2, false);
+
+                ctx.strokeStyle = color; // Set the color as the saved state
+                ctx.lineWidth = size; // Set the size to the saved state
+                // Set the line cap to round
+                ctx.lineCap = "round";
+                ctx.stroke(); // Draw it!
+            }
+        }
     };
     const Draw = (e) => {
 
