@@ -238,9 +238,15 @@ function Badges() {
   
 
   const handleSort = (option) => {
+
+    if (activeSortButton === option || activeFilterButton === option) {
+      setActiveSortButton(null);
+      setActiveFilterButton(null);
+      handleReset();
+    }
     
     // sort the data based on the selected option
-    if (option === "alphabetical") {
+    else if (option === "alphabetical") {
       setActiveSortButton(option);
       // sort by alphabetical
       const sortedBadges = [...sortedBadgesArray].sort((a, b) => {
@@ -385,14 +391,18 @@ function Badges() {
           <button
             className={`sortAlphabetical ${activeSortButton === "alphabetical" ? "toggled" : ""}`}
             onClick={() => {
-              handleSort("alphabetical")}}
+              setActiveSortButton("alphabetical");
+              handleSort("alphabetical");
+            }}
           >
             Alphabetical
           </button>
           <button
             className={`sortReverseAlpha ${activeSortButton === "reverseAlpha" ? "toggled" : ""}`}
             onClick={() => {
-              handleSort("reverseAlpha")}}
+              setActiveSortButton("reverseAlpha");
+              handleSort("reverseAlpha");
+            }}
           >
             Reverse Alphabetical
           </button>
@@ -412,21 +422,27 @@ function Badges() {
           <button
               className={`filterNumber ${activeFilterButton === "number" ? "toggled" : ""}`}
               onClick={() => {
-                handleSort("number")}}
+                  setActiveFilterButton("number");
+                  handleSort("number");
+              }}
             >
               Number of Drawings
             </button>
             <button
               className={`filterGenre ${activeFilterButton === "genre" ? "toggled" : ""}`}
               onClick={() => {
-                handleSort("genre")}}
+                  setActiveFilterButton("genre");
+                  handleSort("genre");
+              }}
             >
               Genres Completed
             </button>
             <button
               className={`filterRating ${activeFilterButton === "rating" ? "toggled" : ""}`}
               onClick={() => {
-                handleSort("rating")}}
+                  setActiveFilterButton("rating");
+                  handleSort("rating");
+              }}
             >
               Rating
             </button>
