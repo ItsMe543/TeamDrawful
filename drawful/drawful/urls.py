@@ -20,6 +20,7 @@ from drawfulApp import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import re_path
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'prompts', views.PromptView, 'prompt')
@@ -53,6 +54,6 @@ urlpatterns = [
     path('getFriendsNew', views.User_AccountsView.getFriendsNew),
     path('getFriendsNames', views.User_AccountsView.getFriendsNames),
     path('getUserEntry', views.User_AccountsView.getUserEntry),
-    re_path(r'^(%s)?$' % '|'.join(frontendRoutes),views.main, name="main" ),
+    re_path(r'^(%s)?$' % '|'.join(frontendRoutes),TemplateView.as_view(template_name='index.html'), name="main" ),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
