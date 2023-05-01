@@ -376,9 +376,9 @@ function Badges() {
           <rect></rect>
         </svg>
 
-        <h className="filterHeading">
+        <h2 className="filterHeading">
           Sort
-        </h>
+        </h2>
 
         
         <div className="sortButtons">
@@ -402,9 +402,9 @@ function Badges() {
           <rect></rect>
         </svg> 
 
-        <h className="filterHeading">
+        <h2 className="filterHeading">
           Badge Type
-        </h>
+        </h2>
 
         <div className="sortButtons">
 
