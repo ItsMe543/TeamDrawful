@@ -60,7 +60,7 @@ const csrftoken = getCookie('csrftoken');
         last_name: fullname.split(" ")[1],
         email: accountEmail,
         bio: "",
-        badgesEarned: "00000000",
+        badgesEarned: "000000000000",
         averageRating: 0.0,
         currentStreak: 0,
         maxStreak: 0,

@@ -28,9 +28,9 @@ export default function Settings() {
   const handleSearchInputChange = (event) => {
     const searchInput = event.target.value.toLowerCase();
 
-    const accessibilityKeywords = /(light|dark|font|contrast|accessibility|mode|high|toggle|switch|appearance|display|general|notifications|sound)/;
-    const accountKeywords = /(account|badges|stats|name|username|email|bio|address|settings|personal|edit|profile|picture|changes|cancel|save|memories)/;
-    const securityKeywords = /(security|privacy|hide|login|password|reset|status|logout|online|offline)/;
+    const accessibilityKeywords = /(light|dark|font|contrast|preference|accessibility|on|off|state|states|mode|high|toggle|switch|appearance|display|general|notifications|sound|text|large|larger|size|big|bigger)/;
+    const accountKeywords = /(account|badges|stats|name|username|email|bio|address|settings|about|me|my|details|personal|edit|profile|image|mine|picture|average|id|user|changes|input|field|area|statistics|unlocked|cancel|save|memories|rating|streak|stars|characters|gmail|@|.com)/;
+    const securityKeywords = /(security|privacy|hide|login|password|reset|status|logout|confirm|online|offline|delete|access|activity|log)/;
 
     if (accessibilityKeywords.test(searchInput)) {
       setActive("accessibility");

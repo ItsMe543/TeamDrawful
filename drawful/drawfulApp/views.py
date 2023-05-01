@@ -30,7 +30,7 @@ class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['date']
+    filterset_fields = ['date', 'username']
 
 
     def getLatestDrawing(request):
@@ -61,7 +61,7 @@ class User_MemoriesView(viewsets.ModelViewSet):
         print(q)
 
         return HttpResponse(q)
-    
+
 
     def getUserDrawings(request):
         username = request.GET.get('username')
@@ -82,7 +82,7 @@ class User_MemoriesView(viewsets.ModelViewSet):
         username = request.GET.get('username')
         try:
             q = models.User_Memories.objects.filter(username=username).values_list('avgRating')
-            
+
         except:
             q = "not working"
         return HttpResponse(q)
@@ -112,6 +112,8 @@ class User_MemoriesView(viewsets.ModelViewSet):
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['username']
 
     def getFriendsNew(request):
         value = request.GET.get('username')
@@ -137,7 +139,6 @@ class User_AccountsView(viewsets.ModelViewSet):
         print("Final return \n", friendsList)
         return JsonResponse({{"friendList": (friendsList)}})
 
-
     def getFriendsNames(request):
         value = request.GET.get('username')
         try:
@@ -159,6 +160,7 @@ class User_AccountsView(viewsets.ModelViewSet):
             print("List of friends: \n", userEntry)
         except:
             print("ERROR OCCURED with OUTER try except")
+        print("\n\n\nMWUAHAHAHAHHHAHAH Im sending: ", userEntry)
         return JsonResponse({{"aFriend": (userEntry)}})
 
 
@@ -175,6 +177,7 @@ class User_AccountsView(viewsets.ModelViewSet):
 
     def getUsernameCount(request):
         username = request.GET.get('username')
+        print("Hello")
         try:
             q = models.User_Accounts.objects.filter(username=username).count()
         except:
@@ -202,7 +205,7 @@ class User_AccountsView(viewsets.ModelViewSet):
             return HttpResponse("1")
         else:
             return HttpResponse("0")
-        
+
     def getUsernames(request): #that aren't your own
         value = request.GET.get('username')
         #print("We got...", value)
@@ -227,6 +230,29 @@ class User_AccountsView(viewsets.ModelViewSet):
 
         return HttpResponse(badges_earned)
 
+    def updateProfilePicture(request):
+        username = request.GET.get('username')
+        newPP_id = request.GET.get('id')
+        try:
+            user_account = models.User_Accounts.objects.filter(username=username)
+            newPP = models.User_Memories.objects.get(id = newPP_id);
+        except:
+            return HttpResponse('No user found')
+
+        if(newPP == None):
+            return HttpResponse("no image provided")
+        print(newPP);
+        user_account.update(profilePicture = newPP.drawing)
+        return HttpResponse('Profile picture updated sucessfully', newPP)
+
+    def getProfilePicture(request):
+        username = request.GET.get('username')
+        try:
+            pp = models.User_Accounts.objects.get(username = username).profilePicture
+
+        except:
+            return HttpResponse('user not found')
+        return HttpResponse(pp)
 
     def getFriendSearch(request):
         username = request.GET.get('username')
@@ -243,23 +269,23 @@ class User_AccountsView(viewsets.ModelViewSet):
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
     queryset = models.Badges.objects.all()
-    
+
     def updateBadges(request):
         user = request.GET.get('username')
         badgesEarned = request.GET.get('badgesEarned')
-        
+
         try:
-            accountData = models.User_Accounts.objects.filter(username=user) 
+            accountData = models.User_Accounts.objects.filter(username=user)
         except:
             return HttpResponse('Failed to identify user, are you sure you entered the username correctly?')
         accountData.update(badgesEarned=badgesEarned)
         return HttpResponse('badges updated successfully', badgesEarned)
 
 
-    
 
 
-    
+
+
     # def updateBadgeTime(request):
     #     badgeName = request.GET.get('badgeName')
     #     now = datetime.now()

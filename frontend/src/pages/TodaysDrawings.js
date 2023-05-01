@@ -6,7 +6,34 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import "../Fonts/Sometimes.otf";
 
+import { Star } from "@mui/icons-material";
 import "../styles/TodaysDrawings.css";
+
+const StarRating = () => {
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+
+  return (
+    <div className="star-rating">
+      {[...Array(5)].map((star, index) => {
+        index += 1;
+        return (
+          <button
+            type="button"
+            key={index}
+            className={index <= (hover || rating) ? "on" : "off"}
+            onClick={() => setRating(index)}
+            onMouseEnter={() => setHover(index)}
+            onMouseLeave={() => setHover(rating)}
+          >
+            <span className="star">&#9733;</span>
+            {/* <AiOutlineStar size={25} className="star" /> */}
+          </button>
+        );
+      })}
+    </div>
+  );
+};
 
 // Ctrl + k to comment out region
 function TodaysDrawings() {
@@ -19,13 +46,18 @@ function TodaysDrawings() {
     flexDirection: "row",
   };
 
+  function convertTime(timeString) {
+    const [hours, minutes] = timeString.split(":");
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
   // stars fill states
-  const [filled, setFilled] = useState(
-    posts.map(() => [false, false, false, false, false])
-  );
+  const [filled, setFilled] = useState([false, false, false, false, false]);
 
   // fills in star when clicked and all previous stars
   const handleClick = (index, id) => {
+    console.log(filled);
     const newFilled = [...filled];
     newFilled[id] = newFilled[id].map((value, i) => {
       if (i <= index) {
@@ -69,6 +101,7 @@ function TodaysDrawings() {
     getData();
   }, []);
   console.log(posts);
+
   if (loading) return <p>Loading...</p>;
   return (
     <div>
@@ -83,10 +116,11 @@ function TodaysDrawings() {
                   <div className="UserName">
                     @{post.username} {" - "}{" "}
                     {new Date(post.date).toDateString()} -{" "}
-                    {post.timeTaken
-                      .split(":")
-                      .reduce((acc, time) => 60 * acc + +time)}{" "}
-                    seconds
+                    {convertTime(post.timeCompleted).toLocaleTimeString([], {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })}
                   </div>
 
                   <div className="PromptName">
@@ -98,39 +132,47 @@ function TodaysDrawings() {
                 </div>
 
                 <div className="bottom-bar">
-                  <div className="Stats">Difficulty: {post.difficulty} / 5</div>
-                  {/* <div className="Stats">Time taken: {post.timeTaken}</div> */}
-                  <div className="StarBarAvg">
-                    Rating
-                    <Rating
-                      className="StarRating"
-                      value={1}
-                      readOnly
-                      precision={0.1}
-                    />
+                  <div className="Stats">
+                    Time Taken:{" "}
+                    {post.timeTaken
+                      .split(":")
+                      .reduce((acc, time) => 60 * acc + +time)}{" "}
+                    seconds
+                    <div className="StarBarAvg">
+                      Current rating:
+                      <Rating
+                        className="StarRating"
+                        value={1}
+                        readOnly
+                        precision={0.1}
+                      />
+                      Rate the drawing?
+                      <StarRating />{" "}
+                      <Button className="SubmitButton">Submit Rating</Button>
+                    </div>
                   </div>
+                  {/* <div className="Stats">Time taken: {post.timeTaken}</div> */}
                 </div>
 
-                {/* <div className="Ratings">
-                <div className="RateText">Rate the drawing?</div>
-                <div className="StarBar">
-                  {[0, 1, 2, 3, 4].map((index) => (
-                    <Button
-                      key={index}
-                      // sets class name to each uniquely
-                      className={`Star${index + 1} Stars`}
-                      onClick={() => handleClick(index, id)}
-                    >
-                      {filled[id][index] ? (
-                        <AiFillStar size={25} />
-                      ) : (
-                        <AiOutlineStar size={25} />
-                      )}
-                    </Button>
-                  ))}
+                <div className="Ratings">
+                  {/* <div className="StarBar">
+                    {console.log(id)}
+                    {[...Array(5)].map((index) => (
+                      <Button
+                        key={index}
+                        // sets class name to each uniquely
+                        className={`Star${index + 1} Stars`}
+                        onClick={() => handleClick(index, id)}
+                      >
+                        {filled[id][index] ? (
+                          <AiFillStar size={25} />
+                        ) : (
+                          <AiOutlineStar size={25} />
+                        )}
+                      </Button>
+                    ))}
+                  </div> */}
                 </div>
-                <Button className="SubmitButton">Submit Rating</Button>
-              </div> */}
               </div>
               {/* <div className="CommentsBox">
                 <div className="CommentHeading">Comments</div>

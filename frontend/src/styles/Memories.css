@@ -14,8 +14,6 @@ p {
 }
 
 .calanderDrawing {
-  display: flex;
-  flex-direction: row;
   justify-content: start;
   gap: 4%;
   height: 100%;
@@ -25,6 +23,8 @@ p {
 .drawingContainer {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .arrow {
@@ -48,6 +48,10 @@ p {
   max-width: 1000px;
   object-fit: contain;
   max-height: 600px;
+  /* width: 60%; */
+}
+.side-menu {
+  position: absolute;
 }
 
 .twoButtons {
@@ -56,6 +60,10 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.profile-message {
+  color: white;
+  font-size: 20px;
 }
 
 .downloadButton {
@@ -73,7 +81,8 @@ p {
   border-radius: 20%;
 }
 
-.highlight:hover {}
+.highlight:hover {
+}
 
 .react-calendar {
   font-family: "Helvetica", "Arial", sans-serif;
