@@ -72,6 +72,13 @@ TEMPLATES = [
         },
     },
 ]
+REACT_ROUTES = [
+    'login',
+    'signUp',
+    'feed',
+    'home'
+
+]
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
