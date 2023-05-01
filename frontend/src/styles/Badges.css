@@ -1,12 +1,8 @@
-body {
-    overflow: hidden;
-}
-
 .filtersBar {
     background-color: black;
     width: 15%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
 }
 
@@ -56,8 +52,8 @@ body {
 }
 
 .badgeIcon {
-    max-width: 100px;
-    height: 100px;
+    max-width: 80px;
+    height: 80px;
     margin-right: 20px;
 }
 

@@ -42,21 +42,45 @@ function FriendsList() {
   const [friendsAdded, setFriendsAdded] = useState([]);
   const [storeFriendsNames, setFriendsNames] = useState([]);
   
+  function append (newItem){
+    setFriendsAdded(friendsAdded, [newItem]);
+  }
+
+  //Method 1 (Front end Based)
+  //------------------------------------------------------------------------------//
+  
   useEffect(() => {
-    axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => {
-      setFriendsNames(data?.data.friendList);
+    axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
+      setFriendsNames(data?.data);
         });
+    console.log("kdsn kvjsdnvrk HEY");
+    for (var z=0; z++; z<storeFriendsNames.length){
+      axios.get("/getUserEntry", { params: { username: storeFriendsNames[z] } }).then((data) => { //gets the friends entry in User_Accounts
+        setFriendsAdded(data?.data.aFriend);
+        console.log("kdsn kvjsdnvrk HEY");
+      });
+    }
   }, [getUsername()])
 
-  //for (var z=0; z++; z<storeFriendsNames.length){
+
+  console.log("Username of friend is: ", friendsAdded.username);
+
+
+
+  /*
+  for (var z=0; z++; z<storeFriendsNames.length){
     useEffect(() => {
       axios.get("/getUserEntry", { params: { username: storeFriendsNames[0] } }).then((data) => {
         setFriendsAdded(data?.data.friendList);
           });
     }, [storeFriendsNames[0]])
-  //}
+  }
+  */
+  //------------------------------------------------------------------------------//
   
-  
+
+  //Method 2 (Back end based)
+  //------------------------------------------------------------------------------//
   /*
   useEffect(() => {
     axios.get("/getFriendsNew", { params: { username: getUsername() } }).then((data) => {
@@ -64,7 +88,7 @@ function FriendsList() {
         });
   }, [getUsername()])
   */
-
+  //------------------------------------------------------------------------------//
   console.log("User logged in is: " + getUsername());
 
 

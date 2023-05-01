@@ -46,13 +46,14 @@ const csrftoken = getCookie('csrftoken');
       }
     }).then((data) => {
       isCorrectCredentials = ((data.data === 1) ? true : false);
-      console.log(data.data)
+      //console.log(data.data)
       if (!isCorrectCredentials) {
         setErrormsg("Incorrect details. Please try again");
       } else {
         logUserIn();
       }
     }, [username, password]);
+    //logUserIn();
   }
 
   function checkCredentials(e) {

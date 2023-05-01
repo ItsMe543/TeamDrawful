@@ -19,6 +19,7 @@ from rest_framework import routers
 from drawfulApp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import re_path
 
 router = routers.DefaultRouter()
 router.register(r'prompts', views.PromptView, 'prompt')
@@ -31,7 +32,8 @@ router.register(r'badges', views.BadgesView, 'badges')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('', views.main, name="main"),
+    # path('', views.main, name="main"),
+    re_path(r'^.*', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
