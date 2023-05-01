@@ -239,11 +239,21 @@ function Badges() {
 
   const handleSort = (option) => {
 
-    if (activeSortButton === option || activeFilterButton === option) {
+
+
+    if (activeSortButton === option) {
       setActiveSortButton(null);
+    }
+    
+    if (activeFilterButton === option) {
       setActiveFilterButton(null);
+    }
+
+    if (activeSortButton === option || activeFilterButton === option) {
       handleReset();
     }
+
+    
     
     // sort the data based on the selected option
     else if (option === "alphabetical") {

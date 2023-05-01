@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BsFillPencilFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
+import logo from "../navbarLogo.png";
 
 function Home() {
   const [isPrivacyVisible, setIsPrivacyVisible] = useState(false);
@@ -13,28 +14,31 @@ function Home() {
 
   return (
     <div>
-      <div className="Background"></div>
+      <div className="Background">
+        <div className="homeLogoContainer">
+          <img className="homeLogo" src={logo} alt="drawful logo"/>
+        </div>
 
-      <div className="DrawingsBox">
-        <Link to="/drawing" className="Drawings">
-          <BsFillPencilFill className="Pen1"></BsFillPencilFill>
-          Draw here
-          <BsFillPencilFill className="Pen2"></BsFillPencilFill>
-        </Link>
-      </div>
+        <div className="DrawingsBox">
+          <Link to="/drawing" className="Drawings">
+            <BsFillPencilFill className="Pen1"></BsFillPencilFill>
+              Draw here
+            <BsFillPencilFill className="Pen2"></BsFillPencilFill>
+          </Link>
+        </div>
+        <div className="disclaimer1">
+          "Alpha Project Disclaimer This server is provided by the School of
+          Computer Science at the University of Birmingham to allow users to
+          provide feedback on software developed by students as part of an
+          assignment. While we take reasonable precautions, we cannot guarantee
+          the security of the data entered into the system. Do NOT enter any real
+          personal data (e.g., financial information or otherwise) into the
+          system. The assignment runs until May 31st 2023, at which time the
+          server and all associated data will be destroyed."
+        </div>
 
-      <div className="disclaimer1">
-        "Alpha Project Disclaimer This server is provided by the School of
-        Computer Science at the University of Birmingham to allow users to
-        provide feedback on software developed by students as part of an
-        assignment. While we take reasonable precautions, we cannot guarantee
-        the security of the data entered into the system. Do NOT enter any real
-        personal data (e.g., financial information or otherwise) into the
-        system. The assignment runs until May 31st 2023, at which time the
-        server and all associated data will be destroyed."
-      </div>
 
-      <div className="privacyInfoButtonDiv" >
+        <div className="privacyInfoButtonDiv" >
         <InfoIcon
           className="privacyInfoButton" aria-label="Drawful Privacy Policy"
           onClick={handleButtonClick}
@@ -213,6 +217,29 @@ function Home() {
           </div>
         )}
       </div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+      
+      
+      
+      
+
+      
+
+      
+
+      
     </div>
   );
 }

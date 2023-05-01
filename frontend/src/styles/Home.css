@@ -8,6 +8,21 @@ body {
   overflow-y: auto;
 }
 
+.homeLogo{
+  width: 300px;
+  height: 300px;
+  border-radius: 20%;
+  border: 2px solid black;
+}
+
+.homeLogoContainer{
+  display: block;
+  text-align: center;
+  margin-top: 6%;
+  margin-bottom: 2%;
+  
+}
+
 .Background {
   background: linear-gradient(45deg, #0000ff, #ff0000, #23a6d5, #00ff00);
   background-size: 400% 400%;
@@ -26,6 +41,7 @@ body {
   background-color: rgb(253, 205, 18);
   border-radius: 60px;
   padding: 10px;
+  border: 2px solid black;
 }
 
 .Pen1 {
