@@ -128,10 +128,8 @@ class User_AccountsView(viewsets.ModelViewSet):
                 friendsList = list(friendsQuerySet)
                 print("INNER TRY: friendsList = ", friendsList)
             except:
-                friendsList = []
                 print("ERROR OCCURED with INNER try except")
         except:
-            friendsList = []
             print("ERROR OCCURED with OUTER try except")
         print("Final return \n", friendsList)
         return JsonResponse({{"friendList": (friendsList)}})
@@ -157,12 +155,15 @@ class User_AccountsView(viewsets.ModelViewSet):
     def getUserEntry(request):
         value = request.GET.get('username')
         userEntry = []
+        print("Commencing")
         try:
             userDetails = models.User_Accounts.objects.filter(username=value)
             userEntry = list(userDetails)
             print("List of friends: \n", userEntry)
         except:
             print("ERROR OCCURED with OUTER try except")
+        
+        print("\n\n\nMWUAHAHAHAHHHAHAH Im sending: ", userEntry)
         return JsonResponse({{"aFriend": (userEntry)}})
 
 
