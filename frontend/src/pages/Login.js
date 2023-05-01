@@ -21,13 +21,13 @@ function Login() {
     axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
       isCorrectCredentials = ((data.data === 1) ? true : false);
       //console.log(data.data)
-      /*if (!isCorrectCredentials) {
+      if (!isCorrectCredentials) {
         setErrormsg("Incorrect details. Please try again");
       } else {
         logUserIn();
-      }*/
+      }
     }, [username, password]);
-    logUserIn();
+    //logUserIn();
   }
 
   function checkCredentials(e) {
