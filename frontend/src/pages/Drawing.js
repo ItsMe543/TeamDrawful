@@ -243,7 +243,7 @@ function getDrawing() {
 }
 
 function getUsername() {
-    return getCookie('username');
+    return sessionStorage.getItem("token");
 }
 
 function Drawing() {

@@ -15,9 +15,18 @@
 
 }
 
+.filterHeading{
+    display: block;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
+
 .sortButtons {
     margin-left: 50%;
     font-size: 20px;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .sortButtons button {
@@ -48,23 +57,26 @@
     border-width: 10px;
     margin-top: 20px;
     margin-bottom: 30px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .badgeIcon {
-    max-width: 80px;
-    height: 80px;
+    max-width: 120px;
+    height: 120px;
     margin-right: 20px;
 }
 
 .badgeName {
     float: left;
     font-size: 40px;
+    margin-top: 10px;
 }
 
 .badgeDescription {
     float: left;
     font-size: 18px;
+    margin-top: 10px;
+    font-style: italic;
 }
 
 .seperator {
