@@ -338,7 +338,7 @@ function Drawing() {
         })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-        window.location.href = window.location.href.replace("/drawing", "/viewingDrawings/");
+        window.location.href = window.location.href.replace("/drawing", "/feed/");
 
     };
 
