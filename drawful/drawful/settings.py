@@ -76,7 +76,7 @@ REACT_ROUTES = [
     'login',
     'signUp',
     'feed',
-    'home'
+    'home',
     'settings',
     'friends',
     'memories',
