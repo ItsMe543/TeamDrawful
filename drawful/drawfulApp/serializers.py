@@ -23,7 +23,6 @@ class User_AccountsSerializer(serializers.ModelSerializer):
         fields = ('username','password','first_name','last_name','email','bio','profilePicture','favouriteDraw','badgesEarned','averageRating','currentStreak','maxStreak','totalStars','friends','friendRequests','last_login','is_superuser')
 
     def create(self, validated_data):
-        print("Create is called!")
         #user = models.User_Accounts.objects.create(**validated_data)
         #user.password = ArgonHash.hashPassword(validated_data['password'])
         #user.save()

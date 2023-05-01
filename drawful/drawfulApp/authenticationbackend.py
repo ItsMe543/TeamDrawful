@@ -5,16 +5,13 @@ from drawfulApp.security import ArgonHash
 
 class CustomBackend(BaseBackend):
     def authenticate(self, username, password):
-        print("Auth password =", password + "...")
         try:
             user = User_Accounts.objects.get(username=username)
 
             if check_password(password=password, encoded=user.password):
             #if ArgonHash.verifyPassword(user.password, password):
-                print("Got here!")
                 return user
             else:
-                print("Actually got here :(")
                 return None
         except User_Accounts.DoesNotExist:
             return None
