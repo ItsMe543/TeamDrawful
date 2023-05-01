@@ -7,12 +7,13 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
 import drawings from "../drawingData";
 import "../styles/Memories.css";
-function Memories() {
+function Memories(props) {
   const [ID, setID] = useState(0);
   const [date, setDate] = useState(new Date());
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [errors, setErrors] = useState({ code: "", message: "" });
+  const [profileErrors, setprofileErrors] = useState("");
 
   const onDateChange = (newDate) => {
     let formattedDate = newDate;
@@ -50,7 +51,7 @@ function Memories() {
 
   const getData = () => {
     axios
-      .get("/api/user_memories/")
+      .get(`/api/user_memories/?username=${getUsername()}`)
       .then((data) => {
         const sortedData = sortByDate(data.data);
         setData(sortedData);
@@ -73,6 +74,7 @@ function Memories() {
 
   useEffect(() => {
     getData();
+    props.getProfilePicture();
     // let sorted = sortByDate(data);
     // setSortedData(sorted);
 
@@ -146,6 +148,24 @@ function Memories() {
         allowedDate.getFullYear() === date.getFullYear()
     );
   };
+  const setProfileButton = (ID) => {
+    axios
+      .get("/updateProfilePicture", {
+        params: { username: getUsername(), id: ID },
+      })
+      .then((data) => {
+        setprofileErrors(data.data);
+        // this.forceUpdate();
+      })
+      .catch(function (error) {
+        setprofileErrors("Error changing profile picture, please try again");
+      });
+    props.getProfilePicture();
+  };
+
+  const getUsername = () => {
+    return sessionStorage.getItem("token");
+  };
   const highlightedDates = convertDates();
 
   console.log("Sorted: ");
@@ -162,13 +182,13 @@ function Memories() {
     );
 
   if (!loaded) return <div className="m-errors">Loading...</div>;
-  if (data.length === 0) return <div className="m-errors">No data lol</div>;
+
   // if (data === null) return <p>Server error</p>;
   return (
     <div className="m-memories">
       <div className="m-title">Memories Page!</div>
       <div className="calanderDrawing">
-        <div>
+        <div className="side-menu">
           <Calendar
             onChange={onDateChange}
             value={date}
@@ -185,46 +205,56 @@ function Memories() {
               </Button>
             </div>
             <div className="setProfileButton">
-              <Button>Set Drawing as Profile Picture</Button>
+              <Button onClick={() => setProfileButton(data[ID].id)}>
+                Set Drawing as Profile Picture
+              </Button>
+              <div className="profile-message">{profileErrors}</div>
             </div>
           </div>
         </div>
-        <div className="drawingContainer">
-          <HiArrowCircleLeft
-            aria-label="Left Arrow"
-            className="arrow"
-            size={45}
-            onClick={() => handleLeftClick()}
-            tabIndex={0}
-            role="button"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleLeftClick();
-              }
-            }}
-          />
+        {data.length !== 0 ? (
+          <>
+            <div className="drawingContainer">
+              <HiArrowCircleLeft
+                aria-label="Left Arrow"
+                className="arrow"
+                size={45}
+                onClick={() => handleLeftClick()}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleLeftClick();
+                  }
+                }}
+              />
 
-          <div className="m-drawing">
-            <img src={data[ID]?.drawing} alt={"drawing image"} />
-          </div>
-          <HiArrowCircleRight
-            aria-label="Right Arrow"
-            className="arrow"
-            size={45}
-            onClick={() => handleRightClick()}
-            tabIndex={0}
-            role="button"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleRightClick();
-              }
-            }}
-          />
-        </div>
-        <div className="currentDate">{date.toDateString()}</div>
+              <div className="m-drawing">
+                <img src={data[ID]?.drawing} alt={"drawing image"} />
+              </div>
+              <HiArrowCircleRight
+                aria-label="Right Arrow"
+                className="arrow"
+                size={45}
+                onClick={() => handleRightClick()}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleRightClick();
+                  }
+                }}
+              />
+            </div>
+            <div className="currentDate">{date.toDateString()}</div>{" "}
+          </>
+        ) : (
+          <p>No memories yet, submit a drawing first!</p>
+        )}
       </div>
+
       <div className="disclaimer1">
         "Alpha Project Disclaimer This server is provided by the School of
         Computer Science at the University of Birmingham to allow users to

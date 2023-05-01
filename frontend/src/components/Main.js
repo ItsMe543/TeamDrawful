@@ -16,10 +16,11 @@ import Accessibility from "../pages/Settings/Accessibility";
 import SignUp from "../pages/SignUp";
 import TodaysDrawings from "../pages/TodaysDrawings";
 
-function Main() {
+function Main(props) {
   const AuthContext = React.createContext(null);
   const [error, setError] = useState("");
   const naviagate = useNavigate();
+
   useEffect(() => {
     const isLightMode = localStorage.getItem("isLightMode") === "true";
     const isContrast = localStorage.getItem("isContrast") === "true";
@@ -106,7 +107,7 @@ function Main() {
         path="/memories"
         element={
           <PrivateRoute>
-            <Memories />
+            <Memories getProfilePicture={props.getProfilePicture} />
           </PrivateRoute>
         }
       ></Route>

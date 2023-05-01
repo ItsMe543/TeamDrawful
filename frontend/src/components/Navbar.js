@@ -1,3 +1,4 @@
+import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import {
@@ -9,18 +10,24 @@ import { BsAward, BsPeople, BsVectorPen } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+import memories from "../pages/Memories";
 
 import logo from "../navbarLogo.png";
 import "../styles/Navbar.css";
-function Navbar() {
+function Navbar(profile) {
+  // const [profile, setProfile] = useState("");
   const navigate = useNavigate();
 
+  const getUsername = () => {
+    return sessionStorage.getItem("token");
+  };
   function signOut() {
     sessionStorage.removeItem("token");
     console.log("Signed out");
     navigate("/login");
   }
 
+  console.log(profile);
   return (
     <div className="Navbar">
       <div className="logo">
@@ -91,21 +98,22 @@ function Navbar() {
             </Link>
           </div>
         }
-        {sessionStorage.getItem("token") && (
-          <>
-            <div className="profile">
-              <Link to="/settings" aria-label="Profile Picture, Link to settings">
-                <img src={require("../minion.png")} className="profilePic" />
-              </Link>
-              {/* <div className="userName">defaultUsername</div> */}
-            </div>
-
-            <Button className="sign-out" onClick={() => signOut()}>
-              Sign out
-            </Button>
-          </>
-        )}
       </div>
+      {sessionStorage.getItem("token") && (
+        <>
+          <div className="profile">
+            <Link to="/settings" aria-label="Profile Picture, Link to settings">
+              <img src={profile.props} className="profilePic" />
+            </Link>
+            <div className="username-signout">
+              <div className="userName">@{getUsername()}</div>
+              <Button className="sign-out" onClick={() => signOut()}>
+                Sign out
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

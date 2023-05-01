@@ -30,7 +30,7 @@ class User_MemoriesView(viewsets.ModelViewSet):
     serializer_class = serializers.User_MemoriesSerializer
     queryset = models.User_Memories.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['date']
+    filterset_fields = ['date', 'username']
 
 
     def getLatestDrawing(request):
@@ -112,6 +112,8 @@ class User_MemoriesView(viewsets.ModelViewSet):
 class User_AccountsView(viewsets.ModelViewSet):
     serializer_class = serializers.User_AccountsSerializer
     queryset = models.User_Accounts.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['username']
 
     def getFriendsNew(request):
         value = request.GET.get('username')
@@ -236,6 +238,29 @@ class User_AccountsView(viewsets.ModelViewSet):
 
         return HttpResponse(badges_earned)
 
+    def updateProfilePicture(request):
+        username = request.GET.get('username')
+        newPP_id = request.GET.get('id')
+        try:
+            user_account = models.User_Accounts.objects.filter(username=username)
+            newPP = models.User_Memories.objects.get(id = newPP_id);
+        except:
+            return HttpResponse('No user found')
+
+        if(newPP == None):
+            return HttpResponse("no image provided")
+        print(newPP);
+        user_account.update(profilePicture = newPP.drawing)
+        return HttpResponse('Profile picture updated sucessfully', newPP)
+
+    def getProfilePicture(request):
+        username = request.GET.get('username')
+        try:
+            pp = models.User_Accounts.objects.get(username = username).profilePicture
+
+        except:
+            return HttpResponse('user not found')
+        return HttpResponse(pp)
 
 
 class BadgesView(viewsets.ModelViewSet):
