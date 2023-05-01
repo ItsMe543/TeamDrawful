@@ -31,12 +31,13 @@ router.register(r'user_accounts', views.User_AccountsView, 'user_accounts')
 router.register(r'badges', views.BadgesView, 'badges')
 frontendRoutes = getattr(settings, 'REACT_ROUTES', [])
 
+frontendRoutes = getattr(settings, 'REACT_ROUTES', [])
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    #  path('', views.main, name="main"),
-     #path(r'^.*', views.main, name="main"),
-    re_path(r'^(%s)?$' % '|'.join(frontendRoutes),TemplateView.as_view(template_name='index.html'), name="main" ),
+    # path('', views.main, name="main"),
+    #re_path(r'^.*', views.main, name="main"),
     path('getLatestDrawing',views.User_MemoriesView.getLatestDrawing),
     path('getTodaysDrawings', views.User_MemoriesView.getTodaysDrawings),
     path('getUsernameCount',views.User_AccountsView.getUsernameCount),
@@ -54,5 +55,6 @@ urlpatterns = [
     path('getFriendsNew', views.User_AccountsView.getFriendsNew),
     path('getFriendsNames', views.User_AccountsView.getFriendsNames),
     path('getUserEntry', views.User_AccountsView.getUserEntry),
+    re_path(r'^(%s)?$' % '|'.join(frontendRoutes),TemplateView.as_view(template_name='index.html'), name="main" ),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

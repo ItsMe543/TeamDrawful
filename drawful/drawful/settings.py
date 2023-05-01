@@ -74,9 +74,14 @@ TEMPLATES = [
 ]
 REACT_ROUTES = [
     'login',
-    'signup',
+    'signUp',
     'feed',
-    'home'
+    'home',
+    'settings',
+    'friends',
+    'memories',
+    'badges',
+    'drawing',
 
 ]
 
