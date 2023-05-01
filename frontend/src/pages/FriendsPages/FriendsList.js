@@ -7,7 +7,7 @@ import { VscCircleFilled } from "react-icons/vsc";
 import { BsPersonSquare, BsFillTaxiFrontFill} from "react-icons/bs"
 import validator from "validator";
 import axios from "axios";
-import { List } from "native-base";
+//import { List } from "native-base";
 
 
 function FriendsList() {
