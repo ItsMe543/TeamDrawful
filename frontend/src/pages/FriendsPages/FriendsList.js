@@ -60,7 +60,7 @@ function FriendsList() {
       console.log("Name 1 is : " + friendsNames[0]);
         });
     //for (var z=0; z<storeFriendsNames.length; z++;){
-    axios.get("/getUserEntry", { params: { username: friendsNames[0] } }).then((data) => { //gets the friends entry in User_Accounts
+    axios.get("/getUserEntry", { params: { username: String(friendsNames[0]) } }).then((data) => { //gets the friends entry in User_Accounts
       friends.push(data?.data.aFriend);
       console.log("Running this code is" + friends);
       console.log("Running this code is" + friends[0]);
