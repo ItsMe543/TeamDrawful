@@ -11,10 +11,14 @@ function App() {
   function getUsername() {
     return sessionStorage.getItem("token");
   }
+
   function getProfilePicture() {
-    axios.get(`/getProfilePicture?username=${getUsername()}`).then((data) => {
-      setprofilePic(data.data);
-    });
+    if (getUsername()) {
+      axios.get(`/getProfilePicture?username=${getUsername()}`).then((data) => {
+        setprofilePic(data.data);
+        console.log("Triggered");
+      });
+    }
   }
   useEffect(() => {
     getProfilePicture();
