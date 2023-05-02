@@ -27,8 +27,8 @@ function FriendRequests() {
         <div className="Friends-r-list">
           {drawings.map((post, id) => {
             return (
-              <button className="User-r-preview" onClick={() => handleSelectionClick(post.id)}>
-                <img className="Friend-r-picture" src={post.drawing} alt={"drawing image"} />
+              <button className="User-r-preview"  id={id} onClick={() => handleSelectionClick(post.id)}>
+                <img className="Friend-r-picture"  id={id} src={post.drawing} alt={"drawing image"} />
                 <VscCircleFilled className="Friend-r-status"/>
                 <Col>
                   <div className="Friend-r-username">
@@ -56,7 +56,7 @@ function FriendRequests() {
             
             <Row>
               <Col>
-                <img className="Profile-picture" src={post.drawing} alt={"pfp image"} />
+                <img className="Profile-picture"  id={id} src={post.drawing} alt={"pfp image"} />
               </Col>
 
               <Col>
@@ -98,7 +98,7 @@ function FriendRequests() {
               </Col>
 
               <Col>
-                <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
+                <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
               </Col>
 
             </Row>
@@ -129,7 +129,7 @@ function FriendRequests() {
                 <div className="Profile-badges-container">
                 {post.badges.map((badges,id) =>{
                   return(
-                    <img className="Profile-badge-icon" src={badges.badgeIcon} alt={"Badgeicon"} />
+                    <img className="Profile-badge-icon"  id={id} src={badges.badgeIcon} alt={"Badgeicon"} />
                   )})}
                 </div>
               </Col>

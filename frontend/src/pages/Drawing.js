@@ -399,20 +399,28 @@ function Drawing() {
     if (Mode.getMode() == "pen") {
       if (e.buttons !== 1) return;
 
-      const ctx = canvasCTX; // Our saved context
-      ctx.beginPath(); // Start the line
-      ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
-      ctx.globalCompositeOperation = "source-over";
-      ctx.lineTo(e.clientX - canvasRect.left, e.clientY - canvasRect.top); // Again draw a line to the mouse postion
-      ctx.strokeStyle = color; // Set the color as the saved state
-      ctx.lineWidth = size; // Set the size to the saved state
-      // Set the line cap to round
-      ctx.lineCap = "round";
-      ctx.stroke(); // Draw it!
-    }
-    //ERASE
-    else if (Mode.getMode() == "erase") {
-      if (e.buttons !== 1) return;
+    const submitForm = () => {
+        //e.preventDefault();
+        axios({
+            method: 'post',
+            url: 'api/user_memories/',
+            data: {
+                username: getUsername(),
+                date: getDate(),
+                timeCompleted: getTime(),
+                difficulty: "69",
+                timeTaken: getSeconds(),
+                prompt: document.getElementById('promptID').innerHTML,
+                drawing: getDrawing(),
+            },
+            headers: {
+                "content-type": "application/json",
+                'X-CSRFToken': csrftoken
+            }
+        })
+            .then((res) => console.log("Sent: " + res))
+            .catch((err) => console.log("Err: " + err))
+        window.location.href = window.location.href.replace("/drawing", "/feed");
 
       const ctx = canvasCTX; // Our saved context
       ctx.moveTo(mouseData.x, mouseData.y);
@@ -543,6 +551,7 @@ function Drawing() {
             Erase
           </button>
 
+<<<<<<< HEAD
           <br></br>
           <br></br>
           <button
@@ -564,6 +573,37 @@ function Drawing() {
           >
             Pen
           </button>
+=======
+            }
+            console.log(canFill.getMode());
+            if (canFill.getMode() == 1) {
+                console.log(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
+                body_loaded();
+                var canvasX = e.clientX - canvasRect.left;
+                var canvasY = e.clientY - canvasRect.top;
+                flood_fill(Math.round(canvasX), Math.round(canvasY), color_to_rgba(color));
+                //flood_fill(100,100,color_to_rgba(generate_random_color()));
+                canFill.setMode(0);
+            }
+        }
+        else if(Mode.getMode() == 'pen') {
+            if (e.buttons == 1){
+                const ctx = canvasCTX; // Our saved context
+                ctx.beginPath(); // Start the line
+                ctx.moveTo(mouseData.x, mouseData.y); // Move the line to the saved mouse location
+                ctx.globalCompositeOperation = "source-over";
+                ctx.arc(e.clientX - canvasRect.left, e.clientY - canvasRect.top, size * 0.1, 0, Math.PI * 2, false);
+
+                ctx.strokeStyle = color; // Set the color as the saved state
+                ctx.lineWidth = size; // Set the size to the saved state
+                // Set the line cap to round
+                ctx.lineCap = "round";
+                ctx.stroke(); // Draw it!
+            }
+        }
+    };
+    const Draw = (e) => {
+>>>>>>> d6f30f6849c7179c16b8ddd6ca53b7efba6e6d18
 
           <br></br>
           <br></br>

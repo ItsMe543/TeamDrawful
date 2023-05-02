@@ -68,10 +68,10 @@ function MutualFriends() {
         {allUsers.map((post, id) => {
           //console.log("helloHA");
           return ( 
-            <button className="User-preview" onClick={() => handleSelectionClick(post.id)}> 
-              <img className="Friend-picture" src={post.profilePicture} alt={"drawing image"} /> 
+            <button className="User-preview"  id={id} onClick={() => handleSelectionClick(post.id)}> 
+              <img className="Friend-picture"  id={id} src={post.profilePicture} alt={"drawing image"} /> 
               <VscCircleFilled className="Friend-status"/>
-              {console.log("Unga Bunga" + post.username)}
+              {/*console.log("Unga Bunga" + post.username)*/}
               <Col>
                 <div className="Friend-username">
                   {post.username}
@@ -189,7 +189,7 @@ function MutualFriends() {
         
         <Row>
           <Col>
-            <img className="Profile-picture" src={post.profilePicture} alt={"pfp image"} />
+            <img className="Profile-picture"  id={id} src={post.profilePicture} alt={"pfp image"} />
           </Col>
 
           <Col>
@@ -231,7 +231,7 @@ function MutualFriends() {
           </Col>
 
           <Col>
-            <img className="Profile-fav-draw" src={post.favouriteDraw} alt={"fav draw image"} />
+            <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
           </Col>
 
         </Row>
