@@ -1,7 +1,6 @@
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password
 from drawfulApp.models import User_Accounts
-from drawfulApp.security import ArgonHash
 
 class CustomBackend(BaseBackend):
     def authenticate(self, username, password):

@@ -21,7 +21,7 @@ function FriendRequests() {
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
   };
-  return (
+  /*return (
     <div className="Profiles-container">
       <Col className="Friend-r-side">
         <div className="Requests-title">Friend Requests</div>
@@ -45,9 +45,7 @@ function FriendRequests() {
         </div>
       </Col>
     </div>
-  )
-}
-
+  )*/
 
 
   function friendProfileDisplay() {
@@ -57,7 +55,7 @@ function FriendRequests() {
           <div className="Profile-details">
             <Row>
               <Col>
-                <img className="Profile-picture"  id={id} src={post.drawing} alt={"pfp image"} />
+                <img className="Profile-picture" alt={"pfp image"} />
               </Col>
 
               <Col>
@@ -102,7 +100,7 @@ function FriendRequests() {
               </Col>
 
               <Col>
-                <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
+                <img className="Profile-fav-draw" alt={"fav draw image"} />
               </Col>
             </Row>
 
@@ -134,10 +132,7 @@ function FriendRequests() {
             <Row>
               <Col>
                 <div className="Profile-badges-container">
-                {post.badges.map((badges,id) =>{
-                  return(
-                    <img className="Profile-badge-icon"  id={id} src={badges.badgeIcon} alt={"Badgeicon"} />
-                  )})}
+                
                 </div>
               </Col>
             </Row>
@@ -156,7 +151,6 @@ function FriendRequests() {
       <Col className="Friend-r-side">
         <div className="Requests-title">Friend Requests</div>
         <div className="Friends-r-list">
-          {friendsListDisplay()}
         </div>
       </Col>
 
@@ -169,5 +163,5 @@ function FriendRequests() {
 
     </div>
   );
-        
+}
 export default FriendRequests;

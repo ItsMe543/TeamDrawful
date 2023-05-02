@@ -100,7 +100,7 @@ function FriendsList() {
 
 
   function friendsListDisplay () {
-    if (friends.length < 2){ 
+    if (friendsAdded.length < 2){ 
       return(
         <button className="User-preview">
             {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}

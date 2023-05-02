@@ -57,6 +57,7 @@ urlpatterns = [
     path('getFriendSearch', views.User_AccountsView.getFriendSearch),
     path('updateProfilePicture', views.User_AccountsView.updateProfilePicture),
     path('getProfilePicture', views.User_AccountsView.getProfilePicture),
+    path('userEncrypt', views.User_AccountsView.getProfilePicture),
     path(r'^(%s)?$' % '|'.join(frontendRoutes),TemplateView.as_view(template_name='index.html'), name="main" ),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

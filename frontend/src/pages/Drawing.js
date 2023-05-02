@@ -17,7 +17,7 @@ import {
 } from "react-router-dom";
 
 
-
+var hasPrompt =false;
 
 var the_canvas;
 var the_canvas_context;
@@ -338,7 +338,7 @@ function Drawing() {
         })
             .then((res) => console.log("Sent: " + res))
             .catch((err) => console.log("Err: " + err))
-        window.location.href = window.location.href.replace("/drawing", "/feed");
+        
 
     };
 
