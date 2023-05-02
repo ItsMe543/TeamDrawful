@@ -44,6 +44,7 @@
     border: 1px solid #838383;
     border-radius: 15px;
     padding: 10px;
+    padding-left: 25px;
     font-size: 22px;
     overflow-y: scroll;
     display: flex;
@@ -52,9 +53,7 @@
     overflow-x: hidden;
 }
 
-.badgeElement {
-    margin: 20px;
-}
+
 
 .badges-container::-webkit-scrollbar {
     width: 10px;

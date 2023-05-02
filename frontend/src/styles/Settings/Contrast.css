@@ -238,7 +238,7 @@ body.contrast .badges-header {
 }
 
 body.contrast .badges-container {
-    background-color: white;
+    background-color: rgba(75, 75, 75, 0.459);
 }
 
 body.contrast .stats {
@@ -404,4 +404,8 @@ body.contrast .currentDate {
 
 body.contrast .DropdownDiv label {
     color: rgb(255, 0, 255)
+}
+
+body.contrast .badgeIcon {
+    border: 1px solid white;
 }
