@@ -70,13 +70,8 @@ function Mutualusers() {
         }
         console.log("JOJO - HERE -> ALLUSERNAMES[0]: " + allUsernames[0]);
 
-
-        console.log("Ty is cringe " + allUsernames.length);
         for (var j = 0; j < allUsernames.length; j++) {
-          console.log("Ty is very cringe " + j);
-
           axios.get("/getUserEntry", { params: { username: allUsernames[j] } }).then((data) => { //gets the users entry in User_Accounts
-            console.log("i changed your gitlab profile again" + data?.data.singleFriend[0].username);
             users.push(data?.data.singleFriend[0]);
             console.log("Running this code is: " + users[0].username);
             console.log("AAAAND is... " + users.length);
