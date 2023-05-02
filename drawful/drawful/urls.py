@@ -54,7 +54,6 @@ urlpatterns = [
     path('getFriendsNew', views.User_AccountsView.getFriendsNew),
     path('getFriendsNames', views.User_AccountsView.getFriendsNames),
     path('getUserEntry', views.User_AccountsView.getUserEntry),
-    path('getFriendSearch', views.User_AccountsView.getFriendSearch),
     path('updateProfilePicture', views.User_AccountsView.updateProfilePicture),
     path('getProfilePicture', views.User_AccountsView.getProfilePicture),
     path('userProfile', views.User_AccountsView.getUserProfile),

@@ -10,9 +10,10 @@ import { BsPersonSquare, BsFillTaxiFrontFill} from "react-icons/bs"
 
 //import drawings from "../../drawingData";
 
-function MutualFriends() {
+function Mutualusers() {
 
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState("");
+  var selec2ded = "";
   
   const handleSelectionClick = (fProfile) => {
     setSelected(fProfile);
@@ -37,284 +38,148 @@ function MutualFriends() {
     return getCookie('username');
   }
 
+
+  //#########################################################################
   
-  const [allUsers, setAllUsers] = useState([]);
+  const allUsernames = [];
+  const users = [];
+  const finalIdea = []
+
+
+  var running2 = false;
+  var running = false;
+  var running3 = false;
+
+  function pog(){
+    console.log("yeet");
+  }
+
+  function setusers(name) {
+    finalIdea.push(name)
+  }
+
+
+  var isReady = false;
 
   useEffect(() => {
-    axios.get("/getUsernames", { params: { username: getUsername() } }).then((data) => {
-      setAllUsers(data?.data.allUsers);
-        });
+    if (isReady === false) {
+      isReady = true;
+      axios.get("/api/user_accounts/").then((data) => { //Gets all users
+        for (var i = 0; i < (data?.data).length; i++) {
+          allUsernames.push(data?.data[i].username);
+        }
+        console.log("JOJO - HERE -> ALLUSERNAMES[0]: " + allUsernames[0]);
+
+
+        console.log("Ty is cringe " + allUsernames.length);
+        for (var j = 0; j < allUsernames.length; j++) {
+          console.log("Ty is very cringe " + j);
+
+          axios.get("/getUserEntry", { params: { username: allUsernames[j] } }).then((data) => { //gets the users entry in User_Accounts
+            console.log("i changed your gitlab profile again" + data?.data.singleFriend[0].username);
+            users.push(data?.data.singleFriend[0]);
+            console.log("Running this code is: " + users[0].username);
+            console.log("AAAAND is... " + users.length);
+
+            console.log(users.length, allUsernames.length);
+            if (users.length == allUsernames.length) {
+              //console.log("YEET")
+              var data = usersListDisplay();
+              //console.log("yeet: " + data);
+
+              
+              if (running2 === false) {
+                running2 = true;
+                document.getElementById("loadList").innerHTML = data;
+                for (var i = 0; i < allUsernames.length; i++) {
+                  var but = document.getElementById("Phil");
+                  //but.onclick= function(){pog()};
+                }
+              }
+
+
+              var data2 = friendProfileDisplay();
+              console.log("TOMISPOG");
+              console.log("feat: " + data2);
+              if (running3 === false) {
+                running3 = true;
+                document.getElementById("loadProfile").innerHTML = data2;
+              }
+            }
+            console.log("selec2ded is:" + selec2ded);
+            console.log("updated");
+          });
+        }
+        console.log("SDVTEYHUIJXITY");
+      });
+    }
+    //for (var z=0; z<storeallUsernames.length; z++;){
+
+    //console.log("SPRINTING");
+    //}
   }, [getUsername()])
 
-  
 
-
-  var friendName;
-  const [searchedData, setSearchedData] = useState([])
-
-  function friendFinder(e) {
-    e.preventDefault();
-    axios({
-      method: "get",
-      url: "/getFriendSearch",
-      params: {username: friendName}
-    })
-    .then((data) => {
-      setSearchedData(data?.data.data);
-    })
-  }
-
-
-
-
-  function displayAllUsers() {
-    if (searchedData.length < 1){
-      return(
-        <button className="User-preview">
-          <BsPersonSquare className="Friend-picture" />
-          <VscCircleFilled className="Friend-status"/>
-          <Col>
-            <div className="Friend-username">
-                Username
-            </div>
-          </Col>
-        </button>
-      );
-    } else{
-      <div>
-        {searchedData.map((post, id) => {
-          //console.log("helloHA");
-          return ( 
-            <button className="User-preview"  id={id} onClick={() => handleSelectionClick(post.id)}> 
-              <img className="Friend-picture"  id={id} src={post.profilePicture} alt={"drawing image"} /> 
-              <VscCircleFilled className="Friend-status"/>
-              {/*console.log("Unga Bunga" + post.username)*/}
-              <Col>
-                <div className="Friend-username">
-                  {post.username}
-                </div>
-              </Col>
-            </button>
-          )})}
-        </div>
+  function usersListDisplay() {
+    if (running == false) {
+      running = true;
+      console.log(" Top of list display Len is... " + users.length);
+      console.log("The list has ");
+      if (users.length < 1) {
+        var boi = "TmIsPog";
+        console.log("boi" + boi);
+        return '<button class="User-preview"> <BsPersonSquare class="Friend-picture" /><Col> <div class="Friend-username">Username</div> </Col> </button>';
+      } else {
+        return loadList();
+      }
     }
   }
 
 
 
 
-
-  function displayUserProfile() {
-    if (searchedData.length < 1) {
-      return (
-        <div>
-          <div className="Profile-details">
-            <Row>
-              <Col>
-                <BsPersonSquare className="Profile-picture"/>
-              </Col>
-
-              <Col>
-                <div className="Profile-bio-container">
-                  <div className="Profile-bio">
-                    This is where my bio would be if I were your friend!
-                  </div>
-                </div>
-              </Col>
-            </Row>
+  function loadList() {
+    
+    var TOMISPOG = "";
+    for (var i = 0; i < users.length; i++) {
+      TOMISPOG = TOMISPOG + '<button class="User-preview" id='+users[i].username+'> <img class="Friend-picture" src=' + users[i].profilePicture + ' alt="test image" /><Col><div class="Friend-username">' + users[i].username + '</div></Col></button>';
+    }
+    return TOMISPOG;
+  }
 
 
-            <Row>
-              <Col>
-                <div className="Profile-username">
-                  Username
-                </div>
-              </Col>
-
-              <Col>
-                <div className="Profile-section-header1">
-                  Favourite Draw
-                </div>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-stat-bar">
-                  Highest Streak: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Average Rating: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Total Stars Earned: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Badges Unlocked: 0
-                </div>
-              </Col>
-
-              <Col>
-                <BsFillTaxiFrontFill className="Profile-fav-draw"/>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <button className="Profile-unfriend-mf-button" disabled>
-                  Unfriend
-                </button>
-              </Col>
-              <Col>
-                <button className="Profile-befriend-button">
-                  Befriend
-                </button>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-section-header2">
-                  Badges
-                </div>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-badges-container">
-                
-                </div>
-              </Col>
-            </Row>
-
-          </div>
-        </div>
-      )
+  function friendProfileDisplay() {
+    if (users.length < 1 || selec2ded === "") {
+      return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Memories</button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>';
     } else {
-      {searchedData.map((post, id) => {
-        if (id == selected){
-          return(
-      
-      <div className="Profile-details">
-        
-        <Row>
-          <Col>
-            <img className="Profile-picture"  id={id} src={post.profilePicture} alt={"pfp image"} />
-          </Col>
-
-                <Col>
-                <div className="Profile-bio-container">
-                  <div className="Profile-bio">
-                    {post.bio}
-                  </div>
-                </div>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                <div className="Profile-username">
-                  {post.username}
-                </div>
-                </Col>
-                <Col>
-                  <div className="Profile-section-header1">
-                    Favourite Draw
-                  </div>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <div className="Profile-stat-bar">
-                    Highest Streak: {post.maxStreak}
-                  </div>
-                  <div className="Profile-stat-bar">
-                    Average Rating: {post.averageRating}
-                  </div>
-                  <div className="Profile-stat-bar">
-                    Total Stars Earned: {post.totalStars}
-                  </div>
-                  <div className="Profile-stat-bar">
-                    Badges Unlocked:  {post.badgesEarned}
-                  </div>
-                </Col>
-
-          <Col>
-            <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
-          </Col>
-
-              </Row>
-
-              <Row>
-                <Col>
-                  <button className="Profile-unfriend-mf-button" disabled>
-                    Unfriend
-                  </button>
-                </Col>
-                <Col>
-                  <button className="Profile-befriend-button">
-                    Befriend
-                  </button>
-                </Col>
-              </Row>
-
-              <Row>
-              <Col>
-                  <div className="Profile-section-header2">
-                    Badges
-                  </div>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <div className="Profile-badges-container">
-                  
-                  </div>
-                </Col>
-              </Row>
-
-
-            </div>
-          )
-        }
-      })}
+      return loadProf();
     }
   }
 
 
-
-
-
-
-
-
+  function loadProf(){
+    var loadded = selec2ded;
+    console.log("Loadded prints...: " + loadded.username);
+    //console.log("Laod List: " + users[0].profilePicture);
+    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-button">Unfriend</button></Col><Col><button class="Profile-view-memories"><Link to={"/users/memories/" + ' + loadded.id + '}>Memories</Link></button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>'
+    return profile;
+  }
 
 
   return (
     <div className="Profiles-container">
       <Col className="Friend-m-side">
-        <div className="Mutual-title">Find Friends</div>
-          <form onSubmit={friendFinder}>
-            <input className="F-m-search-bar" type="text" placeholder="Search users" onChange={(e) => friendName = e.target.value}/>
-            <button type="submit">Find friends!</button>
-          </form>
+        <div className="Mutual-title">Find users</div>
           
-          <div className="Friends-m-list">
-            {displayAllUsers()}
+          <div className="users-m-list">
+            {/*displayAllUsers()*/}
           </div>
       </Col>
 
 
       <Col className="Profile-side">
         <div className="Details-to-fill">
-          {displayUserProfile()}
+          {/*displayUserProfile()*/}
         </div>
       </Col>
 
@@ -322,4 +187,4 @@ function MutualFriends() {
   );
 }
         
-export default MutualFriends;
+export default Mutualusers;
