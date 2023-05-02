@@ -14,10 +14,11 @@ p {
 }
 
 .calanderDrawing {
-  justify-content: start;
+  display: flex;
   gap: 4%;
   height: 100%;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .drawingContainer {
@@ -28,6 +29,7 @@ p {
 }
 
 .arrow {
+  all: unset;
   position: relative;
   top: 50%;
   color: white;
@@ -49,9 +51,9 @@ p {
   object-fit: contain;
   max-height: 600px;
   /* width: 60%; */
+  user-select: none;
 }
 .side-menu {
-  position: absolute;
 }
 
 .twoButtons {

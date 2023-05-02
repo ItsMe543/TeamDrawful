@@ -19,10 +19,11 @@
 
 /*Centers icons*/
 .Navbar {
+  position: fixed;
   text-align: center;
   padding: 0;
-  height: 100%;
-  position: relative;
+  height: 90px;
+  width: 100%;
   z-index: 9999;
   display: flex;
   flex-direction: row;
