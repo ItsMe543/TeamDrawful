@@ -9,17 +9,19 @@ from datetime import datetime
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
 from datetime import datetime
+import json
 # Create your views here.
 
 ########## Example view ##########
-#class TodoView(viewsets.ModelViewSet):#
+# class TodoView(viewsets.ModelViewSet):#
 #    serializer_class = serializers.TodoSerializer
 #    queryset = models.Todo.objects.all()
 
 
 def main(request):
-    context = { }
+    context = {}
     return render(request, "index.html", context)
+
 
 class PromptView(viewsets.ModelViewSet):
     serializer_class = serializers.PromptSerializer
@@ -32,22 +34,22 @@ class User_MemoriesView(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['date', 'username']
 
-
     def getLatestDrawing(request):
         value = request.GET.get('username')
 
         try:
-            q = models.User_Memories.objects.filter(username=value).values().order_by("-id")
+            q = models.User_Memories.objects.filter(
+                username=value).values().order_by("-id")
             maxId = q[0]["id"]
-            p = models.User_Memories.objects.filter(username=value).filter(id=maxId).values()
-            #print(p)
-            #print(q)
+            p = models.User_Memories.objects.filter(
+                username=value).filter(id=maxId).values()
+            # print(p)
+            # print(q)
         except:
-            q ="NO DRAWINGS WITH USERNAME: "+value
+            q = "NO DRAWINGS WITH USERNAME: "+value
         print(q[0]["id"])
 
         return HttpResponse(p)
-
 
     def getTodaysDrawings(request):
         serializer_class = serializers.User_MemoriesSerializer
@@ -55,58 +57,57 @@ class User_MemoriesView(viewsets.ModelViewSet):
         today = datetime.today().strftime('%Y-%m-%d')
         print(today)
         try:
-            q = models.User_Memories.objects.filter(date = today ).values().order_by("-id")
+            q = models.User_Memories.objects.filter(
+                date=today).values().order_by("-id")
         except:
-            q ="No drawings today: "
+            q = "No drawings today: "
         print(q)
 
         return HttpResponse(q)
 
-
     def getUserDrawings(request):
         username = request.GET.get('username')
         try:
-            #print("Queryset =", User_MemoriesView.queryset)
+            # print("Queryset =", User_MemoriesView.queryset)
             p = models.User_Memories.objects.filter(username=username).values()
-            #print("p =", p)
+            # print("p =", p)
 
             data = list(p)
         except:
             p = "0"
-        #print("\n\nType is : ", data)
+        # print("\n\nType is : ", data)
         return JsonResponse({"data": data})
-
-
 
     def getAvgRating(request):
         username = request.GET.get('username')
         try:
-            q = models.User_Memories.objects.filter(username=username).values_list('avgRating')
+            q = models.User_Memories.objects.filter(
+                username=username).values_list('avgRating')
 
         except:
             q = "not working"
         return HttpResponse(q)
 
-
     def getTotalDrawings(request):
         value = request.GET.get('username')
 
         try:
-            total = models.User_Memories.objects.filter(username=value).values()
+            total = models.User_Memories.objects.filter(
+                username=value).values()
         except:
-            total ="not working"
+            total = "not working"
         return HttpResponse(len(total))
-
 
     def getPromptGenre(request):
         name = request.GET.get('username')
         try:
-            allPromptsDone = models.User_Memories.objects.filter(username=name).values_list('prompt')
-            genre = models.Prompt_List.objects.filter(prompt__in=allPromptsDone).values_list('promptGenre')
+            allPromptsDone = models.User_Memories.objects.filter(
+                username=name).values_list('prompt')
+            genre = models.Prompt_List.objects.filter(
+                prompt__in=allPromptsDone).values_list('promptGenre')
         except:
             prompt_genre = "Unknown"
         return HttpResponse(genre)
-
 
 
 class User_AccountsView(viewsets.ModelViewSet):
@@ -119,25 +120,24 @@ class User_AccountsView(viewsets.ModelViewSet):
         value = request.GET.get('username')
         friendsList = []
         try:
-            friendsElement = models.User_Accounts.objects.filter(username=value).values_list("friends")
-            #friendsList = list(friendsElement)
-            #print("List of friends: \n", friendsElement)
-            #print("Friend 1: \n", friendsElement[0])
-            #print("Friend 2: \n", friendsElement[1])
-            #for i in range(0, len(friendsList)):
+            friendsElement = models.User_Accounts.objects.filter(
+                username=value).values_list("friends")
+            # friendsList = list(friendsElement)
+            # print("List of friends: \n", friendsElement)
+            # print("Friend 1: \n", friendsElement[0])
+            # print("Friend 2: \n", friendsElement[1])
+            # for i in range(0, len(friendsList)):
             try:
-                friendsQuerySet = models.User_Accounts.objects.filter(username=friendsElement[0])
+                friendsQuerySet = models.User_Accounts.objects.filter(
+                    username=friendsElement[0])
                 friendsList = list(friendsQuerySet)
-                #print("INNER TRY: friendsList = ", friendsList)
+                # print("INNER TRY: friendsList = ", friendsList)
             except:
                 print("ERROR OCCURED with INNER try except")
         except:
             print("ERROR OCCURED with OUTER try except")
-        #print("Final return \n", friendsList)
+        # print("Final return \n", friendsList)
         return JsonResponse({{"friendList": (friendsList)}})
-
-
-
 
     def getFriendsNames(request):
         value = request.GET.get('username')
@@ -145,7 +145,8 @@ class User_AccountsView(viewsets.ModelViewSet):
         print("\n")
         print("cheeky lil check ", value)
         try:
-            friendsElement = models.User_Accounts.objects.filter(username=value).values("friends")
+            friendsElement = models.User_Accounts.objects.filter(
+                username=value).values("friends")
             friendsList = list(friendsElement)
             print("List of friends: \n", friendsList)
         except:
@@ -169,8 +170,8 @@ class User_AccountsView(viewsets.ModelViewSet):
         except:
             print("ERROR OCCURED with OUTER try except")
 
-        print("MWUAHAHAHAHHHAHAH Im sending... ", userEntry)
-        return JsonResponse({"singleFriend":userEntry})
+        print("MWUAHAHAHAHHHAHAH Im sending: ", userEntry)
+        return JsonResponse({"aFriend": (userEntry)})
 
 
 
@@ -180,12 +181,12 @@ class User_AccountsView(viewsets.ModelViewSet):
         value = request.GET.get('username')
 
         try:
-            q = models.User_Accounts.objects.filter(username=value).values_list('friends')
+            q = models.User_Accounts.objects.filter(
+                username=value).values_list('friends')
         except:
-            q ="NO DRAWINGS WITH USERNAME: "+value
-        #print(q)
+            q = "NO DRAWINGS WITH USERNAME: "+value
+        # print(q)
         return HttpResponse(q)
-
 
     def getUsernameCount(request):
         username = request.GET.get('username')
@@ -211,26 +212,26 @@ class User_AccountsView(viewsets.ModelViewSet):
         password = request.GET.get('password')
         print("Password =", password)
 
-        user = CustomBackend.authenticate(request, username=username, password=password)
+        user = CustomBackend.authenticate(
+            request, username=username, password=password)
         if user is not None:
             login(request, user)
             return HttpResponse("1")
         else:
             return HttpResponse("0")
 
-    def getUsernames(request): #that aren't your own
+    def getUsernames(request):  # that aren't your own
         value = request.GET.get('username')
-        #print("We got...", value)
+        # print("We got...", value)
         try:
             q = models.User_Accounts.objects.exclude(username=value).values()
         except:
             q = 0
         data = list(q)
-        #print("\n")
-        #print(" \n \n Th DATATATATATAT iss... \n \n", data)
-        #print("\n")
-        return JsonResponse({"allUsers":data})
-
+        # print("\n")
+        # print(" \n \n Th DATATATATATAT iss... \n \n", data)
+        # print("\n")
+        return JsonResponse({"allUsers": data})
 
     def getBadgesEarned(request):
         name = request.GET.get('username')
@@ -246,25 +247,60 @@ class User_AccountsView(viewsets.ModelViewSet):
         username = request.GET.get('username')
         newPP_id = request.GET.get('id')
         try:
-            user_account = models.User_Accounts.objects.filter(username=username)
-            newPP = models.User_Memories.objects.get(id = newPP_id);
+            user_account = models.User_Accounts.objects.filter(
+                username=username)
+            newPP = models.User_Memories.objects.get(id=newPP_id)
         except:
             return HttpResponse('No user found')
 
-        if(newPP == None):
+        if (newPP == None):
             return HttpResponse("no image provided")
-        print(newPP);
-        user_account.update(profilePicture = newPP.drawing)
+        print(newPP)
+        user_account.update(profilePicture=newPP.drawing)
         return HttpResponse('Profile picture updated sucessfully', newPP)
 
     def getProfilePicture(request):
         username = request.GET.get('username')
         try:
-            pp = models.User_Accounts.objects.get(username = username).profilePicture
+            pp = models.User_Accounts.objects.get(
+                username=username).profilePicture
 
         except:
             return HttpResponse('user not found')
         return HttpResponse(pp)
+
+    def getUserProfile(request):
+        username = request.GET.get('username')
+        try:
+            user = models.User_Accounts.objects.values().filter(username=username)
+
+        except:
+            print("ERROR")
+
+        return JsonResponse({"User": list(user)})
+
+    def update_user_account(request):
+        username = request.GET.get('username')
+        if request.method == 'PUT':
+            try:
+
+                data = json.loads(request.body)
+                models.User_Accounts.objects.filter(username=username).update(
+                    username=data['username'],
+                    email=data['email'],
+                    first_name=data['first_name'],
+                    last_name=data['last_name'],
+                    bio=data['bio'],
+                    currentStreak=data['currentStreak'],
+                    maxStreak=data['maxStreak'],
+                    totalStars=data['totalStars'],
+                    averageRating=data['averageRating']
+                )
+                return HttpResponse('User account updated successfully')
+            except:
+                return HttpResponse('User not found')
+        else:
+            return HttpResponse('Invalid request method')
 
 
 class BadgesView(viewsets.ModelViewSet):
@@ -282,11 +318,6 @@ class BadgesView(viewsets.ModelViewSet):
         accountData.update(badgesEarned=badgesEarned)
         return HttpResponse('badges updated successfully', badgesEarned)
 
-
-
-
-
-
     # def updateBadgeTime(request):
     #     badgeName = request.GET.get('badgeName')
     #     now = datetime.now()
@@ -301,10 +332,6 @@ class BadgesView(viewsets.ModelViewSet):
     #     return HttpResponse('badge time updated')
 
 
-
-
-
-
-#class Usernames(viewsets.ModelViewSet):
+# class Usernames(viewsets.ModelViewSet):
  #   serializer_class = serializers.User_AccountsSerializer
-    #queryset = models.User_Accounts.objects.filter(username=)
+    # queryset = models.User_Accounts.objects.filter(username=)

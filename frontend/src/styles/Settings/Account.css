@@ -79,8 +79,8 @@
     margin-left: 15px;
     width: 230px;
     height: 200px;
-    background-color: rgb(44, 95, 190);
-    color: rgb(255, 255, 255);
+    background-color: rgb(255, 213, 74);
+    color: rgb(0, 0, 0);
     border: 1px solid #838383;
     border-radius: 15px;
     padding: 10px;
@@ -102,9 +102,9 @@
 }
 
 .labels {
-    font-size: 22px;
+    font-size: 20px;
     padding-top: 35px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
 }
 
 .account-header {
@@ -113,8 +113,8 @@
 }
 
 .save {
-    background-color: rgb(255, 236, 182);
-    color: black;
+    background-color: rgb(78, 90, 255);
+    color: rgb(255, 255, 255);
     border: 1px solid black;
     border-radius: 5px;
     font-size: 30px;
@@ -124,9 +124,9 @@
 }
 
 .save:hover {
-    background-color: rgb(255, 207, 117);
+    background-color: rgb(116, 181, 255);
 }
 
 .save:active {
-    background-color: rgb(255, 169, 88);
+    background-color: rgb(49, 87, 255);
 }
