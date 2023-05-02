@@ -19,6 +19,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+
 export default function Account() {
     var isUsernameUnique = false;
     var isEmailUnique = false;
@@ -34,6 +35,8 @@ export default function Account() {
     const [maxStreak, setMaxStreak] = useState("");
     const [totalStars, setTotalStars] = useState("");
     const [averageRating, setAverageRating] = useState("");
+    const [badgesEarned, setBadgesEarned] = useState("");
+    const [badgesData, setBadges] = useState([]);
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -51,6 +54,7 @@ export default function Account() {
                     setMaxStreak(data?.maxStreak);
                     setTotalStars(data?.totalStars);
                     setAverageRating(data?.averageRating);
+                    setBadgesEarned(data?.badgesEarned)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -172,6 +176,9 @@ export default function Account() {
             }
 
             if (!isUsernameUnique) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
                 setErrormsg("Username is already taken");
                 return;
             }
@@ -181,13 +188,77 @@ export default function Account() {
         setErrormsg("Changes Saved");
     };
 
+
+    useEffect(() => {
+        if (badgesEarned.length) {
+            getBadgeData(badgesEarned);
+        }
+    }, [badgesEarned]);
+
+    const getBadgeData = (badgesEarned) => {
+        axios.get("/api/badges/").then((response) => {
+            const badgesData = response?.data;
+
+            // set badge unlocked value from user data
+            const updatedBadges = badgesData.map((badge, i) => ({
+                ...badge,
+                badgeUnlocked: !!Number(badgesEarned.toString()[i]),
+            }));
+
+            setBadges(updatedBadges);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    function Badge(props) {
+        const { name, image, unlocked, description } = props;
+        return (
+            <div className={`badge ${unlocked ? "unlocked" : "locked"}`}>
+                <Row>
+                    <Col>
+                        <img className="badgeIcon" src={image} alt={name} style={{ width: "100px", height: '90px' }} />
+                    </Col>
+                    <Col>
+                        <Row>
+                            <div className="badgeName" style={{ fontSize: '30px' }}>{name}</div>
+                        </Row>
+                        <Row>
+                            <div className="badgeDescription">{description}</div>
+                        </Row>
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
+
+    function createBadgeElements(badges) {
+        const unlockedBadges = badges.filter((badge) => badge.badgeUnlocked);
+
+        return (
+            <Row>
+                {unlockedBadges.map((badge, id) => (
+                    <div className="badgeElement" key={id}>
+                        <Badge
+                            name={badge.badgeName}
+                            image={`data:image/png;base64,${badge.badgeIcon}`}
+                            description={badge.badgeDescription}
+                            unlocked={badge.badgeUnlocked}
+                        />
+                    </div>
+                ))}
+            </Row>
+        );
+    }
+
+
     return (
         <div className="account-container">
             <Col>
                 <Row>
                     <Col md={2.5} style={{ paddingLeft: "30px" }}>
                         <Link to="/memories" aria-label="Profile Picture, link to memories">
-                            <img src={profilePicture} alt={"drawing image"} />
+                            <img src={profilePicture} alt={"Upload Drawing"} />
                         </Link>
                     </Col>
                     <Col style={{ paddingLeft: "30px" }}>
@@ -239,10 +310,12 @@ export default function Account() {
             </Col>
             <Col>
                 <div className="badges-header">Badges</div>
-                <div className="badges-container"></div>
+                <div className="badges-container">
+                    {createBadgeElements(badgesData)}
+                </div>
 
                 <Row>
-                    <Col md={"2.5"}>
+                    {/*<Col md={"2.5"}>
                         <div className="stats-header">Stats</div>
                         <div className="stats">
                             <div>Current Streak: {currentStreak}</div>
@@ -250,20 +323,22 @@ export default function Account() {
                             <div>Average Rating: {averageRating}</div>
                             <div>Total Stars Earned: {totalStars} </div>
                         </div>
-                    </Col>
-                    <Col>
+    </Col>*/}
+                    <Col md={"2.5"}>
                         <button className="save" onClick={middleMan}>
                             Save Changes
                         </button>
+
+                    </Col>
+                    <Col>
                         <div
-                            className="error-msg"
-                            style={{ marginLeft: "30px", marginTop: "25px" }}
+                            className="error"
+                            style={{ marginTop: '75px', marginLeft: '30px', fontSize: '25px' }}
                         >
                             {errormsg}
-                        </div>
-                    </Col>
+                        </div></Col>
                 </Row>
-            </Col>
-        </div>
+            </Col >
+        </div >
     );
 }

@@ -14,8 +14,7 @@ import memories from "../pages/Memories";
 
 import logo from "../navbarLogo.png";
 import "../styles/Navbar.css";
-function Navbar(profile) {
-  // const [profile, setProfile] = useState("");
+function Navbar(props) {
   const navigate = useNavigate();
 
   const getUsername = () => {
@@ -27,7 +26,6 @@ function Navbar(profile) {
     navigate("/login");
   }
 
-  console.log(profile);
   return (
     <div className="Navbar">
       <div className="logo">
@@ -103,7 +101,7 @@ function Navbar(profile) {
         <>
           <div className="profile">
             <Link to="/settings" aria-label="Profile Picture, Link to settings">
-              <img src={profile.props} className="profilePic" />
+              <img src={props.props} className="profilePic" />
             </Link>
             <div className="username-signout">
               <div className="userName">@{getUsername()}</div>

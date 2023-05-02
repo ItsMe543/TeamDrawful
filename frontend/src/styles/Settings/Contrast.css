@@ -4,7 +4,11 @@ body.contrast .App {
 }
 
 body.contrast .Main {
-    background-color: rgb(0, 0, 0)
+    background-color: rgb(0, 0, 0) !important
+}
+
+body.contrast {
+    background-color: rgb(0, 0, 0) !important
 }
 
 body.contrast .input {
@@ -71,8 +75,22 @@ body.contrast .SubmitButton {
 }
 
 body.contrast .links {
-    background-color: rgba(75, 75, 75, 0.459);
+    background-color: rgba(0, 0, 0, 0.842);
 }
+
+body.contrast .profile {
+    background-color: rgba(0, 0, 0, 0.842);
+    color: white
+}
+
+body.contrast .username-signout button {
+    background-color: rgb(0, 255, 255);
+    color: black;
+    border: 1px solid black;
+
+}
+
+
 
 body.contrast a {
     color: rgb(0, 255, 0);
@@ -220,7 +238,7 @@ body.contrast .badges-header {
 }
 
 body.contrast .badges-container {
-    background-color: white;
+    background-color: rgba(75, 75, 75, 0.459);
 }
 
 body.contrast .stats {
@@ -386,4 +404,8 @@ body.contrast .currentDate {
 
 body.contrast .DropdownDiv label {
     color: rgb(255, 0, 255)
+}
+
+body.contrast .badgeIcon {
+    border: 1px solid white;
 }
