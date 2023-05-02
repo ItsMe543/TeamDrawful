@@ -155,12 +155,14 @@ function Memories(props) {
       })
       .then((data) => {
         setprofileErrors(data.data);
+        props.getProfilePicture();
         // this.forceUpdate();
       })
       .catch(function (error) {
         setprofileErrors("Error changing profile picture, please try again");
       });
-    props.getProfilePicture();
+
+    window.location.reload(true);
   };
 
   const getUsername = () => {
@@ -215,38 +217,38 @@ function Memories(props) {
         {data.length !== 0 ? (
           <>
             <div className="drawingContainer">
-              <HiArrowCircleLeft
-                aria-label="Left Arrow"
-                className="arrow"
-                size={45}
-                onClick={() => handleLeftClick()}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handleLeftClick();
-                  }
-                }}
-              />
+              <button onClick={() => handleLeftClick()} className="arrow">
+                <HiArrowCircleLeft
+                  aria-label="Left Arrow"
+                  size={45}
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleLeftClick();
+                    }
+                  }}
+                />
+              </button>
 
               <div className="m-drawing">
                 <img src={data[ID]?.drawing} alt={"drawing image"} />
               </div>
-              <HiArrowCircleRight
-                aria-label="Right Arrow"
-                className="arrow"
-                size={45}
-                onClick={() => handleRightClick()}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handleRightClick();
-                  }
-                }}
-              />
+              <button onClick={() => handleRightClick()} className="arrow">
+                <HiArrowCircleRight
+                  aria-label="Right Arrow"
+                  size={45}
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleRightClick();
+                    }
+                  }}
+                />
+              </button>
             </div>
             <div className="currentDate">{date.toDateString()}</div>{" "}
           </>

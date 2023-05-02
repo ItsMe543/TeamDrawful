@@ -25,7 +25,7 @@ function Main(props) {
     const isLightMode = localStorage.getItem("isLightMode") === "true";
     const isContrast = localStorage.getItem("isContrast") === "true";
     const isFont = localStorage.getItem("isFont") === "true";
-    const isPog = localStorage.getItem("isPog") === "true";
+    //const isPog = localStorage.getItem("isPog") === "true";
     const isLarge = localStorage.getItem("isLarge") === "true";
 
     if (isLightMode) {
@@ -46,11 +46,11 @@ function Main(props) {
       document.body.classList.remove("font");
     }
 
-    if (isPog) {
+    /*if (isPog) {
       document.body.classList.add("pog");
     } else {
       document.body.classList.remove("pog");
-    }
+    }*/
 
     if (isLarge) {
       document.body.classList.add("large");

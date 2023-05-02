@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "../../styles/Settings/Light.css";
 import "../../styles/Settings/Font.css";
 import "../../styles/Settings/Contrast.css";
-import "../../styles/Settings/Pog.css";
+//import "../../styles/Settings/Pog.css";
 import "../../styles/Settings/Large.css";
 import "../../styles/Settings/Accessibility.css";
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from "@mui/material/Switch";
 
-const POG_KEY = "isPog"
+//const POG_KEY = "isPog"
 const LIGHT_MODE_KEY = "isLightMode";
 const CONTRAST_KEY = "isContrast";
 const FONT_KEY = "isFont";
@@ -41,10 +41,10 @@ export default function Accessibility() {
         return stored !== null ? JSON.parse(stored) : false;
     });
 
-    const [isPog, setPog] = useState(() => {
+    /*const [isPog, setPog] = useState(() => {
         const stored = localStorage.getItem(POG_KEY);
         return stored !== null ? JSON.parse(stored) : false;
-    });
+    });*/
 
     const [isLarge, setLarge] = useState(() => {
         const stored = localStorage.getItem(LARGE_KEY);
@@ -65,9 +65,9 @@ export default function Accessibility() {
         setFont(!isFont);
     };
 
-    const togglePog = () => {
+    /*const togglePog = () => {
         setPog(!isPog);
-    }
+    }*/
 
     const toggleLarge = () => {
         setLarge(!isLarge);
@@ -89,10 +89,10 @@ export default function Accessibility() {
         document.body.classList.toggle("contrast", isContrast);
     }, [isContrast]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         localStorage.setItem(POG_KEY, JSON.stringify(isPog));
         document.body.classList.toggle("pog", isPog);
-    }, [isPog]);
+    }, [isPog]);*/
 
     useEffect(() => {
         localStorage.setItem(LARGE_KEY, JSON.stringify(isLarge));
@@ -124,15 +124,15 @@ export default function Accessibility() {
                 />
 
                 <br></br>
-                Pog will be removed soon
+                {/*Pog will be removed soon
                 <Switch
                     checked={isPog}
                     onChange={togglePog}
                     color="secondary"
                 />
 
-                <br></br>
-                Larger Text
+                <br></br>*/}
+                Larger Font
                 <Switch
                     checked={isLarge}
                     onChange={toggleLarge}

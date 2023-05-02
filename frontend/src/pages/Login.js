@@ -76,6 +76,7 @@ const csrftoken = getCookie('csrftoken');
     sessionStorage.setItem("token", username);
     document.cookie = "username =" + username;
     navigate("/home");
+    window.location.reload(true);
   }
 
   return (

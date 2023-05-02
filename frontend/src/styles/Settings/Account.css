@@ -37,16 +37,23 @@
 
 
 .badges-container {
-    width: 500px;
+    width: 575px;
     height: 250px;
     background-color: rgb(202, 79, 79);
     color: rgb(255, 255, 255);
     border: 1px solid #838383;
     border-radius: 15px;
     padding: 10px;
+    padding-left: 25px;
     font-size: 22px;
     overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: hidden;
 }
+
+
 
 .badges-container::-webkit-scrollbar {
     width: 10px;
@@ -64,6 +71,7 @@
 
 .badges-header {
     padding-left: 10px;
+    margin-bottom: 10px;
     font-size: 30px;
     color: white
 }
@@ -79,8 +87,8 @@
     margin-left: 15px;
     width: 230px;
     height: 200px;
-    background-color: rgb(44, 95, 190);
-    color: rgb(255, 255, 255);
+    background-color: rgb(255, 213, 74);
+    color: rgb(0, 0, 0);
     border: 1px solid #838383;
     border-radius: 15px;
     padding: 10px;
@@ -102,9 +110,9 @@
 }
 
 .labels {
-    font-size: 22px;
+    font-size: 20px;
     padding-top: 35px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
 }
 
 .account-header {
@@ -113,8 +121,8 @@
 }
 
 .save {
-    background-color: rgb(255, 236, 182);
-    color: black;
+    background-color: rgb(78, 90, 255);
+    color: rgb(255, 255, 255);
     border: 1px solid black;
     border-radius: 5px;
     font-size: 30px;
@@ -123,10 +131,49 @@
     margin-top: 60px;
 }
 
+.delete {
+    background-color: rgb(255, 78, 78);
+    color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 6px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+.saveP {
+    background-color: rgb(78, 90, 255);
+    color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 6px;
+    margin-left: 25px;
+    margin-bottom: 30px;
+}
+
+.lastLogin {
+    font-size: 20px;
+}
+
+.error {
+    color: rgb(255, 255, 0);
+}
+
 .save:hover {
-    background-color: rgb(255, 207, 117);
+    background-color: rgb(116, 181, 255);
 }
 
 .save:active {
-    background-color: rgb(255, 169, 88);
+    background-color: rgb(49, 87, 255);
+}
+
+.security-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.errormsg {
+    font-size: 20px
 }

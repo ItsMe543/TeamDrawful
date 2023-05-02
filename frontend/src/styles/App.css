@@ -1,10 +1,16 @@
 /*This represents the space witha  lack of items*/
 .App {
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+
   background-color: rgb(32, 34, 37);
-  position: fixed;
-  overflow-y: scroll;
+  /* position: fixed;
+  overflow-y: scroll; */
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(32, 34, 37) !important;
 }
 
 /*This represents all of the nav bar*/
@@ -15,7 +21,8 @@
 
 /*This represents the area in which items hav been added*/
 .Main {
-  background-color: rgb(32, 34, 37);
+  background-color: rgb(32, 34, 37) !important;
+  overflow: hidden;
 }
 
 @font-face {
@@ -24,5 +31,5 @@
   font-family: "TOMISPOG";
   src: url(../Fonts/TOM_IS_POG_3.otf);
   font-family: "insta";
-  src: url(../Fonts/InstagramSans-Regular.otf)
+  src: url(../Fonts/InstagramSans-Regular.otf);
 }
