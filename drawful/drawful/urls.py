@@ -59,6 +59,7 @@ urlpatterns = [
     path('getProfilePicture', views.User_AccountsView.getProfilePicture),
     path('userProfile', views.User_AccountsView.getUserProfile),
     path('updateProfile', views.User_AccountsView.update_user_account),
+    path('updatePassword', views.User_AccountsView.updatePassword),
     re_path(r'^(%s)?$' % '|'.join(frontendRoutes), TemplateView.as_view(
         template_name='index.html'), name="main"),
 ]

@@ -99,7 +99,7 @@ export default function Settings() {
           </button>
           <br />
           <button className="buttonstyle" onClick={() => handleSectionClick("security")}>
-            Privacy & Security
+            Security
           </button>
           <br />
           <br />

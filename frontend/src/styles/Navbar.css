@@ -16,6 +16,7 @@
 .links a {
   color: black;
 }
+
 /*Centers icons*/
 .Navbar {
   text-align: center;
@@ -66,6 +67,7 @@
   outline-style: double;
   outline-width: 2px;
   color: black;
+  background-color: white;
 }
 
 @media (max-width: 700px) {

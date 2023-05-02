@@ -19,6 +19,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+
 export default function Account() {
     var isUsernameUnique = false;
     var isEmailUnique = false;
@@ -172,6 +173,9 @@ export default function Account() {
             }
 
             if (!isUsernameUnique) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
                 setErrormsg("Username is already taken");
                 return;
             }
@@ -187,7 +191,7 @@ export default function Account() {
                 <Row>
                     <Col md={2.5} style={{ paddingLeft: "30px" }}>
                         <Link to="/memories" aria-label="Profile Picture, link to memories">
-                            <img src={profilePicture} alt={"drawing image"} />
+                            <img src={profilePicture} alt={"Upload Drawing"} />
                         </Link>
                     </Col>
                     <Col style={{ paddingLeft: "30px" }}>
@@ -242,7 +246,7 @@ export default function Account() {
                 <div className="badges-container"></div>
 
                 <Row>
-                    <Col md={"2.5"}>
+                    {/*<Col md={"2.5"}>
                         <div className="stats-header">Stats</div>
                         <div className="stats">
                             <div>Current Streak: {currentStreak}</div>
@@ -250,20 +254,22 @@ export default function Account() {
                             <div>Average Rating: {averageRating}</div>
                             <div>Total Stars Earned: {totalStars} </div>
                         </div>
-                    </Col>
-                    <Col>
+    </Col>*/}
+                    <Col md={"2.5"}>
                         <button className="save" onClick={middleMan}>
                             Save Changes
                         </button>
+
+                    </Col>
+                    <Col>
                         <div
-                            className="error-msg"
-                            style={{ marginLeft: "30px", marginTop: "25px" }}
+                            className="error"
+                            style={{ marginTop: '75px', marginLeft: '30px', fontSize: '25px' }}
                         >
                             {errormsg}
-                        </div>
-                    </Col>
+                        </div></Col>
                 </Row>
-            </Col>
-        </div>
+            </Col >
+        </div >
     );
 }

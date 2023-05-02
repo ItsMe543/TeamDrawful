@@ -9,6 +9,7 @@ from datetime import datetime
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
 from datetime import datetime
+from django.contrib.auth.hashers import make_password
 import json
 # Create your views here.
 
@@ -152,11 +153,7 @@ class User_AccountsView(viewsets.ModelViewSet):
         except:
             print("ERROR OCCURED with OUTER try except")
         print("Friends found...")
-        return JsonResponse({"users":friendsList})
-
-
-
-
+        return JsonResponse({"users": friendsList})
 
     def getUserEntry(request):
         value = request.GET.get('username')
@@ -164,7 +161,8 @@ class User_AccountsView(viewsets.ModelViewSet):
         print("\n")
         print("Commencing", value)
         try:
-            userDetails = models.User_Accounts.objects.filter(username=value).values()
+            userDetails = models.User_Accounts.objects.filter(
+                username=value).values()
             userEntry = list(userDetails)
             print("List of userDeets: \n", userEntry)
         except:
@@ -172,10 +170,6 @@ class User_AccountsView(viewsets.ModelViewSet):
 
         print("MWUAHAHAHAHHHAHAH Im sending: ", userEntry)
         return JsonResponse({"aFriend": (userEntry)})
-
-
-
-
 
     def getFriendsEntries(request):
         value = request.GET.get('username')
@@ -278,6 +272,21 @@ class User_AccountsView(viewsets.ModelViewSet):
             print("ERROR")
 
         return JsonResponse({"User": list(user)})
+
+    def updatePassword(request):
+        username = request.GET.get('username')
+        if request.method == 'PUT':
+            try:
+                data = json.loads(request.body)
+                password = make_password(data['password'])
+                models.User_Accounts.objects.filter(username=username).update(
+                    password=password,
+                )
+                return HttpResponse('Password updated successfully')
+            except:
+                return HttpResponse('Error')
+        else:
+            return HttpResponse('Invalid request method')
 
     def update_user_account(request):
         username = request.GET.get('username')
