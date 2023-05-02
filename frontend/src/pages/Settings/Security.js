@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Col, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function getCookie(name) {
@@ -21,6 +22,7 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 export default function Security() {
+    const navigate = useNavigate();
     const [errormsg, setErrormsg] = useState("");
     const [visible, setVisible] = useState(false);
     const [cpVisible, setCPVisible] = useState(false);
@@ -107,6 +109,31 @@ export default function Security() {
         }
     };
 
+    const deleteAccount = () => {
+        const authToken = sessionStorage.getItem("token");
+        if (authToken) {
+            const csrftoken = getCookie("csrftoken");
+            axios.delete(`/deleteProfile?username=${authToken}`, {
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+            })
+                .then((response) => response.text())
+                .then((result) => {
+                    console.log(result);
+                    // Handle success
+                })
+                .catch((error) => {
+                    console.error(error);
+                    // Handle error
+                });
+        }
+        sessionStorage.removeItem("token");
+        console.log("Signed out");
+        navigate("/login");
+    };
+
+
     return (
         <div className="security-container">
             <Col md={2.5}>
@@ -145,7 +172,7 @@ export default function Security() {
             <Col style={{ paddingLeft: '100px', paddingTop: '73px' }}>
                 <div style={{ fontSize: '30px' }}>Delete Account:</div>
                 <div>
-                    <button className="delete">
+                    <button className="delete" onClick={deleteAccount}>
                         Delete
                     </button>
                 </div>
