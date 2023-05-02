@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import drawings from "../../drawingData.js";
 import "../../styles/Friends/FriendsList.css";
 import { VscCircleFilled } from "react-icons/vsc";
-import { BsPersonSquare, BsFillTaxiFrontFill} from "react-icons/bs"
+import { BsPersonSquare, BsFillTaxiFrontFill } from "react-icons/bs"
 import validator from "validator";
 import axios from "axios";
 //import { List } from "native-base";
@@ -13,24 +13,22 @@ import axios from "axios";
 function FriendsList() {
 
 
-  const [selected, setSelected] = useState(0);
-  
-  const handleSelectionClick = (fProfile) => {
-    setSelected(fProfile);
-  };
+  const [selected, setSelected] = useState("");
+
+  var selec2ded = "";
 
 
   function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = validator.trim(cookies[i]);
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = validator.trim(cookies[i]);
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
         }
+      }
     }
     return cookieValue;
   }
@@ -46,6 +44,14 @@ function FriendsList() {
   const friends = [];
   const finalIdea = []
 
+
+  var running2 = false;
+  var running = false;
+  var running3 = false;
+  function pog(){
+    console.log("yeet");
+  }
+
   function setFriends(name) {
     finalIdea.push(name)
   }
@@ -53,51 +59,67 @@ function FriendsList() {
   //Method 1 (Front end Based)
   //------------------------------------------------------------------------------//
 
-  const isReady = false;
+  var isReady = false;
 
   useEffect(() => {
-    axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
-      //console.log("Length is: " + (data?.data.users[0].friends).length);
-      for (var i=0; i<(data?.data.users[0].friends).length; i++){
-        friendsNames.push(data?.data.users[0].friends[i]);
-        console.log(("data.data " + data?.data.users[0].friends[i]));
-      }
-      console.log("Name 1 is : " + friendsNames[0]);
-      //setFriends(friendsNames[0]);
-      //console.log("fi is: " + finalIdea[0]);
-      //console.log("Name TWO is : " + finalIdea[0]);
-      //var firstFriend = finalIdea[0];
-      //console.log("THe naem sent is: " + firstFriend);
-      //console.log("FRIEND: " + friends[0]);
-      axios.get("/getUserEntry", { params: { username: friendsNames[0] } }).then((data) => { //gets the friends entry in User_Accounts
-        friends.push(data?.data.singleFriend[0]);
-        console.log("Running this code is " + friends);
-        console.log("Running this code is: " + friends[0].username);
-        console.log("AAAAND is... " + friends.length);
+    if (isReady === false) {
+      isReady = true;
+      axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
+        //console.log("Length is: " + (data?.data.users[0].friends).length);
+        for (var i = 0; i < (data?.data.users[0].friends).length; i++) {
+          friendsNames.push(data?.data.users[0].friends[i]);
+          console.log(("data.data " + data?.data.users[0].friends[i]));
+        }
+        console.log("Name 1 is : " + friendsNames[0]);
+
+
+        console.log("Ty is cringe " + friendsNames.length);
+        for (var j = 0; j < friendsNames.length; j++) {
+          console.log("Ty is very cringe " + j);
+
+          axios.get("/getUserEntry", { params: { username: friendsNames[j] } }).then((data) => { //gets the friends entry in User_Accounts
+            console.log("i changed your gitlab profile again" + data?.data.singleFriend[0].username);
+            friends.push(data?.data.singleFriend[0]);
+            console.log("Running this code is: " + friends[0].username);
+            console.log("AAAAND is... " + friends.length);
+
+            console.log(friends.length, friendsNames.length);
+            if (friends.length == friendsNames.length) {
+              console.log("YEET")
+              var data = friendsListDisplay();
+              console.log("yeet: " + data);
+
+              
+              if (running2 === false) {
+                running2 = true;
+                document.getElementById("loadList").innerHTML = data;
+                for (var i = 0; i < friendsNames.length; i++) {
+                  var but = document.getElementById("Phil");
+                  but.onclick= function(){pog()};
+                }
+              }
+
+
+              var data2 = friendProfileDisplay();
+              console.log("TOMISPOG");
+              console.log("feat: " + data2);
+              if (running3 === false) {
+                running3 = true;
+                document.getElementById("loadProfile").innerHTML = data2;
+              }
+            }
+            console.log("selec2ded is:" + selec2ded);
+            console.log("updated");
+          });
+        }
+        console.log("SDVTEYHUIJXITY");
       });
-    });
+    }
     //for (var z=0; z<storeFriendsNames.length; z++;){
-    
+
     //console.log("SPRINTING");
     //}
   }, [getUsername()])
-
-  /*
-  const middleBoy = () => {
-    axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
-      isCorrectCredentials = ((data.data === 1) ? true : false);
-      //console.log(data.data)
-      if (!isCorrectCredentials) {
-        setErrormsg("Incorrect details. Please try again");
-      } else {
-        logUserIn();
-      }
-    }, [username, password]);
-    //logUserIn();
-  }
-  */
-
-  //console.log("Username of friend is: ", friendsAdded.username);
 
 
 
@@ -111,59 +133,39 @@ function FriendsList() {
   }
   */
   //------------------------------------------------------------------------------//
-  
-
-  //Method 2 (Back end based)
-  //------------------------------------------------------------------------------//
-  /*
-  useEffect(() => {
-    axios.get("/getFriendsNew", { params: { username: getUsername() } }).then((data) => {
-      setFriendsAdded(data?.data.friendList);
-        });
-  }, [getUsername()])
-  */
-  //------------------------------------------------------------------------------//
-  //console.log("User logged in is: " + getUsername());
 
 
-  function friendsListDisplay () {
-    console.log(" Top of list display Len is... " + friends.length);
-    if (friends.length < 1){ 
-      return(
-        <button className="User-preview">
-            {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
-            <BsPersonSquare className="Friend-picture" />
-            <VscCircleFilled className="Friend-status"/>
-            <Col>
-              <div className="Friend-username">
-                Username
-            </div>
-          </Col>
-        </button>
-      );
-    } else {
-      return(
-        <div>
-        {console.log("FRend are: " + friends)}
-        {friends.map((post, id) => {
-          return ( 
-            <button className="User-preview" id={id} onClick={() => handleSelectionClick(post.id)}> 
-              <img className="Friend-picture"  id={id} src={post.drawing} alt={"drawing image"} /> 
-              <VscCircleFilled className="Friend-status"/>
-              <Col>
-                <div className="Friend-username">
-                  {post.username}
-                </div>
-              </Col>
-            </button>
-          )})}
-        </div>
-      )
+
+
+  function friendsListDisplay() {
+    if (running == false) {
+      running = true;
+      console.log(" Top of list display Len is... " + friends.length);
+      console.log("The list has ");
+      if (friends.length < 1) {
+        var boi = "TmIsPog";
+        console.log("boi" + boi);
+        return '<button class="User-preview"> <BsPersonSquare class="Friend-picture" /><Col> <div class="Friend-username">Username</div> </Col> </button>';
+      } else {
+        return loadList();
+
+
+
+      }
     }
   }
 
 
 
+
+  function loadList() {
+    
+    var TOMISPOG = "";
+    for (var i = 0; i < friends.length; i++) {
+      TOMISPOG = TOMISPOG + '<button class="User-preview" id='+friends[i].username+'> <img class="Friend-picture" src=' + friends[i].profilePicture + ' alt="test image" /><Col><div class="Friend-username">' + friends[i].username + '</div></Col></button>';
+    }
+    return TOMISPOG;
+  }
 
 
 
@@ -174,217 +176,27 @@ function FriendsList() {
 
 
   function friendProfileDisplay() {
-    if (friends.length < 2){
-      return (
-        <div>
-          <div className="Profile-details">
-            <Row>
-              <Col>
-                <BsPersonSquare className="Profile-picture"/>
-              </Col>
-
-              <Col>
-                <div className="Profile-bio-container">
-                  <div className="Profile-bio">
-                    This is where my bio would be if I were your friend!
-                  </div>
-                </div>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-username">
-                  Username
-                </div>
-              </Col>
-
-              <Col>
-                <div className="Profile-section-header1">
-                  Favourite Draw
-                </div>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-stat-bar">
-                  Highest Streak: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Average Rating: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Total Stars Earned: 0
-                </div>
-                <div className="Profile-stat-bar">
-                  Badges Unlocked: 0
-                </div>
-              </Col>
-
-              <Col>
-                <BsFillTaxiFrontFill className="Profile-fav-draw"/>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <button className="Profile-unfriend-button-default" disabled={true}>
-                  Unfriend
-                </button>
-              </Col>
-
-              <Col>
-                  <button className="Profile-view-memories-default" disabled={true}>
-                    Memories
-                  </button>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-section-header2">
-                  Badges
-                </div>
-              </Col>
-            </Row>
-
-
-            <Row>
-              <Col>
-                <div className="Profile-badges-container">
-                
-                </div>
-              </Col>
-            </Row>
-
-          </div>
-        </div>
-      )
+    if (friends.length < 1 || selec2ded === "") {
+      return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Memories</button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>';
     } else {
-      return (
-        <div>
-          {friends.map((post, id) => {
-            //HERE
-            if (post.id == selected){
-             return(
-          
-              <div className="Profile-details">
-                <Row>
-                  <Col>
-                    {/*HERE*/}
-                    <img className="Profile-picture"  id={id} src={post.profilePicture} alt={"pfp image"} />
-                  </Col>
-
-                  <Col>
-                  <div className="Profile-bio-container">
-                    <div className="Profile-bio">
-                      {/*HERE*/}
-                      {post.bio}
-                    </div>
-                  </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                  <div className="Profile-username">
-                    {/*HERE*/}
-                    {post.username}
-                  </div>
-                  </Col>
-
-                  <Col>
-                    <div className="Profile-section-header1">
-                      Favourite Draw
-                    </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Highest Streak: {post.maxSteak}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Average Rating: {post.averageRating}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Total Stars Earned: {post.totalStars}
-                    </div>
-                    <div className="Profile-stat-bar">
-                      {/*HERE*/}
-                      Badges Unlocked:  {post.badgesEarned}
-                    </div>
-                  </Col>
-
-                  <Col>
-                    {/*HERE*/}
-                    <img className="Profile-fav-draw"  id={id} src={post.favouriteDraw} alt={"fav draw image"} />
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <button className="Profile-unfriend-button">
-                      Unfriend
-                    </button>
-                  </Col>
-
-                  <Col>
-                      <button className="Profile-view-memories">
-
-                        {/*HERE*/}
-                        <Link  id={id} to={"/friends/memories/" + post.id}>
-
-                          Memories
-                        </Link>
-                      </button>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-section-header2">
-                      Badges
-                    </div>
-                  </Col>
-                </Row>
-
-
-                <Row>
-                  <Col>
-                    <div className="Profile-badges-container">
-                    {/*HERE*/}
-                    {post.badges.map((badges,id) =>{
-                      return(
-                        //HERE
-                        <img className="Profile-badge-icon"  id={id} src={badges.badgeIcon} alt={"Badgeicon"} />
-                      )})}
-                    </div>
-                  </Col>
-                </Row>
-
-              </div>
-             )}})}
-        </div>
-      )
+      return loadProf();
     }
   }
 
 
-  
+
+
+  function loadProf(){
+    var loadded = selec2ded;
+    console.log("Loadded prints...: " + loadded.username);
+    //console.log("Laod List: " + friends[0].profilePicture);
+    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-button">Unfriend</button></Col><Col><button class="Profile-view-memories"><Link to={"/friends/memories/" + ' + loadded.id + '}>Memories</Link></button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>'
+    return profile;
+  }
+
+
+
+
 
 
 
@@ -395,21 +207,21 @@ function FriendsList() {
       <Col className="Friend-side">
         <div className="Friends-title">Friends list</div>
         <input className="F-search-bar" type="text" placeholder="Search friends list" />
-        
-        <div className="Friends-list">
-          {friendsListDisplay()}
+
+        <div className="Friends-list" id={"loadList"}>
+          {/*friendsListDisplay()*/}
         </div>
       </Col>
 
-
       <Col className="Profile-side">
-        <div className="Details-to-fill">
-          {friendProfileDisplay()}
+        
+        <div className="Details-to-fill" id={"loadProfile"}>
+          {/*friendProfileDisplay()*/}
         </div>
       </Col>
 
     </div>
   );
 }
-        
+
 export default FriendsList;

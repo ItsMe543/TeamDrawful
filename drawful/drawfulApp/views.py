@@ -171,7 +171,7 @@ class User_AccountsView(viewsets.ModelViewSet):
             print("ERROR OCCURED with OUTER try except")
 
         print("MWUAHAHAHAHHHAHAH Im sending: ", userEntry)
-        return JsonResponse({"aFriend": (userEntry)})
+        return JsonResponse({"singleFriend": (userEntry)})
 
 
 
