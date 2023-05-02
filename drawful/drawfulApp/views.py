@@ -311,6 +311,17 @@ class User_AccountsView(viewsets.ModelViewSet):
         else:
             return HttpResponse('Invalid request method')
 
+    def delete_user_account(request):
+        username = request.GET.get('username')
+        if request.method == 'DELETE':
+            try:
+                models.User_Accounts.objects.filter(username=username).delete()
+                return HttpResponse('User account deleted successfully')
+            except:
+                return HttpResponse('Error')
+        else:
+            return HttpResponse('Invalid request method')
+
 
 class BadgesView(viewsets.ModelViewSet):
     serializer_class = serializers.BadgesSerializer
