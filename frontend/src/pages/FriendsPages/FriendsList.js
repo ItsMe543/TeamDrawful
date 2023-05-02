@@ -44,31 +44,58 @@ function FriendsList() {
   const [storeFriendsNames, setFriendsNames] = useState([]);
   const friendsNames = [];
   const friends = [];
+  const finalIdea = []
+
+  function setFriends(name) {
+    finalIdea.push(name)
+  }
+
   //Method 1 (Front end Based)
   //------------------------------------------------------------------------------//
-  
+
+  const isReady = false;
+
   useEffect(() => {
     axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
       //console.log("Length is: " + (data?.data.users[0].friends).length);
-      
       for (var i=0; i<(data?.data.users[0].friends).length; i++){
         friendsNames.push(data?.data.users[0].friends[i]);
         console.log(("data.data " + data?.data.users[0].friends[i]));
       }
-
-      console.log("This runs! SO: " + friendsNames);
       console.log("Name 1 is : " + friendsNames[0]);
-        });
-    //for (var z=0; z<storeFriendsNames.length; z++;){
-    axios.get("/getUserEntry", { params: { username: String(friendsNames[0]) } }).then((data) => { //gets the friends entry in User_Accounts
-      friends.push(data?.data.aFriend);
-      console.log("Running this code is" + friends);
-      console.log("Running this code is" + friends[0]);
+      //setFriends(friendsNames[0]);
+      //console.log("fi is: " + finalIdea[0]);
+      //console.log("Name TWO is : " + finalIdea[0]);
+      //var firstFriend = finalIdea[0];
+      //console.log("THe naem sent is: " + firstFriend);
+      //console.log("FRIEND: " + friends[0]);
+      axios.get("/getUserEntry", { params: { username: friendsNames[0] } }).then((data) => { //gets the friends entry in User_Accounts
+        friends.push(data?.data.singleFriend[0]);
+        console.log("Running this code is " + friends);
+        console.log("Running this code is: " + friends[0].username);
+        console.log("AAAAND is... " + friends.length);
+      });
     });
+    //for (var z=0; z<storeFriendsNames.length; z++;){
+    
     //console.log("SPRINTING");
     //}
   }, [getUsername()])
 
+  /*
+  const middleBoy = () => {
+    axios.get("/authenticateUser", { params: { username: username, password: password} }).then((data) => {
+      isCorrectCredentials = ((data.data === 1) ? true : false);
+      //console.log(data.data)
+      if (!isCorrectCredentials) {
+        setErrormsg("Incorrect details. Please try again");
+      } else {
+        logUserIn();
+      }
+    }, [username, password]);
+    //logUserIn();
+  }
+  */
 
   //console.log("Username of friend is: ", friendsAdded.username);
 
@@ -100,7 +127,8 @@ function FriendsList() {
 
 
   function friendsListDisplay () {
-    if (friends.length < 2){ 
+    console.log(" Top of list display Len is... " + friends.length);
+    if (friends.length < 1){ 
       return(
         <button className="User-preview">
             {/*<img className="Friend-picture" src={post.drawing} alt={"drawing image"} /> */}
@@ -357,8 +385,6 @@ function FriendsList() {
 
 
   
-
-
 
 
 
