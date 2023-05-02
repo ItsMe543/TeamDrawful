@@ -274,10 +274,14 @@ body.contrast .badgeDescription {
 
 body.contrast .friendSidebar {
     color: rgb(255, 0, 255);
+    background-color: rgba(43, 43, 43, 0.459);
 }
 
 body.contrast .friendSidebar button {
-    color: rgb(255, 0, 255)
+    color: rgb(255, 0, 255);
+    background-color: rgba(20, 20, 20, 0.459);
+    border: none;
+
 }
 
 body.contrast .Friends-title {
@@ -379,7 +383,8 @@ body.contrast .controlpanel button {
 }
 
 body.contrast .save {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    color: black;
 }
 
 body.contrast .Profile-section-header2 {
@@ -408,4 +413,17 @@ body.contrast .DropdownDiv label {
 
 body.contrast .badgeIcon {
     border: 1px solid white;
+}
+
+body.contrast .accessibility-header {
+    color: rgb(0, 255, 255) !important
+}
+
+
+body.contrast .Friends-list {
+    background-color: rgba(75, 75, 75, 0.459);
+}
+
+body.contrast .Profile-details {
+    background-color: rgba(75, 75, 75, 0.459);
 }
