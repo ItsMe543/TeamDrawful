@@ -35,6 +35,8 @@ export default function Account() {
     const [maxStreak, setMaxStreak] = useState("");
     const [totalStars, setTotalStars] = useState("");
     const [averageRating, setAverageRating] = useState("");
+    const [badgesEarned, setBadgesEarned] = useState("");
+    const [badgesData, setBadges] = useState([]);
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -52,6 +54,7 @@ export default function Account() {
                     setMaxStreak(data?.maxStreak);
                     setTotalStars(data?.totalStars);
                     setAverageRating(data?.averageRating);
+                    setBadgesEarned(data?.badgesEarned)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -185,6 +188,70 @@ export default function Account() {
         setErrormsg("Changes Saved");
     };
 
+
+    useEffect(() => {
+        if (badgesEarned.length) {
+            getBadgeData(badgesEarned);
+        }
+    }, [badgesEarned]);
+
+    const getBadgeData = (badgesEarned) => {
+        axios.get("/api/badges/").then((response) => {
+            const badgesData = response?.data;
+
+            // set badge unlocked value from user data
+            const updatedBadges = badgesData.map((badge, i) => ({
+                ...badge,
+                badgeUnlocked: !!Number(badgesEarned.toString()[i]),
+            }));
+
+            setBadges(updatedBadges);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    function Badge(props) {
+        const { name, image, unlocked, description } = props;
+        return (
+            <div className={`badge ${unlocked ? "unlocked" : "locked"}`}>
+                <Row>
+                    <Col>
+                        <img className="badgeIcon" src={image} alt={name} style={{ width: "100px", height: '90px' }} />
+                    </Col>
+                    <Col>
+                        <Row>
+                            <div className="badgeName" style={{ fontSize: '30px' }}>{name}</div>
+                        </Row>
+                        <Row>
+                            <div className="badgeDescription">{description}</div>
+                        </Row>
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
+
+    function createBadgeElements(badges) {
+        const unlockedBadges = badges.filter((badge) => badge.badgeUnlocked);
+
+        return (
+            <Row>
+                {unlockedBadges.map((badge, id) => (
+                    <div className="badgeElement" key={id}>
+                        <Badge
+                            name={badge.badgeName}
+                            image={`data:image/png;base64,${badge.badgeIcon}`}
+                            description={badge.badgeDescription}
+                            unlocked={badge.badgeUnlocked}
+                        />
+                    </div>
+                ))}
+            </Row>
+        );
+    }
+
+
     return (
         <div className="account-container">
             <Col>
@@ -243,7 +310,9 @@ export default function Account() {
             </Col>
             <Col>
                 <div className="badges-header">Badges</div>
-                <div className="badges-container"></div>
+                <div className="badges-container">
+                    {createBadgeElements(badgesData)}
+                </div>
 
                 <Row>
                     {/*<Col md={"2.5"}>
