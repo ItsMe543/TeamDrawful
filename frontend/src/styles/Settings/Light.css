@@ -3,7 +3,11 @@ body.light-mode .App {
 }
 
 body.light-mode .Main {
-    background-color: rgb(201, 230, 255)
+    background-color: rgb(201, 230, 255) !important
+}
+
+body.light-mode {
+    background-color: rgb(201, 230, 255) !important;
 }
 
 body.light-mode h1 {
