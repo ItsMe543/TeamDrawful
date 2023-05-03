@@ -51,16 +51,59 @@ function Mutualusers() {
   var running = false;
   var running3 = false;
 
-  function pog(val){
+  function alterations(val){
     selec2ded = val;
     console.log(selec2ded);
     var data2 = friendProfileDisplay();
     document.getElementById("loaduserprofile").innerHTML = data2;
+    var awwFriends =document.getElementById("befriend");
+    awwFriends.onclick=function(){addfriend(selec2ded)}
   }
 
   function setusers(name) {
     finalIdea.push(name)
   }
+
+
+
+
+
+
+
+  function addfriend(name){
+
+
+    var names = [];
+    axios.get("/getFriendsNames", { params: { username: getUsername() } }).then((data) => { //Gets the users friends list
+      //console.log("Length is: " + (data?.data.users[0].friends).length);
+      for (var i = 0; i < (data?.data.users[0].friends).length; i++) {
+        names.push(data?.data.users[0].friends[i]);
+        console.log("ANME IS: " + names[i]);
+      }})
+    var line ="{";
+
+
+
+    for (var i = 0; i< names.length;i++){
+      line =line+names[i]+","
+      console.log("XDCFGYBHUJI: " + names[i]);
+    }
+    line = line + name;
+    line = line +"}";
+    axios.get("/updateFriends", { params: { username: getCookie("username"),friends: line  } }).then((data) => { //gets the friends entry in User_Accounts
+      console.log(data);
+      if (data != "false"){   
+        window.location.replace(window.location.href);
+      }
+    })
+  }
+
+
+
+
+
+
+
 
 
   var isReady = false;
@@ -92,17 +135,19 @@ function Mutualusers() {
                 document.getElementById("loaduserlist").innerHTML = data;
                 for (var i = 0; i < allUsernames.length; i++) {
                   var but = document.getElementById(allUsernames[i]);
-                  but.onclick= function(){pog(this.id)};
+                  but.onclick= function(){alterations(this.id)};
                 }
               }
 
 
               var data2 = friendProfileDisplay();
-              console.log("TOMISPOG");
+              console.log("TOMISalterations");
               console.log("feat: " + data2);
               if (running3 === false) {
                 running3 = true;
                 document.getElementById("loaduserprofile").innerHTML = data2;
+                var awwFriends =document.getElementById("befriend");
+                awwFriends.onclick=function(){addfriend(selec2ded)}
               }
             }
             console.log("selec2ded is:" + selec2ded);
@@ -125,7 +170,7 @@ function Mutualusers() {
       console.log(" Top of list display Len is... " + users.length);
       console.log("The list has ");
       if (users.length < 1) {
-        var boi = "TmIsPog";
+        var boi = "TmIsalterations";
         console.log("boi" + boi);
         return '<button class="User-preview"> <BsPersonSquare class="Friend-picture" /><Col> <div class="Friend-username">Username</div> </Col> </button>';
       } else {
@@ -139,15 +184,15 @@ function Mutualusers() {
 
   function loadList() {
     
-    var TOMISPOG = "";
+    var TOMISalterations = "";
     for (var i = 0; i < users.length; i++) {
       if (users[i].username != getUsername()){
-      TOMISPOG = TOMISPOG + '<button class="User-preview" id='+users[i].username+'> <img class="Friend-picture" src=' + users[i].profilePicture + ' alt="test image" /><Col><div class="Friend-username">' + users[i].username + '</div></Col></button>';
+      TOMISalterations = TOMISalterations + '<button class="User-preview" id='+users[i].username+'> <img class="Friend-picture" src=' + users[i].profilePicture + ' alt="test image" /><Col><div class="Friend-username">' + users[i].username + '</div></Col></button>';
      } else{
-      TOMISPOG = TOMISPOG;
+      TOMISalterations = TOMISalterations;
      }
     }
-    return TOMISPOG;
+    return TOMISalterations;
   }
 
   function friendProfileDisplay() {
@@ -166,7 +211,7 @@ function Mutualusers() {
       if (loadded === users[j].username){
         console.log("Loadded prints...: " + users[j].username);
         //console.log("Laod List: " + users[0].profilePicture);
-        var profile = '<div><div class="Profile-details"><img class="Profile-picture" src= ' + users[j].profilePicture + ' alt={"pfp image"} /><div class="Profile-bio-container"><div class="Profile-bio">'+ users[j].bio + '</div></div><div class="Profile-stat-bar">Badges Unlocked:  ' + users[j].badgesEarned + '</div><div class="Profile-stat-bar">Highest Streak: ' + users[j].maxStreak + '</div><div class="Profile-stat-bar">Average Rating:' + users[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + users[j].totalStars + '</div><button class="Profile-befriend-button">Befriend</button><button class="Profile-unfriend-mf-button">Unfriend</button><div class="Profile-username">' + users[j].username + '</div></div></div>'
+        var profile = '<div><div class="Profile-details"><img class="Profile-picture" src= ' + users[j].profilePicture + ' alt={"pfp image"} /><div class="Profile-bio-container"><div class="Profile-bio">'+ users[j].bio + '</div></div><div class="Profile-stat-bar">Badges Unlocked:  ' + users[j].badgesEarned + '</div><div class="Profile-stat-bar">Highest Streak: ' + users[j].maxStreak + '</div><div class="Profile-stat-bar">Average Rating:' + users[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + users[j].totalStars + '</div><button class="Profile-befriend-button" id="befriend">Befriend</button><button class="Profile-unfriend-mf-button">Unfriend</button><div class="Profile-username">' + users[j].username + '</div></div></div>'
       }
     }
     return profile;
