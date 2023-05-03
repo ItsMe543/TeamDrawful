@@ -48,8 +48,10 @@ function FriendsList() {
   var running2 = false;
   var running = false;
   var running3 = false;
-  function pog(){
-    console.log("yeet");
+
+
+  function pog(received){
+    console.log("Pog got: " + received.username);
   }
 
   function setFriends(name) {
@@ -92,17 +94,23 @@ function FriendsList() {
               
               if (running2 === false) {
                 running2 = true;
+                var but;
+                //var thelist = [];
                 document.getElementById("loadList").innerHTML = data;
                 for (var i = 0; i < friendsNames.length; i++) {
-                  var but = document.getElementById("Phil");
-                  but.onclick= function(){pog()};
+                  //thelist.push();
+                  but = document.getElementById(friends[i].username);
+                  //console.log("Buts: " + but.id);
+                  if (but.id === friends[i].username){
+                    but.onclick= function(){pog(friends[i])};
+                  }
                 }
               }
 
 
               var data2 = friendProfileDisplay();
-              console.log("TOMISPOG");
-              console.log("feat: " + data2);
+              //console.log("TOMISPOG");
+              //console.log("feat: " + data2);
               if (running3 === false) {
                 running3 = true;
                 document.getElementById("loadProfile").innerHTML = data2;
