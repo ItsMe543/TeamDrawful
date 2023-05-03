@@ -85,7 +85,7 @@ function Mutualusers() {
               
               if (running2 === false) {
                 running2 = true;
-                document.getElementById("loadList").innerHTML = data;
+                document.getElementById("loaduserlist").innerHTML = data;
                 for (var i = 0; i < allUsernames.length; i++) {
                   var but = document.getElementById("Phil");
                   //but.onclick= function(){pog()};
@@ -98,7 +98,7 @@ function Mutualusers() {
               console.log("feat: " + data2);
               if (running3 === false) {
                 running3 = true;
-                document.getElementById("loadProfile").innerHTML = data2;
+                document.getElementById("loaduserprofile").innerHTML = data2;
               }
             }
             console.log("selec2ded is:" + selec2ded);
@@ -166,14 +166,14 @@ function Mutualusers() {
       <Col className="Friend-m-side">
         <div className="Mutual-title">Find users</div>
           
-          <div className="users-m-list">
+          <div className="users-m-list" id="loaduserlist">
             {/*displayAllUsers()*/}
           </div>
       </Col>
 
 
       <Col className="Profile-side">
-        <div className="Details-to-fill">
+        <div className="Details-to-fill" id= "loaduserprofile">
           {/*displayUserProfile()*/}
         </div>
       </Col>
