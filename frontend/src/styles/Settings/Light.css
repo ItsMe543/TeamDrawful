@@ -213,6 +213,10 @@ body.light-mode .CommentBar {
     border: 1px solid black;
 }
 
+body.light-mode .star-rating button {
+    background-color: rgb(136, 129, 224);
+}
+
 body.light-mode .CommentSection {
     border: 1px solid black;
     background-color: rgb(255, 215, 103);

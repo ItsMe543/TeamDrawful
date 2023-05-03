@@ -134,6 +134,11 @@ body.contrast .menu {
     background-color: rgba(43, 43, 43, 0.459);
 }
 
+body.contrast .filtersBar {
+
+    background-color: rgba(43, 43, 43, 0.459);
+}
+
 body.contrast .menu button {
     color: rgb(255, 0, 255);
     background-color: rgba(20, 20, 20, 0.459);
@@ -208,9 +213,18 @@ body.contrast .CommentMesg {
     color: rgb(255, 0, 255);
 }
 
-body.contrast .Username {
-    color: rgb(0, 255, 255)
+body.contrast .bottom-bar div {
+    color: rgb(255, 0, 255);
 }
+
+body.contrast .Username {
+    color: rgb(0, 255, 255);
+}
+
+body.contrast .top-bar div {
+    color: rgb(0, 255, 255);
+}
+
 
 body.contrast .SubCom button {
     color: black;
@@ -426,4 +440,35 @@ body.contrast .Friends-list {
 
 body.contrast .Profile-details {
     background-color: rgba(75, 75, 75, 0.459);
+}
+
+body.contrast .star-rating button {
+    background-color: rgb(145, 0, 0);
+}
+
+body.contrast .security-header {
+    color: rgb(0, 255, 255) !important
+}
+
+body.contrast .lastLogin {
+    color: rgb(255, 0, 255) !important
+}
+
+body.contrast .errormsg {
+    color: rgb(0, 255, 255) !important
+}
+
+body.contrast .saveP {
+    background-color: rgb(255, 255, 255);
+    color: black
+}
+
+body.contrast .delete {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255)
+}
+
+body.contrast .popup button {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255)
 }

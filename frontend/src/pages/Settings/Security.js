@@ -137,7 +137,7 @@ export default function Security() {
     return (
         <div className="security-container">
             <Col md={2.5}>
-                <div style={{ fontSize: '40px' }}>Security Settings</div>
+                <div className="security-header">Security Settings</div>
 
                 <div style={{ fontSize: '30px', marginTop: '15px' }}>Change Password:</div>
                 <div className="input">

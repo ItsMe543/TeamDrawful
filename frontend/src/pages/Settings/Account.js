@@ -282,10 +282,11 @@ export default function Account() {
                             />
                         </div>
                         <div className="input">
-                            <input
+                            <input style={{ color: "rgb(120,120,120)" }}
                                 placeholder="Enter your username"
                                 value={newUsername || username}
                                 onChange={(e) => setNewUsername(e.target.value)}
+                                readOnly="true"
                             />
                         </div>
                         <div className="input">
