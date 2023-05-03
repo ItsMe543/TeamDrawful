@@ -49,9 +49,8 @@ function FriendsList() {
   var running = false;
   var running3 = false;
 
-
-  function pog(received){
-    console.log("Pog got: " + received.username);
+  function pog(val){
+    console.log("USERNAME POG FUNCTION ======== " + val);
   }
 
   function setFriends(name) {
@@ -91,19 +90,15 @@ function FriendsList() {
               var data = friendsListDisplay();
               console.log("yeet: " + data);
 
-              
+
               if (running2 === false) {
                 running2 = true;
                 var but;
                 //var thelist = [];
                 document.getElementById("loadList").innerHTML = data;
                 for (var i = 0; i < friendsNames.length; i++) {
-                  //thelist.push();
-                  but = document.getElementById(friends[i].username);
-                  //console.log("Buts: " + but.id);
-                  if (but.id === friends[i].username){
-                    but.onclick= function(){pog(friends[i])};
-                  }
+                  var but = document.getElementById(friendsNames[i]);
+                  but.onclick= function(){pog(but.id)};
                 }
               }
 

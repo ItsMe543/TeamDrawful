@@ -113,17 +113,17 @@ export default function Security() {
         const authToken = sessionStorage.getItem("token");
         if (authToken) {
             const csrftoken = getCookie("csrftoken");
-            axios.delete(`/deleteProfile?username=${authToken}`, {
-                headers: {
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-            })
-                .then((response) => response.text())
-                .then((result) => {
-                    console.log(result);
+            axios
+                .delete(`/deleteProfile?username=${authToken}`, {
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken")
+                    }
+                })
+                .then(response => {
+                    console.log(response.data);
                     // Handle success
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.error(error);
                     // Handle error
                 });
@@ -134,10 +134,11 @@ export default function Security() {
     };
 
 
+
     return (
         <div className="security-container">
             <Col md={2.5}>
-                <div style={{ fontSize: '40px' }}>Security Settings</div>
+                <div className="security-header">Security Settings</div>
 
                 <div style={{ fontSize: '30px', marginTop: '15px' }}>Change Password:</div>
                 <div className="input">

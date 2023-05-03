@@ -65,7 +65,7 @@ function Mutualusers() {
   useEffect(() => {
     if (isReady === false) {
       isReady = true;
-      axios.get("/api/user_accounts/").then((data) => { //Gets all users
+      /*axios.get("/api/user_accounts/").then((data) => { //Gets all users
         for (var i = 0; i < (data?.data).length; i++) {
           allUsernames.push(data?.data[i].username);
         }
@@ -107,7 +107,7 @@ function Mutualusers() {
           });
         }
         console.log("SDVTEYHUIJXITY");
-      });
+      });*/
     }
     //for (var z=0; z<storeallUsernames.length; z++;){
 

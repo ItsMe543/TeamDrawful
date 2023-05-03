@@ -286,6 +286,7 @@ export default function Account() {
                                 placeholder="Enter your username"
                                 value={newUsername || username}
                                 onChange={(e) => setNewUsername(e.target.value)}
+                            //readOnly="true"
                             />
                         </div>
                         <div className="input">

@@ -120,6 +120,10 @@
     margin-top: 5px
 }
 
+.security-header {
+    font-size: 44px;
+}
+
 .save {
     background-color: rgb(78, 90, 255);
     color: rgb(255, 255, 255);
@@ -142,6 +146,14 @@
     margin-top: 10px;
 }
 
+.delete:hover {
+    background-color: rgb(255, 140, 140);
+}
+
+.delete:active {
+    background-color: rgb(192, 29, 29);
+}
+
 .saveP {
     background-color: rgb(78, 90, 255);
     color: rgb(255, 255, 255);
@@ -151,6 +163,14 @@
     padding: 6px;
     margin-left: 25px;
     margin-bottom: 30px;
+}
+
+.saveP:hover {
+    background-color: rgb(116, 181, 255);
+}
+
+.saveP:active {
+    background-color: rgb(49, 87, 255);
 }
 
 .lastLogin {

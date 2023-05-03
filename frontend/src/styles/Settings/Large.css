@@ -14,21 +14,23 @@ body.large button {
     font-size: 25px;
 }
 
-body.large .userDrawing img {
-    max-width: 275px;
-    height: 300px;
-}
 
 body.large .UserName {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 body.large .StarBarAvg {
     font-size: 30px;
 }
 
+body.large .bottom-bar {
+    width: 90%;
+    left: 5%;
+
+}
+
 body.large .PromptName {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 body.large .RateText {
@@ -195,4 +197,25 @@ body.large .Profile-r-reject {
 
 body.large .Profile-r-accept {
     width: 100px
+}
+
+body.large .userName {
+    font-size: 25px;
+}
+
+body.large .saveP {
+    font-size: 30px;
+}
+
+
+body.large .security-header {
+    font-size: 50px;
+}
+
+body.large .delete {
+    font-size: 30px;
+}
+
+body.large .popup button {
+    width: 100px;
 }

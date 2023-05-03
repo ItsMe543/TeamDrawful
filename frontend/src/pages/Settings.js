@@ -110,7 +110,7 @@ export default function Settings() {
           {popupVisible && (
             <div className="popup">
               <button onClick={() => signOut()}>
-                Logout
+                Log out
               </button>
             </div>
           )}
