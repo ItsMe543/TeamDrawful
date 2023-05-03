@@ -282,7 +282,7 @@ export default function Account() {
                             />
                         </div>
                         <div className="input">
-                            <input style={{ color: "rgb(120,120,120)" }}
+                            <input
                                 placeholder="Enter your username"
                                 value={newUsername || username}
                                 onChange={(e) => setNewUsername(e.target.value)}
