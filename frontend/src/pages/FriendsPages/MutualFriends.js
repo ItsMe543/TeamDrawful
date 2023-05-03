@@ -152,11 +152,12 @@ function Mutualusers() {
 
   function friendProfileDisplay() {
     if (users.length < 1 || selec2ded === "") {
-      return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Befriend</button></Col></Row></div></div>';
+      return '<div><div class="Profile-details"><img class="Profile-picture"/><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were a user!!</div></div><div class="Profile-stat-bar">Badges Unlocked:  0</div><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating:0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><button class="Profile-befriend-button">Befriend</button><button class="Profile-unfriend-mf-button" disabled={true}>Unfriend</button><div class="Profile-username">Example Account</div></div></div>'
     } else {
       return loadProf();
     }
   }
+
 
 
   function loadProf(){
@@ -165,7 +166,7 @@ function Mutualusers() {
       if (loadded === users[j].username){
         console.log("Loadded prints...: " + users[j].username);
         //console.log("Laod List: " + users[0].profilePicture);
-        var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + users[j].profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ users[j].bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + users[j].username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + users[j].maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + users[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + users[j].totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + users[j].badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + users[j].favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-mf-button">Unfriend</button></Col><Col><button class="Profile-befriend-button">Befriend</button></Col></Row></div></div>'
+        var profile = '<div><div class="Profile-details"><img class="Profile-picture" src= ' + users[j].profilePicture + ' alt={"pfp image"} /><div class="Profile-bio-container"><div class="Profile-bio">'+ users[j].bio + '</div></div><div class="Profile-stat-bar">Badges Unlocked:  ' + users[j].badgesEarned + '</div><div class="Profile-stat-bar">Highest Streak: ' + users[j].maxStreak + '</div><div class="Profile-stat-bar">Average Rating:' + users[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + users[j].totalStars + '</div><button class="Profile-befriend-button">Befriend</button><button class="Profile-unfriend-mf-button">Unfriend</button><div class="Profile-username">' + users[j].username + '</div></div></div>'
       }
     }
     return profile;

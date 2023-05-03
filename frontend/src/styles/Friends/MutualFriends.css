@@ -99,6 +99,7 @@
 .Profile-unfriend-mf-button {
     font-size: 20px;
     width: 100px;
+    margin-bottom: 10px;
     text-align: center;
     margin-left: 60px;
     border-color: rgb(103, 103, 103);
@@ -107,6 +108,7 @@
 .Profile-befriend-button {
     font-size: 20px;
     width: 100px;
+    margin-bottom: 10px;
     text-align: center;
     margin-left: 40px;
     border-color: rgb(48, 174, 193);

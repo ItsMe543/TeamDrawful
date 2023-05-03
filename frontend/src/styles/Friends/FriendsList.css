@@ -79,6 +79,7 @@
 .Friend-picture {
     height: 100px;
     width: 100px;
+    background-color: white;
 }
 
 .Friend-status {
@@ -106,12 +107,14 @@
     margin-top: 50px;
     display: grid;
     grid-template-columns: auto auto;
+    border: solid 3px rgb(210, 171, 13);
 }
 
 .Profile-picture {
     height: 180px;
     width: 180px;
     border: 2px solid rgb(253, 205, 18);
+    background-color: white;
 }
 
 .Profile-picture-default{
@@ -121,7 +124,14 @@
 }
 
 .Profile-username {
-    font-size: 35px;
+    font-size: 20px;
+    background-color: rgb(210,171,13);
+    border-radius: 10px;
+    border: solid 2px black;
+    color: black;
+    height: 50px;
+    width: 200px;
+    padding: 10px;
 }
 
 .Profile-bio-container {
