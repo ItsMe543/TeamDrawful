@@ -308,6 +308,9 @@ class User_AccountsView(viewsets.ModelViewSet):
                     totalStars=data['totalStars'],
                     averageRating=data['averageRating']
                 )
+                models.User_Memories.objects.filter(username=username).update(
+                    username=data['username'],
+                )
                 return HttpResponse('User account updated successfully')
             except:
                 return HttpResponse('User not found')
