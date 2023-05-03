@@ -177,7 +177,7 @@ function FriendsList() {
 
   function friendProfileDisplay() {
     if (friends.length < 1 || selec2ded === "") {
-      return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Memories</button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>';
+      return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Memories</button></Col></Row></div></div>';
     } else {
       return loadProf();
     }
@@ -190,7 +190,7 @@ function FriendsList() {
     var loadded = selec2ded;
     console.log("Loadded prints...: " + loadded.username);
     //console.log("Laod List: " + friends[0].profilePicture);
-    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-button">Unfriend</button></Col><Col><button class="Profile-view-memories"><Link to={"/friends/memories/" + ' + loadded.id + '}>Memories</Link></button></Col></Row><Row><Col><div class="Profile-section-header2">Badges</div></Col></Row><Row><Col><div class="Profile-badges-container"></div></Col></Row></div></div>'
+    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-button">Unfriend</button></Col><Col><button class="Profile-view-memories"><Link to={"/friends/memories/" + ' + loadded.id + '}>Memories</Link></button></Col></Row></div></div>'
     return profile;
   }
 
@@ -206,7 +206,6 @@ function FriendsList() {
     <div className="Profiles-container">
       <Col className="Friend-side">
         <div className="Friends-title">Friends list</div>
-        <input className="F-search-bar" type="text" placeholder="Search friends list" />
 
         <div className="Friends-list" id={"loadList"}>
           {/*friendsListDisplay()*/}

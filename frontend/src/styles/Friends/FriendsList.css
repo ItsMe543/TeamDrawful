@@ -33,7 +33,7 @@
 
 .Friends-list {
     background-color: rgb(45, 45, 45);
-    margin-top: 5px;
+    margin-top: 50px;
     margin-right: 70px;
     padding-left: 15px;
     padding-right: 15px;
@@ -110,6 +110,12 @@
     height: 200px;
     width: 200px;
     border: 2px solid rgb(253, 205, 18);
+}
+
+.Profile-picture-default{
+    height: 200px;
+    width: 200px;
+    background-color: white;
 }
 
 .Profile-username {
