@@ -119,7 +119,7 @@ class User_AccountsView(viewsets.ModelViewSet):
 
     def getFriendsNew(request):
         value = request.GET.get('username')
-        #print("Username =", value)
+        # print("Username =", value)
         friendsList = []
         try:
             friendsElement = models.User_Accounts.objects.filter(
@@ -207,7 +207,7 @@ class User_AccountsView(viewsets.ModelViewSet):
     def authenticateUser(request):
         username = request.GET.get('username')
         password = request.GET.get('password')
-        #print("Password =", password + "...")
+        # print("Password =", password + "...")
 
         user = CustomBackend.authenticate(
             request, username=username, password=password)
@@ -318,8 +318,13 @@ class User_AccountsView(viewsets.ModelViewSet):
         username = request.GET.get('username')
         if request.method == 'DELETE':
             try:
+                # Delete the user's account
                 models.User_Accounts.objects.filter(username=username).delete()
-                return HttpResponse('User account deleted successfully')
+
+                # Delete all user memories with the given username
+                models.User_Memories.objects.filter(username=username).delete()
+
+                return HttpResponse('User account and memories deleted successfully')
             except:
                 return HttpResponse('Error')
         else:

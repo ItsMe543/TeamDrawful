@@ -113,17 +113,17 @@ export default function Security() {
         const authToken = sessionStorage.getItem("token");
         if (authToken) {
             const csrftoken = getCookie("csrftoken");
-            axios.delete(`/deleteProfile?username=${authToken}`, {
-                headers: {
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-            })
-                .then((response) => response.text())
-                .then((result) => {
-                    console.log(result);
+            axios
+                .delete(`/deleteProfile?username=${authToken}`, {
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken")
+                    }
+                })
+                .then(response => {
+                    console.log(response.data);
                     // Handle success
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.error(error);
                     // Handle error
                 });
@@ -132,6 +132,7 @@ export default function Security() {
         console.log("Signed out");
         navigate("/login");
     };
+
 
 
     return (
