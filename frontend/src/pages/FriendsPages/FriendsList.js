@@ -90,7 +90,7 @@ function FriendsList() {
               var data = friendsListDisplay();
               console.log("yeet: " + data);
 
-              
+
               if (running2 === false) {
                 running2 = true;
                 document.getElementById("loadList").innerHTML = data;
