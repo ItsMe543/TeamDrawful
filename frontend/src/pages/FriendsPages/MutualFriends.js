@@ -51,8 +51,11 @@ function Mutualusers() {
   var running = false;
   var running3 = false;
 
-  function pog(){
-    console.log("yeet");
+  function pog(val){
+    selec2ded = val;
+    console.log(selec2ded);
+    var data2 = friendProfileDisplay();
+    document.getElementById("loaduserprofile").innerHTML = data2;
   }
 
   function setusers(name) {
@@ -65,7 +68,7 @@ function Mutualusers() {
   useEffect(() => {
     if (isReady === false) {
       isReady = true;
-      /*axios.get("/api/user_accounts/").then((data) => { //Gets all users
+      axios.get("/api/user_accounts/").then((data) => { //Gets all users
         for (var i = 0; i < (data?.data).length; i++) {
           allUsernames.push(data?.data[i].username);
         }
@@ -88,8 +91,8 @@ function Mutualusers() {
                 running2 = true;
                 document.getElementById("loaduserlist").innerHTML = data;
                 for (var i = 0; i < allUsernames.length; i++) {
-                  var but = document.getElementById("Phil");
-                  //but.onclick= function(){pog()};
+                  var but = document.getElementById(allUsernames[i]);
+                  but.onclick= function(){pog(this.id)};
                 }
               }
 
@@ -107,7 +110,7 @@ function Mutualusers() {
           });
         }
         console.log("SDVTEYHUIJXITY");
-      });*/
+      });
     }
     //for (var z=0; z<storeallUsernames.length; z++;){
 
@@ -159,9 +162,13 @@ function Mutualusers() {
 
   function loadProf(){
     var loadded = selec2ded;
-    console.log("Loadded prints...: " + loadded.username);
-    //console.log("Laod List: " + users[0].profilePicture);
-    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-mf-button">Unfriend</button></Col><Col><button class="Profile-befriend-button">Befriend</button></Col></Row></div></div>'
+    for (var j = 0; j < users.length; j++) {
+      if (loadded === users[j].username){
+        console.log("Loadded prints...: " + users[j].username);
+        //console.log("Laod List: " + users[0].profilePicture);
+        var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + users[j].profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ users[j].bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + users[j].username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + users[j].maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + users[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + users[j].totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + users[j].badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + users[j].favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-mf-button">Unfriend</button></Col><Col><button class="Profile-befriend-button">Befriend</button></Col></Row></div></div>'
+      }
+    }
     return profile;
   }
 

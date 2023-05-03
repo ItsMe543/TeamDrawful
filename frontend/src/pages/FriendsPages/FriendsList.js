@@ -50,7 +50,10 @@ function FriendsList() {
   var running3 = false;
 
   function pog(val){
-    console.log("USERNAME POG FUNCTION ======== " + val);
+    selec2ded = val;
+    console.log("Selected is: " + selec2ded);
+    var data2 = friendProfileDisplay();
+    document.getElementById("loadProfile").innerHTML = data2;
   }
 
   function setFriends(name) {
@@ -182,7 +185,9 @@ function FriendsList() {
   function friendProfileDisplay() {
     if (friends.length < 1 || selec2ded === "") {
       return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Memories</button></Col></Row></div></div>';
+
     } else {
+      console.log("Creative var name");
       return loadProf();
     }
   }
@@ -192,9 +197,13 @@ function FriendsList() {
 
   function loadProf(){
     var loadded = selec2ded;
-    console.log("Loadded prints...: " + loadded.username);
+    for (var j=0; j<friends.length; j++){
+      console.log("Loadded prints...: " + loadded);
     //console.log("Laod List: " + friends[0].profilePicture);
-    var profile = '<div><div class="Profile-details"><Row><Col><img class="Profile-picture" src= ' + loadded.profilePicture + ' alt={"pfp image"} /></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">'+ loadded.bio + '</div></div></Col></Row><Row><Col><div class="Profile-username">' + loadded.username + '</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: ' + loadded.maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + loadded.averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + loadded.totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + loadded.badgesEarned + '</div></Col><Col><img class="Profile-fav-draw" src= ' + loadded.favouriteDraw + 'alt={"fav draw image"} /></Col></Row><Row><Col><button class="Profile-unfriend-button">Unfriend</button></Col><Col><button class="Profile-view-memories"><Link to={"/friends/memories/" + ' + loadded.id + '}>Memories</Link></button></Col></Row></div></div>'
+      if (loadded === friends[j].username){
+        var profile = '<div><div class="Profile-details"><img class="Profile-picture" src= ' + friends[j].profilePicture + ' alt={"pfp image"} /><div class="Profile-bio-container"><div class="Profile-bio">'+ friends[j].bio + '</div></div><div class="Profile-username">' + friends[j].username + '</div><div class="Profile-section-header1">Favourite Draw</div><div class="Profile-stat-bar">Highest Streak: ' + friends[j].maxSteak + '</div><div class="Profile-stat-bar">Average Rating:' + friends[j].averageRating + '</div><div class="Profile-stat-bar">Total Stars Earned: ' + friends[j].totalStars + '</div><div class="Profile-stat-bar">Badges Unlocked:  ' + friends[j].badgesEarned + '</div><img class="Profile-fav-draw" src= ' + friends[j].favouriteDraw + 'alt={"fav draw image"} /><button class="Profile-unfriend-button">Unfriend</button><button class="Profile-view-memories"><Link to={"/friends/memories/" + ' + friends[j].id + '}>Memories</Link></button></div></div>'
+      }
+    }
     return profile;
   }
 
