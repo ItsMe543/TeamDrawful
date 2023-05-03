@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useNavigate } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import drawings from "../../drawingData.js";
@@ -49,10 +49,8 @@ function FriendsList() {
   var running = false;
   var running3 = false;
 
-  const navigate = useNavigate();
-
   function pog(val){
-    console.log("USERNAME POG FUNCTION ======== " + friendsNames[val]);
+    console.log("USERNAME POG FUNCTION ======== " + val);
   }
 
   function setFriends(name) {
@@ -98,8 +96,7 @@ function FriendsList() {
                 document.getElementById("loadList").innerHTML = data;
                 for (var i = 0; i < friendsNames.length; i++) {
                   var but = document.getElementById(friendsNames[i]);
-                  //but.onclick= function(){pog(i)};
-                  but.onclick = function(){navigate("/friends/memories/" + friendsNames[i])}
+                  but.onclick= function(){pog(but.id)};
                 }
               }
 
