@@ -93,6 +93,8 @@ function FriendsList() {
 
               if (running2 === false) {
                 running2 = true;
+                var but;
+                //var thelist = [];
                 document.getElementById("loadList").innerHTML = data;
                 for (var i = 0; i < friendsNames.length; i++) {
                   var but = document.getElementById(friendsNames[i]);
@@ -103,8 +105,8 @@ function FriendsList() {
 
 
               var data2 = friendProfileDisplay();
-              console.log("TOMISPOG");
-              console.log("feat: " + data2);
+              //console.log("TOMISPOG");
+              //console.log("feat: " + data2);
               if (running3 === false) {
                 running3 = true;
                 document.getElementById("loadProfile").innerHTML = data2;

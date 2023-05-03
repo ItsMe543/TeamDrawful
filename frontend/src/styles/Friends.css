@@ -32,12 +32,19 @@
   padding: 10px 0 20px;
 }
 
+.sections{
+  font-size: 28px;
+  size: 20px;
+}
+
+
 .friendSidebar button {
   color: white;
   padding: 10px;
   background-color: #000000;
   border-color: #000000;
   border-radius: 15px;
+  margin-top: 10px;
 }
 
 .friendSidebar button:not([aria-current="true"]):hover {
@@ -97,7 +104,7 @@
   border-radius: 15px;
   background-color: #000000;
   border: none;
-  font-size: 22px;
+  font-size: 28px;
   margin-bottom: 30px;
 }
 

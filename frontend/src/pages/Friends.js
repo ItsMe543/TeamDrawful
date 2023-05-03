@@ -26,7 +26,7 @@ function Friends() {
   ];
 
   const buttonStyle = {
-    fontSize: "22px",
+    fontSize: "28px",
     textTransform: "none",
     margin: "10px 0",
   };
@@ -35,20 +35,21 @@ function Friends() {
     <div className="friends-container">
       <div className="friendSidebar">
         <div className="friendSidebar-header">Friends</div>
-        <Button
+        <Button className="sections"
           style={buttonStyle}
           onClick={() => handleSectionClick("friends")}
         >
           Friends
         </Button>
         <br />
-        <Button
+        <Button className="sections"
           style={buttonStyle}
           onClick={() => handleSectionClick("mutual")}
         >
           Find Friends
         </Button>
         <br />
+        {/*
         <Button
           style={buttonStyle}
           onClick={() => handleSectionClick("requests")}
@@ -60,6 +61,7 @@ function Friends() {
           <MenuIcon style={{ marginBottom: "5px", marginRight: "10px" }} />
           More
         </Button>
+      */}
       </div>
 
       <div className="profiles-sections">
