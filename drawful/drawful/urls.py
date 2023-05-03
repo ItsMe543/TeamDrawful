@@ -60,6 +60,7 @@ urlpatterns = [
     path('updateProfile', views.User_AccountsView.update_user_account),
     path('deleteProfile', views.User_AccountsView.delete_user_account),
     path('updatePassword', views.User_AccountsView.updatePassword),
+    path('updateFriends', views.User_AccountsView.updateFriends),
     re_path(r'^(%s)?$' % '|'.join(frontendRoutes), TemplateView.as_view(
         template_name='index.html'), name="main"),
 ]

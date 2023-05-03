@@ -316,6 +316,18 @@ class User_AccountsView(viewsets.ModelViewSet):
                 return HttpResponse('User not found')
         else:
             return HttpResponse('Invalid request method')
+    def updateFriends(request):
+        username = request.GET.get('username')
+        friendList = request.GET.get('friends')
+        print(friendList)
+        try:
+            models.User_Accounts.objects.filter(username=username).update(
+                friends=friendList
+            )
+            return HttpResponse(friendList)
+
+        except:
+            return HttpResponse("failed")    
 
     def delete_user_account(request):
         username = request.GET.get('username')
