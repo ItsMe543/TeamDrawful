@@ -96,7 +96,8 @@ function FriendsList() {
                 document.getElementById("loadList").innerHTML = data;
                 for (var i = 0; i < friendsNames.length; i++) {
                   var but = document.getElementById(friendsNames[i]);
-                  but.onclick= function(){pog(but.id)};
+                  but.onclick= function(){pog(this.id)};
+                  
                 }
               }
 
