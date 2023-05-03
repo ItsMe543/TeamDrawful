@@ -150,7 +150,6 @@ function Mutualusers() {
     return TOMISPOG;
   }
 
-
   function friendProfileDisplay() {
     if (users.length < 1 || selec2ded === "") {
       return '<div><div class="Profile-details"><Row><Col><BsPersonSquare class="Profile-picture"/></Col><Col><div class="Profile-bio-container"><div class="Profile-bio">This is where my bio would be if I were your friend!</div></div></Col></Row><Row><Col><div class="Profile-username">Username</div></Col><Col><div class="Profile-section-header1">Favourite Draw</div></Col></Row><Row><Col><div class="Profile-stat-bar">Highest Streak: 0</div><div class="Profile-stat-bar">Average Rating: 0</div><div class="Profile-stat-bar">Total Stars Earned: 0</div><div class="Profile-stat-bar">Badges Unlocked: 0</div></Col><Col><BsFillTaxiFrontFill class="Profile-fav-draw"/></Col></Row><Row><Col><button class="Profile-unfriend-button-default" disabled={true}>Unfriend</button></Col><Col><button class="Profile-view-memories-default" disabled={true}>Befriend</button></Col></Row></div></div>';
