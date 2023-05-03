@@ -44,6 +44,7 @@ function FriendsList() {
   const friends = [];
   const finalIdea = []
 
+  
 
   var running2 = false;
   var running = false;
@@ -53,11 +54,37 @@ function FriendsList() {
     selec2ded = val;
     console.log("Selected is: " + selec2ded);
     var data2 = friendProfileDisplay();
+    console.log(data2);
     document.getElementById("loadProfile").innerHTML = data2;
+    var awwFriends =document.getElementById("unfriend");
+    console.log("AAAAAAAAAAA"+awwFriends.innerHTML);
+    awwFriends.onclick=function(){removeFriend(selec2ded)}
   }
 
   function setFriends(name) {
     finalIdea.push(name)
+  }
+
+  function removeFriend(name){
+    console.log(name);
+    friendsNames.splice(friendsNames.indexOf(name),1)
+    var line ="{";
+    for (var i = 0; i< friendsNames.length;i++){
+      line =line+friendsNames[i]+","
+
+
+    }
+    line = line.slice(0,-1);
+    line = line +"}"
+    if(friendsNames.length ===0){
+      line ="{}";
+    }
+    axios.get("/updateFriends", { params: { username: getCookie("username"),friends: line  } }).then((data) => { //gets the friends entry in User_Accounts
+      console.log(data);
+      if (data != "false"){   
+        window.location.replace(window.location.href);
+      }
+    })
   }
 
   //Method 1 (Front end Based)
@@ -110,9 +137,14 @@ function FriendsList() {
               var data2 = friendProfileDisplay();
               //console.log("TOMISPOG");
               //console.log("feat: " + data2);
+              console.log("BBBBBBBBBBBBB"+running3)
               if (running3 === false) {
                 running3 = true;
+                console.log("here");
                 document.getElementById("loadProfile").innerHTML = data2;
+                var awwFriends =document.getElementById("unfriend");
+                console.log("AAAAAAAAAAA"+awwFriends.innerHTML);
+                awwFriends.onclick=function(){removeFriend(selec2ded)}
               }
             }
             console.log("selec2ded is:" + selec2ded);
@@ -169,6 +201,7 @@ function FriendsList() {
     
     var TOMISPOG = "";
     for (var i = 0; i < friends.length; i++) {
+      console.log("HELLO"+friends[i].username)
       TOMISPOG = TOMISPOG + '<button class="User-preview" id='+friends[i].username+'> <img class="Friend-picture" src=' + friends[i].profilePicture + ' alt="test image" /><Col><div class="Friend-username">' + friends[i].username + '</div></Col></button>';
     }
     return TOMISPOG;
