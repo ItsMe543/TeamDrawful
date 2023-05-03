@@ -329,3 +329,30 @@ body.light-mode .Friend-r-username {
 body.light-mode .Profile-unfriend-button {
     color: rgb(0, 0, 0)
 }
+
+
+body.light-mode .save {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 203, 59);
+}
+
+body.light-mode .save:hover {
+    background-color: rgb(255, 232, 127);
+}
+
+body.light-mode .save:active {
+    background-color: rgb(255, 180, 19);
+}
+
+body.light-mode .saveP {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 203, 59);
+}
+
+body.light-mode .saveP:hover {
+    background-color: rgb(255, 232, 127);
+}
+
+body.light-mode .saveP:active {
+    background-color: rgb(255, 180, 19);
+}

@@ -472,3 +472,27 @@ body.contrast .popup button {
     background-color: rgb(255, 0, 0);
     color: rgb(255, 255, 255)
 }
+
+body.contrast .save:hover {
+    background-color: rgb(194, 194, 194);
+}
+
+body.contrast .save:active {
+    background-color: rgb(107, 107, 107);
+}
+
+body.contrast .saveP:hover {
+    background-color: rgb(194, 194, 194);
+}
+
+body.contrast .saveP:active {
+    background-color: rgb(107, 107, 107);
+}
+
+body.contrast .delete:hover {
+    background-color: rgb(255, 140, 140);
+}
+
+body.contrast .delete:active {
+    background-color: rgb(192, 29, 29);
+}
